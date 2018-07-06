@@ -4,19 +4,18 @@ import {
   Segment, 
   Card,
   Icon,
+  Grid,
 } from 'semantic-ui-react'
 import { Parallax, Background } from 'react-parallax'
 import Banner from '../images/harbor.jpg'
 
 const insideStyles = {
-  
-  padding: 20, 
+  padding: 50, 
   position: 'absolute', 
   top: '30%', 
   left: '50%', 
   transform: 'translate(-50%,-50%)',
   fontSize: 50,
-
   }
 
 
@@ -28,9 +27,15 @@ const Home = () => (
       strength={500}
     >
       <div style={{height: 900}}>
-        <div style={insideStyles}>Liicugtukut Alutiit'stun</div>
+        <Grid stackable columns='equal' divided='vertically' style={insideStyles}>
+        <Grid.Row>
+          <Grid.Column centered width={8}>Liicugtukut</Grid.Column>
+          <Grid.Column centered width={8}>Alutiit'stun</Grid.Column>
+          </Grid.Row>
+        </Grid>
       </div>
     </Parallax>
+
 
     <Segment>
       <Card.Group itemsPerRow={3} stackable={true}>
