@@ -16,6 +16,9 @@
 # Ignore uploaded files in development
 /storage/*
 
+# Ignore images
+/src/components/images
+
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.
