@@ -10,7 +10,6 @@ import { Parallax, Background } from 'react-parallax'
 import Banner from '../images/harbor.jpg'
 import { 
   CardHeader,
-  CardBack,
 } from './styles/CommonStyles'
 
 const insideStyles = {
@@ -35,7 +34,6 @@ const Home = () => (
     </Parallax>
       
     <Segment padded='very'>
-    <CardBack>
       <Card.Group itemsPerRow={3} stackable={true}>
         <Card>
           <Card.Content header>
@@ -83,7 +81,6 @@ const Home = () => (
           </Card.Content>
         </Card>
       </Card.Group>
-      </CardBack>
     </Segment>
 
     <Segment basic padded='very'>
