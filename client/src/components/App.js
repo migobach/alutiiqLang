@@ -15,14 +15,8 @@ import AuthRoute from './AuthRoute'
 import Login from './Login'
 import Register from './Register'
 
-
-
-
 const App = () => (
-  
   <div>
-
-  
     <NavBar />
     <Switch>
       <Route exact path="/" component={Home} />

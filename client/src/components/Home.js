@@ -4,10 +4,14 @@ import {
   Segment, 
   Card,
   Icon,
-  Grid,
+  Header
 } from 'semantic-ui-react'
 import { Parallax, Background } from 'react-parallax'
 import Banner from '../images/harbor.jpg'
+import { 
+  CardHeader,
+  CardBack,
+} from './styles/CommonStyles'
 
 const insideStyles = {
   padding: 50, 
@@ -18,7 +22,6 @@ const insideStyles = {
   fontSize: 50,
   }
 
-
 const Home = () => (
   <div>
     <Parallax
@@ -27,45 +30,50 @@ const Home = () => (
       strength={500}
     >
       <div style={{height: 900}}>
-        <Grid stackable columns='equal' divided='vertically' style={insideStyles}>
-        <Grid.Row>
-          <Grid.Column centered width={8}>Liicugtukut</Grid.Column>
-          <Grid.Column centered width={8}>Alutiit'stun</Grid.Column>
-          </Grid.Row>
-        </Grid>
+        <Header size="huge" style={insideStyles}>Liicugtukut Alutiit'stun</Header>
       </div>
     </Parallax>
-
-
-    <Segment>
+      
+    <Segment padded='very'>
+    <CardBack>
       <Card.Group itemsPerRow={3} stackable={true}>
         <Card>
           <Card.Content header>
-            Here is sample one
+            <CardHeader>
+              Calitaartukut?
+            </CardHeader>
           </Card.Content>
           <Card.Content>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce gravida lorem tellus, a suscipit nunc faucibus vitae. Ut vestibulum bibendum feugiat. Mauris a turpis finibus, auctor eros at, ultrices massa. Nulla maximus, nibh eget tristique faucibus, nibh justo luctus risus, at pulvinar odio nunc ac urna. Donec accumsan metus eu orci eleifend, non pretium ex cursus. Nullam vitae diam a lorem malesuada scelerisque. Ut pharetra arcu velit, eu scelerisque nisi consectetur eget. Nam sollicitudin ante non sem fermentum, ac sagittis magna efficitur. Nam facilisis metus eget elit mattis, nec pharetra diam volutpat. Nulla facilisi. Donec tincidunt risus vitae ante porttitor aliquet. Nulla finibus at lorem pretium sagittis.
           </Card.Content>
           <Card.Content extra>
-            <Icon name='linkify' />
+            <Link to={`/happenings`}>
+              <Icon name='linkify' />
+            </Link>
           </Card.Content>
         </Card>
 
         <Card>
           <Card.Content header>
-            Here is sample two
+            <CardHeader>
+              Dictionary
+            </CardHeader>
           </Card.Content>
           <Card.Content>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce gravida lorem tellus, a suscipit nunc faucibus vitae. Ut vestibulum bibendum feugiat. Mauris a turpis finibus, auctor eros at, ultrices massa. Nulla maximus, nibh eget tristique faucibus, nibh justo luctus risus, at pulvinar odio nunc ac urna. Donec accumsan metus eu orci eleifend, non pretium ex cursus. Nullam vitae diam a lorem malesuada scelerisque. Ut pharetra arcu velit, eu scelerisque nisi consectetur eget. Nam sollicitudin ante non sem fermentum, ac sagittis magna efficitur. Nam facilisis metus eget elit mattis, nec pharetra diam volutpat. Nulla facilisi. Donec tincidunt risus vitae ante porttitor aliquet. Nulla finibus at lorem pretium sagittis.
           </Card.Content>
           <Card.Content extra>
-            <Icon name='linkify' />
+            <Link to={'/dictionary'}>
+              <Icon name='linkify' />
+            </Link>
           </Card.Content>
         </Card>
 
         <Card>
           <Card.Content header>
-            Here is sample thre
+            <CardHeader>
+              Nutasqaat Naaqisuutet
+            </CardHeader>
           </Card.Content>
           <Card.Content>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce gravida lorem tellus, a suscipit nunc faucibus vitae. Ut vestibulum bibendum feugiat. Mauris a turpis finibus, auctor eros at, ultrices massa. Nulla maximus, nibh eget tristique faucibus, nibh justo luctus risus, at pulvinar odio nunc ac urna. Donec accumsan metus eu orci eleifend, non pretium ex cursus. Nullam vitae diam a lorem malesuada scelerisque. Ut pharetra arcu velit, eu scelerisque nisi consectetur eget. Nam sollicitudin ante non sem fermentum, ac sagittis magna efficitur. Nam facilisis metus eget elit mattis, nec pharetra diam volutpat. Nulla facilisi. Donec tincidunt risus vitae ante porttitor aliquet. Nulla finibus at lorem pretium sagittis.
@@ -74,11 +82,11 @@ const Home = () => (
             <Icon name='linkify' />
           </Card.Content>
         </Card>
-
       </Card.Group>
+      </CardBack>
     </Segment>
 
-    <Segment basic>
+    <Segment basic padded='very'>
       <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ex sit amet ligula ultrices, et commodo metus venenatis. Fusce sit amet feugiat leo, sit amet iaculis orci. Donec fringilla dui nec tortor semper, at rhoncus dui interdum. Fusce eu massa tortor. Morbi nec risus tellus. Fusce tempus nulla ut elit lobortis bibendum. Nullam fringilla lorem at facilisis ullamcorper.
       </p>
@@ -95,6 +103,9 @@ const Home = () => (
       Nam vitae semper elit. Suspendisse rutrum magna a lorem pharetra, sed tempor nunc scelerisque. Vivamus viverra sapien at risus pharetra, id accumsan lacus blandit. Aliquam et justo at nisi gravida sollicitudin. Phasellus lacinia tellus quam, sit amet consectetur nisi placerat eu. In ac arcu risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vehicula vitae quam ac placerat. Vivamus consequat eleifend velit vel imperdiet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec volutpat tellus enim. Integer id libero eu libero dictum dictum ut sit amet augue.
       </p>
     </Segment>
+
+    <div style={{height: 900}}>
+      </div>
     
   </div>
 
