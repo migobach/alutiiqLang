@@ -17,7 +17,8 @@
 /storage/*
 
 # Ignore images
-/src/components/images
+/src/images
+/src/logos
 
 .byebug_history
 

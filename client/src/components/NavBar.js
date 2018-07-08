@@ -75,14 +75,6 @@ class NavBar extends Component {
           />         
         </Menu>
       </div>
-      // <div>
-      //   <Menu pointing secondary>
-      //     <Link to='/'>
-      //       <Menu.Item name='home' />
-      //     </Link>
-      //     { this.rightNavs() }
-      //   </Menu>
-      // </div>
     );
   }
 }
@@ -92,23 +84,3 @@ const mapStateToProps = state => {
 };
 
 export default withRouter(connect(mapStateToProps)(NavBar));
-
-
-
-// class NavBar extends Component {
-//   state = { activeItem: 'home' }
-
-//   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-
-//   render() {
-//     const { activeItem } = this.state
-
-//     return(
-//      
-//     )
-//   }
-// }
-
-// export default NavBar
-
-// Making this a class so that when somebody is in a section, like the dictionary, the menu will conditionally render... Not quite there yet though. 
