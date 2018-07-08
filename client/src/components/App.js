@@ -14,6 +14,7 @@ import AdminLogin from './AdminLogin'
 import AuthRoute from './AuthRoute'
 import Login from './Login'
 import Register from './Register'
+import Footer from './Footer'
 
 const App = () => (
   <div>
@@ -33,6 +34,7 @@ const App = () => (
 
       <Route component={NoMatch} />
     </Switch>
+    <Footer />
   </div>
 )
 

@@ -6,7 +6,7 @@ import {
   Icon,
   Header
 } from 'semantic-ui-react'
-import { Parallax, Background } from 'react-parallax'
+import { Parallax } from 'react-parallax'
 import Banner from '../images/harbor.jpg'
 import { 
   CardHeader,
@@ -100,10 +100,6 @@ const Home = () => (
       Nam vitae semper elit. Suspendisse rutrum magna a lorem pharetra, sed tempor nunc scelerisque. Vivamus viverra sapien at risus pharetra, id accumsan lacus blandit. Aliquam et justo at nisi gravida sollicitudin. Phasellus lacinia tellus quam, sit amet consectetur nisi placerat eu. In ac arcu risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vehicula vitae quam ac placerat. Vivamus consequat eleifend velit vel imperdiet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec volutpat tellus enim. Integer id libero eu libero dictum dictum ut sit amet augue.
       </p>
     </Segment>
-
-    <div style={{height: 900}}>
-      </div>
-    
   </div>
 
 )
