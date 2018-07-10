@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Menu, Segment, MenuItem } from 'semantic-ui-react';
+import { Menu, Segment, MenuItem, Dropdown } from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleLogout } from '../reducers/user';

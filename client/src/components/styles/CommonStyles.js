@@ -6,8 +6,30 @@ export const CardHeader = styled.div`
  color: #B2AC03;
  font-size: 2em;
 `
-export const CardBack = styled.div`
-  background: #B2505A;
+export const ColumnHead = styled.div`
+color: #B2AC03;
+font-size: 1.5em;  
+line-height: 1.5;
+`
+
+export const SectionHead = styled.div`
+color: #CC293A;
+font-size: 2em;
+padding: 65px;
+`
+
+export const SubSectionHead = styled.div`
+color: #CC293A;
+font-size: 1.5em;
+padding: 50px;
+`
+export const ContentStyle = styled.div`
+align-content: center;
+color: #A9A9A9;
+`
+export const SpecialDiv = styled.div`
+padding: 100px;
+
 `
 
 

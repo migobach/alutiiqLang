@@ -27,9 +27,9 @@ const Footer = () => (
           Who we are: 
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row columns={10}>
-        <Grid.Column>
-          <Image src={AKHF} size='tiny' />
+      <Grid.Row columns={10} >
+        <Grid.Column >
+          <Image src={AKHF} size='tiny'  />
         </Grid.Column>
         <Grid.Column>
           <Image src={ANA} size='tiny' />

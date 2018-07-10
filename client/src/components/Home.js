@@ -4,7 +4,7 @@ import {
   Segment, 
   Card,
   Icon,
-  Header
+  Header, 
 } from 'semantic-ui-react'
 import { Parallax } from 'react-parallax'
 import Banner from '../images/harbor.jpg'
