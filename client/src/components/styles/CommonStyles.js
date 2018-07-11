@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 export const CardHeader = styled.div`
  color: #B2AC03;
  font-size: 2em;
+ line-height: 1.5;
 `
 export const ColumnHead = styled.div`
 color: #B2AC03;
@@ -23,13 +24,25 @@ color: #CC293A;
 font-size: 1.5em;
 padding: 50px;
 `
+
+export const ContentHead = styled.div`
+color: #CC293A;
+font-size: 1.5em;
+padding: 15px;
+`
+
 export const ContentStyle = styled.div`
 align-content: center;
 color: #A9A9A9;
 `
+
 export const SpecialDiv = styled.div`
 padding: 100px;
+`
 
+export const GreyDiv = styled.div`
+background-color: #F8FFFS;
+padding: 20px;
 `
 
 

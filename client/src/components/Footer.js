@@ -1,9 +1,14 @@
 import React from 'react';
-import { Container, Grid, Image, Item } from 'semantic-ui-react';
+import { 
+  Container, 
+  Grid, 
+  Image, 
+  Item,
+} from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
-  SubSectionHead,
+  ContentHead,
   SpecialDiv,
   ContentStyle,
 } from './styles/CommonStyles'
@@ -26,32 +31,28 @@ const Footer = () => (
       <Grid>
       <Grid.Row centered columns={2} divided>
         <Grid.Column>
-          <Item>
-            <Item.Content header='Contact Us'>
-            <Item.Meta>
-              Native Village of Afognak
-              323 Carolyn Street
-              Kodiak, Alaska 99615
-            </Item.Meta>
-            </Item.Content>
-          </Item>
-          {/* <SpecialDiv>
-            <SubSectionHead>
+          <SpecialDiv>
+            <ContentHead>
               Contact Us:
-            </SubSectionHead>
+            </ContentHead>
             <ContentStyle>
               Native Village of Afognak
-              <Divider hidden />
               323 Carolyn Street
               Kodiak, Alaska 99615
-              <Divider hidden />
-
               907.486.6357
             </ContentStyle>
-          </SpecialDiv> */}
+          </SpecialDiv>
         </Grid.Column>
+      
         <Grid.Column>
-          Who we are: 
+          <SpecialDiv>
+            <ContentHead>
+              Who we are: 
+            </ContentHead>
+            <ContentStyle>
+              This website is maintained by the Native Village of Afognak in partnership with the Sun'aq Tribe of Kodiak with the aim of providing a single location to access all things Alutiiq. <i>Nunaniqsarkici!</i>
+            </ContentStyle>
+          </SpecialDiv>
         </Grid.Column>
       </Grid.Row>
 
