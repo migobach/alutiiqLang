@@ -17,11 +17,26 @@ import { Button } from 'semantic-ui-react'
 //   }
 // `
 
+export const MainHeader = styled.h1`
+  color: white;
+  font-size: 5em; 
+`
+
+export const MainHeaderContent = MainHeader.extend`
+  font-size: .5em;
+`
+
+export const MainDiv = styled.div`
+  padding: 200px;
+  align-content: center;
+`
+
 export const CardHeader = styled.h3`
  color: #3B568C;
  font-size: 2em;
  line-height: 1.5;
 `
+
 export const ColumnHead = styled.h3`
 color: #3B568C;
 font-size: 1.5em;  
@@ -47,7 +62,6 @@ padding: 15px;
 `
 
 export const ContentStyle = styled.p`
-align-content: center;
 font-size: 1.5em;
 color: #A9A9A9;
 `
@@ -56,8 +70,16 @@ export const ContentStyleWhite = ContentStyle.extend`
   color: white;
 `
 
+export const CenterDiv = styled.div`
+text-align: center;
+`
+
 export const SpecialDiv = styled.div`
 padding: 50px;
+`
+
+export const SpecialDivCenter = SpecialDiv.extend`
+  align-content: center;
 `
 
 export const GreenDiv = styled.div`

@@ -14,19 +14,12 @@ import {
   ContentStyleWhite,
   ContainerPad,
   SpecialDiv,
+  MainHeader,
+  MainHeaderContent,
+  MainDiv,
 } from './styles/CommonStyles'
 
-const insideStyles = {
-  padding: 50, 
-  position: 'absolute', 
-  top: '30%', 
-  left: '50%', 
-  transform: 'translate(-50%,-50%)',
-  fontSize: 50,
-  }
-
 const Home = () => (
-
   <div>
     <Parallax
       bgImage={Banner}
@@ -34,7 +27,14 @@ const Home = () => (
       strength={500}
     >
       <div style={{height: 900}}>
-        <Header size="huge" style={insideStyles}>Liicugtukut Alutiit'stun</Header>
+        <MainDiv>
+          <MainHeader>
+            <i>Liicugtukut Alutiit'stun</i>
+            <MainHeaderContent>
+              We want to learn Alutiiq
+            </MainHeaderContent>
+          </MainHeader>
+        </MainDiv>
       </div>
     </Parallax>
       
