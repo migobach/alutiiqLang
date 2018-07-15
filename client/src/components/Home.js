@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { 
-  Segment, 
+import {  
   Card,
   Icon,
   Header, 
+  Button
 } from 'semantic-ui-react'
 import { Parallax } from 'react-parallax'
 import Banner from '../images/harbor.jpg'
@@ -13,6 +13,7 @@ import {
   GreenDiv,
   ContentStyleWhite,
   ContainerPad,
+  SpecialDiv,
 } from './styles/CommonStyles'
 
 const insideStyles = {
@@ -40,50 +41,57 @@ const Home = () => (
     <ContainerPad>
       <Card.Group itemsPerRow={3} stackable={true}>
         <Card>
-          <Card.Content header>
+          <Card.Content header textAlign='center'>
             <CardHeader>
               Calitaartukut?
             </CardHeader>
           </Card.Content>
           <Card.Content>
+            <SpecialDiv>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce gravida lorem tellus, a suscipit nunc faucibus vitae. Ut vestibulum bibendum feugiat. Mauris a turpis finibus, auctor eros at, ultrices massa. Nulla maximus, nibh eget tristique faucibus, nibh justo luctus risus, at pulvinar odio nunc ac urna. Donec accumsan metus eu orci eleifend, non pretium ex cursus. Nullam vitae diam a lorem malesuada scelerisque. Ut pharetra arcu velit, eu scelerisque nisi consectetur eget. Nam sollicitudin ante non sem fermentum, ac sagittis magna efficitur. Nam facilisis metus eget elit mattis, nec pharetra diam volutpat. Nulla facilisi. Donec tincidunt risus vitae ante porttitor aliquet. Nulla finibus at lorem pretium sagittis.
+            </SpecialDiv>
           </Card.Content>
-          <Card.Content extra>
             <Link to={`/happenings`}>
-              <Icon name='linkify' />
+              <Button color='yellow' size='big' fluid>
+                Go 
+              </Button>
             </Link>
-          </Card.Content>
         </Card>
 
         <Card>
-          <Card.Content header>
+          <Card.Content header textAlign='center'>
             <CardHeader>
               Dictionary
             </CardHeader>
           </Card.Content>
           <Card.Content>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce gravida lorem tellus, a suscipit nunc faucibus vitae. Ut vestibulum bibendum feugiat. Mauris a turpis finibus, auctor eros at, ultrices massa. Nulla maximus, nibh eget tristique faucibus, nibh justo luctus risus, at pulvinar odio nunc ac urna. Donec accumsan metus eu orci eleifend, non pretium ex cursus. Nullam vitae diam a lorem malesuada scelerisque. Ut pharetra arcu velit, eu scelerisque nisi consectetur eget. Nam sollicitudin ante non sem fermentum, ac sagittis magna efficitur. Nam facilisis metus eget elit mattis, nec pharetra diam volutpat. Nulla facilisi. Donec tincidunt risus vitae ante porttitor aliquet. Nulla finibus at lorem pretium sagittis.
+            <SpecialDiv>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce gravida lorem tellus, a suscipit nunc faucibus vitae. Ut vestibulum bibendum feugiat. Mauris a turpis finibus, auctor eros at, ultrices massa. Nulla maximus, nibh eget tristique faucibus, nibh justo luctus risus, at pulvinar odio nunc ac urna. Donec accumsan metus eu orci eleifend, non pretium ex cursus. Nullam vitae diam a lorem malesuada scelerisque. Ut pharetra arcu velit, eu scelerisque nisi consectetur eget. Nam sollicitudin ante non sem fermentum, ac sagittis magna efficitur. Nam facilisis metus eget elit mattis, nec pharetra diam volutpat. Nulla facilisi. Donec tincidunt risus vitae ante porttitor aliquet. Nulla finibus at lorem pretium sagittis.
+            </SpecialDiv>
           </Card.Content>
-          <Card.Content extra>
             <Link to={'/dictionary'}>
-              <Icon name='linkify' />
+              <Button color='yellow' size='big' fluid>
+                Go 
+              </Button>
             </Link>
-          </Card.Content>
         </Card>
 
         <Card>
-          <Card.Content header>
+          <Card.Content header textAlign='center'>
             <CardHeader>
               Nutasqaat Naaqisuutet
             </CardHeader>
           </Card.Content>
           <Card.Content>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce gravida lorem tellus, a suscipit nunc faucibus vitae. Ut vestibulum bibendum feugiat. Mauris a turpis finibus, auctor eros at, ultrices massa. Nulla maximus, nibh eget tristique faucibus, nibh justo luctus risus, at pulvinar odio nunc ac urna. Donec accumsan metus eu orci eleifend, non pretium ex cursus. Nullam vitae diam a lorem malesuada scelerisque. Ut pharetra arcu velit, eu scelerisque nisi consectetur eget. Nam sollicitudin ante non sem fermentum, ac sagittis magna efficitur. Nam facilisis metus eget elit mattis, nec pharetra diam volutpat. Nulla facilisi. Donec tincidunt risus vitae ante porttitor aliquet. Nulla finibus at lorem pretium sagittis.
+            <SpecialDiv>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce gravida lorem tellus, a suscipit nunc faucibus vitae. Ut vestibulum bibendum feugiat. Mauris a turpis finibus, auctor eros at, ultrices massa. Nulla maximus, nibh eget tristique faucibus, nibh justo luctus risus, at pulvinar odio nunc ac urna. Donec accumsan metus eu orci eleifend, non pretium ex cursus. Nullam vitae diam a lorem malesuada scelerisque. Ut pharetra arcu velit, eu scelerisque nisi consectetur eget. Nam sollicitudin ante non sem fermentum, ac sagittis magna efficitur. Nam facilisis metus eget elit mattis, nec pharetra diam volutpat. Nulla facilisi. Donec tincidunt risus vitae ante porttitor aliquet. Nulla finibus at lorem pretium sagittis.
+            </SpecialDiv>
           </Card.Content>
-          <Card.Content extra>
-            <Icon name='linkify' />
-          </Card.Content>
+          <Button color='yellow' size='big' fluid>
+            Go 
+          </Button>
         </Card>
+
       </Card.Group>
     </ContainerPad>
 

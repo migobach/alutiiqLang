@@ -1,26 +1,41 @@
 import styled from 'styled-components'
 import { Button } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+
+// yellow: #ECA414
+// semantic-yellow: #FBBD08
+// red: #D91A1A
+// green: #508365
+// beige: #EAD8C2
+// blue: #3B568C
+
+// export const RedButton = styled(Button)`
+//   background-color: #ECA414 !important;
+//   padding: 5px;
+//   align-content: center;
+//   &:hover {
+//     background-color: #A8750E !important;
+//   }
+// `
 
 export const CardHeader = styled.h3`
- color: #D91A1A;
+ color: #3B568C;
  font-size: 2em;
  line-height: 1.5;
 `
 export const ColumnHead = styled.h3`
-color: #B2AC03;
+color: #3B568C;
 font-size: 1.5em;  
 line-height: 1.5;
 `
 
 export const SectionHead = styled.h3`
-color: #ECA414;
-font-size: 2em;
+color: #FBBD08;
+font-size: 2.5em;
 padding: 65px;
 `
 
 export const SubSectionHead = styled.h3`
-color: #ECA414;
+color: #fbbd08;
 font-size: 1.5em;
 padding: 50px;
 `
@@ -55,52 +70,11 @@ background-size: cover;
 height: auto;
 `
 
+export const BlueDiv = GreenDiv.extend`
+background-color: #3B568C;
+`
+
 export const ContainerPad = styled.div`
 margin: 50px;
 `
 
-
-
-
-// export const CommonButton = styled(Button)`
-//   background-color: ${ props => buttonColor(props) } !important;
-//   color: white !important;
-//   &:hover {
-//     background-color: black !important;
-//   }
-// `
-// export const Flex = styled.div`
-//   display: flex;
-//   justify-content: ${ props => props.justifyContent };
-//   align-items: ${ props => props.alignItems };
-//   align-self: ${ props => props.alignSelf };
-//   width: ${ props => props.full ? '100%' : '' };
-//   height: ${ props => props.height };
-//   flex-direction: ${ props => props.direction || 'row' };
-//   padding-top: ${ props => props.paddingTop || 0 }px;
-// `
-
-// export const FlexNum = styled.div`
-//   flex: ${ props => props.num };
-//   align-self: ${ props => props.alignSelf };
-// `
-
-// export const LinkEnabled = styled(Link)`
-//   color: white !important;
-// `
-// export const LinkDisabled = styled(Link)`
-//   color: ${ props => props.theme.lockedText } !important;
-// `
-
-// export const CourseContainer = styled.div`
-//   padding: 20px;
-//   width: 100%;
-// `
-
-// export const FullWidth = styled.div`
-//   width: 100%;
-// `
-
-// export const Pointer = styled.div`
-//   cursor: pointer;
-// `

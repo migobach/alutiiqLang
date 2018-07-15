@@ -96,6 +96,13 @@ const Footer = () => (
           <Image src={Koniag} size='tiny' />
         </Grid.Column>
       </Grid.Row>
+
+      <Grid.Row columns={1} textAlign='center'>
+        <ContentStyle>
+          <i>Quyanaasinaq</i> to our generous sponsors
+        </ContentStyle>
+      </Grid.Row>
+
     </Grid>
    </Container>
   </ContainerPad>
