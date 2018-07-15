@@ -11,7 +11,9 @@ import {
   ContentHead,
   SpecialDiv,
   ContentStyle,
+  ContainerPad,
 } from './styles/CommonStyles'
+import styled from 'styled-components'
 import AKHF from '../logos/AKHF.jpg'
 import ANA from '../logos/ANAlogo.png'
 import ANC from '../logos/ANC.jpg'
@@ -25,26 +27,30 @@ import Sunaq from '../logos/Sunaq.png'
 
 const Footer = () => (
   <div>
-    <div style={{height: 150}}>
-    </div>
-    <Container>
+  <ContainerPad padded="very">
+    <Container padded="very">
       <Grid>
       <Grid.Row centered columns={2} divided>
-        <Grid.Column>
+        <Grid.Column textAlign='center'>
           <SpecialDiv>
             <ContentHead>
               Contact Us:
             </ContentHead>
             <ContentStyle>
+              <span>
               Native Village of Afognak
+              <br />
               323 Carolyn Street
+              <br />
               Kodiak, Alaska 99615
+              <br />
               907.486.6357
+              </span>
             </ContentStyle>
           </SpecialDiv>
         </Grid.Column>
       
-        <Grid.Column>
+        <Grid.Column textAlign='center'>
           <SpecialDiv>
             <ContentHead>
               Who we are: 
@@ -57,7 +63,7 @@ const Footer = () => (
       </Grid.Row>
 
       {/* logos of sponsors */}
-
+    
       <Grid.Row columns={10} >
         <Grid.Column >
           <Image src={AKHF} size='tiny'  />
@@ -91,7 +97,9 @@ const Footer = () => (
         </Grid.Column>
       </Grid.Row>
     </Grid>
-    </Container>
+   </Container>
+  </ContainerPad>
+  
   </div>
 )
 

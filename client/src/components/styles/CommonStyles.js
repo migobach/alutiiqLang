@@ -2,48 +2,64 @@ import styled from 'styled-components'
 import { Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
-export const CardHeader = styled.div`
- color: #B2AC03;
+export const CardHeader = styled.h3`
+ color: #D91A1A;
  font-size: 2em;
  line-height: 1.5;
 `
-export const ColumnHead = styled.div`
+export const ColumnHead = styled.h3`
 color: #B2AC03;
 font-size: 1.5em;  
 line-height: 1.5;
 `
 
-export const SectionHead = styled.div`
-color: #CC293A;
+export const SectionHead = styled.h3`
+color: #ECA414;
 font-size: 2em;
 padding: 65px;
 `
 
-export const SubSectionHead = styled.div`
-color: #CC293A;
+export const SubSectionHead = styled.h3`
+color: #ECA414;
 font-size: 1.5em;
 padding: 50px;
 `
 
-export const ContentHead = styled.div`
-color: #CC293A;
+export const ContentHead = styled.h3`
+color: #ECA414;
 font-size: 1.5em;
 padding: 15px;
 `
 
-export const ContentStyle = styled.div`
+export const ContentStyle = styled.p`
 align-content: center;
+font-size: 1.5em;
 color: #A9A9A9;
 `
 
-export const SpecialDiv = styled.div`
-padding: 100px;
+export const ContentStyleWhite = ContentStyle.extend`
+  color: white;
 `
 
-export const GreyDiv = styled.div`
-background-color: #F8FFFS;
-padding: 20px;
+export const SpecialDiv = styled.div`
+padding: 50px;
 `
+
+export const GreenDiv = styled.div`
+background-color: #508365;
+color: white;
+padding: 150px;
+align-content: center;
+background-position: center center;
+background-size: cover;
+height: auto;
+`
+
+export const ContainerPad = styled.div`
+margin: 50px;
+`
+
+
 
 
 // export const CommonButton = styled(Button)`

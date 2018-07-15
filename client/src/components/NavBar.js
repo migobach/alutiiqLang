@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
-import { Menu, Segment, MenuItem, Dropdown } from 'semantic-ui-react';
+import { Menu, MenuItem, Dropdown } from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleLogout } from '../reducers/user';
+import styled from 'styled-components'
+
+const Menuitems = styled(MenuItem)`
+  align-content: center;
+  font-size: 1.5em;
+  color: #A9A9A9;
+  `
 
 class NavBar extends Component {
   state = { activeItem: 'home' }
@@ -16,7 +23,7 @@ class NavBar extends Component {
     if (user.id) {
       return (
         <Menu.Menu position='right'>
-          <Menu.Item
+          <MenuItem
             name='Logout'
             onClick={() => dispatch(handleLogout(history))}
           />
@@ -31,43 +38,43 @@ class NavBar extends Component {
     return (
       <div>
         <Menu pointing secondary>
-          <Menu.Item 
+          <Menuitems 
             name='home'   
             active={activeItem === 'home'} 
             onClick={this.handleItemClick} 
             as={Link} to='/' 
           />
-          <Menu.Item 
+          <Menuitems 
             name='curriculum' 
             active={activeItem === 'curriculum'} 
             onClick={this.handleItemClick} 
             as={Link} to='/curriculum' 
           />
-          <MenuItem
+          <Menuitems 
             name='learning_materials'
             active={activeItem === 'learning_materials'}
             onClick={this.handleItemClick}
             as={Link} to="/materials"
           />     
-          <MenuItem
+          <Menuitems 
             name='dictionary'
             active={activeItem === 'dictionary'}
             onClick={this.handleItemClick}
             as={Link} to="/dictionary"
           />  
-            <MenuItem
+            <Menuitems 
             name='songs'
             active={activeItem === 'songs'}
             onClick={this.handleItemClick}
             as={Link} to="/songs"
           />  
-            <MenuItem
+            <Menuitems 
             name='classes'
             active={activeItem === 'classes'}
             onClick={this.handleItemClick}
             as={Link} to="/classes"
           />  
-            <MenuItem
+            <Menuitems 
             name='happenings'
             active={activeItem === 'happenings'}
             onClick={this.handleItemClick}
