@@ -30,7 +30,7 @@ const Curriculum = () => (
     <Grid celled='internally'>
       <Grid.Row>
         <Grid.Column width={5} textAlign='center'>
-          <ColumnHead >
+          <ColumnHead>
             <i>Alutiit'stun Niuwawik</i> Language Nest Curriculum
           </ColumnHead>
         </Grid.Column>

@@ -54,6 +54,7 @@ class Songs extends Component {
                 </SectionHead>
               </Header>
               <ContentStyle>
+                {/* TODO change this back to being left aligned */}
                 Songs have been sung for millenia to mark important events and people, tell stories, celebrate and honor. Traditional songs have helped inpire new, modern songs. <i>Quyanaasinaq</i> to all the lyricists and Elders who have contributed over the years to develop this growing collection of Alutiiq Songs.
               </ContentStyle>
             </SpecialDiv>

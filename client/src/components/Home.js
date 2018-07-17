@@ -2,8 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import {  
   Card,
-  Icon,
-  Header, 
   Button
 } from 'semantic-ui-react'
 import { Parallax } from 'react-parallax'
