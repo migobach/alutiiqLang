@@ -79,10 +79,10 @@ class Songs extends Component {
             <SpecialDiv>
               <Icon name='talk' size='huge' color='grey' />
               <CardHeader>
-                <i>Atuut'ciqamken?</i>
+                <i>Atuut'ciqar'penga-qaa?</i>
               </CardHeader>
               <ContentStyle>
-                Will you sing with me? 
+                Will you sing to me? 
               </ContentStyle>
             </SpecialDiv>
           </Grid.Column>
