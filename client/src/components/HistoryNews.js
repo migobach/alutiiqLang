@@ -3,7 +3,6 @@ import {
   Button, 
   Header, 
   Card, 
-  Icon 
 } from 'semantic-ui-react'
 import { 
   SpecialDiv,

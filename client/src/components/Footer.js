@@ -3,17 +3,13 @@ import {
   Container, 
   Grid, 
   Image, 
-  Item,
 } from 'semantic-ui-react';
-import { Link, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
 import {
   ContentHead,
   SpecialDiv,
   ContentStyle,
   ContainerPad,
 } from './styles/CommonStyles'
-import styled from 'styled-components'
 import AKHF from '../logos/AKHF.jpg'
 import ANA from '../logos/ANAlogo.png'
 import ANC from '../logos/ANC.jpg'

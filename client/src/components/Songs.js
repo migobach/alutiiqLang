@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import axios from 'axios'
+import { setFlash } from '../reducers/flash'
 import {
   Header,
   Icon,
@@ -16,16 +18,24 @@ import {
 } from './styles/CommonStyles'
 
 class Songs extends Component {
+  state = { songs: [] }
 
+  componentDidMount() {
+    axios.get('/api/songs')
+      .then(res => {
+        this.setState({ songs: res.data })
+      })
+      .catch( (err) => setFlash('Failed to retrieve songs', 'red') )
+  }
 
   songs = () => {
-    return this.props.songs.map( song => 
-      <Grid.Row>
-        <Grid.Column width={5} textAlign='center'>
-          {song.titleAlutiiq}
+    return this.state.songs.map( song => 
+      <Grid.Row key={song.id}>
+        <Grid.Column width={5}>
+          {song.title_alutiiq}
         </Grid.Column>
-        <Grid.Column width={5} textAlign='center'>
-          {song.titleEnglish}
+        <Grid.Column width={5}>
+          {song.title_english}
         </Grid.Column>
         <Grid.Column width={2} textAlign='center'>
           {song.audio}
@@ -39,7 +49,6 @@ class Songs extends Component {
       </Grid.Row>
     )
   }
-
 
   render() {
     return(
@@ -120,9 +129,9 @@ class Songs extends Component {
               </ColumnHead>
             </Grid.Column>
           </Grid.Row>
-          <Grid.Row>
-            {/* { this.songs() } */}
-          </Grid.Row>
+          
+            { this.songs() }
+          
         </Grid>
       </SpecialDiv>
 

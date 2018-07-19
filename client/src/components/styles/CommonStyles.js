@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { Button } from 'semantic-ui-react'
 
 // yellow: #ECA414
 // semantic-yellow: #FBBD08
