@@ -38,7 +38,9 @@ class HistoryNews extends Component {
                 </Card.Content>
                 <Card.Content>
                   <SpecialDiv>
-                    Each Wednesday, read an article about Alutiiq language history, news and people of interest.  Click here to read from the archive of articles published in the Kodiak Daily Mirror, written by a variety of people involved in the language movement.
+                    <ContentStyle>
+                      Each Wednesday, read an article about Alutiiq language history, news and people of interest.  Click here to read from the archive of articles published in the Kodiak Daily Mirror, written by a variety of people involved in the language movement.
+                    </ContentStyle>
                   </SpecialDiv>
                 </Card.Content>
                   <Button color='yellow' size='big' fluid>
@@ -54,7 +56,9 @@ class HistoryNews extends Component {
                 </Card.Content>
                 <Card.Content>
                   <SpecialDiv>
-                    Translating from Indigenous languages to English does not make sense. Translations lead to misunderstandings and oversimplification. Click here to learn how to begin exploring an Alutiiq worldview and discover elders who gracefully share their lifeways. 
+                    <ContentStyle>
+                      Translating from Indigenous languages to English does not make sense. Translations lead to misunderstandings and oversimplification. Click here to learn how to begin exploring an Alutiiq worldview and discover elders who gracefully share their lifeways. 
+                    </ContentStyle>
                   </SpecialDiv>
                 </Card.Content>
                   <Button color='yellow' size='big' fluid>
@@ -70,7 +74,9 @@ class HistoryNews extends Component {
                 </Card.Content>
                 <Card.Content>
                   <SpecialDiv>
-                    Scholars have explored methods for successful revitalization across the globe. Diving into some of the themes of language revitalizaiton can lead to hours of exploration. Click here to see some techniques and theories that have been drawn from in the effort to revitalize the Alutiiq language. 
+                    <ContentStyle>
+                      Scholars have explored methods for successful revitalization across the globe. Diving into some of the themes of language revitalizaiton can lead to hours of exploration. Click here to see some techniques and theories that have been drawn from in the effort to revitalize the Alutiiq language. 
+                    </ContentStyle>
                   </SpecialDiv>
                 </Card.Content>
                 <Button color='yellow' size='big' fluid>

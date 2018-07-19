@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import axios from 'axios'
-import { setFlash } from '../reducers/flash'
+import { connect } from 'react-redux'
+import { getSongs } from '../reducers/songs';
 import {
   Header,
   Icon,
@@ -15,42 +15,41 @@ import {
   BlueDiv,
   ContentStyleWhite,
   ColumnHead,
+  IconHover,
 } from './styles/CommonStyles'
 
+
 class Songs extends Component {
-  state = { songs: [] }
 
   componentDidMount() {
-    axios.get('/api/songs')
-      .then(res => {
-        this.setState({ songs: res.data })
-      })
-      .catch( (err) => setFlash('Failed to retrieve songs', 'red') )
+    debugger
+    const { dispatch } = this.props
+    dispatch(getSongs())
   }
 
   songs = () => {
-    return this.state.songs.map( song => 
+    debugger
+    return this.props.songs.map( song => 
       <Grid.Row key={song.id}>
-        <Grid.Column width={5}>
-          {song.title_alutiiq}
+        <Grid.Column width={6}>
+          <ContentStyle>
+            <i>{song.title_alutiiq}</i>
+          </ContentStyle>
         </Grid.Column>
-        <Grid.Column width={5}>
-          {song.title_english}
+        <Grid.Column width={6}>
+          <ContentStyle>
+            {song.title_english}
+          </ContentStyle>
         </Grid.Column>
-        <Grid.Column width={2} textAlign='center'>
-          {song.audio}
-        </Grid.Column>
-        <Grid.Column width={2} textAlign='center'>
-          {song.video}
-        </Grid.Column>
-        <Grid.Column width={2} textAlign='center'>
-          {song.text}
+        <Grid.Column width={4} textAlign='center'>
+          <Icon name='eye' size='large' color='grey' />
         </Grid.Column>
       </Grid.Row>
     )
   }
 
   render() {
+    debugger
     return(
     <div> 
       <Grid>
@@ -103,31 +102,22 @@ class Songs extends Component {
       <SpecialDiv>
         <Grid celled='internally'>
           <Grid.Row>
-            <Grid.Column width={5}>
+            <Grid.Column width={6}>
               <ColumnHead>
                 Alutiiq Title
               </ColumnHead>
             </Grid.Column>
-            <Grid.Column width={5}>
+            <Grid.Column width={6}>
               <ColumnHead>
                 English Title
               </ColumnHead>
             </Grid.Column>
-            <Grid.Column width={2}>
+            <Grid.Column width={4} textAlign='center'>
               <ColumnHead>
-                Audio
+                View
               </ColumnHead>
             </Grid.Column>
-            <Grid.Column width={2}>
-              <ColumnHead>
-                Video
-              </ColumnHead>
-            </Grid.Column>
-            <Grid.Column width={2}>
-              <ColumnHead>
-                Text
-              </ColumnHead>
-            </Grid.Column>
+           
           </Grid.Row>
           
             { this.songs() }
@@ -146,7 +136,9 @@ class Songs extends Component {
         </ContentStyleWhite>
           <SpecialDiv>
             <Container textAlign='center'>
-              <Icon name='book' size='huge' />
+              <IconHover>
+                <Icon name='book' size='huge' />
+              </IconHover>
             </Container>
           </SpecialDiv>
       </BlueDiv>
@@ -155,6 +147,10 @@ class Songs extends Component {
   }
 }
 
-export default Songs
+const mapStateToProps = (state) => {
+  return {
+    songs: state.songs
+  }
+}
 
-// needs to be a class becuase I would there to be songs that are live searching 
+export default connect(mapStateToProps)(Songs)

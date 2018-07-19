@@ -1,4 +1,7 @@
 import styled from 'styled-components'
+import {
+  Icon,
+} from 'semantic-ui-react'
 
 // yellow: #ECA414
 // semantic-yellow: #FBBD08
@@ -99,3 +102,10 @@ export const ContainerPad = styled.div`
 margin: 50px;
 `
 
+export const IconHover = styled(Icon)`
+&:hover {
+  position: absolute;
+  font-size: 150%;
+  transition: all 100ms ease;
+}
+`
