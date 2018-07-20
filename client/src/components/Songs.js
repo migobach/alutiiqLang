@@ -22,13 +22,11 @@ import {
 class Songs extends Component {
 
   componentDidMount() {
-    debugger
     const { dispatch } = this.props
     dispatch(getSongs())
   }
 
   songs = () => {
-    debugger
     return this.props.songs.map( song => 
       <Grid.Row key={song.id}>
         <Grid.Column width={6}>
@@ -49,7 +47,6 @@ class Songs extends Component {
   }
 
   render() {
-    debugger
     return(
     <div> 
       <Grid>
@@ -74,7 +71,7 @@ class Songs extends Component {
         <Grid.Row centered columns={2} divided>
           <Grid.Column textAlign='center'>
             <SpecialDiv>
-              <Icon name='talk' size='huge' color='grey' />
+              <IconHover name='talk' size='huge' color='grey' />
               <CardHeader>
                 <i>Aturlita!</i>
               </CardHeader>
@@ -85,7 +82,7 @@ class Songs extends Component {
           </Grid.Column>
           <Grid.Column textAlign='center'>
             <SpecialDiv>
-              <Icon name='talk' size='huge' color='grey' />
+              <IconHover name='talk' size='huge' color='grey' />
               <CardHeader>
                 <i>Atuut'ciqar'penga-qaa?</i>
               </CardHeader>
@@ -136,9 +133,7 @@ class Songs extends Component {
         </ContentStyleWhite>
           <SpecialDiv>
             <Container textAlign='center'>
-              <IconHover>
-                <Icon name='book' size='huge' />
-              </IconHover>
+              <IconHover name='book'/>
             </Container>
           </SpecialDiv>
       </BlueDiv>

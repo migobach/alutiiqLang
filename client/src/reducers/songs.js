@@ -4,9 +4,7 @@ import { setFlash } from './flash'
 const SONGS = 'SONGS'
 
 export const getSongs = () => {
-  debugger
   return(dispatch) => {
-    debugger
     axios.get('/api/songs')
       .then(res => {
         dispatch({ type: SONGS, songs: res.data })
@@ -20,7 +18,6 @@ export const getSongs = () => {
 export default ( state=[], action ) => {
   switch(action.type){
     case SONGS:
-    debugger 
       return action.songs
     default:
       return state

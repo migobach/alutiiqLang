@@ -52,7 +52,7 @@ padding: 65px;
 `
 
 export const SubSectionHead = styled.h3`
-color: #fbbd08;
+color: #FBBD08;
 font-size: 1.5em;
 padding: 50px;
 `
@@ -72,12 +72,26 @@ export const ContentStyleWhite = ContentStyle.extend`
   color: white;
 `
 
+export const ContentStyleQuote = ContentStyleWhite.extend`
+  font-size: 2em;
+  line-height: 1.5;
+`
+
 export const CenterDiv = styled.div`
 text-align: center;
 `
 
 export const SpecialDiv = styled.div`
 padding: 50px;
+`
+
+export const QuoteDiv = SpecialDiv.extend`
+border: 1px solid #D3D3D3;
+text-align: center;
+`
+export const QuotePerson = styled.div`
+text-align: right;
+
 `
 
 export const SpecialDivCenter = SpecialDiv.extend`
@@ -103,9 +117,14 @@ margin: 50px;
 `
 
 export const IconHover = styled(Icon)`
+font-size: 5em !important;
+padding-top: 10px;
 &:hover {
-  position: absolute;
-  font-size: 150%;
-  transition: all 100ms ease;
+  transform: scale(1.33)
 }
 `
+
+// position: absolute;
+// font-size: 150%;
+// transition: all 100ms ease;
+// text-align: center;

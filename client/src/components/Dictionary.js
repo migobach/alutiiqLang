@@ -1,19 +1,29 @@
 import React, { Component } from 'react'
-import { Segment, Header } from 'semantic-ui-react'
+import {  
+  Header,
+} from 'semantic-ui-react'
+import {
+  SpecialDiv,
+  SectionHead,
+  ContentStyle,
+} from './styles/CommonStyles'
 
 class Dictionary extends Component {
 
   render() {
     return(
-      <Segment padded>
-        <Header
-          textAlign="center"
-          as="h2"
-        >
-          Dictionary
+    <div>
+    <SpecialDiv>
+        <Header textAlign="center">
+          <SectionHead>
+            Dictionary
+          </SectionHead>
         </Header>
-      </Segment>
-
+        <ContentStyle>
+          Search our on-line dictionary for common words, a specific word you are interested in learning, or review an entire category of words. Click the Alutiiq word to see a flashcard with an image and audio clip.
+        </ContentStyle>
+      </SpecialDiv>
+    </div>
     )
   }
 
