@@ -40,36 +40,46 @@ export const CardHeader = styled.h3`
 `
 
 export const ColumnHead = styled.h3`
-color: #3B568C;
-font-size: 1.5em;  
-line-height: 1.5;
+  color: #3B568C;
+  font-size: 1.5em;  
+  line-height: 1.5;
 `
 
 export const SectionHead = styled.h3`
-color: #FBBD08;
-font-size: 2.5em;
-padding: 65px;
+  color: #FBBD08;
+  font-size: 2.5em;
+  padding: 65px;
+`
+export const GreenHead = styled.h3`
+  color: #508365;
+  font-size: 2.5em;
+  padding: 65px;
 `
 
 export const SubSectionHead = styled.h3`
-color: #FBBD08;
-font-size: 1.5em;
-padding: 50px;
+  color: #FBBD08;
+  font-size: 1.5em;
+  padding: 50px;
 `
 
 export const ContentHead = styled.h3`
-color: #ECA414;
-font-size: 1.5em;
-padding: 15px;
+  color: #ECA414;
+  font-size: 1.5em;
+  padding: 15px;
 `
 
 export const ContentStyle = styled.p`
-font-size: 1.5em;
-color: #A9A9A9;
+  font-size: 1.5em;
+  color: #A9A9A9;
 `
 
 export const ContentStyleWhite = ContentStyle.extend`
   color: white;
+`
+
+export const WhiteTitle = styled.h4`
+  color: white;
+  font-size: 2em;
 `
 
 export const ContentStyleQuote = ContentStyleWhite.extend`
@@ -78,20 +88,19 @@ export const ContentStyleQuote = ContentStyleWhite.extend`
 `
 
 export const CenterDiv = styled.div`
-text-align: center;
+  text-align: center;
 `
 
 export const SpecialDiv = styled.div`
-padding: 50px;
+  padding: 50px;
 `
 
 export const QuoteDiv = SpecialDiv.extend`
-border: 1px solid #D3D3D3;
-text-align: center;
+  border: 1px solid #D3D3D3;
+  text-align: center;
 `
 export const QuotePerson = styled.div`
-text-align: right;
-
+  text-align: right;
 `
 
 export const SpecialDivCenter = SpecialDiv.extend`
@@ -99,27 +108,27 @@ export const SpecialDivCenter = SpecialDiv.extend`
 `
 
 export const GreenDiv = styled.div`
-background-color: #508365;
-color: white;
-padding: 150px;
-align-content: center;
-background-position: center center;
-background-size: cover;
-height: auto;
+  background-color: #508365;
+  color: white;
+  padding: 150px;
+  align-content: center;
+  background-position: center center;
+  background-size: cover;
+  height: auto;
 `
 
 export const BlueDiv = GreenDiv.extend`
-background-color: #3B568C;
+  background-color: #3B568C;
 `
 
 export const ContainerPad = styled.div`
-margin: 50px;
+  margin: 50px;
 `
 
 export const IconHover = styled(Icon)`
-font-size: 5em !important;
-padding-top: 10px;
-&:hover {
+  font-size: 5em !important;
+  padding-top: 10px;
+  &:hover {
   transform: scale(1.33)
 }
 `

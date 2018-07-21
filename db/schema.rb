@@ -10,10 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_17_143328) do
+ActiveRecord::Schema.define(version: 2018_07_21_192935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "dictionaries", force: :cascade do |t|
+    t.string "english"
+    t.string "part_of_speech"
+    t.string "alutiiq_north"
+    t.string "north_audio"
+    t.string "north_sentence"
+    t.string "alutiiq_south"
+    t.string "south_audio"
+    t.string "south_sentence"
+    t.string "image_name"
+    t.string "root_word"
+    t.string "category"
+    t.string "edited_by"
+    t.text "notes"
+    t.boolean "completed"
+    t.boolean "approved"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "materials", force: :cascade do |t|
+    t.string "resource_title"
+    t.text "file_url"
+    t.text "url"
+    t.string "author"
+    t.integer "year"
+    t.string "grade"
+    t.string "standards"
+    t.text "subjects"
+    t.text "values"
+    t.text "sponsors"
+    t.string "keywords"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "songs", force: :cascade do |t|
     t.string "title_english"

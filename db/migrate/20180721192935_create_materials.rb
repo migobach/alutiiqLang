@@ -2,8 +2,8 @@ class CreateMaterials < ActiveRecord::Migration[5.2]
   def change
     create_table :materials do |t|
       t.string :resource_title
-      t.string :file_url
-      t.string :url
+      t.text :file_url
+      t.text :url
       t.string :author
       t.integer :year
       t.string :grade
