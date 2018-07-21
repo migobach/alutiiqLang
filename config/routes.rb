@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   namespace :api do
     resources :songs
+    resources :dictionaries
+    resources :materials
   end
   
   mount_devise_token_auth_for 'User', at: 'api/auth'
