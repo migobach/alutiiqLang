@@ -28,6 +28,16 @@ export const MainHeaderContent = MainHeader.extend`
   font-size: .5em;
 `
 
+export const SubHeader = styled.h2`
+  color: white;
+  font-size: 2.5em;
+  line-height: 2;
+`
+
+export const SubHeaderContent = SubHeader.extend`
+  font-size: 1.5em;
+`
+
 export const MainDiv = styled.div`
   padding: 200px;
   align-content: center;
@@ -132,8 +142,10 @@ export const IconHover = styled(Icon)`
   transform: scale(1.33)
 }
 `
-
-// position: absolute;
-// font-size: 150%;
-// transition: all 100ms ease;
-// text-align: center;
+export const BodyLink = styled.a`
+  color: #A9A9A9;
+  &:visited { text-decoration: none; color: #A9A9A9; }
+  &:hover { text-decoration: none; color: #508365; }
+  &:focus { text-decoration: none; color:#508365; }
+  &:hover, a:active { text-decoration: none; color:#508365 }
+`

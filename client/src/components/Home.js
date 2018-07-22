@@ -2,19 +2,24 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import {  
   Card,
-  Button
+  Button, 
+  Header,
+  Divider,
+  Container,
 } from 'semantic-ui-react'
 import { Parallax } from 'react-parallax'
 import Banner from '../images/harbor.jpg'
+import Teaching from '../images/teaching.jpg'
 import { 
   CardHeader,
-  GreenDiv,
-  ContentStyleWhite,
   ContainerPad,
   SpecialDiv,
   MainHeader,
   MainHeaderContent,
   MainDiv,
+  ContentStyle,
+  SubHeader,
+  SubHeaderContent,
 } from './styles/CommonStyles'
 
 const Home = () => (
@@ -46,7 +51,9 @@ const Home = () => (
           </Card.Content>
           <Card.Content>
             <SpecialDiv>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce gravida lorem tellus, a suscipit nunc faucibus vitae. Ut vestibulum bibendum feugiat. Mauris a turpis finibus, auctor eros at, ultrices massa. Nulla maximus, nibh eget tristique faucibus, nibh justo luctus risus, at pulvinar odio nunc ac urna. Donec accumsan metus eu orci eleifend, non pretium ex cursus. Nullam vitae diam a lorem malesuada scelerisque. Ut pharetra arcu velit, eu scelerisque nisi consectetur eget. Nam sollicitudin ante non sem fermentum, ac sagittis magna efficitur. Nam facilisis metus eget elit mattis, nec pharetra diam volutpat. Nulla facilisi. Donec tincidunt risus vitae ante porttitor aliquet. Nulla finibus at lorem pretium sagittis.
+              <ContentStyle>
+                What is happeing, and how do you get involved? Click below to learn more about the history of language revitalization on the Kodiak Archipelago and learn about Alutiiq worldviews.
+              </ContentStyle>
             </SpecialDiv>
           </Card.Content>
             <Link to={`/happenings`}>
@@ -64,7 +71,9 @@ const Home = () => (
           </Card.Content>
           <Card.Content>
             <SpecialDiv>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce gravida lorem tellus, a suscipit nunc faucibus vitae. Ut vestibulum bibendum feugiat. Mauris a turpis finibus, auctor eros at, ultrices massa. Nulla maximus, nibh eget tristique faucibus, nibh justo luctus risus, at pulvinar odio nunc ac urna. Donec accumsan metus eu orci eleifend, non pretium ex cursus. Nullam vitae diam a lorem malesuada scelerisque. Ut pharetra arcu velit, eu scelerisque nisi consectetur eget. Nam sollicitudin ante non sem fermentum, ac sagittis magna efficitur. Nam facilisis metus eget elit mattis, nec pharetra diam volutpat. Nulla facilisi. Donec tincidunt risus vitae ante porttitor aliquet. Nulla finibus at lorem pretium sagittis.
+              <ContentStyle>
+                Discover new words in the Alutiiq language. Hear words being said by an Alutiiq speaker, and explore how to use words in full sentences.
+              </ContentStyle>
             </SpecialDiv>
           </Card.Content>
             <Link to={'/dictionary'}>
@@ -82,7 +91,9 @@ const Home = () => (
           </Card.Content>
           <Card.Content>
             <SpecialDiv>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce gravida lorem tellus, a suscipit nunc faucibus vitae. Ut vestibulum bibendum feugiat. Mauris a turpis finibus, auctor eros at, ultrices massa. Nulla maximus, nibh eget tristique faucibus, nibh justo luctus risus, at pulvinar odio nunc ac urna. Donec accumsan metus eu orci eleifend, non pretium ex cursus. Nullam vitae diam a lorem malesuada scelerisque. Ut pharetra arcu velit, eu scelerisque nisi consectetur eget. Nam sollicitudin ante non sem fermentum, ac sagittis magna efficitur. Nam facilisis metus eget elit mattis, nec pharetra diam volutpat. Nulla facilisi. Donec tincidunt risus vitae ante porttitor aliquet. Nulla finibus at lorem pretium sagittis.
+              <ContentStyle>
+                Now you can have a book read to you by an Alutiiq speaker via a downloadable app on your iPad, iPhone, or Android device. Click below to learn more.
+              </ContentStyle>
             </SpecialDiv>
           </Card.Content>
           <Button color='yellow' size='big' fluid>
@@ -93,25 +104,44 @@ const Home = () => (
       </Card.Group>
     </ContainerPad>
 
-    <GreenDiv>
+     <Parallax
+      bgImage={Teaching}
+      blur={{min: 5, max:3}}
+      bgImageAlt="Teaching Alutiiq, Afognak Island, Alaska"
+      strength={500}
+    >
+      <div style={{height: 700}} >
+      <Container textAlign='center'>
+      <SpecialDiv>
+        <SpecialDiv>
+          <Header textAlign='center'>
+            <SubHeader>
+              <i>Alutiit'stun Niuwawik</i> Registration is Open!
+            </SubHeader>
+              <Divider />
+          </Header>
+        </SpecialDiv>
+
+          <SubHeaderContent>
+            Are you interested in registering your little one in the Alutiiq Language Nest? The Alutiit'stun Niuwawik is now accepting student registrations for the fall of 2018.
+            <br />
+            <br />
+            The <i>Alutiit'stun Niuwawik</i> aims to be a culturally-relevant Kodiak Alutiiq immersion language nest for preschool-aged children with outreach services for all age groups to sustain Alutiiq as a living language.
+          </SubHeaderContent>
+        </SpecialDiv>
+          <Button size='huge'>
+            Learn more
+          </Button>
+      </Container>
+      </div>
+    </Parallax>
+
+
+    {/* <GreenDiv>
       <ContentStyleWhite>
-        <span>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ex sit amet ligula ultrices, et commodo metus venenatis. Fusce sit amet feugiat leo, sit amet iaculis orci. Donec fringilla dui nec tortor semper, at rhoncus dui interdum. Fusce eu massa tortor. Morbi nec risus tellus. Fusce tempus nulla ut elit lobortis bibendum. Nullam fringilla lorem at facilisis ullamcorper.
-          <br />
-          <br />
-          Pellentesque sed eros eu tortor viverra laoreet sit amet interdum massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam tempor enim diam, ac finibus mi placerat sit amet. Morbi malesuada maximus diam, id fermentum sem laoreet vitae. Sed eu orci id nisl iaculis pellentesque. Fusce fermentum, diam et condimentum bibendum, turpis libero aliquam arcu, a aliquet ligula turpis ac enim. Mauris a purus nec ex rhoncus dictum in at lectus. Fusce fringilla, arcu vel congue tristique, est urna commodo eros, vitae finibus risus nibh at ligula. Praesent in lacus aliquet dui venenatis posuere ut at neque.
-          <br />
-          <br />
-          Aenean tristique volutpat purus, vel bibendum metus porttitor et. Duis turpis nibh, volutpat eu nisi at, tincidunt congue lacus. In orci elit, porttitor at luctus quis, interdum quis ante. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eget commodo tellus, sed varius eros. Nulla facilisi. Pellentesque ullamcorper nulla sapien, ut vulputate risus finibus sed. Curabitur non accumsan massa.
-          <br />
-          <br />
-          Sed interdum lectus urna, ac dapibus quam malesuada quis. Etiam et enim ipsum. Vestibulum ornare ac erat vitae tempus. Suspendisse pulvinar rhoncus arcu, non scelerisque eros pulvinar in. Nullam molestie leo a ornare ornare. Aliquam dignissim lobortis finibus. Nunc porta commodo ligula id blandit. Morbi nec enim sit amet nisi aliquam blandit. In hac habitasse platea dictumst. Duis metus elit, bibendum in nisi vel, dictum commodo lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam id orci venenatis, dignissim purus at, rutrum magna. Aliquam ultrices nulla eget tellus eleifend mattis. Maecenas a tellus placerat, sollicitudin dolor et, venenatis turpis. Suspendisse id magna nec sem faucibus posuere.
-          <br />
-          <br />
-          Nam vitae semper elit. Suspendisse rutrum magna a lorem pharetra, sed tempor nunc scelerisque. Vivamus viverra sapien at risus pharetra, id accumsan lacus blandit. Aliquam et justo at nisi gravida sollicitudin. Phasellus lacinia tellus quam, sit amet consectetur nisi placerat eu. In ac arcu risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vehicula vitae quam ac placerat. Vivamus consequat eleifend velit vel imperdiet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec volutpat tellus enim. Integer id libero eu libero dictum dictum ut sit amet augue.
-        </span>
+
       </ContentStyleWhite>
-    </GreenDiv>
+    </GreenDiv> */}
   </div>
 
 )

@@ -9,6 +9,7 @@ import {
   SpecialDiv,
   ContentStyle,
   ContainerPad,
+  BodyLink,
 } from './styles/CommonStyles'
 import AKHF from '../logos/AKHF.jpg'
 import ANA from '../logos/ANAlogo.png'
@@ -52,7 +53,7 @@ const Footer = () => (
               Who we are: 
             </ContentHead>
             <ContentStyle>
-              This website is maintained by the Native Village of Afognak in partnership with the Sun'aq Tribe of Kodiak with the aim of providing a single location to access all things Alutiiq. <i>Nunaniqsarkici!</i>
+              This website is maintained by the <BodyLink href="http://www.afognak.org/">Native Village of Afognak</BodyLink> in partnership with the Sun'aq Tribe of Kodiak with the aim of providing a single location to access all things Alutiiq. <i>Nunaniqsarkici!</i>
             </ContentStyle>
           </SpecialDiv>
         </Grid.Column>
