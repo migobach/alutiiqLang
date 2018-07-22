@@ -10,15 +10,6 @@ import {
 // beige: #EAD8C2
 // blue: #3B568C
 
-// export const RedButton = styled(Button)`
-//   background-color: #ECA414 !important;
-//   padding: 5px;
-//   align-content: center;
-//   &:hover {
-//     background-color: #A8750E !important;
-//   }
-// `
-
 export const MainHeader = styled.h1`
   color: white;
   font-size: 5em; 
@@ -148,4 +139,8 @@ export const BodyLink = styled.a`
   &:hover { text-decoration: none; color: #508365; }
   &:focus { text-decoration: none; color:#508365; }
   &:hover, a:active { text-decoration: none; color:#508365 }
+`
+
+export const TransLink = styled.a`
+  padding: 5px;
 `

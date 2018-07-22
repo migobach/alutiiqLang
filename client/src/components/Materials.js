@@ -19,22 +19,26 @@ import {
   ContainerPad,
   CardHeader,
   ColumnHead,
+  TransLink,
 } from './styles/CommonStyles'
 import Alisha from '../images/alisha.jpg'
 
 class Materials extends Component {
 
-  state = { materials: [] }
+  state = { compMaterials: [] }
 
   componentDidMount() {
-    debugger
     const { dispatch } = this.props
     dispatch(getMaterials())
-    this.setState(this.props.materials)
+    this.setState({ compMaterials: this.props.materials })
   }
 
+  // handleLink = (finalPart) => {
+  //   <a href={"/js/data/statements/".concat(item.file_name)} download>
+
+  // }
+
   materials = () => {
-    debugger
     return this.props.materials.map( material => 
       <Grid.Row key={material.id}>
         <Grid.Column width={6}>
@@ -48,7 +52,17 @@ class Materials extends Component {
           </ContentStyle>
         </Grid.Column>
         <Grid.Column width={4} textAlign='center'>
-          <Icon name='eye' size='large' color='grey' link={material.file_url} />
+          {
+            material.file_url ? 
+            // Need to interpolate: http://alutiiqeducation.org/files/resource_pdf/{material.file_url}
+            <a href={"http://alutiiqeducation.org/files/resource_pdf/".concat(material.file_url)}>
+              <Icon name='eye' size='large' color='grey' />
+            </a>
+            : 
+            <a href={material.url}>
+            <Icon name='linkify' size='large' color='grey' />
+            </a>
+          }
         </Grid.Column>
       </Grid.Row>
     )
@@ -123,7 +137,7 @@ class Materials extends Component {
               <Card.Content>
                 <SpecialDiv>
                   <ContentStyle>
-                    Games are fun way to expand language use! By playing <i>Kinam Pi'ki?</i>, <i>Pingua</i>, or <i>Naama Kluucaten-qaa?</i> you can learn new words, and play with the words and language you already have. Click on the <i>Wamqutat</i> - Games link below to see how to get started! 
+                    Games are fun way to expand language use! By playing <i>Kinam Pi'ki?</i>, <i>Pingua</i>, or <i>Naama Kluucaten?</i> you can learn new words, and play with the words and language you already have. Click on the <i>Wamqutat</i> - Games link below to see how to get started! 
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
