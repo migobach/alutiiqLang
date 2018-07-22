@@ -23,6 +23,9 @@ import {
 } from './styles/CommonStyles'
 
 const Home = () => (
+
+  
+
   <div>
     <Parallax
       bgImage={Banner}
@@ -129,7 +132,7 @@ const Home = () => (
             The <i>Alutiit'stun Niuwawik</i> aims to be a culturally-relevant Kodiak Alutiiq immersion language nest for preschool-aged children with outreach services for all age groups to sustain Alutiiq as a living language.
           </SubHeaderContent>
         </SpecialDiv>
-          <Button size='huge'>
+          <Button size='huge' href='http://sunaq.org/tamamta-liitukut/'>
             Learn more
           </Button>
       </Container>

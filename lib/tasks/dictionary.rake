@@ -6,6 +6,7 @@ namespace :dictionary do
     puts csv_text
     csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
     csv.each do |row|
+      puts row.to_hash
       d = Dictionary.new
       d.english = row['english']
       d.part_of_speech = row['part_of_speech']
@@ -20,6 +21,8 @@ namespace :dictionary do
       d.category = row['category']
       d.edited_by = row['edited_by']
       d.notes = row['notes']
+      d.completed = row['completed']
+      d.approved = row['approved']
       puts "#{d.english} saved"
     end
 
