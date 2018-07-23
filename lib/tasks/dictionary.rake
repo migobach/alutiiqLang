@@ -21,8 +21,9 @@ namespace :dictionary do
       d.category = row['category']
       d.edited_by = row['edited_by']
       d.notes = row['notes']
-      d.completed = row['completed']
-      d.approved = row['approved']
+      d.completed = row['completed'] // write a method that will say that if this is equal to 'true' convert to true
+      # d.approved = row['approved']
+      d.save
       puts "#{d.english} saved"
     end
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { 
   Header, 
-  Grid, 
   Divider,
 } from 'semantic-ui-react'
 import {
@@ -9,13 +8,7 @@ import {
   SectionHead,
   ContentStyle,
   GreenLink,
-  IconHover,
-  CardHeader,
-  GreenDiv,
-  WhiteTitle,
-  ContentStyleWhite,
   LinkHead,
-  ColumnHead,
 } from './styles/CommonStyles'
 
 const OutsideLinks = () => (
