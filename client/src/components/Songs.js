@@ -40,7 +40,9 @@ class Songs extends Component {
           </ContentStyle>
         </Grid.Column>
         <Grid.Column width={4} textAlign='center'>
-          <Icon name='eye' size='large' color='grey' />
+          <a href={song.script}>
+            <Icon name='eye' size='large' color='grey' />
+          </a>
         </Grid.Column>
       </Grid.Row>
     )

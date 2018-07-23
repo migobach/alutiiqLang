@@ -23,9 +23,6 @@ import {
 } from './styles/CommonStyles'
 
 const Home = () => (
-
-  
-
   <div>
     <Parallax
       bgImage={Banner}

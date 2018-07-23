@@ -100,6 +100,7 @@ export const QuoteDiv = SpecialDiv.extend`
   border: 1px solid #D3D3D3;
   text-align: center;
 `
+
 export const QuotePerson = styled.div`
   text-align: right;
 `
@@ -141,6 +142,14 @@ export const BodyLink = styled.a`
   &:hover, a:active { text-decoration: none; color:#508365 }
 `
 
-export const TransLink = styled.a`
-  padding: 5px;
+export const LinkHead = styled.h3`
+  color: #508365;
+  font-size: 2.5em;
+  padding: 20px;
+`
+
+export const GreenLink = styled.a`
+  color: #508365;
+  &:hover { text-decoration: none; color: #A9A9A9; }
+  
 `

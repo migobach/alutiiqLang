@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { getMaterials } from '../reducers/materials'
 import { 
   Header, 
@@ -19,7 +20,6 @@ import {
   ContainerPad,
   CardHeader,
   ColumnHead,
-  TransLink,
 } from './styles/CommonStyles'
 import Alisha from '../images/alisha.jpg'
 
@@ -33,25 +33,20 @@ class Materials extends Component {
     this.setState({ compMaterials: this.props.materials })
   }
 
-  // handleLink = (finalPart) => {
-  //   <a href={"/js/data/statements/".concat(item.file_name)} download>
-
-  // }
-
   materials = () => {
     return this.props.materials.map( material => 
       <Grid.Row key={material.id}>
-        <Grid.Column width={6}>
+        <Grid.Column width={6} verticalAlign='middle'>
           <ContentStyle>
             <i>{material.resource_title}</i>
           </ContentStyle>
         </Grid.Column>
-        <Grid.Column width={6}>
+        <Grid.Column width={6} verticalAlign='middle'>
           <ContentStyle>
             {material.subjects}
           </ContentStyle>
         </Grid.Column>
-        <Grid.Column width={4} textAlign='center'>
+        <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
           {
             material.file_url ? 
             // Need to interpolate: http://alutiiqeducation.org/files/resource_pdf/{material.file_url}
@@ -159,9 +154,11 @@ class Materials extends Component {
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-              <Button color='yellow' size='big' fluid>
-                Go 
-              </Button>
+                <Link to={`/links`}>
+                  <Button color='yellow' size='big' fluid>
+                    Go 
+                  </Button>
+                </Link>
             </Card>
 
               <Card>
@@ -210,17 +207,17 @@ class Materials extends Component {
       <SpecialDiv>
         <Grid celled='internally'>
           <Grid.Row>
-            <Grid.Column width={6}>
+            <Grid.Column width={6} verticalAlign='middle'>
               <ColumnHead>
                 Title
               </ColumnHead>
             </Grid.Column>
-            <Grid.Column width={6}>
+            <Grid.Column width={6} verticalAlign='middle'>
               <ColumnHead>
                 Subject
               </ColumnHead>
             </Grid.Column>
-            <Grid.Column width={4} textAlign='center'>
+            <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
               <ColumnHead>
                 View
               </ColumnHead>
