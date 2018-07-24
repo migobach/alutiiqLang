@@ -6,7 +6,6 @@ namespace :dictionary do
     puts csv_text
     csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
     csv.each do |row|
-      puts row.to_hash
       d = Dictionary.new
       d.english = row['english']
       d.part_of_speech = row['part_of_speech']
@@ -21,8 +20,22 @@ namespace :dictionary do
       d.category = row['category']
       d.edited_by = row['edited_by']
       d.notes = row['notes']
-      d.completed = row['completed'] // write a method that will say that if this is equal to 'true' convert to true
-      # d.approved = row['approved']
+      d.completed =
+        if row['completed'] == 'TRUE'
+          row['completed'] = true
+        elsif row['completed'] == ''
+          row['completed'] = false
+        else row['completed'] == 'FALSE'
+          row['completed'] = false
+        end
+      d.approved = 
+        if row['approved'] == 'TRUE'
+          row['approved'] = true
+        elsif row['approved'] == ''
+          row['approved'] = false
+        else row['approved'] == 'FALSE'
+          row['approved'] = false
+        end
       d.save
       puts "#{d.english} saved"
     end
