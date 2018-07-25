@@ -8,7 +8,7 @@ import {
   Container,
 } from 'semantic-ui-react'
 import { Parallax } from 'react-parallax'
-import Banner from '../images/harbor.jpg'
+import Banner from '../images/Afognak.jpg'
 import Teaching from '../images/teaching.jpg'
 import { 
   CardHeader,
