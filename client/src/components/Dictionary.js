@@ -89,7 +89,7 @@ class Dictionary extends Component {
     const { searchTerms, dictionaryWords } = this.state
     if (searchTerms) {
       let filtered_words = dictionaryWords.filter( e => 
-      e.english.includes(searchTerms) || e.alutiiq_north.includes(searchTerms))
+      e.english.includes(searchTerms) )
     return(
       filtered_words.map( (word)  =>
         <Grid.Row key={word.id}>
