@@ -127,6 +127,12 @@ export const ContainerPad = styled.div`
   margin: 50px;
 `
 
+export const Div = styled.div`
+  height: 350px;
+  width: auto;
+  overflow: auto;
+`
+
 export const IconHover = styled(Icon)`
   font-size: 5em !important;
   padding-top: 10px;

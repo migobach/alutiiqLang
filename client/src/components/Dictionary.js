@@ -1,9 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
+import axios from 'axios'
+import InfiniteScroll from 'react-infinite-scroller'
 import { connect } from 'react-redux'
 import {  
   Header,
   Grid,
   Icon,
+  Form,
+  Divider, 
+  Loader,
 } from 'semantic-ui-react'
 import { getWords } from '../reducers/words'
 import {
@@ -13,27 +18,38 @@ import {
   ColumnHead,
   ContentStyle,
   ContentStyleWhite,
+  Div,
 } from './styles/CommonStyles'
 
 class Dictionary extends Component {
 
-  state = { dicWords: [] }
+  state = { dictionaryWords: [], page: 1, total_pages: 0, searchTerms: '' }
 
   componentDidMount() {
-    // debugger
-    const { dispatch } = this.props
-    dispatch(getWords())
-    this.populateState()
+    axios.get('/api/dictionaries')
+      .then( res => { 
+          this.setState({ dictionaryWords: res.data.dictionaries, total_pages: res.data.total_pages  })
+      })
+  }
+
+  loadMore = () => {
+    const page = this.state.page + 1
+    axios.get(`/api/dictionaries?page=${page}`)
+      .then( ({ data }) => {
+        this.setState(state => {
+          return{ dictionaryWords: [...state.dictionaryWords, ...data.dictionaries], page: state.page + 1 }
+        })
+      })
+  }
+
+  handleChange = (e) => {
+    this.setState({ searchTerms: e.target.value })
   }
   
-  populateState = () => {
-    this.setState({ dicWords: this.props.words })
-  }
-
-  componentDidUpdate
-
   words = () => {
-    return this.props.words.map( word => 
+    const { dictionaryWords } = this.state
+    return dictionaryWords.map( word => {
+      return(
       <Grid.Row key={word.id}>
         <Grid.Column width={4} verticalAlign='middle'>
           <ContentStyle>
@@ -42,7 +58,12 @@ class Dictionary extends Component {
         </Grid.Column>
         <Grid.Column width={4} verticalAlign='middle'>
           <ContentStyle>
-            {word.alutiiq_north}
+            <i>{word.alutiiq_north}</i>
+          </ContentStyle>
+        </Grid.Column>
+        <Grid.Column width={4} verticalAlign='middle'>
+          <ContentStyle>
+            <i>{word.alutiiq_south}</i>
           </ContentStyle>
         </Grid.Column>
         <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
@@ -59,12 +80,57 @@ class Dictionary extends Component {
           }
         </Grid.Column>
       </Grid.Row>
+      )
+    })
+   
+  }
+
+  searchWords = () => {
+    const { searchTerms, dictionaryWords } = this.state
+    if (searchTerms) {
+      let filtered_words = dictionaryWords.filter( e => 
+      e.english.includes(searchTerms) || e.alutiiq_north.includes(searchTerms))
+    return(
+      filtered_words.map( (word)  =>
+        <Grid.Row key={word.id}>
+          <Grid.Column width={4} verticalAlign='middle'>
+            <ContentStyle>
+              {word.english}
+            </ContentStyle>
+          </Grid.Column>
+          <Grid.Column width={4} verticalAlign='middle'>
+            <ContentStyle>
+              <i>{word.alutiiq_north}</i>
+            </ContentStyle>
+          </Grid.Column>
+          <Grid.Column width={4} verticalAlign='middle'>
+            <ContentStyle>
+              <i>{word.alutiiq_south}</i>
+            </ContentStyle>
+          </Grid.Column>
+        <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
+          {
+            word.north_audio ? 
+            // Need to interpolate: http://www.alutiiqlanguage.org/files/dictionary_audio/
+            <a href={"http://www.alutiiqlanguage.org/files/dictionary_audio/".concat(word.north_audio)}>
+              <Icon name='sound' size='large' color='grey' />
+            </a>
+            : 
+            <a href={"http://www.alutiiqlanguage.org/files/dictionary_audio/".concat(word.south_audio)}>
+              <Icon name='sound' size='large' color='grey' />
+            </a>
+          }
+        </Grid.Column>
+      </Grid.Row>
+      )
     )
+    }
   }
 
   render() {
+    const { total_pages, searchTerms, page } = this.state
     return(
-    <div>
+    <Fragment>
       <BlueDiv>
         <Header textAlign="center">
           <SectionHead>
@@ -77,8 +143,23 @@ class Dictionary extends Component {
       </BlueDiv>
       
       {/* dictionary table  */}
+      
+      <Form.Input
+         placeholder="Search Words..."
+         value={searchTerms}
+         onChange={this.handleChange}
+       >
+       </Form.Input>
+       
+       <Div>
+       <InfiniteScroll
+         pageStart={page}
+         loadMore={this.loadMore}
+         hasMore={ page < total_pages }
+         loader={<Loader />}
+         useWindow={false}
+       >
 
-      <SpecialDiv>
         <Grid celled='internally'>
           <Grid.Row>
             <Grid.Column width={4} verticalAlign='middle'>
@@ -88,7 +169,12 @@ class Dictionary extends Component {
             </Grid.Column>
             <Grid.Column width={4} verticalAlign='middle'>
               <ColumnHead>
-                Alutiiq
+                Alutiiq, Northern Style
+              </ColumnHead>
+            </Grid.Column>
+            <Grid.Column width={4} verticalAlign='middle'>
+              <ColumnHead>
+                Alutiiq, Southern Style
               </ColumnHead>
             </Grid.Column>
             <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
@@ -97,22 +183,26 @@ class Dictionary extends Component {
               </ColumnHead>
             </Grid.Column>
           </Grid.Row>
-
-            { this.words() }
-
+            { (searchTerms.length > 0) ? 
+              this.searchWords()
+              :
+              this.words() 
+            }
         </Grid>
-      </SpecialDiv>
-    </div>
+      </InfiniteScroll>
+      </Div>
+    </Fragment>
     )
   }
 
 
 }
 
-const mapStateToProps = (state) => {
-  return {
-    words: state.words
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     words: state.words
+//     // total_pages: state.total_pages
+//   }
+// }
 
-export default connect(mapStateToProps)(Dictionary)
+export default connect()(Dictionary)

@@ -13,8 +13,10 @@ const Menuitems = styled(MenuItem)`
 
 class NavBar extends Component {
   state = { activeItem: 'home' }
-
+  
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
+  // export const handleNavBar = (e) => { this.setState({ activeItem: this.props.location.path }) }
 
 
   rightNavs = () => {

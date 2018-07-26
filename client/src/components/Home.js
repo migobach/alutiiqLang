@@ -9,6 +9,7 @@ import {
 } from 'semantic-ui-react'
 import { Parallax } from 'react-parallax'
 import Banner from '../images/Afognak.jpg'
+// import { handleNavBar } from './NavBar'
 import Teaching from '../images/teaching.jpg'
 import { 
   CardHeader,
@@ -56,7 +57,7 @@ const Home = () => (
               </ContentStyle>
             </SpecialDiv>
           </Card.Content>
-            <Link to={`/happenings`}>
+            <Link to={`/happenings`} >
               <Button color='yellow' size='big' fluid>
                 Go 
               </Button>
