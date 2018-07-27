@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getSongs } from '../reducers/songs';
+import { Link } from 'react-router-dom'
+import Songbook from '../assetMaterials/AlutiiqSongbook.pdf'
 import {
   Header,
   Icon,
@@ -16,6 +18,7 @@ import {
   ContentStyleWhite,
   ColumnHead,
   IconHover,
+  IconLink,
 } from './styles/CommonStyles'
 
 
@@ -135,7 +138,9 @@ class Songs extends Component {
         </ContentStyleWhite>
           <SpecialDiv>
             <Container textAlign='center'>
-              <IconHover name='book'/>
+              <IconLink href='http://www.alutiiqlanguage.org/files/Alutiiq%20Songbook%20NO%20glossary.pdf'>
+                <IconHover name='book'/>
+              </IconLink>
             </Container>
           </SpecialDiv>
       </BlueDiv>

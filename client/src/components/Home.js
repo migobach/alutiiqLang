@@ -6,9 +6,11 @@ import {
   Header,
   Divider,
   Container,
+  Image, 
 } from 'semantic-ui-react'
 import { Parallax } from 'react-parallax'
 import Banner from '../images/Afognak.jpg'
+import Fox from '../images/fox.png'
 // import { handleNavBar } from './NavBar'
 import Teaching from '../images/teaching.jpg'
 import { 
@@ -47,7 +49,7 @@ const Home = () => (
         <Card>
           <Card.Content header textAlign='center'>
             <CardHeader>
-              Calitaartukut?
+              Happenings
             </CardHeader>
           </Card.Content>
           <Card.Content>
@@ -87,7 +89,7 @@ const Home = () => (
         <Card>
           <Card.Content header textAlign='center'>
             <CardHeader>
-              Nutasqaat Naaqisuutet
+              New Qbooks
             </CardHeader>
           </Card.Content>
           <Card.Content>

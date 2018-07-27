@@ -6,18 +6,18 @@ import {
   Header,
   Grid,
   Icon,
+  Search, 
   Form,
-  Divider, 
   Loader,
 } from 'semantic-ui-react'
 import { getWords } from '../reducers/words'
 import {
   BlueDiv,
   SectionHead,
-  SpecialDiv,
   ColumnHead,
   ContentStyle,
   ContentStyleWhite,
+  SpecialDiv,
   Div,
 } from './styles/CommonStyles'
 
@@ -143,13 +143,15 @@ class Dictionary extends Component {
       </BlueDiv>
       
       {/* dictionary table  */}
-      
-      <Form.Input
-         placeholder="Search Words..."
-         value={searchTerms}
-         onChange={this.handleChange}
-       >
-       </Form.Input>
+
+      <SpecialDiv>
+        <Form.Input
+          placeholder="Search Words..."
+          value={searchTerms}
+          onChange={this.handleChange}
+        />
+      </SpecialDiv>
+       {/* </Form.Input> */}
        
        <Div>
        <InfiniteScroll
@@ -198,11 +200,5 @@ class Dictionary extends Component {
 
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     words: state.words
-//     // total_pages: state.total_pages
-//   }
-// }
 
 export default connect()(Dictionary)

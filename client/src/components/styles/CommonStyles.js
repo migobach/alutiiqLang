@@ -128,8 +128,9 @@ export const ContainerPad = styled.div`
 `
 
 export const Div = styled.div`
-  height: 350px;
+  height: 500px;
   width: auto;
+  padding: 50px;
   overflow: auto;
 `
 
@@ -146,6 +147,14 @@ export const BodyLink = styled.a`
   &:hover { text-decoration: none; color: #508365; }
   &:focus { text-decoration: none; color:#508365; }
   &:hover, a:active { text-decoration: none; color:#508365 }
+`
+
+export const IconLink = styled.a`
+  color: white;
+  &:visited { text-decoration: none; color: white; }
+  &:hover { text-decoration: none; color: white; }
+  &:focus { text-decoration: none; color: white; }
+  &:hover, a:active { text-decoration: none; color: white; }
 `
 
 export const LinkHead = styled.h3`
