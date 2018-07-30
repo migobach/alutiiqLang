@@ -6,12 +6,9 @@ import {
   Header,
   Divider,
   Container,
-  Image, 
 } from 'semantic-ui-react'
 import { Parallax } from 'react-parallax'
 import Banner from '../images/Afognak.jpg'
-import Fox from '../images/fox.png'
-// import { handleNavBar } from './NavBar'
 import Teaching from '../images/teaching.jpg'
 import { 
   CardHeader,

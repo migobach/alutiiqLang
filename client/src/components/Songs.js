@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getSongs } from '../reducers/songs';
-import { Link } from 'react-router-dom'
-import Songbook from '../assetMaterials/AlutiiqSongbook.pdf'
 import {
   Header,
   Icon,

@@ -1,7 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
+// import axios from 'axios'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getMaterials } from '../reducers/materials'
+// import InfiniteScroll from 'react-infinite-scroller'
 import { 
   Header, 
   Image,
@@ -9,6 +11,7 @@ import {
   Card,
   Button,
   Icon,
+  Loader,
  } from 'semantic-ui-react'
 import {
   SpecialDiv,
@@ -20,21 +23,36 @@ import {
   ContainerPad,
   CardHeader,
   ColumnHead,
+  Div,
 } from './styles/CommonStyles'
 import Alisha from '../images/alisha.jpg'
 
 class Materials extends Component {
-
-  state = { compMaterials: [] }
+  state = { compMaterials: [], page: 1, total_pages: 0 }
 
   componentDidMount() {
     const { dispatch } = this.props
     dispatch(getMaterials())
-    this.setState({ compMaterials: this.props.materials })
   }
 
+  componentDidUpdate(prevProps) {
+    if(prevProps !== this.props)
+      this.setState({ compMaterials: this.props.materials })
+  }
+
+  // loadMore = () => {
+  //   const page = this.state.page + 1
+  //   axios.get(`/api/materials?page=${page}`)
+  //     .then( ({ data }) => {
+  //       this.setState(state => {
+  //         return{ dictionaryWords: [...state.compMaterials, ...data.materials], page: state.page + 1 }
+  //       })
+  //     })
+  // }
+  
   materials = () => {
-    return this.props.materials.map( material => 
+    const { compMaterials } = this.state
+    return compMaterials.map( material => 
       <Grid.Row key={material.id}>
         <Grid.Column width={6} verticalAlign='middle'>
           <ContentStyle>
@@ -64,8 +82,9 @@ class Materials extends Component {
   }
 
   render() {
+    const { total_pages, page } = this.state
     return(
-    <div>
+    <Fragment>
       <SpecialDiv>
         <Header textAlign='center'>
           <SectionHead>
@@ -205,6 +224,14 @@ class Materials extends Component {
         {/* database table */}
       
       <SpecialDiv>
+       {/* <InfiniteScroll
+         pageStart={page}
+         loadMore={this.loadMore}
+         hasMore={ page < total_pages }
+         loader={<Loader />}
+         useWindow={false}
+       > */}
+
         <Grid celled='internally'>
           <Grid.Row>
             <Grid.Column width={6} verticalAlign='middle'>
@@ -227,17 +254,18 @@ class Materials extends Component {
             { this.materials() }
 
         </Grid>
+        {/* </InfiniteScroll> */}
       </SpecialDiv>
-    </div>
+    </Fragment>
     )
   }
 }
 
-const mapStateToProps = (state) => {
+ const mapStateToProps = (state) => {
   return { 
     materials: state.materials
   }
-}
+} 
 
 
 export default connect(mapStateToProps)(Materials)

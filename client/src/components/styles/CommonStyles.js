@@ -74,8 +74,12 @@ export const ContentStyle = styled.p`
   color: #A9A9A9;
 `
 
-export const ContentStyleWhite = ContentStyle.extend`
+export const ContentStyleWhite = styled.div`
   color: white;
+  line-height: 2;
+  font-size: 1.5em;
+  text-align: center;
+  padding-bottom: 14px;
 `
 
 export const WhiteTitle = styled.h4`

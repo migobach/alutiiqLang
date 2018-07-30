@@ -5,12 +5,10 @@ import { connect } from 'react-redux'
 import {  
   Header,
   Grid,
-  Icon,
-  Search, 
+  Icon, 
   Form,
   Loader,
 } from 'semantic-ui-react'
-import { getWords } from '../reducers/words'
 import {
   BlueDiv,
   SectionHead,

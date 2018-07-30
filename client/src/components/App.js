@@ -16,6 +16,7 @@ import Login from './Login'
 import Register from './Register'
 import Footer from './Footer'
 import OutsideLinks from './OutsideLinks'
+import Workbook from './curriculum/Workbook'
 
 const App = () => (
   <div>
@@ -29,6 +30,8 @@ const App = () => (
       <Route exact path="/classes" component={Classes} />
       <Route exact path="/happenings" component={HistoryNews} />
       <Route exact path="/links" component={OutsideLinks} />
+      
+      <Route exact path="/workbook" component={Workbook} />
       
       <ProtectedRoute exact path="/kasainaq" component={AdminLogin} />
       <AuthRoute exact path='/login' component={Login} />

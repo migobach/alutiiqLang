@@ -2,7 +2,10 @@ class Api::MaterialsController < ApplicationController
   before_action :set_material, only: [:show]
   
   def index
-    render json: Material.all
+    render json: Material.all 
+    # materials = Material.page(@page)
+    # total_pages = materials.total_pages
+    # render json: { materials: materials, total_pages: total_pages}
   end
 
   def show
@@ -28,6 +31,10 @@ class Api::MaterialsController < ApplicationController
   end
 
     private 
+
+    def set_page
+      @page = params[:page] || 1
+    end
 
     def set_material
       @material = Material.find(params[:id])

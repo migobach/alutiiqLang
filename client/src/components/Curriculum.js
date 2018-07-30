@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { 
   Header,
   Grid,
@@ -55,7 +56,9 @@ const Curriculum = () => (
       <Grid.Row>
         <Grid.Column width={5} textAlign='center'>
           <ColumnHead>
+            <Link to={`/workbook`}>
             Kodiak Alutiiq Elementary Language Curriculum Workbook 
+            </Link>
           </ColumnHead>
         </Grid.Column>
         <Grid.Column width={11} textAlign='center'>

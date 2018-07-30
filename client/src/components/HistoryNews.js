@@ -91,19 +91,3 @@ class HistoryNews extends Component {
 }
 
 export default HistoryNews
-
-// needs to be a class becuase there is going to be an RSS feed of Facebook.  
-
-{/* <Grid columns={3} relaxed>
-    <Grid.Column>
-      <Segment basic>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.</Segment>
-    </Grid.Column>
-    <Divider vertical>Or</Divider>
-    <Grid.Column>
-      <Segment basic>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.</Segment>
-    </Grid.Column>
-    <Divider vertical>And</Divider>
-    <Grid.Column>
-      <Segment basic>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.</Segment>
-    </Grid.Column>
-  </Grid> */}
