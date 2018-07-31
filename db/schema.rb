@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_30_183816) do
+ActiveRecord::Schema.define(version: 2018_07_31_162323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "curriculums", force: :cascade do |t|
-    t.string "curriculuar_name"
+    t.string "curricular_name"
     t.text "link_to_item"
     t.string "level"
     t.string "lesson_number"
