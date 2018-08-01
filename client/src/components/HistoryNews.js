@@ -47,7 +47,6 @@ class HistoryNews extends Component {
                   <Icon name='instagram' /> Instagram
                 </Button>
               </a>
-              
             </CenterDiv>
           </ContentStyle>
         </SpecialDiv>
