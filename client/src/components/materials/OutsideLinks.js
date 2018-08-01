@@ -10,7 +10,7 @@ import {
   GreenLink,
   LinkHead,
   BlueDiv,
-} from './styles/CommonStyles'
+} from '../styles/CommonStyles'
 
 const OutsideLinks = () => (
   <div>

@@ -3,6 +3,7 @@ import {
   Button, 
   Header, 
   Card, 
+  Icon,
 } from 'semantic-ui-react'
 import { 
   SpecialDiv,
@@ -10,11 +11,16 @@ import {
   SectionHead, 
   ContentStyle, 
   ContainerPad,
+  CenterDiv,
 } from './styles/CommonStyles'
 
+ const xtrapadding = {
+  padding: '50px',
+}
 
 class HistoryNews extends Component {
   render() {
+    
     return(
       <div>
         <SpecialDiv>
@@ -24,9 +30,28 @@ class HistoryNews extends Component {
             </SectionHead>
           </Header>
           <ContentStyle>
-            Alutiiq scholars argue that the Alutiiq Renaissance began in 1971. Since then, many projects have focused on various aspects of language revitalization, many people have been involved, and momentum has been building. 
+            Alutiiq scholars argue that the Alutiiq Renaissance began in 1971. Since then, many projects have focused on various aspects of language revitalization, many people have been, and continue to be involved. Discover ways for you to be involved! 
+            <br />
+            <br />
+            Check out some of our social media channels to finds ways to stay connected with the language movement, or to learn more about how you can become involved. 
+            <br />
+            <br />
+            <CenterDiv style={xtrapadding}>
+              <a href='https://www.facebook.com/alutiiqlanguage/'>
+                <Button color='facebook' size='massive'>
+                  <Icon name='facebook' /> Facebook
+                </Button>
+              </a>
+              <a href='https://www.instagram.com/alutiiqlearners/?hl=en'>
+                <Button color='instagram' size='massive'>
+                  <Icon name='instagram' /> Instagram
+                </Button>
+              </a>
+              
+            </CenterDiv>
           </ContentStyle>
         </SpecialDiv>
+          
           
           <ContainerPad>
             <Card.Group itemsPerRow={3} stackable={true}>

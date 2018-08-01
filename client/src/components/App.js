@@ -15,7 +15,7 @@ import AuthRoute from './AuthRoute'
 import Login from './Login'
 import Register from './Register'
 import Footer from './Footer'
-import OutsideLinks from './OutsideLinks'
+import OutsideLinks from './materials/OutsideLinks'
 import Workbook from './curriculum/Workbook'
 
 const App = () => (

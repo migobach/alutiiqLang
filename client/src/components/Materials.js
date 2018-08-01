@@ -180,7 +180,7 @@ class Materials extends Component {
                 </Link>
             </Card>
 
-              <Card>
+            <Card>
               <Card.Content header textAlign='center'>
                 <CardHeader>
                   Stories
@@ -197,6 +197,27 @@ class Materials extends Component {
                 Go 
               </Button>
             </Card>
+
+            <Card>
+              <Card.Content header textAlign='center'>
+                <CardHeader>
+                  Flashcards
+                </CardHeader>
+              </Card.Content>
+              <Card.Content>
+                <SpecialDiv>
+                  <ContentStyle>
+                    Download the Quizlet app for your iPhone or Android device, and study vocabulary words whenever you have a chance! Click on the link below to see some of the flashcards used in the Kodiak High School Alutiiq Lanugage class to get started. 
+                  </ContentStyle>
+                </SpecialDiv>
+              </Card.Content>
+              <a href='https://quizlet.com/cbranson01'>
+                <Button color='yellow' size='big' fluid>
+                  Go 
+                </Button>
+              </a>
+            </Card>
+
 
           </Card.Group>
         </ContainerPad>

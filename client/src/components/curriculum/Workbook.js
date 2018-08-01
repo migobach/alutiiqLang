@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { getCurriculum } from '../../reducers/curriculum'
 import {
   Header,
   Container,
+  Grid,
 } from 'semantic-ui-react'
-import { getCurriculum } from '../../reducers/curriculum'
 import {
   SpecialDiv, 
   ContentStyle,
-  BlueDiv,
+  GreenDiv,
   SubSectionHead,
   SectionHead,
   ContentStyleWhite,
@@ -17,12 +18,31 @@ import {
 } from '../styles/CommonStyles'
 
 class Workbook extends Component {
+  state = { workbookLessons: [] }
 
   componentDidMount() {
     const { dispatch } = this.props
     dispatch(getCurriculum())
   }
 
+  componentDidUpdate(prevProps) {
+    if(prevProps !== this.props)
+    this.setState({ workbookLessons: this.props.curriculums})
+  }
+
+  // lessons = () => {
+  //   const { workbookLessons } = this.state
+  //   return workbookLessons.map( lesson => 
+  //     <Grid.Row>
+  //       <Grid.Column width={6} verticalAlign='middle'>
+  //         <ContentStyle>
+  //           {lesson.curricular_name}
+  //         </ContentStyle>
+  //       </Grid.Column>
+  //     </Grid.Row>
+  //   )
+  // }
+  
   render() {
     return(
       <div>
@@ -40,7 +60,7 @@ class Workbook extends Component {
           </ContentStyle>
         </SpecialDiv>
     
-        <BlueDiv>
+          <GreenDiv>
           <Header textAlign='center'>
             <SubSectionHead>
               Workbook
@@ -56,7 +76,14 @@ class Workbook extends Component {
                 </IconLink>
               </Container>
             </SpecialDiv>
-        </BlueDiv>
+        </GreenDiv>
+
+        <SpecialDiv>
+          <Grid celled='internally'>
+            {/* { this.lessons()} */}
+          </Grid>
+        </SpecialDiv>
+
 
         
       </div>
@@ -64,4 +91,10 @@ class Workbook extends Component {
   }
 }
 
-export default connect()(Workbook)
+const mapStateToProps = (state) => {
+  return {
+    curriculum: state.curriculums
+  }
+}
+
+export default connect(mapStateToProps)(Workbook)
