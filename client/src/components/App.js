@@ -30,9 +30,7 @@ const App = () => (
       <Route exact path="/classes" component={Classes} />
       <Route exact path="/happenings" component={HistoryNews} />
       <Route exact path="/links" component={OutsideLinks} />
-      
-      <Route exact path="/workbook" component={Workbook} />
-      
+            
       <ProtectedRoute exact path="/kasainaq" component={AdminLogin} />
       <AuthRoute exact path='/login' component={Login} />
       <AuthRoute exact path='/register' component={Register} />

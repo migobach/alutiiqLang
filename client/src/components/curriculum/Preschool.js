@@ -10,7 +10,7 @@ import {
   ContentStyle,
 } from '../styles/CommonStyles'
 
-class Nest extends Component {
+class Preschool extends Component {
 
   render() {
     return(
@@ -20,10 +20,10 @@ class Nest extends Component {
         <SpecialDiv>
           <Header textAlign='center'>
             <SectionHead>
-              <i>Alutiit'stun Niuwawik</i> Curriculum and Resources
+              Alutiiq Language Preschool Curriculum
             </SectionHead>
             <ContentStyle>
-              Curricular themes at the language nest are organized around cultural themes that prepare students for kindergarten. Interacting with elders, community members, and their own peers make in a culturally and linguistically rich environment are what make the langauge nest environment unique.
+              Throughout the past few years, our language program has been developing a Preschool Curriculum for the Alutiiq Language. This can be used for children young and old, adult learners, and anybody in between. As we develop and revise the curriculum, you may notice some changes. Click the link below to view the Preschool Curriculum!
             </ContentStyle>
           </Header>
         </SpecialDiv>
@@ -32,4 +32,4 @@ class Nest extends Component {
   }
 }
 
-export default connect()(Nest)
+export default connect()(Preschool)

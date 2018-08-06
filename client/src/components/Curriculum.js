@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getCurriculum } from '../reducers/curriculum'
 import Workbook from './curriculum/Workbook'
+import Thematic from './curriculum/Thematic'
+import Preschool from './curriculum/Preschool'
+import Nest from './curriculum/Nest'
 import { 
   Header,
   Grid,
@@ -19,7 +22,7 @@ import {
 } from './styles/CommonStyles'
 
 class Curriculum extends Component {
-  state = { workbookComp: false, elementaryComp: false, nestComp: false, thematicComp: false }
+  state = { workbookComp: false, preschoolComp: false, nestComp: false, thematicComp: false }
 
   componentDidMount() {
     const { dispatch } = this.props
@@ -27,15 +30,36 @@ class Curriculum extends Component {
   }
 
   toggleWorkbookComp = () => {
-    console.log('Workbook')
-    this.setState({workbookComp: !this.state.workbookComp})
+    this.setState({workbookComp: !this.state.workbookComp, preschoolComp: false, nestComp: false, thematicComp: false})
   }
 
+  toggleNestComp = () => {
+    this.setState({nestComp: !this.state.nestComp, workbookComp: false, preschoolComp: false, thematicComp: false})
+  }
 
+  togglePreschoolComp = () => {
+    this.setState({preschoolComp: !this.state.preschoolComp, workbookComp: false, nestComp: false, thematicComp: false})
+  }
 
+  toggleThematicComp = () => {
+    this.setState({thematicComp: !this.state.thematicComp, nestComp: false, preschoolComp: false, workbookComp: false})
+  }
+
+  renderingComponents = () => {
+    const { workbookComp, preschoolComp, nestComp, thematicComp } = this.state
+    if (workbookComp === true) {
+      return <Workbook />
+    } else if (preschoolComp === true) {
+      return <Preschool />
+    } else if (nestComp === true) {
+      return <Nest />
+    } else if (thematicComp === true) {
+      return <Thematic />
+    } else 
+      return <SpecialDiv />
+  }
 
   render() {
-    const { workbookComp } = this.state
     return( 
     <div>
       <SpecialDiv>
@@ -54,7 +78,9 @@ class Curriculum extends Component {
         <Grid.Row>
           <Grid.Column width={5} textAlign='center'>
             <ColumnHead>
-              <i>Alutiit'stun Niuwawik</i> Language Nest Curriculum
+              <Button size='massive' onClick={(e) => this.toggleNestComp(e)}>
+                <i>Alutiit'stun Niuwawik</i> Language Nest Curriculum
+              </Button>
             </ColumnHead>
           </Grid.Column>
           <Grid.Column width={11}>
@@ -66,7 +92,9 @@ class Curriculum extends Component {
         <Grid.Row>
           <Grid.Column width={5} textAlign='center'>
             <ColumnHead>
-              Kodiak Alutiiq Language Preschool Curriculum
+              <Button size='massive' onClick={(e) => this.togglePreschoolComp(e)}>
+                Kodiak Alutiiq Language Preschool Curriculum
+              </Button>
             </ColumnHead>
           </Grid.Column>
           <Grid.Column width={11}>
@@ -79,7 +107,7 @@ class Curriculum extends Component {
           <Grid.Column width={5} textAlign='center'>
             <ColumnHead>
               <Button size='massive' onClick={(e) => this.toggleWorkbookComp(e)}>
-              Kodiak Alutiiq Elementary Language Curriculum Workbook 
+                Kodiak Alutiiq Elementary Language Curriculum Workbook 
               </Button>
             </ColumnHead>
           </Grid.Column>
@@ -92,7 +120,9 @@ class Curriculum extends Component {
         <Grid.Row>
           <Grid.Column width={5} textAlign='center'>
             <ColumnHead>
-              Kodiak Alutiiq Thematic Curriculum Units
+              <Button size='massive' onClick={(e) => this.toggleThematicComp(e)}>
+                Kodiak Alutiiq Thematic Curriculum Units
+              </Button>
             </ColumnHead>
           </Grid.Column>
           <Grid.Column width={11}>
@@ -105,18 +135,10 @@ class Curriculum extends Component {
       </SpecialDiv>
 
     {/* Conditionally rendered components */}
-
-      {/* <SpecialDiv> */}
-        { workbookComp ?
-        <Workbook toggleForm={this.toggleWorkbookComp}/>
-        :
-        <SpecialDiv />
-        }
-      {/* </SpecialDiv> */}
-
-
-    
+      
+    { this.renderingComponents() }
   
+
       <BlueDiv>
         <Header textAlign='center'>
           <SubSectionHead>
