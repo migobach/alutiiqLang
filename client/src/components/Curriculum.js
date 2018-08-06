@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getCurriculum } from '../reducers/curriculum'
+import Workbook from './curriculum/Workbook'
 import { 
   Header,
   Grid,
+  Button,
  } from 'semantic-ui-react'
  import { 
   ColumnHead,
@@ -17,13 +19,23 @@ import {
 } from './styles/CommonStyles'
 
 class Curriculum extends Component {
+  state = { workbookComp: false, elementaryComp: false, nestComp: false, thematicComp: false }
 
   componentDidMount() {
     const { dispatch } = this.props
     dispatch(getCurriculum())
   }
 
+  toggleWorkbookComp = () => {
+    console.log('Workbook')
+    this.setState({workbookComp: !this.state.workbookComp})
+  }
+
+
+
+
   render() {
+    const { workbookComp } = this.state
     return( 
     <div>
       <SpecialDiv>
@@ -38,14 +50,14 @@ class Curriculum extends Component {
       </SpecialDiv>
   
       <SpecialDiv>
-      <Grid celled='internally'>
+      <Grid>
         <Grid.Row>
           <Grid.Column width={5} textAlign='center'>
             <ColumnHead>
               <i>Alutiit'stun Niuwawik</i> Language Nest Curriculum
             </ColumnHead>
           </Grid.Column>
-          <Grid.Column width={11} textAlign='center'>
+          <Grid.Column width={11}>
             <ContentStyle>
               Lesson outlines for a complete academic year of language nest lesson and activity plans. 
             </ContentStyle>
@@ -57,7 +69,7 @@ class Curriculum extends Component {
               Kodiak Alutiiq Language Preschool Curriculum
             </ColumnHead>
           </Grid.Column>
-          <Grid.Column width={11} textAlign='center'>
+          <Grid.Column width={11}>
             <ContentStyle>
               140 Lessons focused on early childhood development and school preparedness.
             </ContentStyle>
@@ -66,12 +78,12 @@ class Curriculum extends Component {
         <Grid.Row>
           <Grid.Column width={5} textAlign='center'>
             <ColumnHead>
-              <Link to={`/workbook`}>
+              <Button size='massive' onClick={(e) => this.toggleWorkbookComp(e)}>
               Kodiak Alutiiq Elementary Language Curriculum Workbook 
-              </Link>
+              </Button>
             </ColumnHead>
           </Grid.Column>
-          <Grid.Column width={11} textAlign='center'>
+          <Grid.Column width={11}>
             <ContentStyle>
               Level I & II: 40 lessons, with Alutiiq audio files
             </ContentStyle>
@@ -83,7 +95,7 @@ class Curriculum extends Component {
               Kodiak Alutiiq Thematic Curriculum Units
             </ColumnHead>
           </Grid.Column>
-          <Grid.Column width={11} textAlign='center'>
+          <Grid.Column width={11}>
             <ContentStyle>
               6 units targeted at Kindergarden through 5th grade
             </ContentStyle>
@@ -91,6 +103,19 @@ class Curriculum extends Component {
         </Grid.Row>
       </Grid>
       </SpecialDiv>
+
+    {/* Conditionally rendered components */}
+
+      {/* <SpecialDiv> */}
+        { workbookComp ?
+        <Workbook toggleForm={this.toggleWorkbookComp}/>
+        :
+        <SpecialDiv />
+        }
+      {/* </SpecialDiv> */}
+
+
+    
   
       <BlueDiv>
         <Header textAlign='center'>

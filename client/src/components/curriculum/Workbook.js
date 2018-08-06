@@ -5,6 +5,7 @@ import {
   Header,
   Container,
   Grid,
+  Divider,
 } from 'semantic-ui-react'
 import {
   SpecialDiv, 
@@ -25,10 +26,10 @@ class Workbook extends Component {
     dispatch(getCurriculum())
   }
 
-  componentDidUpdate(prevProps) {
-    if(prevProps !== this.props)
-    this.setState({ workbookLessons: this.props.curriculums})
-  }
+  // componentDidUpdate(prevProps) {
+  //   if(prevProps !== this.props)
+  //   this.setState({ workbookLessons: this.props.curriculums})
+  // }
 
   // lessons = () => {
   //   const { workbookLessons } = this.state
@@ -46,6 +47,7 @@ class Workbook extends Component {
   render() {
     return(
       <div>
+        <Divider />
         <SpecialDiv>
           <Header textAlign='center'>
             <SectionHead>

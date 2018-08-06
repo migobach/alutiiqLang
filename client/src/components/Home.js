@@ -126,7 +126,7 @@ const Home = () => (
             Are you interested in registering your little one in the Alutiiq Language Nest? The Alutiit'stun Niuwawik is now accepting student registrations for the fall of 2018.
             <br />
             <br />
-            The <i>Alutiit'stun Niuwawik</i> aims to be a culturally-relevant Kodiak Alutiiq immersion language nest for preschool-aged children with outreach services for all age groups to sustain Alutiiq as a living language.
+            The Language Nest is a child-focused Alutiiq language immersion environment where language is acquired naturally. Children develop kindergarten readiness skills while they problem solve, explore, and play through the language in a supportive multi-generational setting.
           </SubHeaderContent>
         </SpecialDiv>
           <Button size='huge' href='http://sunaq.org/tamamta-liitukut/'>

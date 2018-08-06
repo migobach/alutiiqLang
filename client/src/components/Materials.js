@@ -2,8 +2,8 @@ import React, { Component, Fragment } from 'react'
 // import axios from 'axios'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getMaterials } from '../reducers/materials'
 // import InfiniteScroll from 'react-infinite-scroller'
+import { getMaterials } from '../reducers/materials'
 import { 
   Header, 
   Image,
@@ -26,6 +26,7 @@ import {
   Div,
 } from './styles/CommonStyles'
 import Alisha from '../images/alisha.jpg'
+
 
 class Materials extends Component {
   state = { compMaterials: [], page: 1, total_pages: 0 }
