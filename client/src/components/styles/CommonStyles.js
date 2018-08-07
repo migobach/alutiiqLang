@@ -9,6 +9,7 @@ import {
 // green: #508365
 // beige: #EAD8C2
 // blue: #3B568C
+// grey: #A9A9A9
 
 export const MainHeader = styled.h1`
   color: white;
@@ -87,9 +88,15 @@ export const WhiteTitle = styled.h4`
   font-size: 2em;
 `
 
+export const GreyTitle = styled.h4`
+  color: #A9A9A9;
+  font-size: 2em;
+`
+
 export const ContentStyleQuote = ContentStyleWhite.extend`
   font-size: 2em;
   line-height: 1.5;
+  text-align: left;
 `
 
 export const CenterDiv = styled.div`

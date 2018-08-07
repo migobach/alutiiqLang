@@ -13,14 +13,28 @@ import {
   ContainerPad,
   CenterDiv,
 } from './styles/CommonStyles'
+import Revitalization from './happenings/Revitalization'
 
  const xtrapadding = {
   padding: '50px',
 }
 
 class HistoryNews extends Component {
+  state = { revitalizationComp: false }
+
+  toggleRevitalizationComp = () => {
+    this.setState({revitalizationComp: !this.state.revitalizationComp})
+  }
+
+  renderingComponents = () => {
+  const { revitalizationComp } = this.state
+  if ( revitalizationComp === true) {
+    return <Revitalization />
+  } else
+    return <SpecialDiv />
+  }
+
   render() {
-    
     return(
       <div>
         <SpecialDiv>
@@ -103,12 +117,15 @@ class HistoryNews extends Component {
                     </ContentStyle>
                   </SpecialDiv>
                 </Card.Content>
-                <Button color='yellow' size='big' fluid>
+                <Button color='yellow' size='big' fluid onClick={this.toggleRevitalizationComp}>
                   Go
                 </Button>
               </Card>
             </Card.Group>
           </ContainerPad>
+
+          { this.renderingComponents() }
+          
       </div>
     )
   }

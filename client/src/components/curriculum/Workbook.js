@@ -5,7 +5,6 @@ import {
   Header,
   Container,
   Grid,
-  Divider,
 } from 'semantic-ui-react'
 import {
   SpecialDiv, 
@@ -47,7 +46,6 @@ class Workbook extends Component {
   render() {
     return(
       <div>
-        <Divider />
         <SpecialDiv>
           <Header textAlign='center'>
             <SectionHead>

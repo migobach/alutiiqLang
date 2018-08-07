@@ -1,0 +1,100 @@
+import React, { Component } from 'react'
+import {
+  Header,
+  Container, 
+  Divider,
+} from 'semantic-ui-react'
+import {
+  SpecialDiv,
+  SectionHead,
+  ContentStyle, 
+  BlueDiv,
+  GreyTitle,
+  ContentStyleQuote,
+  QuotePerson,
+  IconHover,
+  IconLink,
+  GreenLink,
+  LinkHead,
+} from '../styles/CommonStyles'
+
+const Revitalization = () => (
+  <div>
+    <SpecialDiv>
+      <Header textAlign='center'>
+        <SectionHead>
+          Language Revitalization
+        </SectionHead>
+      </Header>
+      <ContentStyle>
+        Efforts to revitalize an endangered language are challenging, but there is much we can learn from other groups who are at various stages in their revitalization process.  We have gathered a few resources to assist Alutiiq language learners and teachers in understanding the process and challenges of language revitalization, as well as how to develop and monitor fluency growth as second language learners.
+      </ContentStyle>
+      </SpecialDiv>
+
+      {/* highlighted quote */}
+
+      <BlueDiv>
+      <Header textAlign='center'>
+        <GreyTitle>
+          Encouragement, Guidance, Insights, and Lessons Learned for Native Language Activists Developing Their Own Tribal language Programs
+        </GreyTitle>
+      </Header>
+        <SpecialDiv>
+          <Container textAlign='center'>
+            <IconLink>
+              <IconHover name='book' />
+            </IconLink>
+          </Container>
+        </SpecialDiv>
+        <ContentStyleQuote>
+        <i>
+          "Keep in mind that the language is the key. There is nothing else. There is no other priority. There are no other issues. There is no reason to defend your motives, your actions, or your vision. You do not defend yourself, your own language fluency, or lack of fluency. You do it. Action is the key. Native children who are actively speaking the language are your only result.
+          <br />
+          <br />
+          So, in developipng a program to revitalize the language: 
+          <blockquote>
+            <ol>
+              <li>Never ask permission, never beg to save your language</li>
+              <li>Never debate the issues</li>
+              <li>Be very action oriented - just act;</li>
+              <li>Show, don't tell</li>
+              <li>User your language as your curriculum- botany, geography, political science, philosophy, hisotry are all embedded in the langauge."</li>
+            </ol>
+          </blockquote>
+          </i>
+        </ContentStyleQuote>
+        <QuotePerson>
+          <br />-Darrell R. Kipp, Co-Founder of the Piegan Institute of the Blackfeet Nation in conversation with twelve visiting Native American language activists.
+        </QuotePerson>
+      </BlueDiv>
+
+      {/* other links */}
+      {/* TODO add in the links as they appear on the current website */}
+      <SpecialDiv>
+       <LinkHead>
+        <GreenLink href='https://www.languagetesting.com/'>
+          Fluency Assessments
+        </GreenLink>
+        <Divider />
+      </LinkHead>
+        <ContentStyle>
+          As an international standard to determine the level of speaking fluency the American Council on the Teaching of Foreign Languages (ACTFL) provides a scale that is useful for both learners and teachers to assess what level of proficiency an individual has attained.  More information on ACTFL is available on their website by clicking above on the ACTFL name. This ACTFL Assessment Levels summary provides an overview of fluency levels from Novice to Intermediate to Advanced.
+        </ContentStyle>
+        <br />
+
+         <LinkHead>
+        <GreenLink href='http://www.alutiiqlanguage.org/files/lessons/Teacher%20Tools/Guidelines%20for%20Strengthening%20Indigenous%20Languages.pdf'>
+          Cultural Standards & Guidelines for Strengthening Indigenous Languages
+        </GreenLink>
+        <Divider />
+      </LinkHead>
+        <ContentStyle>
+          Available on the Alaska Native Knowledge Network website as a PDF, this important resource provides a series of guidelines for elders, parents, learners, organizations, educators, schools, education agencies, linguists, and media producers. This guidebook along with the Alaska Standards for Culturally Responsive Schools were developed through a network of Alaska Native educators. The Cultural Standards were adopted by the Alaska Department of Education and Kodiak Island Borough School District (found under their posting of World Languages curriculum documents). There are many articles on the development and importance of these cultural standards found on the Alaska Native Knowledge Network website, such as this article by Dr. Ray Barnhardt.
+        </ContentStyle>
+        <br />
+      </SpecialDiv>
+
+  </div>
+)
+
+export default Revitalization 
