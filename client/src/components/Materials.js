@@ -24,10 +24,14 @@ import {
 } from './styles/CommonStyles'
 import Alisha from '../images/alisha.jpg'
 import OutsideLinks from './materials/OutsideLinks'
+import Books from './materials/Books'
+import Posters from './materials/Posters'
+import Games from './materials/Games'
+import Stories from './materials/Stories'
 
 
 class Materials extends Component {
-  state = { compMaterials: [], page: 1, total_pages: 0, outsideLinks: false }
+  state = { compMaterials: [], page: 1, total_pages: 0, outsideLinks: false, booksComp: false, postersComp: false, gamesComp: false, storiesComp: false }
 
   componentDidMount() {
     const { dispatch } = this.props
@@ -40,16 +44,39 @@ class Materials extends Component {
   }
 
   toggleLinksComp = () => {
-    this.setState({ outsideLinks: !this.state.outsideLinks})
+    this.setState({ outsideLinks: !this.state.outsideLinks, booksComp: false, postersComp: false, gamesComp: false, storiesComp: false})
+  }
+
+  toggleBooksComp = () => {
+    this.setState({ booksComp: !this.state.booksComp, outsideLinks: false, postersComp: false, gamesComp: false, storiesComp: false})
+  }
+
+  togglePostersComp = () => {
+    this.setState({ postersComp: !this.state.postersComp, outsideLinks: false, booksComp: false, gamesComp: false, storiesComp: false})
+  }
+
+  toggleGamesComp = () => {
+    this.setState({ gamesComp: !this.state.gamesComp, outsideLinks: false, booksComp: false, postersComp: false, storiesComp: false})
+  }
+
+  toggleStoriesComp = () => {
+    this.setState({ storiesComp: !this.state.storiesComp, outsideLinks: false, booksComp: false, postersComp: false, gamesComp: false})
   }
 
   renderingComponents = () => {
-    const { outsideLinks } = this.state
+    const { outsideLinks, booksComp, postersComp, gamesComp, storiesComp } = this.state
     if (outsideLinks === true ) {
       return <OutsideLinks />
-    }
-    else
-    return <SpecialDiv />
+    } else if (booksComp === true) {
+      return <Books />
+    } else if (postersComp === true) {
+      return <Posters />
+    } else if (gamesComp === true) {
+      return <Games />
+    } else if (storiesComp === true) {
+      return <Stories />
+    } else
+      return <SpecialDiv />
   }
 
   // loadMore = () => {
@@ -131,7 +158,7 @@ class Materials extends Component {
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-                <Button color='yellow' size='big' fluid>
+                <Button color='yellow' size='big' fluid onClick={this.toggleBooksComp}>
                   Go 
                 </Button>
             </Card>
@@ -149,7 +176,7 @@ class Materials extends Component {
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-                <Button color='yellow' size='big' fluid>
+                <Button color='yellow' size='big' fluid onClick={this.togglePostersComp}>
                   Go 
                 </Button>
             </Card>
@@ -167,7 +194,7 @@ class Materials extends Component {
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-              <Button color='yellow' size='big' fluid>
+              <Button color='yellow' size='big' fluid onClick={this.toggleGamesComp}>
                 Go 
               </Button>
             </Card>
@@ -203,7 +230,7 @@ class Materials extends Component {
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-              <Button color='yellow' size='big' fluid>
+              <Button color='yellow' size='big' fluid onClick={this.toggleStoriesComp}>
                 Go 
               </Button>
             </Card>
