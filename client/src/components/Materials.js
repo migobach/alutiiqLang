@@ -11,7 +11,6 @@ import {
   Card,
   Button,
   Icon,
-  Loader,
  } from 'semantic-ui-react'
 import {
   SpecialDiv,
@@ -23,7 +22,6 @@ import {
   ContainerPad,
   CardHeader,
   ColumnHead,
-  Div,
 } from './styles/CommonStyles'
 import Alisha from '../images/alisha.jpg'
 

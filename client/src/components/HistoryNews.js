@@ -14,22 +14,29 @@ import {
   CenterDiv,
 } from './styles/CommonStyles'
 import Revitalization from './happenings/Revitalization'
+import Worldview from './happenings/Worldview'
 
  const xtrapadding = {
   padding: '50px',
 }
 
-class HistoryNews extends Component {
-  state = { revitalizationComp: false }
+class HistoryNews extends Component { 
+  state = { revitalizationComp: false, worldviewComp: false }
 
   toggleRevitalizationComp = () => {
-    this.setState({revitalizationComp: !this.state.revitalizationComp})
+    this.setState({revitalizationComp: !this.state.revitalizationComp, worldviewComp: false})
+  }
+
+  toggleWorldviewComp =() => {
+    this.setState({worldviewComp: !this.state.worldviewComp, revitalizationComp: false})
   }
 
   renderingComponents = () => {
-  const { revitalizationComp } = this.state
+  const { revitalizationComp, worldviewComp } = this.state
   if ( revitalizationComp === true) {
     return <Revitalization />
+  } else if ( worldviewComp === true) {
+    return <Worldview />
   } else
     return <SpecialDiv />
   }
@@ -99,7 +106,7 @@ class HistoryNews extends Component {
                     </ContentStyle>
                   </SpecialDiv>
                 </Card.Content>
-                  <Button color='yellow' size='big' fluid>
+                  <Button color='yellow' size='big' fluid onClick={this.toggleWorldviewComp}>
                     Explore
                   </Button>
               </Card>
