@@ -1,7 +1,6 @@
 import React, { Componenet } from 'react'
 import {
   Header,
-  Container, 
   Divider,
   Grid,
   Image,
@@ -11,13 +10,9 @@ import {
   SectionHead,
   ContentStyle, 
   BlueDiv,
-  GreyTitle,
   ContentStyleQuote,
   QuotePerson,
-  IconHover,
-  IconLink,
   GreenHead,
-  LinkHead,
   BodyLink,
 } from '../styles/CommonStyles'
 import Games from '../../images/games.jpg'
@@ -37,10 +32,10 @@ const Worldview = () => (
 
     <BlueDiv>
       <Grid stackable columns={2} verticalAlign='middle'>
-        <Grid.Column width={6}>
-          <Image src={Games} size='big' floated='left' verticalAlign='middle' />
-        </Grid.Column>
         <Grid.Column width={10}>
+          <Image src={Games} size='massive' floated='left' verticalAlign='middle' />
+        </Grid.Column>
+        <Grid.Column width={5}>
           <ContentStyleQuote>
             <i>"Language is a vehicle of culture"</i>
           </ContentStyleQuote>
@@ -63,7 +58,7 @@ const Worldview = () => (
               Our Elders have dedicated many years to teaching, recording, and sharing the language in order to preserve and revitalize the language, making it accessible to anyone who wants to learn. We greatly appreciate them and their dedication despite enduring many hardships associated with their language throughout history. Their efforst have established a strong foundation for language revitalization. 
               <br />
               <br />
-              Learn about some of the elders who have played critical roles in revitalizing our language. Click here to see biographies on some elders and culture bearers produced by the Alutiiq Museum.
+              Learn about some of the elders who have played critical roles in revitalizing our language. <BodyLink href='https://alutiiqmuseum.mukurtu.net/collection/alutiiq-language-speakers'>Click here to see biographies</BodyLink> on some elders and culture bearers produced by the Alutiiq Museum.
               <br />
               <br />
               Most importantly, thank you to Nick Alokli, Sally Carlough, Kathryn Chichenoff, Clyda Christiansen, Fred and Irene Coyle, Mary Haakanson, Dennis and Julie Knagin, Nadia Mullan, Patrick Mullan, Julia Naughton, Florence Pestrikoff, John "J.P." Pestrikoff, Phyllis Peterson, and Sophie Shepherd.
@@ -82,7 +77,7 @@ const Worldview = () => (
             <Divider />
           </GreenHead>
             <ContentStyle>
-              In 2002 with coordination by Alutiiq Educator Teresa Schneider, Alutiiq Elders produced an Alutiiq Values poster, publishing fourteen core value statements that show how our traditional practices and our worldview today are part of a continuous knowledge stream and should provide the framework for Alutiiq education.  Alutiiq Values slideshow. Alutiiq Educator Alisha Drabek has organized these core values within an Alutiiq Values Model for Community Wellbeing surrounding the central iconic image of Llam Sua (the Universe's Spirit).
+              In 2002 with coordination by Alutiiq Educator Teresa Schneider, Alutiiq Elders produced an Alutiiq Values poster, publishing fourteen core value statements that show how our traditional practices and our worldview today are part of a continuous knowledge stream and should provide the framework for Alutiiq education. Alutiiq Educator Alisha Drabek has organized these core values within an <BodyLink href='http://www.alutiiqlanguage.org/files/lessons/Teacher%20Tools/Llam%20Sua%20Model.eps'>Alutiiq Values Model for Community Wellbeing</BodyLink> surrounding the central iconic image of Llam Sua (the Universe's Spirit).
             </ContentStyle>
         </Grid.Column>
         

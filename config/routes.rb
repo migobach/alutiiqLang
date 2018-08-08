@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'books/index'
+  get 'books/show'
+  get 'books/create'
+  get 'books/update'
   namespace :api do
     resources :songs
     resources :dictionaries

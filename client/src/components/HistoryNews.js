@@ -15,28 +15,35 @@ import {
 } from './styles/CommonStyles'
 import Revitalization from './happenings/Revitalization'
 import Worldview from './happenings/Worldview'
+import News from './happenings/AlutiiqNews'
 
  const xtrapadding = {
   padding: '50px',
 }
 
 class HistoryNews extends Component { 
-  state = { revitalizationComp: false, worldviewComp: false }
+  state = { revitalizationComp: false, worldviewComp: false, newsComp: false }
 
   toggleRevitalizationComp = () => {
-    this.setState({revitalizationComp: !this.state.revitalizationComp, worldviewComp: false})
+    this.setState({revitalizationComp: !this.state.revitalizationComp, worldviewComp: false, newsComp: false})
   }
 
-  toggleWorldviewComp =() => {
-    this.setState({worldviewComp: !this.state.worldviewComp, revitalizationComp: false})
+  toggleWorldviewComp = () => {
+    this.setState({worldviewComp: !this.state.worldviewComp, revitalizationComp: false, newsComp: false})
+  }
+
+  toggleNewsComp = () => {
+    this.setState({ newsComp: !this.state.newsComp, worldviewComp: false, revitalizationComp: false})
   }
 
   renderingComponents = () => {
-  const { revitalizationComp, worldviewComp } = this.state
-  if ( revitalizationComp === true) {
+  const { revitalizationComp, worldviewComp, newsComp } = this.state
+  if (revitalizationComp === true) {
     return <Revitalization />
-  } else if ( worldviewComp === true) {
+  } else if (worldviewComp === true) {
     return <Worldview />
+  } else if (newsComp === true) {
+    return <News />
   } else
     return <SpecialDiv />
   }
@@ -88,7 +95,7 @@ class HistoryNews extends Component {
                     </ContentStyle>
                   </SpecialDiv>
                 </Card.Content>
-                  <Button color='yellow' size='big' fluid>
+                  <Button color='yellow' size='big' fluid onClick={this.toggleNewsComp}>
                     Go 
                   </Button>
               </Card>

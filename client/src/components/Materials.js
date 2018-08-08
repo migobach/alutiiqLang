@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 // import axios from 'axios'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 // import InfiniteScroll from 'react-infinite-scroller'
 import { getMaterials } from '../reducers/materials'
 import { 
@@ -24,10 +23,11 @@ import {
   ColumnHead,
 } from './styles/CommonStyles'
 import Alisha from '../images/alisha.jpg'
+import OutsideLinks from './materials/OutsideLinks'
 
 
 class Materials extends Component {
-  state = { compMaterials: [], page: 1, total_pages: 0 }
+  state = { compMaterials: [], page: 1, total_pages: 0, outsideLinks: false }
 
   componentDidMount() {
     const { dispatch } = this.props
@@ -37,6 +37,19 @@ class Materials extends Component {
   componentDidUpdate(prevProps) {
     if(prevProps !== this.props)
       this.setState({ compMaterials: this.props.materials })
+  }
+
+  toggleLinksComp = () => {
+    this.setState({ outsideLinks: !this.state.outsideLinks})
+  }
+
+  renderingComponents = () => {
+    const { outsideLinks } = this.state
+    if (outsideLinks === true ) {
+      return <OutsideLinks />
+    }
+    else
+    return <SpecialDiv />
   }
 
   // loadMore = () => {
@@ -172,11 +185,9 @@ class Materials extends Component {
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-                <Link to={`/links`}>
-                  <Button color='yellow' size='big' fluid>
-                    Go 
-                  </Button>
-                </Link>
+                <Button color='yellow' size='big' fluid onClick={this.toggleLinksComp}>
+                  Go 
+                </Button>
             </Card>
 
             <Card>
@@ -220,6 +231,10 @@ class Materials extends Component {
 
           </Card.Group>
         </ContainerPad>
+
+      {/* conditionally rendered components */}
+
+      { this.renderingComponents() }
 
       {/* Featured Quote */}
 

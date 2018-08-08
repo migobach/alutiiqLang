@@ -153,6 +153,14 @@ export const IconHover = styled(Icon)`
 }
 `
 export const BodyLink = styled.a`
+  color: #508365;
+  &:visited { text-decoration: none; color: #508365; }
+  &:hover { text-decoration: none; color: #ECA414; }
+  &:focus { text-decoration: none; color: #ECA414; }
+  &:hover, a:active { text-decoration: none; color: #ECA414 }
+`
+
+export const FootLink = styled.a`
   color: #A9A9A9;
   &:visited { text-decoration: none; color: #A9A9A9; }
   &:hover { text-decoration: none; color: #508365; }
