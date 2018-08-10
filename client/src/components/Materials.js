@@ -79,6 +79,8 @@ class Materials extends Component {
       return <SpecialDiv />
   }
 
+  // WIP - need to figure out if I would like to use the infite scrtolling here, or pagination. What is the most logical way to implement this? How will people be interacting? 
+  
   // loadMore = () => {
   //   const page = this.state.page + 1
   //   axios.get(`/api/materials?page=${page}`)
