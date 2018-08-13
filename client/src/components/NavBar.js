@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Menu, MenuItem } from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { handleLogout } from '../reducers/user';
+// import { handleLogout } from '../reducers/user';
 import styled from 'styled-components'
 
 const Menuitems = styled(MenuItem)`

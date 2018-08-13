@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getCurriculum } from '../reducers/curriculum'
 import Workbook from './curriculum/Workbook'
