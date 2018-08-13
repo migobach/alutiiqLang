@@ -6,6 +6,7 @@ import {
   Icon,
   Container,
   Grid,
+  Button,
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
@@ -18,13 +19,28 @@ import {
   IconHover,
   IconLink,
 } from './styles/CommonStyles'
+import SongView from './SongView'
 
 
 class Songs extends Component {
+  state = {songData: {}, songView: false}
 
   componentDidMount() {
     const { dispatch } = this.props
     dispatch(getSongs())
+  }
+
+  setSong = (song) => {
+    this.setState( { songData: {...song}, songView: true })
+  }
+
+  renderingSongView = () => {
+    const { songView } = this.state
+    if (songView === true) {
+      // debugger
+      return <SongView song={this.state.songData} toggleView={this.state.songView}/>
+    } else 
+      return <SpecialDiv />
   }
 
   songs = () => {
@@ -41,9 +57,9 @@ class Songs extends Component {
           </ContentStyle>
         </Grid.Column>
         <Grid.Column width={4} textAlign='center'>
-          <a href={song.script}>
+          <Button onClick={() => this.setSong(song)}>
             <Icon name='eye' size='large' color='grey' />
-          </a>
+          </Button>
         </Grid.Column>
       </Grid.Row>
     )
@@ -97,33 +113,46 @@ class Songs extends Component {
         </Grid.Row>
       </Grid>
 
-      {/* song output */}
+      <Grid stackable>
+        <Grid.Row>
+          <Grid.Column width={8}>
 
-      <SpecialDiv>
-        <Grid celled='internally'>
-          <Grid.Row>
-            <Grid.Column width={6}>
-              <ColumnHead>
-                Alutiiq Title
-              </ColumnHead>
-            </Grid.Column>
-            <Grid.Column width={6}>
-              <ColumnHead>
-                English Title
-              </ColumnHead>
-            </Grid.Column>
-            <Grid.Column width={4} textAlign='center'>
-              <ColumnHead>
-                View
-              </ColumnHead>
-            </Grid.Column>
-           
-          </Grid.Row>
-          
-            { this.songs() }
-          
-        </Grid>
-      </SpecialDiv>
+      {/* song output */}
+      
+            <SpecialDiv>
+              <Grid celled='internally'>
+                <Grid.Row>
+                  <Grid.Column width={6}>
+                    <ColumnHead>
+                      Alutiiq Title
+                    </ColumnHead>
+                  </Grid.Column>
+                  <Grid.Column width={6}>
+                    <ColumnHead>
+                      English Title
+                    </ColumnHead>
+                  </Grid.Column>
+                  <Grid.Column width={4} textAlign='center'>
+                    <ColumnHead>
+                      View
+                    </ColumnHead>
+                  </Grid.Column>
+                
+                </Grid.Row>
+                
+                  { this.songs() }
+                
+              </Grid>
+            </SpecialDiv>
+        </Grid.Column>
+
+          <Grid.Column width={8}>
+
+            { this.renderingSongView() }
+
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
 
       <BlueDiv>
         <Header textAlign='center'>
