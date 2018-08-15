@@ -182,6 +182,14 @@ export const IconLink = styled.a`
   &:hover, a:active { text-decoration: none; color: white; }
 `
 
+export const IconLinkGrey = styled.a`
+  color: color: #A9A9A9;
+  &:visited { text-decoration: none; color: #A9A9A9; }
+  &:hover { text-decoration: none; color: #A9A9A9; }
+  &:focus { text-decoration: none; color: #A9A9A9; }
+  &:hover, a:active { text-decoration: none; color: #A9A9A9; }
+`
+
 export const LinkHead = styled.h3`
   color: #508365;
   font-size: 2.5em;
