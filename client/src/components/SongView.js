@@ -1,8 +1,8 @@
 import React, {Component, Fragment} from 'react'
 import ReactPlayer from 'react-player'
 import {
-  Header,
-  Icon,
+  Divider,
+  Grid,
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
@@ -10,12 +10,15 @@ import {
   ContentStyle,
   IconHover,
   IconLinkGrey,
-  MainDiv,
 } from './styles/CommonStyles'
 
 
-const paddingStyle ={
+const paddingStyle ={ 
   paddingTop: '30px',
+}
+
+const iconPad = {
+  paddingTop: '50px',
 }
 
 class SongView extends Component {
@@ -34,9 +37,14 @@ class SongView extends Component {
           <SongHead>
             <i>{this.props.song.title_alutiiq}</i>
           </SongHead>
+          <Divider />
 
           <ContentStyle>
             {this.props.song.title_english}
+          </ContentStyle>
+
+          <ContentStyle>
+            Shared by: {this.props.song.credit}
           </ContentStyle>
 
         {/* Audio ternary  */}
@@ -74,11 +82,28 @@ class SongView extends Component {
           {/* Script ternary */}
 
           {this.props.song.script ?
-          <div style={paddingStyle}>
+          <div style={iconPad}>
+            <Grid>
+              <Grid.Row>
+                <Grid.Column width={8}>
+                  <ContentStyle>
+                    {this.props.song.script_alutiiq_words}
+                  </ContentStyle>
+                </Grid.Column>
+                <Grid.Column width={8}>
+                  <ContentStyle>
+                    {this.props.song.script_english_words}
+                  </ContentStyle>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+            <br />
+            <Divider />
             <ContentStyle>
               Download song script
             </ContentStyle>
-            <IconLinkGrey href={this.props.song.script}>
+            <br />
+            <IconLinkGrey href={this.props.song.script} style={iconPad}>
               <IconHover name='cloud download' />
             </IconLinkGrey>
           </div>

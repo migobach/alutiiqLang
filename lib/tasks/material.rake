@@ -6,6 +6,7 @@ namespace :material do
     puts csv_text
     csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
     puts csv
+    
     csv.each do |row|
       # puts row.to_hash
       m = Material.new
