@@ -52,6 +52,12 @@ export const SectionHead = styled.h3`
   font-size: 2.5em;
   padding: 65px;
 `
+
+export const SongHead = styled.h3`
+  color: #FBBD08;
+  font-size: 2.5em;
+`
+
 export const GreenHead = styled.h3`
   color: #508365;
   font-size: 2.5em;
@@ -185,5 +191,12 @@ export const LinkHead = styled.h3`
 export const GreenLink = styled.a`
   color: #508365;
   &:hover { text-decoration: none; color: #A9A9A9; }
-  
+`
+
+export const Watermark = styled.h1`
+  color: #A9A9A9;
+  text-align: center;
+  align-content: center;
+  font-size: 2.5em;
+  line-height: 2;
 `

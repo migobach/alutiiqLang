@@ -6,7 +6,6 @@ import {
   Icon,
   Container,
   Grid,
-  Button,
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
@@ -18,6 +17,7 @@ import {
   ColumnHead,
   IconHover,
   IconLink,
+  Watermark,
 } from './styles/CommonStyles'
 import SongView from './SongView'
 
@@ -57,9 +57,7 @@ class Songs extends Component {
           </ContentStyle>
         </Grid.Column>
         <Grid.Column width={4} textAlign='center'>
-          <Button onClick={() => this.setSong(song)}>
-            <Icon name='eye' size='large' color='grey' />
-          </Button>
+          <Icon name='eye' size='large' color='grey' onClick={() => this.setSong(song)}/>
         </Grid.Column>
       </Grid.Row>
     )
@@ -78,7 +76,6 @@ class Songs extends Component {
                 </SectionHead>
               </Header>
               <ContentStyle>
-                {/* TODO change this back to being left aligned */}
                 Songs have been sung for millenia to mark important events and people, tell stories, celebrate and honor. Traditional songs have helped inpire new, modern songs. <i>Quyanaasinaq</i> to all the lyricists and Elders who have contributed over the years to develop this growing collection of Alutiiq Songs.
               </ContentStyle>
             </SpecialDiv>
@@ -147,8 +144,16 @@ class Songs extends Component {
         </Grid.Column>
 
           <Grid.Column width={8}>
-
-            { this.renderingSongView() }
+          
+            { this.state.songView === false ?
+            <SpecialDiv>
+              <Watermark>
+                Click on a song to view 
+              </Watermark>
+            </SpecialDiv>
+            :
+            this.renderingSongView()
+            }
 
           </Grid.Column>
         </Grid.Row>
