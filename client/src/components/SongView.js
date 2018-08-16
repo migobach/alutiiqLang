@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react'
+import React, {Component} from 'react'
 import ReactPlayer from 'react-player'
 import {
   Divider,
@@ -25,9 +25,17 @@ class SongView extends Component {
   // using state so that I can use the same form to update the site via admin permissions
   state = {}
 
-  componentDidMount(){
+  componentDidMount() {
     if (this.props.song)
     this.setState({...this.props.song})
+  }
+
+  linesToParagraph(...lines) {
+    return lines
+      .map(line => typeof line === 'string' ?
+      line.split('\\n').map(text => <p>{text}</p>) 
+      : 
+      line).reduce((lines, line) => lines.concat(line), [])
   }
 
   render() {
@@ -87,12 +95,12 @@ class SongView extends Component {
               <Grid.Row>
                 <Grid.Column width={8}>
                   <ContentStyle>
-                    {this.props.song.script_alutiiq_words}
+                    {this.linesToParagraph(this.props.song.script_alutiiq_words)}
                   </ContentStyle>
                 </Grid.Column>
                 <Grid.Column width={8}>
                   <ContentStyle>
-                    {this.props.song.script_english_words}
+                    {this.linesToParagraph(this.props.song.script_english_words)}
                   </ContentStyle>
                 </Grid.Column>
               </Grid.Row>
@@ -111,6 +119,19 @@ class SongView extends Component {
           <ContentStyle style={paddingStyle}>
             No script available for this song
           </ContentStyle>
+          }
+
+          {/* Notes ternary */}
+          
+          {this.props.song.notes ?
+          <div>
+          <Divider />
+            <ContentStyle>
+              Song information: {this.props.song.notes}
+            </ContentStyle>
+          </div>
+            :
+            <SpecialDiv />
           }
            
         </SpecialDiv>
