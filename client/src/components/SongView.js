@@ -33,7 +33,7 @@ class SongView extends Component {
   linesToParagraph(...lines) {
     return lines
       .map(line => typeof line === 'string' ?
-      line.split('\\n').map(text => <p>{text}</p>) 
+      line.split("\\n\r\n").map(text => <p>{text}</p>) 
       : 
       line).reduce((lines, line) => lines.concat(line), [])
   }
@@ -87,25 +87,35 @@ class SongView extends Component {
             </ContentStyle>      
           }
 
+          {/* English and Alutiiq script */}
+
+          {this.props.song.script_alutiiq_words || this.props.song.script_english_words ?
+          <div style={iconPad}>
+            <Grid>
+            <Grid.Row>
+              <Grid.Column width={8}>
+                <ContentStyle>
+                  {this.linesToParagraph(this.props.song.script_alutiiq_words)}
+                </ContentStyle>
+              </Grid.Column>
+              <Grid.Column width={8}>
+                <ContentStyle>
+                  {this.linesToParagraph(this.props.song.script_english_words)}
+                </ContentStyle>
+              </Grid.Column>
+            </Grid.Row>
+            </Grid>
+          </div>
+          :
+          <ContentStyle style={paddingStyle}>
+            There is no script for this song
+          </ContentStyle>
+          }
+
           {/* Script ternary */}
 
           {this.props.song.script ?
           <div style={iconPad}>
-            <Grid>
-              <Grid.Row>
-                <Grid.Column width={8}>
-                  <ContentStyle>
-                    {this.linesToParagraph(this.props.song.script_alutiiq_words)}
-                  </ContentStyle>
-                </Grid.Column>
-                <Grid.Column width={8}>
-                  <ContentStyle>
-                    {this.linesToParagraph(this.props.song.script_english_words)}
-                  </ContentStyle>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
-            <br />
             <Divider />
             <ContentStyle>
               Download song script
@@ -116,9 +126,12 @@ class SongView extends Component {
             </IconLinkGrey>
           </div>
           :
-          <ContentStyle style={paddingStyle}>
-            No script available for this song
-          </ContentStyle>
+          <div>
+            <Divider />
+            <ContentStyle style={paddingStyle}>
+              No downloadable script available for this song
+            </ContentStyle>
+          </div>
           }
 
           {/* Notes ternary */}
