@@ -17,11 +17,13 @@ import {
   ContentStyleWhite,
   SpecialDiv,
   Div,
+  Watermark,
 } from './styles/CommonStyles'
+import DictionaryView from './DictionaryView'
 
 class Dictionary extends Component {
 
-  state = { dictionaryWords: [], page: 1, total_pages: 0, searchTerms: '' }
+  state = { dictionaryWords: [], page: 1, total_pages: 0, searchTerms: '', wordView: false, wordData: {} }
 
   componentDidMount() {
     axios.get('/api/dictionaries')
@@ -40,6 +42,18 @@ class Dictionary extends Component {
       })
   }
 
+  setWord = (word) => {
+    this.setState( { wordData: {...word}, wordView: true})
+  }
+  
+  renderWordView = () => {
+    const { wordView } = this.state
+    if(wordView === true) {
+      return <DictionaryView word={this.state.wordData} toggleView={this.state.wordView} />
+    } else
+    return <SpecialDiv />
+  }
+
   handleChange = (e) => {
     this.setState({ searchTerms: e.target.value })
   }
@@ -49,33 +63,19 @@ class Dictionary extends Component {
     return dictionaryWords.map( word => {
       return(
       <Grid.Row key={word.id}>
-        <Grid.Column width={4} verticalAlign='middle'>
+        <Grid.Column width={6} verticalAlign='middle'>
           <ContentStyle>
             {word.english}
           </ContentStyle>
         </Grid.Column>
-        <Grid.Column width={4} verticalAlign='middle'>
+        <Grid.Column width={6} verticalAlign='middle'>
           <ContentStyle>
             <i>{word.alutiiq_north}</i>
           </ContentStyle>
         </Grid.Column>
-        <Grid.Column width={4} verticalAlign='middle'>
-          <ContentStyle>
-            <i>{word.alutiiq_south}</i>
-          </ContentStyle>
-        </Grid.Column>
+        
         <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
-          {
-            word.north_audio ? 
-            // Need to interpolate: http://www.alutiiqlanguage.org/files/dictionary_audio/
-            <a href={"http://www.alutiiqlanguage.org/files/dictionary_audio/".concat(word.north_audio)}>
-              <Icon name='sound' size='large' color='grey' />
-            </a>
-            : 
-            <a href={"http://www.alutiiqlanguage.org/files/dictionary_audio/".concat(word.south_audio)}>
-              <Icon name='sound' size='large' color='grey' />
-            </a>
-          }
+          <Icon name='eye' size='large' color='grey' onClick= {() => this.setWord(word)} />
         </Grid.Column>
       </Grid.Row>
       )
@@ -142,6 +142,7 @@ class Dictionary extends Component {
       
       {/* dictionary table  */}
 
+
       <SpecialDiv>
         <Form.Input
           placeholder="Search Words..."
@@ -151,46 +152,62 @@ class Dictionary extends Component {
       </SpecialDiv>
        {/* </Form.Input> */}
        
-       <Div>
-       <InfiniteScroll
-         pageStart={page}
-         loadMore={this.loadMore}
-         hasMore={ page < total_pages }
-         loader={<Loader />}
-         useWindow={false}
-       >
+      <Grid columns={2}>
+      
+      <Grid.Column>
+        <Div>
+          <InfiniteScroll
+            pageStart={page}
+            loadMore={this.loadMore}
+            hasMore={ page < total_pages }
+            loader={<Loader />}
+            useWindow={false}
+          >
 
-        <Grid celled='internally'>
-          <Grid.Row>
-            <Grid.Column width={4} verticalAlign='middle'>
-              <ColumnHead>
-                English
-              </ColumnHead>
-            </Grid.Column>
-            <Grid.Column width={4} verticalAlign='middle'>
-              <ColumnHead>
-                Alutiiq, Northern Style
-              </ColumnHead>
-            </Grid.Column>
-            <Grid.Column width={4} verticalAlign='middle'>
-              <ColumnHead>
-                Alutiiq, Southern Style
-              </ColumnHead>
-            </Grid.Column>
-            <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
-              <ColumnHead>
-                Audio
-              </ColumnHead>
-            </Grid.Column>
-          </Grid.Row>
-            { (searchTerms.length > 0) ? 
-              this.searchWords()
-              :
-              this.words() 
-            }
-        </Grid>
-      </InfiniteScroll>
-      </Div>
+            <Grid celled='internally'>
+              <Grid.Row>
+                <Grid.Column width={6} verticalAlign='middle'>
+                  <ColumnHead>
+                    English
+                  </ColumnHead>
+                </Grid.Column>
+                <Grid.Column width={6} verticalAlign='middle'>
+                  <ColumnHead>
+                    Alutiiq
+                  </ColumnHead>
+                </Grid.Column>
+                <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
+                  <ColumnHead>
+                    Details
+                  </ColumnHead>
+                </Grid.Column>
+              </Grid.Row>
+                { (searchTerms.length > 0) ? 
+                  this.searchWords()
+                  :
+                  this.words() 
+                }
+            </Grid>
+          </InfiniteScroll>
+        </Div>
+      </Grid.Column>
+
+      {/* Word View */}
+
+      <Grid.Column>
+        {this.state.wordView === false ?
+
+        <Watermark>
+          Click on a word to view details
+        </Watermark>
+        :
+          this.renderWordView()
+
+        }
+      </Grid.Column>
+
+
+      </Grid>
     </Fragment>
     )
   }

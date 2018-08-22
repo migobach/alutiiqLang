@@ -9,7 +9,6 @@ import {
   Grid,
   Sticky, 
   Rail,
-  Segment, 
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
@@ -49,7 +48,7 @@ class Songs extends Component {
   renderingSongView = () => {
     const { songView } = this.state
     if (songView === true) {
-      return <SongView song={this.state.songData} toggleView={this.state.songView}/>
+      return <SongView song={this.state.songData} toggleView={this.state.songView} />
     } else 
       return <SpecialDiv />
   }
@@ -164,7 +163,6 @@ class Songs extends Component {
                     <Watermark>
                       Click on a song to view 
                     </Watermark>
-                  
                   :
                   
                     this.renderingSongView() 
