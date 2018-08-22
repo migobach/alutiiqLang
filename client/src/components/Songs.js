@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getSongs } from '../reducers/songs';
@@ -6,6 +7,9 @@ import {
   Icon,
   Container,
   Grid,
+  Sticky, 
+  Rail,
+  Segment, 
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
@@ -18,12 +22,20 @@ import {
   IconHover,
   IconLink,
   Watermark,
+  SongDiv,
 } from './styles/CommonStyles'
 import SongView from './SongView'
 
+const Placeholder = () => {
+  return(
+  <div>
+           
+  </div>
+  )
+}
 
 class Songs extends Component {
-  state = {songData: {}, songView: false}
+  state = {songData: {}, songView: false, ref: {} }
 
   componentDidMount() {
     const { dispatch } = this.props
@@ -37,10 +49,13 @@ class Songs extends Component {
   renderingSongView = () => {
     const { songView } = this.state
     if (songView === true) {
-      // debugger
       return <SongView song={this.state.songData} toggleView={this.state.songView}/>
     } else 
       return <SpecialDiv />
+  }
+
+  handleContextRef = contextRef => {
+    this.setState({ ref: {contextRef}})
   }
 
   songs = () => {
@@ -64,6 +79,9 @@ class Songs extends Component {
   }
 
   render() {
+
+    const {contextRef} = this.state.ref
+
     return(
     <div> 
       <Grid>
@@ -110,54 +128,56 @@ class Songs extends Component {
         </Grid.Row>
       </Grid>
 
-      <Grid stackable>
-        <Grid.Row>
-          <Grid.Column width={8}>
+      <Grid stackable columns={2}>
+          <Grid.Column>
+            <div ref={this.handleContextRef}>
+              <SpecialDiv>
+                {_.times(1, i => 
+                  <Grid celled='internally' key={i}>
+                    <Grid.Row>
+                      <Grid.Column width={6}>
+                        <ColumnHead>
+                          Alutiiq Title
+                        </ColumnHead>
+                      </Grid.Column>
+                      <Grid.Column width={6}>
+                        <ColumnHead>
+                          English Title
+                        </ColumnHead>
+                      </Grid.Column>
+                      <Grid.Column width={4} textAlign='center'>
+                        <ColumnHead>
+                          View
+                        </ColumnHead>
+                      </Grid.Column>
+                    </Grid.Row>
+                    
+                      { this.songs() }
+                    
+                  </Grid>
+                )}
 
-      {/* song output */}
-      
-            <SpecialDiv>
-              <Grid celled='internally'>
-                <Grid.Row>
-                  <Grid.Column width={6}>
-                    <ColumnHead>
-                      Alutiiq Title
-                    </ColumnHead>
-                  </Grid.Column>
-                  <Grid.Column width={6}>
-                    <ColumnHead>
-                      English Title
-                    </ColumnHead>
-                  </Grid.Column>
-                  <Grid.Column width={4} textAlign='center'>
-                    <ColumnHead>
-                      View
-                    </ColumnHead>
-                  </Grid.Column>
-                
-                </Grid.Row>
-                
-                  { this.songs() }
-                
-              </Grid>
-            </SpecialDiv>
+                <Rail position='right'>
+                  <Sticky context={contextRef} as={SongDiv}>
+                  { this.state.songView === false ?
+                  
+                    <Watermark>
+                      Click on a song to view 
+                    </Watermark>
+                  
+                  :
+                  
+                    this.renderingSongView() 
+                  
+                  }
+                  </Sticky>
+                </Rail>
+
+              </SpecialDiv>
+           </div>
         </Grid.Column>
-
-          <Grid.Column width={8}>
-          
-            { this.state.songView === false ?
-            <SpecialDiv>
-              <Watermark>
-                Click on a song to view 
-              </Watermark>
-            </SpecialDiv>
-            :
-            this.renderingSongView()
-            }
-
-          </Grid.Column>
-        </Grid.Row>
       </Grid>
+
 
       <BlueDiv>
         <Header textAlign='center'>

@@ -33,7 +33,7 @@ class SongView extends Component {
   linesToParagraph(...lines) {
     return lines
       .map(line => typeof line === 'string' ?
-      line.split("\\n\r\n").map(text => <p>{text}</p>) 
+      line.split("\r\n").map(text => <p>{text}</p>) 
       : 
       line).reduce((lines, line) => lines.concat(line), [])
   }
@@ -65,9 +65,7 @@ class SongView extends Component {
               height='60px'
             />
             :
-            <ContentStyle>
-              No Audio
-            </ContentStyle>
+            null
           }
 
           {/* Video ternary */}
@@ -82,9 +80,7 @@ class SongView extends Component {
             />
             </div>
             :
-            <ContentStyle style={paddingStyle}>
-              No video associated with this song
-            </ContentStyle>      
+            null  
           }
 
           {/* English and Alutiiq script */}
@@ -107,9 +103,7 @@ class SongView extends Component {
             </Grid>
           </div>
           :
-          <ContentStyle style={paddingStyle}>
-            There is no script for this song
-          </ContentStyle>
+          null
           }
 
           {/* Script ternary */}
@@ -126,18 +120,14 @@ class SongView extends Component {
             </IconLinkGrey>
           </div>
           :
-          <div>
-            <Divider />
-            <ContentStyle style={paddingStyle}>
-              No downloadable script available for this song
-            </ContentStyle>
-          </div>
+          null
           }
 
           {/* Notes ternary */}
           
           {this.props.song.notes ?
           <div>
+            <br />
           <Divider />
             <ContentStyle>
               Song information: {this.props.song.notes}

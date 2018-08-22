@@ -113,6 +113,10 @@ export const SpecialDiv = styled.div`
   padding: 50px;
 `
 
+export const SongDiv = SpecialDiv.extend`
+  width: 900px;
+`
+
 export const QuoteDiv = SpecialDiv.extend`
   border: 1px solid #D3D3D3;
   text-align: center;
@@ -150,6 +154,14 @@ export const Div = styled.div`
   padding: 50px;
   overflow: auto;
 `
+
+// export const SongDiv = styled.div`
+//   height: 900px;
+//   width: auto;
+//   padding: 50px;
+//   overflow: auto;
+ 
+// `
 
 export const IconHover = styled(Icon)`
   font-size: 5em !important;
