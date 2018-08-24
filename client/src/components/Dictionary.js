@@ -90,34 +90,20 @@ class Dictionary extends Component {
       e.english.includes(searchTerms) )
     return(
       filtered_words.map( (word)  =>
-        <Grid.Row key={word.id}>
-          <Grid.Column width={4} verticalAlign='middle'>
-            <ContentStyle>
-              {word.english}
-            </ContentStyle>
-          </Grid.Column>
-          <Grid.Column width={4} verticalAlign='middle'>
-            <ContentStyle>
-              <i>{word.alutiiq_north}</i>
-            </ContentStyle>
-          </Grid.Column>
-          <Grid.Column width={4} verticalAlign='middle'>
-            <ContentStyle>
-              <i>{word.alutiiq_south}</i>
-            </ContentStyle>
-          </Grid.Column>
+      <Grid.Row key={word.id}>
+        <Grid.Column width={6} verticalAlign='middle'>
+          <ContentStyle>
+            {word.english}
+          </ContentStyle>
+        </Grid.Column>
+        <Grid.Column width={6} verticalAlign='middle'>
+          <ContentStyle>
+            <i>{word.alutiiq_north}</i>
+          </ContentStyle>
+        </Grid.Column>
+        
         <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
-          {
-            word.north_audio ? 
-            // Need to interpolate: http://www.alutiiqlanguage.org/files/dictionary_audio/
-            <a href={"http://www.alutiiqlanguage.org/files/dictionary_audio/".concat(word.north_audio)}>
-              <Icon name='sound' size='large' color='grey' />
-            </a>
-            : 
-            <a href={"http://www.alutiiqlanguage.org/files/dictionary_audio/".concat(word.south_audio)}>
-              <Icon name='sound' size='large' color='grey' />
-            </a>
-          }
+          <Icon name='eye' size='large' color='grey' onClick= {() => this.setWord(word)} />
         </Grid.Column>
       </Grid.Row>
       )
@@ -153,60 +139,55 @@ class Dictionary extends Component {
        {/* </Form.Input> */}
        
       <Grid columns={2}>
-      
-      <Grid.Column>
-        <Div>
-          <InfiniteScroll
-            pageStart={page}
-            loadMore={this.loadMore}
-            hasMore={ page < total_pages }
-            loader={<Loader />}
-            useWindow={false}
-          >
+        <Grid.Column>
+          <Div>
+            <InfiniteScroll
+              pageStart={page}
+              loadMore={this.loadMore}
+              hasMore={ page < total_pages }
+              loader={<Loader />}
+              useWindow={false}
+            >
 
-            <Grid celled='internally'>
-              <Grid.Row>
-                <Grid.Column width={6} verticalAlign='middle'>
-                  <ColumnHead>
-                    English
-                  </ColumnHead>
-                </Grid.Column>
-                <Grid.Column width={6} verticalAlign='middle'>
-                  <ColumnHead>
-                    Alutiiq
-                  </ColumnHead>
-                </Grid.Column>
-                <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
-                  <ColumnHead>
-                    Details
-                  </ColumnHead>
-                </Grid.Column>
-              </Grid.Row>
-                { (searchTerms.length > 0) ? 
-                  this.searchWords()
-                  :
-                  this.words() 
-                }
-            </Grid>
-          </InfiniteScroll>
-        </Div>
-      </Grid.Column>
+              <Grid celled='internally'>
+                <Grid.Row>
+                  <Grid.Column width={6} verticalAlign='middle'>
+                    <ColumnHead>
+                      English
+                    </ColumnHead>
+                  </Grid.Column>
+                  <Grid.Column width={6} verticalAlign='middle'>
+                    <ColumnHead>
+                      Alutiiq
+                    </ColumnHead>
+                  </Grid.Column>
+                  <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
+                    <ColumnHead>
+                      Details
+                    </ColumnHead>
+                  </Grid.Column>
+                </Grid.Row>
+                  { (searchTerms.length > 0) ? 
+                    this.searchWords()
+                    :
+                    this.words() 
+                  }
+              </Grid>
+            </InfiniteScroll>
+          </Div>
+        </Grid.Column>
 
-      {/* Word View */}
+        {/* Word View */}
 
-      <Grid.Column>
-        {this.state.wordView === false ?
-
-        <Watermark>
-          Click on a word to view details
-        </Watermark>
-        :
-          this.renderWordView()
-
-        }
-      </Grid.Column>
-
-
+        <Grid.Column>
+          {this.state.wordView === false ?
+          <Watermark>
+            Click on a word to view details
+          </Watermark>
+          :
+            this.renderWordView()
+          }
+        </Grid.Column>
       </Grid>
     </Fragment>
     )
