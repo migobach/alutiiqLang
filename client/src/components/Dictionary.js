@@ -54,6 +54,18 @@ class Dictionary extends Component {
     return <SpecialDiv />
   }
 
+  handleNorthSouth = (word) => {
+    if(word.alutiiq_north === word.alutiiq_south) {
+      return(<ContentStyle>{word.alutiiq_north}</ContentStyle>)
+    } else if (word.alutiiq_north === null) {
+      return(<ContentStyle>{word.alutiiq_south}</ContentStyle>)
+    } else if (word.alutiiq_south === null) {
+      return(<ContentStyle>{word.alutiiq_north}</ContentStyle>)
+    } else {
+      return(<ContentStyle>{word.alutiiq_north}</ContentStyle>)
+    }
+  }
+
   handleChange = (e) => {
     this.setState({ searchTerms: e.target.value })
   }
@@ -69,9 +81,9 @@ class Dictionary extends Component {
           </ContentStyle>
         </Grid.Column>
         <Grid.Column width={6} verticalAlign='middle'>
-          <ContentStyle>
-            <i>{word.alutiiq_north}</i>
-          </ContentStyle>
+          
+            <i>{this.handleNorthSouth(word)}</i>
+          
         </Grid.Column>
         
         <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
