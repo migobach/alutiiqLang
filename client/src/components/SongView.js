@@ -13,7 +13,7 @@ import {
 } from './styles/CommonStyles'
 
 
-const paddingStyle ={ 
+const paddingStyle = { 
   paddingTop: '30px',
 }
 

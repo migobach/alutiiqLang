@@ -8,6 +8,7 @@ import {
   Icon, 
   Form,
   Loader,
+  Button,
 } from 'semantic-ui-react'
 import {
   BlueDiv,
@@ -109,9 +110,7 @@ class Dictionary extends Component {
           </ContentStyle>
         </Grid.Column>
         <Grid.Column width={6} verticalAlign='middle'>
-          <ContentStyle>
-            <i>{word.alutiiq_north}</i>
-          </ContentStyle>
+          <i>{this.handleNorthSouth(word)}</i>
         </Grid.Column>
         
         <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
@@ -138,18 +137,24 @@ class Dictionary extends Component {
         </ContentStyleWhite>
       </BlueDiv>
       
-      {/* dictionary table  */}
-
+      
+{/* Search Function */}
 
       <SpecialDiv>
         <Form.Input
           placeholder="Search Words..."
           value={searchTerms}
           onChange={this.handleChange}
-        />
+          />
+        <Button
+          onSubmit={this.handleChange}
+          >Search
+        </Button>
       </SpecialDiv>
        {/* </Form.Input> */}
        
+{/* dictionary table  */}
+
       <Grid columns={2}>
         <Grid.Column>
           <Div>
