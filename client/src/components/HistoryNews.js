@@ -95,9 +95,15 @@ class HistoryNews extends Component {
                     </ContentStyle>
                   </SpecialDiv>
                 </Card.Content>
+                {this.state.newsComp === false ?
                   <Button color='yellow' size='big' fluid onClick={this.toggleNewsComp}>
                     Go 
                   </Button>
+                  :
+                  <Button color='grey' size='big' fluid onClick={this.toggleNewsComp}>
+                    Hide
+                </Button>
+                }
               </Card>
 
               <Card>
@@ -113,9 +119,15 @@ class HistoryNews extends Component {
                     </ContentStyle>
                   </SpecialDiv>
                 </Card.Content>
+                {this.state.worldviewComp === false ?
                   <Button color='yellow' size='big' fluid onClick={this.toggleWorldviewComp}>
                     Explore
                   </Button>
+                  :
+                  <Button color='grey' size='big' fluid onClick={this.toggleWorldviewComp}>
+                    Hide
+                  </Button>
+                }
               </Card>
 
               <Card>
@@ -131,9 +143,15 @@ class HistoryNews extends Component {
                     </ContentStyle>
                   </SpecialDiv>
                 </Card.Content>
-                <Button color='yellow' size='big' fluid onClick={this.toggleRevitalizationComp}>
-                  Go
-                </Button>
+                {this.state.revitalizationComp === false ?
+                  <Button color='yellow' size='big' fluid onClick={this.toggleRevitalizationComp}>
+                    Go
+                  </Button>
+                  :
+                  <Button color='grey' size='big' fluid onClick={this.toggleRevitalizationComp}>
+                    Hide
+                  </Button>
+                }
               </Card>
             </Card.Group>
           </ContainerPad>
