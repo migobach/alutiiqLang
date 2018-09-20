@@ -24,7 +24,7 @@ import DictionaryView from './DictionaryView'
 
 class Dictionary extends Component {
 
-  state = { dictionaryWords: [], page: 1, total_pages: 0, searchTerms: '', wordView: false, wordData: {} }
+  state = { dictionaryWords: [], page: 1, total_pages: 0, searchTerms: '', wordView: false, wordData: {}, searchView: false }
 
   componentDidMount() {
     axios.get('/api/dictionaries')
@@ -67,8 +67,12 @@ class Dictionary extends Component {
     }
   }
 
-  handleChange = (e) => {
-    this.setState({ searchTerms: e.target.value })
+  handleChange = (e, { name, value }) => {
+    this.setState({ [name]: value })
+  }
+
+  clearSearch = () => {
+    this.setState({ searchView: false, searchTerms: '' })
   }
   
   words = () => {
@@ -96,11 +100,12 @@ class Dictionary extends Component {
    
   }
 
-  searchWords = () => {
+  renderSearchWords = () => {
     const { searchTerms, dictionaryWords } = this.state
-    if (searchTerms) {
-      let filtered_words = dictionaryWords.filter( e => 
+
+    let filtered_words = dictionaryWords.filter( e => 
       e.english.includes(searchTerms) )
+
     return(
       filtered_words.map( (word)  =>
       <Grid.Row key={word.id}>
@@ -119,11 +124,11 @@ class Dictionary extends Component {
       </Grid.Row>
       )
     )
-    }
+    
   }
 
   render() {
-    const { total_pages, searchTerms, page } = this.state
+    const { total_pages, searchTerms, page, searchView } = this.state
     return(
     <Fragment>
       <BlueDiv>
@@ -143,12 +148,21 @@ class Dictionary extends Component {
       <SpecialDiv>
         <Form.Input
           placeholder="Search Words..."
+          autoFocus={"true"}
+          name='searchTerms'
           value={searchTerms}
           onChange={this.handleChange}
+          width={8}
           />
         <Button
-          onSubmit={this.handleChange}
+          name='searchView'
+          value={true}
+          onClick={this.handleChange}
           >Search
+        </Button>
+        <Button
+          onClick={this.clearSearch}
+        >Clear
         </Button>
       </SpecialDiv>
        {/* </Form.Input> */}
@@ -184,8 +198,8 @@ class Dictionary extends Component {
                     </ColumnHead>
                   </Grid.Column>
                 </Grid.Row>
-                  { (searchTerms.length > 0) ? 
-                    this.searchWords()
+                  {searchView === true ?
+                    this.renderSearchWords()
                     :
                     this.words() 
                   }
