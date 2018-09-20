@@ -160,9 +160,15 @@ class Materials extends Component {
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
+              {this.state.booksComp === false ?
                 <Button color='yellow' size='big' fluid onClick={this.toggleBooksComp}>
                   Go 
                 </Button>
+                : 
+                <Button color='grey' size='big' fluid onClick={this.toggleBooksComp}>
+                  Hide
+                </Button>
+              }
             </Card>
 
             <Card>
@@ -178,9 +184,15 @@ class Materials extends Component {
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
+              {this.state.postersComp === false ?
                 <Button color='yellow' size='big' fluid onClick={this.togglePostersComp}>
                   Go 
                 </Button>
+                : 
+                <Button color='grey' size='big' fluid onClick={this.togglePostersComp}>
+                  Hide
+                </Button>
+              }
             </Card>
 
             <Card>
@@ -196,9 +208,15 @@ class Materials extends Component {
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-              <Button color='yellow' size='big' fluid onClick={this.toggleGamesComp}>
-                Go 
-              </Button>
+              {this.state.gamesComp === false ? 
+                <Button color='yellow' size='big' fluid onClick={this.toggleGamesComp}>
+                  Go 
+                </Button>
+                :
+                <Button color='grey' size='big' fluid onClick={this.toggleGamesComp}>
+                  Hide
+                </Button>
+              }
             </Card>
 
               <Card>
@@ -214,9 +232,15 @@ class Materials extends Component {
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
+              {this.state.outsideLinks === false ?
                 <Button color='yellow' size='big' fluid onClick={this.toggleLinksComp}>
                   Go 
                 </Button>
+                :
+                <Button color='grey' size='big' fluid onClick={this.toggleLinksComp}>
+                  Hide
+                </Button>
+              }
             </Card>
 
             <Card>
@@ -232,9 +256,15 @@ class Materials extends Component {
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-              <Button color='yellow' size='big' fluid onClick={this.toggleStoriesComp}>
-                Go 
-              </Button>
+              {this.state.storiesComp === false ?
+                <Button color='yellow' size='big' fluid onClick={this.toggleStoriesComp}>
+                  Go 
+                </Button>
+                :
+                <Button color='grey' size='big' fluid onClick={this.toggleStoriesComp}>
+                  Hide
+                </Button>
+              }
             </Card>
 
             <Card>
