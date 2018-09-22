@@ -3,6 +3,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 // import InfiniteScroll from 'react-infinite-scroller'
 import { getMaterials } from '../reducers/materials'
+import DocumentMeta from 'react-document-meta'
 import { 
   Header, 
   Image,
@@ -32,7 +33,7 @@ import Stories from './materials/Stories'
 
 class Materials extends Component {
   state = { compMaterials: [], page: 1, total_pages: 0, outsideLinks: false, booksComp: false, postersComp: false, gamesComp: false, storiesComp: false }
-
+  
   componentDidMount() {
     const { dispatch } = this.props
     dispatch(getMaterials())
@@ -123,9 +124,17 @@ class Materials extends Component {
   }
 
   render() {
+    const meta = {
+      name:"viewport",
+      content:"width=device-width, initial-scale=1"
+    }
     const { total_pages, page } = this.state
+
     return(
-    <Fragment>
+      
+      <Fragment>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <DocumentMeta {...meta} />
       <SpecialDiv>
         <Header textAlign='center'>
           <SectionHead>
@@ -146,7 +155,7 @@ class Materials extends Component {
       {/* Card section  */}
 
       <ContainerPad>
-          <Card.Group itemsPerRow={3} stackable={true} centered>
+          <Card.Group itemsPerRow={3} stackable centered doubling >
             <Card>
               <Card.Content header textAlign='center'>
                 <CardHeader>
@@ -286,8 +295,6 @@ class Materials extends Component {
                 </Button>
               </a>
             </Card>
-
-
           </Card.Group>
         </ContainerPad>
 
