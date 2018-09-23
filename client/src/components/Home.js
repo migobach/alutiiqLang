@@ -26,7 +26,7 @@ const Home = () => (
   <div>
     <Parallax
       bgImage={Banner}
-      bgImageAlt="St. Paul Harbor, Kodiak, Alaska"
+      bgImageAlt="Afognak village beach, Afognak Island, Alaska"
       strength={500}
     >
       <div style={{height: 500}}>

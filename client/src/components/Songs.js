@@ -26,14 +26,6 @@ import {
 } from './styles/CommonStyles'
 import SongView from './SongView'
 
-const Placeholder = () => {
-  return(
-  <div>
-           
-  </div>
-  )
-}
-
 class Songs extends Component {
   state = {songData: {}, songView: false, ref: {} }
 
@@ -61,17 +53,17 @@ class Songs extends Component {
   songs = () => {
     return this.props.songs.map( song => 
       <Grid.Row key={song.id}>
-        <Grid.Column width={6}>
+        <Grid.Column computer={6} tablet={6}>
           <SongStyle>
-            <i>{song.title_alutiiq}</i>
+            <i>{song.title_alutiiq}</i> 
           </SongStyle>
         </Grid.Column>
-        <Grid.Column width={6}>
+        <Grid.Column width={6} only='computer tablet'>
           <SongStyle>
             {song.title_english}
           </SongStyle>
         </Grid.Column>
-        <Grid.Column width={4} textAlign='center'>
+        <Grid.Column computer={4} tablet={4} textAlign='center'>
         <SongStyle>
           <Icon name='eye' size='large' color='grey' onClick={() => this.setSong(song)}/>
         </SongStyle>
@@ -80,10 +72,25 @@ class Songs extends Component {
     )
   }
 
+  songsMobile = () => {
+    return this.props.songs.map( song => 
+      <Grid.Row key={song.id}>
+        <Grid.Column width={10}>
+          <SongStyle>
+            <i>{song.title_alutiiq}</i> 
+          </SongStyle>
+        </Grid.Column>
+        <Grid.Column width={6} textAlign='center'>
+          <SongStyle>
+            <Icon name='eye' size='large' color='grey' />
+          </SongStyle>
+        </Grid.Column>
+      </Grid.Row>
+    )
+  }
+
   render() {
-
     const {contextRef} = this.state.ref
-
     return(
     <div> 
       <SpecialDiv>
@@ -98,12 +105,12 @@ class Songs extends Component {
       </SpecialDiv>
         
 
-        {/* Two columns with key sing phrases */}
+{/* Two columns with key sing phrases and icons */}
       <Grid>
         <Grid.Row centered columns={2} divided only='computer tablet'>
           <Grid.Column textAlign='center'>
             <SpecialDiv>
-              <IconHover name='talk' size='huge' color='grey' />
+              <IconHover name='talk' size='large' color='grey' />
               <CardHeader>
                 <i>Aturlita!</i>
               </CardHeader>
@@ -114,7 +121,7 @@ class Songs extends Component {
           </Grid.Column>
           <Grid.Column textAlign='center'>
             <SpecialDiv>
-              <IconHover name='talk' size='huge' color='grey' />
+              <IconHover name='talk' size='large' color='grey' />
               <CardHeader>
                 <i>Atuut'ciqar'penga-qaa?</i>
               </CardHeader>
@@ -126,56 +133,79 @@ class Songs extends Component {
         </Grid.Row>
       </Grid>
 
+{/* start of the song list and conditional component - only renders on computer and tablet */}
       <Grid columns={2}>
+        <Grid.Row only='computer tablet'>
           <Grid.Column>
             <div ref={this.handleContextRef}>
               <SpecialDiv>
                 {_.times(1, i => 
                   <Grid celled='internally' key={i}>
                     <Grid.Row>
-                      <Grid.Column width={6}>
+                      <Grid.Column computer={6} tablet={6}>
                         <ColumnHead>
                           Alutiiq Title
                         </ColumnHead>
                       </Grid.Column>
-                      <Grid.Column width={6}>
+                      <Grid.Column width={6} only='computer tablet'>
                         <ColumnHead>
                           English Title
                         </ColumnHead>
                       </Grid.Column>
-                      <Grid.Column width={4} textAlign='center'>
+                      <Grid.Column computer={4} tablet={4} textAlign='center'>
                         <ColumnHead>
                           View
                         </ColumnHead>
                       </Grid.Column>
                     </Grid.Row>
-                    
                       { this.songs() }
-                    
                   </Grid>
                 )}
 
                 <Rail position='right'>
                   <Sticky context={contextRef} as={SongDiv}>
                   { this.state.songView === false ?
-                  
-                    <Watermark>
-                      Click on a song to view 
-                    </Watermark>
+                    <SpecialDiv>
+                      <Watermark>
+                        Click on a song to view 
+                      </Watermark>
+                    </SpecialDiv>
                   :
-                  
                     this.renderingSongView() 
                   
                   }
                   </Sticky>
                 </Rail>
-
               </SpecialDiv>
            </div>
-        </Grid.Column>
-      </Grid>
+        </Grid.Column>  
+      </Grid.Row>
 
+{/* start of the song list and conditional component - only renders on phones */}
+      <Grid.Row only='mobile'>
+        <SpecialDiv>
+        {_.times(1, i => 
+          <Grid celled='internally' key={i}>
+            <Grid.Row>
+              <Grid.Column width={10}>
+                <ColumnHead>
+                  Alutiiq Title
+                </ColumnHead>
+              </Grid.Column>
+              <Grid.Column width={6} textAlign='center'>
+                <ColumnHead>
+                  View
+                </ColumnHead>
+              </Grid.Column>
+            </Grid.Row>
+              { this.songsMobile() }
+          </Grid>
+        )}
+        </SpecialDiv>
+      </Grid.Row>
+    </Grid>
 
+{/* blue songbook section at the bottom of the page */}
       <BlueDiv>
         <Header textAlign='center'>
           <SectionHead>

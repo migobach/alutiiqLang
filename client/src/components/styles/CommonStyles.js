@@ -35,7 +35,7 @@ export const SubHeaderContent = SubHeader.extend`
 `
 
 export const MainDiv = styled.div`
-  padding: 200px;
+  padding: 8em;
   align-content: center;
 `
 
@@ -79,12 +79,12 @@ export const SubSectionHead = styled.h3`
 export const ContentHead = styled.h3`
   color: #ECA414;
   font-size: 1.5em;
-  padding: 1.5em;
+  padding: .5em;
 `
 
 export const ContentStyle = styled.p`
   font-size: 1em;
-  padding: 2em;
+  padding: .5em;
   color: #A9A9A9;
   
 `
@@ -121,7 +121,7 @@ export const ContentStyleQuote = ContentStyleWhite.extend`
 `
 
 export const SpecialDiv = styled.div`
-  padding: 1.5em;
+  padding: 1em;
 `
 
 export const SongDiv = SpecialDiv.extend`
@@ -171,7 +171,7 @@ export const Div = styled.div`
 // `
 
 export const IconHover = styled(Icon)`
-  font-size: 5em !important;
+  font-size: 3em !important;
   padding-top: 10px;
   &:hover {
   transform: scale(1.33)
