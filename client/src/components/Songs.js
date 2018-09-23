@@ -82,7 +82,7 @@ class Songs extends Component {
         </Grid.Column>
         <Grid.Column width={6} textAlign='center'>
           <SongStyle>
-            <Icon name='eye' size='large' color='grey' />
+            <Icon name='eye' size='large' color='grey' onClick={() => this.setSong(song)}/>
           </SongStyle>
         </Grid.Column>
       </Grid.Row>
@@ -93,6 +93,7 @@ class Songs extends Component {
     const {contextRef} = this.state.ref
     return(
     <div> 
+{/* header and welcome section of songs page  */}
       <SpecialDiv>
         <Header textAlign='center'>
           <SectionHead>
@@ -202,6 +203,17 @@ class Songs extends Component {
           </Grid>
         )}
         </SpecialDiv>
+      </Grid.Row>
+      <Grid.Row only='mobile'>
+        { this.state.songView === false ?
+          <SpecialDiv>
+            <Watermark>
+              Click on a song to view
+            </Watermark>
+          </SpecialDiv>
+          :
+          this.renderingSongView() 
+        }
       </Grid.Row>
     </Grid>
 

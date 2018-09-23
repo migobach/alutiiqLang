@@ -121,7 +121,7 @@ export const ContentStyleQuote = ContentStyleWhite.extend`
 `
 
 export const SpecialDiv = styled.div`
-  padding: 1em;
+  padding: 1.5em;
 `
 
 export const SongDiv = SpecialDiv.extend`
