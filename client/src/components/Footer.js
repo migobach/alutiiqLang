@@ -26,7 +26,7 @@ const Footer = () => (
   <div>
   <ContainerPad padded="very">
     <Container padded="very">
-      <Grid>
+      <Grid stackable>
       <Grid.Row centered columns={2} divided>
         <Grid.Column textAlign='center'>
           <SpecialDiv>
@@ -61,7 +61,7 @@ const Footer = () => (
 
       {/* logos of sponsors */}
     
-      <Grid.Row columns={10} >
+      <Grid.Row columns={10} only='tablet computer'>
         <Grid.Column >
           <Image src={AKHF} size='tiny'  />
         </Grid.Column>

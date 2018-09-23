@@ -49,7 +49,7 @@ const Worldview = () => (
     {/* content and subsections */}
     <SpecialDiv>
       <Grid stackable columns = {3}>
-        <Grid.Column width={5}>
+        <Grid.Column width={5} tablet={16}>
           <GreenHead>
             Elders & Culture Bearers
             <Divider />
@@ -65,13 +65,13 @@ const Worldview = () => (
             </ContentStyle>
         </Grid.Column>
 
-        <Grid.Column width={5}>
+        <Grid.Column width={5} tablet={8}>
         <SpecialDiv>
           <Image src={Values} size='big' verticalAlign='middle' textAlign='center' />
         </SpecialDiv>
         </Grid.Column>
 
-        <Grid.Column width={5}>
+        <Grid.Column width={5} tablet={8}>
           <GreenHead>
             Alutiiq Core Values
             <Divider />

@@ -29,7 +29,7 @@ const Home = () => (
       bgImageAlt="St. Paul Harbor, Kodiak, Alaska"
       strength={500}
     >
-      <div style={{height: 900}}>
+      <div style={{height: 500}}>
         <MainDiv>
           <MainHeader>
             <i>Liicugtukut Alutiit'stun</i>
@@ -57,7 +57,7 @@ const Home = () => (
             </SpecialDiv>
           </Card.Content>
             <Link to={`/happenings`} >
-              <Button color='yellow' size='big' fluid>
+              <Button color='yellow' size='small' fluid>
                 Go 
               </Button>
             </Link>
@@ -77,7 +77,7 @@ const Home = () => (
             </SpecialDiv>
           </Card.Content>
             <Link to={'/dictionary'}>
-              <Button color='yellow' size='big' fluid>
+              <Button color='yellow' size='small' fluid>
                 Go 
               </Button>
             </Link>
@@ -96,7 +96,7 @@ const Home = () => (
               </ContentStyle>
             </SpecialDiv>
           </Card.Content>
-          <Button color='yellow' size='big' fluid>
+          <Button color='yellow' size='small' fluid>
             Go 
           </Button>
         </Card>
@@ -111,7 +111,7 @@ const Home = () => (
       strength={500}
     >
       <div style={{height: 700}} >
-      <Container textAlign='center'>
+      <Container textAlign='center' verticalAlign='center'>
       <SpecialDiv>
         <SpecialDiv>
           <Header textAlign='center'>
@@ -129,7 +129,7 @@ const Home = () => (
             The Language Nest is a child-focused Alutiiq language immersion environment where language is acquired naturally. Children develop kindergarten readiness skills while they problem solve, explore, and play through the language in a supportive multi-generational setting.
           </SubHeaderContent>
         </SpecialDiv>
-          <Button size='huge' href='http://sunaq.org/tamamta-liitukut/'>
+          <Button size='big' href='http://sunaq.org/tamamta-liitukut/'>
             Learn more
           </Button>
       </Container>

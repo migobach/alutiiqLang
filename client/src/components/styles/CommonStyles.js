@@ -11,23 +11,27 @@ import {
 // blue: #3B568C
 // grey: #A9A9A9
 
+// title on homepage
 export const MainHeader = styled.h1`
   color: white;
-  font-size: 5em; 
+  font-size: 2em; 
 `
 
-export const MainHeaderContent = MainHeader.extend`
+// sub-title on homepage
+export const MainHeaderContent = MainHeader.extend` 
   font-size: .5em;
 `
 
+// bottom section of homepage
 export const SubHeader = styled.h2`
   color: white;
-  font-size: 2.5em;
+  font-size: 1.25em;
   line-height: 2;
 `
 
+// bottom section of homepage
 export const SubHeaderContent = SubHeader.extend`
-  font-size: 1.5em;
+  font-size: 1em;
 `
 
 export const MainDiv = styled.div`
@@ -37,31 +41,33 @@ export const MainDiv = styled.div`
 
 export const CardHeader = styled.h3`
  color: #3B568C;
- font-size: 2em;
+ font-size: 1em;
  line-height: 1.5;
 `
 
 export const ColumnHead = styled.h3`
   color: #3B568C;
-  font-size: 1.5em;  
+  font-size: 1em;  
   line-height: 1.5;
 `
 
 export const SectionHead = styled.h3`
   color: #FBBD08;
-  font-size: 2.5em;
+  font-size: 1.5em;
   padding: 65px;
 `
 
+// song view conditionally rendered component song title 
 export const SongHead = styled.h3`
   color: #FBBD08;
-  font-size: 2.5em;
+  font-size: 1.5em;
 `
 
+// green focused blocks header
 export const GreenHead = styled.h3`
   color: #508365;
-  font-size: 2.5em;
-  padding: 65px;
+  font-size: 1.5em;
+  padding: 1.5em;
 `
 
 export const SubSectionHead = styled.h3`
@@ -73,18 +79,27 @@ export const SubSectionHead = styled.h3`
 export const ContentHead = styled.h3`
   color: #ECA414;
   font-size: 1.5em;
-  padding: 15px;
+  padding: 1.5em;
 `
 
 export const ContentStyle = styled.p`
-  font-size: 1.5em;
+  font-size: 1em;
+  padding: 2em;
   color: #A9A9A9;
+  
+`
+
+export const SongStyle = styled.p`
+font-size: 1em;
+color: #A9A9A9;
+text-align: center;
+padding: 1em;
 `
 
 export const ContentStyleWhite = styled.div`
   color: white;
   line-height: 2;
-  font-size: 1.5em;
+  font-size: 1em;
   text-align: center;
   padding-bottom: 14px;
 `
@@ -100,26 +115,18 @@ export const GreyTitle = styled.h4`
 `
 
 export const ContentStyleQuote = ContentStyleWhite.extend`
-  font-size: 2em;
+  font-size: 1em;
   line-height: 1.5;
   text-align: left;
 `
 
-export const CenterDiv = styled.div`
-  text-align: center;
-`
-
 export const SpecialDiv = styled.div`
-  padding: 50px;
+  padding: 1.5em;
 `
 
 export const SongDiv = SpecialDiv.extend`
-  width: 900px;
-`
-
-export const QuoteDiv = SpecialDiv.extend`
-  border: 1px solid #D3D3D3;
-  text-align: center;
+  width: 20em;
+  padding: .5em;
 `
 
 export const QuotePerson = styled.div`
@@ -133,7 +140,7 @@ export const SpecialDivCenter = SpecialDiv.extend`
 export const GreenDiv = styled.div`
   background-color: #508365;
   color: white;
-  padding: 150px;
+  padding: 4em;
   align-content: center;
   background-position: center center;
   background-size: cover;
@@ -145,13 +152,13 @@ export const BlueDiv = GreenDiv.extend`
 `
 
 export const ContainerPad = styled.div`
-  margin: 50px;
+  margin: 2em;
 `
 
 export const Div = styled.div`
-  height: 500px;
+  height: 25em;
   width: auto;
-  padding: 50px;
+  padding: 2em;
   overflow: auto;
 `
 
@@ -217,6 +224,6 @@ export const Watermark = styled.h1`
   color: #A9A9A9;
   text-align: center;
   align-content: center;
-  font-size: 2.5em;
+  font-size: 1.5em;
   line-height: 2;
 `

@@ -73,11 +73,11 @@ class Curriculum extends Component {
       </SpecialDiv>
   
       <SpecialDiv>
-      <Grid>
+      <Grid stackable>
         <Grid.Row>
           <Grid.Column width={5} textAlign='center'>
             <ColumnHead>
-              <Button size='massive' onClick={(e) => this.toggleNestComp(e)}>
+              <Button size='large' onClick={(e) => this.toggleNestComp(e)}>
                 <i>Alutiit'stun Niuwawik</i> Language Nest Curriculum
               </Button>
             </ColumnHead>
@@ -91,7 +91,7 @@ class Curriculum extends Component {
         <Grid.Row>
           <Grid.Column width={5} textAlign='center'>
             <ColumnHead>
-              <Button size='massive' onClick={(e) => this.togglePreschoolComp(e)}>
+              <Button size='large' onClick={(e) => this.togglePreschoolComp(e)}>
                 Kodiak Alutiiq Language Preschool Curriculum
               </Button>
             </ColumnHead>
@@ -105,7 +105,7 @@ class Curriculum extends Component {
         <Grid.Row>
           <Grid.Column width={5} textAlign='center'>
             <ColumnHead>
-              <Button size='massive' onClick={(e) => this.toggleWorkbookComp(e)}>
+              <Button size='large' onClick={(e) => this.toggleWorkbookComp(e)}>
                 Kodiak Alutiiq Elementary Language Curriculum Workbook 
               </Button>
             </ColumnHead>
@@ -119,7 +119,7 @@ class Curriculum extends Component {
         <Grid.Row>
           <Grid.Column width={5} textAlign='center'>
             <ColumnHead>
-              <Button size='massive' onClick={(e) => this.toggleThematicComp(e)}>
+              <Button size='large' onClick={(e) => this.toggleThematicComp(e)}>
                 Kodiak Alutiiq Thematic Curriculum Units
               </Button>
             </ColumnHead>

@@ -4,6 +4,7 @@ import {
   Header, 
   Card, 
   Icon,
+  Grid,
 } from 'semantic-ui-react'
 import { 
   SpecialDiv,
@@ -11,7 +12,6 @@ import {
   SectionHead, 
   ContentStyle, 
   ContainerPad,
-  CenterDiv,
 } from './styles/CommonStyles'
 import Revitalization from './happenings/Revitalization'
 import Worldview from './happenings/Worldview'
@@ -64,24 +64,35 @@ class HistoryNews extends Component {
             Check out some of our social media channels to finds ways to stay connected with the language movement, or to learn more about how you can become involved. 
             <br />
             <br />
-            <CenterDiv style={xtrapadding}>
-              <a href='https://www.facebook.com/alutiiqlanguage/'>
-                <Button color='facebook' size='massive'>
-                  <Icon name='facebook' /> Facebook
-                </Button>
-              </a>
-              <a href='https://www.instagram.com/alutiiqlearners/?hl=en'>
-                <Button color='instagram' size='massive'>
-                  <Icon name='instagram' /> Instagram
-                </Button>
-              </a>
-            </CenterDiv>
           </ContentStyle>
+            <Grid stackable centered>
+              <Grid.Row columns={2}>
+                <Grid.Column textAlign='right'>
+                  <a href='https://www.facebook.com/alutiiqlanguage/'>
+                  <SpecialDiv>
+                    <Button color='facebook' size='massive'>
+                      <Icon name='facebook' /> Facebook
+                    </Button>
+                  </SpecialDiv>
+                  </a>
+                </Grid.Column>
+                <Grid.Column textAlign='left'>
+                  <a href='https://www.instagram.com/alutiiqlearners/?hl=en'>
+                  <SpecialDiv>
+                    <Button color='instagram' size='massive'>
+                      <Icon name='instagram' /> Instagram
+                    </Button>
+                  </SpecialDiv>
+                  </a>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+           
         </SpecialDiv>
           
           
           <ContainerPad>
-            <Card.Group itemsPerRow={3} stackable={true}>
+            <Card.Group itemsPerRow={3} stackable={true} doubling>
               <Card>
                 <Card.Content header textAlign='center'>
                   <CardHeader>
@@ -96,11 +107,11 @@ class HistoryNews extends Component {
                   </SpecialDiv>
                 </Card.Content>
                 {this.state.newsComp === false ?
-                  <Button color='yellow' size='big' fluid onClick={this.toggleNewsComp}>
+                  <Button color='yellow' size='medium' fluid onClick={this.toggleNewsComp}>
                     Go 
                   </Button>
                   :
-                  <Button color='grey' size='big' fluid onClick={this.toggleNewsComp}>
+                  <Button color='grey' size='medium' fluid onClick={this.toggleNewsComp}>
                     Hide
                 </Button>
                 }
@@ -120,11 +131,11 @@ class HistoryNews extends Component {
                   </SpecialDiv>
                 </Card.Content>
                 {this.state.worldviewComp === false ?
-                  <Button color='yellow' size='big' fluid onClick={this.toggleWorldviewComp}>
+                  <Button color='yellow' size='medium' fluid onClick={this.toggleWorldviewComp}>
                     Explore
                   </Button>
                   :
-                  <Button color='grey' size='big' fluid onClick={this.toggleWorldviewComp}>
+                  <Button color='grey' size='medium' fluid onClick={this.toggleWorldviewComp}>
                     Hide
                   </Button>
                 }
@@ -144,11 +155,11 @@ class HistoryNews extends Component {
                   </SpecialDiv>
                 </Card.Content>
                 {this.state.revitalizationComp === false ?
-                  <Button color='yellow' size='big' fluid onClick={this.toggleRevitalizationComp}>
+                  <Button color='yellow' size='medium' fluid onClick={this.toggleRevitalizationComp}>
                     Go
                   </Button>
                   :
-                  <Button color='grey' size='big' fluid onClick={this.toggleRevitalizationComp}>
+                  <Button color='grey' size='medium' fluid onClick={this.toggleRevitalizationComp}>
                     Hide
                   </Button>
                 }

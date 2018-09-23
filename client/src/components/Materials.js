@@ -15,6 +15,7 @@ import {
 import {
   SpecialDiv,
   SectionHead,
+  SubSectionHead,
   ContentStyle,
   QuotePerson,
   GreenDiv,
@@ -155,7 +156,7 @@ class Materials extends Component {
       {/* Card section  */}
 
       <ContainerPad>
-          <Card.Group itemsPerRow={3} stackable centered doubling >
+          <Card.Group itemsPerRow={3} stackable centered doubling>
             <Card>
               <Card.Content header textAlign='center'>
                 <CardHeader>
@@ -170,11 +171,11 @@ class Materials extends Component {
                 </SpecialDiv>
               </Card.Content>
               {this.state.booksComp === false ?
-                <Button color='yellow' size='big' fluid onClick={this.toggleBooksComp}>
+                <Button color='yellow' size='small' fluid onClick={this.toggleBooksComp}>
                   Go 
                 </Button>
                 : 
-                <Button color='grey' size='big' fluid onClick={this.toggleBooksComp}>
+                <Button color='grey' size='small' fluid onClick={this.toggleBooksComp}>
                   Hide
                 </Button>
               }
@@ -194,11 +195,11 @@ class Materials extends Component {
                 </SpecialDiv>
               </Card.Content>
               {this.state.postersComp === false ?
-                <Button color='yellow' size='big' fluid onClick={this.togglePostersComp}>
+                <Button color='yellow' size='small' fluid onClick={this.togglePostersComp}>
                   Go 
                 </Button>
                 : 
-                <Button color='grey' size='big' fluid onClick={this.togglePostersComp}>
+                <Button color='grey' size='small' fluid onClick={this.togglePostersComp}>
                   Hide
                 </Button>
               }
@@ -218,11 +219,11 @@ class Materials extends Component {
                 </SpecialDiv>
               </Card.Content>
               {this.state.gamesComp === false ? 
-                <Button color='yellow' size='big' fluid onClick={this.toggleGamesComp}>
+                <Button color='yellow' size='small' fluid onClick={this.toggleGamesComp}>
                   Go 
                 </Button>
                 :
-                <Button color='grey' size='big' fluid onClick={this.toggleGamesComp}>
+                <Button color='grey' size='small' fluid onClick={this.toggleGamesComp}>
                   Hide
                 </Button>
               }
@@ -242,11 +243,11 @@ class Materials extends Component {
                 </SpecialDiv>
               </Card.Content>
               {this.state.outsideLinks === false ?
-                <Button color='yellow' size='big' fluid onClick={this.toggleLinksComp}>
+                <Button color='yellow' size='small' fluid onClick={this.toggleLinksComp}>
                   Go 
                 </Button>
                 :
-                <Button color='grey' size='big' fluid onClick={this.toggleLinksComp}>
+                <Button color='grey' size='small' fluid onClick={this.toggleLinksComp}>
                   Hide
                 </Button>
               }
@@ -266,11 +267,11 @@ class Materials extends Component {
                 </SpecialDiv>
               </Card.Content>
               {this.state.storiesComp === false ?
-                <Button color='yellow' size='big' fluid onClick={this.toggleStoriesComp}>
+                <Button color='yellow' size='small' fluid onClick={this.toggleStoriesComp}>
                   Go 
                 </Button>
                 :
-                <Button color='grey' size='big' fluid onClick={this.toggleStoriesComp}>
+                <Button color='grey' size='small' fluid onClick={this.toggleStoriesComp}>
                   Hide
                 </Button>
               }
@@ -290,7 +291,7 @@ class Materials extends Component {
                 </SpecialDiv>
               </Card.Content>
               <a href='https://quizlet.com/cbranson01'>
-                <Button color='yellow' size='big' fluid>
+                <Button color='yellow' size='small' fluid>
                   Go 
                 </Button>
               </a>
@@ -306,6 +307,9 @@ class Materials extends Component {
 
         <GreenDiv>
           <Grid stackable columns={2} verticalAlign='middle'>
+
+            {/* only visible on computer and tablet */}
+            <Grid.Row only='computer tablet'>
               <Grid.Column width={4}>
                 <Image src={Alisha} size='medium' floated='left' verticalAlign='middle' />
               </Grid.Column>
@@ -317,7 +321,14 @@ class Materials extends Component {
                   <br />-Alisha Drabek PhD, Alutiiq Language Speaker, Learner, Teacher, and Scholar
                 </QuotePerson>
               </Grid.Column>
-            
+            </Grid.Row>
+
+            {/* only visibile on a mobile phone */}
+            <Grid.Row only='mobile'>
+              <SubSectionHead>
+                Materials
+              </SubSectionHead>
+            </Grid.Row>
           </Grid>
         </GreenDiv>
 
