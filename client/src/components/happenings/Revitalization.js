@@ -62,7 +62,7 @@ const Revitalization = () => (
               <br />
               <br />
               So, in developipng a program to revitalize the language: 
-              <blockquote>
+              {/* <blockquote> */}
                 <ol>
                   <li>Never ask permission, never beg to save your language</li>
                   <li>Never debate the issues</li>
@@ -70,7 +70,7 @@ const Revitalization = () => (
                   <li>Show, don't tell</li>
                   <li>User your language as your curriculum- botany, geography, political science, philosophy, hisotry are all embedded in the langauge."</li>
                 </ol>
-              </blockquote>
+              {/* </blockquote> */}
               </i>
             </ContentStyleQuote>
             <QuotePerson>
@@ -83,23 +83,22 @@ const Revitalization = () => (
       {/* other links */}
       {/* TODO add in the links as they appear on the current website */}
       <SpecialDiv>
-       <LinkHead>
-        <GreenLink href='https://www.languagetesting.com/'>
-          Fluency Assessments
-        </GreenLink>
-        <Divider />
-      </LinkHead>
+        <LinkHead>
+          <GreenLink href='https://www.languagetesting.com/'>
+            Fluency Assessments
+          </GreenLink>
+          <Divider />
+        </LinkHead>
         <ContentStyle>
           As an international standard to determine the level of speaking fluency the American Council on the Teaching of Foreign Languages (ACTFL) provides a scale that is useful for both learners and teachers to assess what level of proficiency an individual has attained.  More information on ACTFL is available on their website by clicking above on the ACTFL name. This ACTFL Assessment Levels summary provides an <BodyLink href='http://www.alutiiqlanguage.org/files/lessons/Teacher%20Tools/ACTFL%20Assessment%20Levels.pdf'>overview of fluency levels from Novice to Intermediate to Advanced.</BodyLink>
         </ContentStyle>
         <br />
-
-         <LinkHead>
-        <GreenLink href='http://www.alutiiqlanguage.org/files/lessons/Teacher%20Tools/Guidelines%20for%20Strengthening%20Indigenous%20Languages.pdf'>
-          Cultural Standards & Guidelines for Strengthening Indigenous Languages
-        </GreenLink>
-        <Divider />
-      </LinkHead>
+        <LinkHead>
+          <GreenLink href='http://www.alutiiqlanguage.org/files/lessons/Teacher%20Tools/Guidelines%20for%20Strengthening%20Indigenous%20Languages.pdf'>
+            Cultural Standards & Guidelines for Strengthening Indigenous Languages
+          </GreenLink>
+          <Divider />
+        </LinkHead>
         <ContentStyle>
           Available on the <BodyLink href='http://www.ankn.uaf.edu/publications/language.html'>Alaska Native Knowledge Network</BodyLink> website as a PDF, this important resource provides a series of guidelines for elders, parents, learners, organizations, educators, schools, education agencies, linguists, and media producers. This guidebook along with the <BodyLink href='http://www.alutiiqlanguage.org/files/lessons/Teacher%20Tools/cultural%20standards.pdf'>Alaska Standards for Culturally Responsive Schools</BodyLink> were developed through a network of Alaska Native educators. The Cultural Standards were adopted by the Alaska Department of Education and <BodyLink href='https://www.kibsd.org/'>Kodiak Island Borough School District</BodyLink> (<BodyLink href='https://www.kibsd.org/domain/115'>found under their posting of World Languages curriculum documents</BodyLink>). There are many articles on the development and importance of these cultural standards found on the <BodyLink href='http://www.ankn.uaf.edu/'>Alaska Native Knowledge Network</BodyLink> website, such as this <BodyLink href='http://www.ankn.uaf.edu/sop/sopv3i4.pdf'>article by Dr. Ray Barnhardt.</BodyLink>
         </ContentStyle>

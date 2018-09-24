@@ -66,25 +66,28 @@ class HistoryNews extends Component {
             <br />
           </ContentStyle>
             <Grid stackable centered>
-              <Grid.Row columns={2}>
-                <Grid.Column textAlign='right'>
+              <Grid.Row columns={5}>
+                <Grid.Column width={2}/>
+                <Grid.Column textAlign='center' width={5}>
                   <a href='https://www.facebook.com/alutiiqlanguage/'>
                   <SpecialDiv>
-                    <Button color='facebook' size='massive'>
-                      <Icon name='facebook' /> Facebook
+                    <Button color='facebook' size='huge'>
+                      <Icon name='facebook'/> Facebook
                     </Button>
                   </SpecialDiv>
                   </a>
                 </Grid.Column>
-                <Grid.Column textAlign='left'>
+                <Grid.Column width={1}/>
+                <Grid.Column textAlign='center' width={5}>
                   <a href='https://www.instagram.com/alutiiqlearners/?hl=en'>
                   <SpecialDiv>
-                    <Button color='instagram' size='massive'>
-                      <Icon name='instagram' /> Instagram
+                    <Button color='instagram' size='huge'>
+                      <Icon name='instagram'/> Instagram
                     </Button>
                   </SpecialDiv>
                   </a>
                 </Grid.Column>
+                <Grid.Column width={2}/>
               </Grid.Row>
             </Grid>
            

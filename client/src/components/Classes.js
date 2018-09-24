@@ -43,7 +43,7 @@ class Classes extends Component {
         <Grid.Row columns={1}>
           <Grid.Column textAlign='center'>
             <SpecialDiv>
-              <IconHover name='talk' size='huge' color='grey' />
+              <IconHover name='talk' size='large' color='grey' />
               <CardHeader>
                 <i>Katurlita!</i>
               </CardHeader>
@@ -57,7 +57,7 @@ class Classes extends Component {
 
       <GreenDiv>
 
-        <Grid celled='internally'>
+        <Grid celled='internally' stackable doubling>
           <Grid.Row>
             <Grid.Column width={6} textAlign='center' verticalAlign='middle'>
               <WhiteTitle>

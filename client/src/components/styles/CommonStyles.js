@@ -54,7 +54,7 @@ export const ColumnHead = styled.h3`
 export const SectionHead = styled.h3`
   color: #FBBD08;
   font-size: 1.5em;
-  padding: 65px;
+  padding: 1em;
 `
 
 // song view conditionally rendered component song title 
@@ -67,7 +67,7 @@ export const SongHead = styled.h3`
 export const GreenHead = styled.h3`
   color: #508365;
   font-size: 1.5em;
-  padding: 1.5em;
+  padding: .5em;
 `
 
 export const SubSectionHead = styled.h3`
@@ -106,12 +106,12 @@ export const ContentStyleWhite = styled.div`
 
 export const WhiteTitle = styled.h4`
   color: white;
-  font-size: 2em;
+  font-size: 1.5em;
 `
 
 export const GreyTitle = styled.h4`
   color: #A9A9A9;
-  font-size: 2em;
+  font-size: 1.25em;
 `
 
 export const ContentStyleQuote = ContentStyleWhite.extend`
@@ -211,8 +211,8 @@ export const IconLinkGrey = styled.a`
 
 export const LinkHead = styled.h3`
   color: #508365;
-  font-size: 2.5em;
-  padding: 20px;
+  font-size: 1.5em;
+  padding: .5em;
 `
 
 export const GreenLink = styled.a`
