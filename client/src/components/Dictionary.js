@@ -22,6 +22,11 @@ import {
 } from './styles/CommonStyles'
 import DictionaryView from './DictionaryView'
 
+const buttonDiv = {
+  padding: '1em',
+  textAlign: 'center'
+}
+
 class Dictionary extends Component {
 
   state = { dictionaryWords: [], page: 1, total_pages: 0, searchTerms: '', wordView: false, wordData: {}, searchView: false }
@@ -130,6 +135,9 @@ class Dictionary extends Component {
   render() {
     const { total_pages, searchTerms, page, searchView } = this.state
     return(
+
+// fist section describing the dictiona and welcoming user
+
     <Fragment>
       <BlueDiv>
         <Header textAlign="center">
@@ -144,81 +152,140 @@ class Dictionary extends Component {
       
       
 {/* Search Function */}
-
       <SpecialDiv>
-        <Form.Input
-          placeholder="Search Words..."
-          autoFocus={"true"}
-          name='searchTerms'
-          value={searchTerms}
-          onChange={this.handleChange}
-          width={8}
-          />
-        <Button
-          name='searchView'
-          value={true}
-          onClick={this.handleChange}
-          >Search
-        </Button>
-        <Button
-          onClick={this.clearSearch}
-        >Clear
-        </Button>
+        <Form>
+          {/* <div style={buttonDiv}> */}
+          <Form.Input
+            placeholder="Search Words..."
+            autoFocus={"true"}
+            name='searchTerms'
+            value={searchTerms}
+            onChange={this.handleChange}
+            width={8}
+            fluid
+            />
+              <Button
+                
+                name='searchView'
+                value={true}
+                onClick={this.handleChange}
+                >Search
+              </Button>
+              <Button
+                onClick={this.clearSearch}
+              >Clear
+              </Button>
+            {/* </div> */}
+        </Form>
       </SpecialDiv>
        {/* </Form.Input> */}
        
-{/* dictionary table  */}
-
+{/* dictionary table - for computer and tablet only */}
       <Grid columns={2}>
-        <Grid.Column>
-          <Div>
-            <InfiniteScroll
-              pageStart={page}
-              loadMore={this.loadMore}
-              hasMore={ page < total_pages }
-              loader={<Loader />}
-              useWindow={false}
-            >
+        <Grid.Row only='computer tablet'>
+          <Grid.Column>
+            <Div>
+              <InfiniteScroll
+                pageStart={page}
+                loadMore={this.loadMore}
+                hasMore={ page < total_pages }
+                loader={<Loader />}
+                useWindow={false}
+              >
+                <Grid celled='internally'>
+                  <Grid.Row>
+                    <Grid.Column width={6} verticalAlign='middle'>
+                      <ColumnHead>
+                        English
+                      </ColumnHead>
+                    </Grid.Column>
+                    <Grid.Column width={6} verticalAlign='middle'>
+                      <ColumnHead>
+                        Alutiiq
+                      </ColumnHead>
+                    </Grid.Column>
+                    <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
+                      <ColumnHead>
+                        Details
+                      </ColumnHead>
+                    </Grid.Column>
+                  </Grid.Row>
+                    {searchView === true ?
+                      this.renderSearchWords()
+                      :
+                      this.words() 
+                    }
+                </Grid>
+              </InfiniteScroll>
+            </Div>
+          </Grid.Column>
 
-              <Grid celled='internally'>
-                <Grid.Row>
-                  <Grid.Column width={6} verticalAlign='middle'>
-                    <ColumnHead>
-                      English
-                    </ColumnHead>
-                  </Grid.Column>
-                  <Grid.Column width={6} verticalAlign='middle'>
-                    <ColumnHead>
-                      Alutiiq
-                    </ColumnHead>
-                  </Grid.Column>
-                  <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
-                    <ColumnHead>
-                      Details
-                    </ColumnHead>
-                  </Grid.Column>
-                </Grid.Row>
-                  {searchView === true ?
-                    this.renderSearchWords()
-                    :
-                    this.words() 
-                  }
-              </Grid>
-            </InfiniteScroll>
-          </Div>
-        </Grid.Column>
-
-        {/* Word View */}
-
+{/* Word View */}
         <Grid.Column>
           {this.state.wordView === false ?
           <Watermark>
             Click on a word to view details
           </Watermark>
           :
-            this.renderWordView()
-          }
+          this.renderWordView()
+        }
         </Grid.Column>
+      </Grid.Row>
+    </Grid>
+
+{/* dictionary table - mobile only  */}
+  <Grid>
+    <Grid.Row only='mobile'>
+    {/* word view */}
+      <Grid.Column>
+          {this.state.wordView === false ?
+          <Watermark>
+            Click on a word to view details
+          </Watermark>
+          :
+          this.renderWordView()
+        }
+        </Grid.Column>
+      </Grid.Row>
+    {/* dictionary list of words */}
+      <Grid.Row only='mobile'>
+        <Grid.Column>
+            <Div>
+              <InfiniteScroll
+                pageStart={page}
+                loadMore={this.loadMore}
+                hasMore={ page < total_pages }
+                loader={<Loader />}
+                useWindow={false}
+              >
+                <Grid celled='internally'>
+                  <Grid.Row>
+                    <Grid.Column width={6} verticalAlign='middle'>
+                      <ColumnHead>
+                        English
+                      </ColumnHead>
+                    </Grid.Column>
+                    <Grid.Column width={6} verticalAlign='middle'>
+                      <ColumnHead>
+                        Alutiiq
+                      </ColumnHead>
+                    </Grid.Column>
+                    <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
+                      <ColumnHead>
+                        Details
+                      </ColumnHead>
+                    </Grid.Column>
+                  </Grid.Row>
+                    {searchView === true ?
+                      this.renderSearchWords()
+                      :
+                      this.words() 
+                    }
+                </Grid>
+              </InfiniteScroll>
+            </Div>
+          </Grid.Column>
+      </Grid.Row>
       </Grid>
     </Fragment>
     )

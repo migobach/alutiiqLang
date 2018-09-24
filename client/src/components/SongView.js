@@ -14,11 +14,11 @@ import {
 
 
 const paddingStyle = { 
-  paddingTop: '30px',
+  paddingTop: '2em',
 }
 
 const iconPad = {
-  paddingTop: '50px',
+  paddingTop: '2.5em',
 }
 
 class SongView extends Component {
@@ -60,9 +60,11 @@ class SongView extends Component {
           {this.props.song.audio ?
             <ReactPlayer 
               url={this.props.song.audio}
-              playing
+              // playing='false'
               controls='true'
-              height='60px'
+              height='5em'
+              width='22em'
+              loop='false'
             />
             :
             null
@@ -74,9 +76,11 @@ class SongView extends Component {
             <div style={paddingStyle}>
             <ReactPlayer 
               url={this.props.song.video}
-              playing
+              playing='false'
               controls='true'
-              height='350px'
+              height='17em'
+              width='22em'
+              
             />
             </div>
             :

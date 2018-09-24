@@ -143,12 +143,12 @@ class Songs extends Component {
                 {_.times(1, i => 
                   <Grid celled='internally' key={i}>
                     <Grid.Row>
-                      <Grid.Column computer={6} tablet={6}>
+                      <Grid.Column computer={6} tablet={6} textAlign='center'>
                         <ColumnHead>
                           Alutiiq Title
                         </ColumnHead>
                       </Grid.Column>
-                      <Grid.Column width={6} only='computer tablet'>
+                      <Grid.Column width={6} only='computer tablet' textAlign='center'>
                         <ColumnHead>
                           English Title
                         </ColumnHead>

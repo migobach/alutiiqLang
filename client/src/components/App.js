@@ -7,7 +7,6 @@ import {
   Responsive,
   Icon,
 } from 'semantic-ui-react'
-import { SpecialDiv } from './styles/CommonStyles'
 import ProtectedRoute from './ProtectedRoute'
 import NoMatch from './NoMatch'
 import Home from './Home'
@@ -24,6 +23,10 @@ import Login from './Login'
 import Register from './Register'
 import Footer from './Footer'
 
+const menuPad = {
+  padding: '1em',
+}
+
 class App extends Component {
   state = { visible: false }
 
@@ -39,7 +42,7 @@ class App extends Component {
         </Responsive>
         
         <Responsive maxWidth={767}>
-          <SpecialDiv>
+          <div style={menuPad}>
             <Menu.Item 
               as={Button}
               onClick={this.handleButtonClick}
@@ -49,7 +52,7 @@ class App extends Component {
             >
               <Icon name='align justify'/>
             </Menu.Item>
-          </SpecialDiv>
+          </div>
         </Responsive>
 
           {/* <Sidebar.Pushable as={Segment}> */}
