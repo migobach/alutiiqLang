@@ -156,9 +156,9 @@ export const ContainerPad = styled.div`
 `
 
 export const Div = styled.div`
-  height: 25em;
+  height: 35em;
   width: auto;
-  padding: 2em;
+  padding: 1em;
   overflow: auto;
 `
 

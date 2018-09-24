@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 // import axios from 'axios'
 import { connect } from 'react-redux'
-// import InfiniteScroll from 'react-infinite-scroller'
+import InfiniteScroll from 'react-infinite-scroller'
 import { getMaterials } from '../reducers/materials'
 import DocumentMeta from 'react-document-meta'
 import { 
@@ -11,6 +11,7 @@ import {
   Card,
   Button,
   Icon,
+  Form,
  } from 'semantic-ui-react'
 import {
   SpecialDiv,
@@ -23,6 +24,7 @@ import {
   ContainerPad,
   CardHeader,
   ColumnHead,
+  Div,
 } from './styles/CommonStyles'
 import Alisha from '../images/alisha.jpg'
 import OutsideLinks from './materials/OutsideLinks'
@@ -31,9 +33,12 @@ import Posters from './materials/Posters'
 import Games from './materials/Games'
 import Stories from './materials/Stories'
 
+const materialsView = {
+  height: '20em',
+}
 
 class Materials extends Component {
-  state = { compMaterials: [], page: 1, total_pages: 0, outsideLinks: false, booksComp: false, postersComp: false, gamesComp: false, storiesComp: false }
+  state = { compMaterials: [], searchResources: '', searchView: false, page: 1, total_pages: 0, outsideLinks: false, booksComp: false, postersComp: false, gamesComp: false, storiesComp: false }
   
   componentDidMount() {
     const { dispatch } = this.props
@@ -81,6 +86,14 @@ class Materials extends Component {
       return <SpecialDiv />
   }
 
+  clearSearch = () => {
+    this.setState({ searchView: false, searchResources: '' })
+  }
+
+  handleChange = (e, { name, value}) => {
+    this.setState({ [name]: value })
+  }
+
   // WIP - need to figure out if I would like to use the infite scrtolling here, or pagination. What is the most logical way to implement this? How will people be interacting? 
   
   // loadMore = () => {
@@ -97,17 +110,17 @@ class Materials extends Component {
     const { compMaterials } = this.state
     return compMaterials.map( material => 
       <Grid.Row key={material.id}>
-        <Grid.Column width={6} verticalAlign='middle'>
+        <Grid.Column computer={6} tablet={6} mobile={10} verticalAlign='middle'>
           <ContentStyle>
             <i>{material.resource_title}</i>
           </ContentStyle>
         </Grid.Column>
-        <Grid.Column width={6} verticalAlign='middle'>
+        <Grid.Column width={6} verticalAlign='middle' only='computer tablet'>
           <ContentStyle>
             {material.subjects}
           </ContentStyle>
         </Grid.Column>
-        <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
+        <Grid.Column computer={4} tablet={4} mobile={6} textAlign='center' verticalAlign='middle'>
           {
             material.file_url ? 
             // Need to interpolate: http://alutiiqeducation.org/files/resource_pdf/{material.file_url}
@@ -129,13 +142,12 @@ class Materials extends Component {
       name:"viewport",
       content:"width=device-width, initial-scale=1"
     }
-    const { total_pages, page } = this.state
+    const { searchResources, searchView } = this.state
 
     return(
       
       <Fragment>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-      <DocumentMeta {...meta} />
+       
       <SpecialDiv>
         <Header textAlign='center'>
           <SectionHead>
@@ -331,9 +343,31 @@ class Materials extends Component {
             </Grid.Row>
           </Grid>
         </GreenDiv>
+      
+    {/* search field and buttons   */}
 
+        <SpecialDiv>
+          <Form>
+            <Form.Input
+              placeholder='Search Resources...'
+              name='searchResources'
+              value={searchResources}
+              onChange={this.handleChange}
+              fluid
+            />
+            <Button
+              content='search'
+              icon='search'
+              labelPosition='right'
+              name='searchView'
+              value={true}
+              onClick={this.handlChange}
+            />
+    
+          </Form>
+        </SpecialDiv>
 
-        {/* database table */}
+    {/* database table */}
       
       <SpecialDiv>
        {/* <InfiniteScroll
@@ -343,29 +377,30 @@ class Materials extends Component {
          loader={<Loader />}
          useWindow={false}
        > */}
+        <Div>
+          <Grid celled='internally'>
+            <Grid.Row>
+              <Grid.Column computer={6} tablet={6} mobile={10} verticalAlign='middle'>
+                <ColumnHead>
+                  Title
+                </ColumnHead>
+              </Grid.Column>
+              <Grid.Column width={6} verticalAlign='middle' only='computer tablet'>
+                <ColumnHead>
+                  Subject
+                </ColumnHead>
+              </Grid.Column>
+              <Grid.Column computer={4} tablet={4} mobile={6} textAlign='center' verticalAlign='middle'>
+                <ColumnHead>
+                  View
+                </ColumnHead>
+              </Grid.Column>
+            </Grid.Row>
 
-        <Grid celled='internally'>
-          <Grid.Row>
-            <Grid.Column width={6} verticalAlign='middle'>
-              <ColumnHead>
-                Title
-              </ColumnHead>
-            </Grid.Column>
-            <Grid.Column width={6} verticalAlign='middle'>
-              <ColumnHead>
-                Subject
-              </ColumnHead>
-            </Grid.Column>
-            <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
-              <ColumnHead>
-                View
-              </ColumnHead>
-            </Grid.Column>
-          </Grid.Row>
+              { this.materials() }
 
-            { this.materials() }
-
-        </Grid>
+          </Grid>
+        </Div>
         {/* </InfiniteScroll> */}
       </SpecialDiv>
     </Fragment>

@@ -22,11 +22,6 @@ import {
 } from './styles/CommonStyles'
 import DictionaryView from './DictionaryView'
 
-const buttonDiv = {
-  padding: '1em',
-  textAlign: 'center'
-}
-
 class Dictionary extends Component {
 
   state = { dictionaryWords: [], page: 1, total_pages: 0, searchTerms: '', wordView: false, wordData: {}, searchView: false }
@@ -150,22 +145,18 @@ class Dictionary extends Component {
         </ContentStyleWhite>
       </BlueDiv>
       
-      
 {/* Search Function */}
       <SpecialDiv>
         <Form>
-          {/* <div style={buttonDiv}> */}
           <Form.Input
             placeholder="Search Words..."
             autoFocus={"true"}
             name='searchTerms'
             value={searchTerms}
             onChange={this.handleChange}
-            width={8}
             fluid
             />
               <Button
-                
                 name='searchView'
                 value={true}
                 onClick={this.handleChange}
