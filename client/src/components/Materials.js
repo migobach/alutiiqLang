@@ -106,6 +106,43 @@ class Materials extends Component {
   //     })
   // }
   
+  renderSearchMaterials = () => {
+    const { searchResources, compMaterials } = this.state
+
+    let filtered_materials = compMaterials.filter( e =>
+      e.resource_title.includes(searchResources) )
+
+    return(
+      filtered_materials.map( (material) =>
+        <Grid.Row key={material.id}>
+          <Grid.Column computer={6} tablet={6} mobile={10} verticalAlign='middle'>
+            <ContentStyle>
+              <i>{material.resource_title}</i>
+            </ContentStyle>
+          </Grid.Column>
+          <Grid.Column width={6} verticalAlign='middle' only='computer tablet'>
+            <ContentStyle>
+              {material.subjects}
+            </ContentStyle>
+          </Grid.Column>
+          <Grid.Column computer={4} tablet={4} mobile={6} textAlign='center' verticalAlign='middle'>
+            {
+              material.file_url ? 
+              // Need to interpolate: http://alutiiqeducation.org/files/resource_pdf/{material.file_url}
+              <a href={"http://alutiiqeducation.org/files/resource_pdf/".concat(material.file_url)}>
+                <Icon name='eye' size='large' color='grey' />
+              </a>
+              : 
+              <a href={material.url}>
+              <Icon name='linkify' size='large' color='grey' />
+              </a>
+            }
+          </Grid.Column>
+        </Grid.Row>
+      )
+    )
+  }
+
   materials = () => {
     const { compMaterials } = this.state
     return compMaterials.map( material => 
@@ -361,7 +398,7 @@ class Materials extends Component {
               labelPosition='right'
               name='searchView'
               value={true}
-              onClick={this.handlChange}
+              onClick={this.handleChange}
             />
     
           </Form>
@@ -397,7 +434,11 @@ class Materials extends Component {
               </Grid.Column>
             </Grid.Row>
 
-              { this.materials() }
+            { searchView === true ?
+              this.renderSearchMaterials()
+              :
+              this.materials() 
+            }
 
           </Grid>
         </Div>

@@ -86,9 +86,7 @@ class Dictionary extends Component {
           </ContentStyle>
         </Grid.Column>
         <Grid.Column width={6} verticalAlign='middle'>
-          
             <i>{this.handleNorthSouth(word)}</i>
-          
         </Grid.Column>
         
         <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
@@ -97,7 +95,6 @@ class Dictionary extends Component {
       </Grid.Row>
       )
     })
-   
   }
 
   renderSearchWords = () => {
@@ -123,8 +120,7 @@ class Dictionary extends Component {
         </Grid.Column>
       </Grid.Row>
       )
-    )
-    
+    ) 
   }
 
   render() {
