@@ -109,8 +109,9 @@ class Materials extends Component {
   renderSearchMaterials = () => {
     const { searchResources, compMaterials } = this.state
 
-    let filtered_materials = compMaterials.filter( e =>
-      e.resource_title.includes(searchResources) )
+    let filtered_materials = compMaterials.filter( i =>
+      i.resource_title.includes(searchResources) )
+      // debugger
 
     return(
       filtered_materials.map( (material) =>
