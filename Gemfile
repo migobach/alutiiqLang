@@ -10,6 +10,7 @@ gem 'omniauth'
 gem 'devise'
 gem 'devise_token_auth'
 gem 'kaminari'
+gem 'dotenv-rails'
 
 
 group :development, :test do
