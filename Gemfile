@@ -11,6 +11,7 @@ gem 'devise'
 gem 'devise_token_auth'
 gem 'kaminari'
 gem 'dotenv-rails'
+gem 'aws-sdk'
 
 
 group :development, :test do
