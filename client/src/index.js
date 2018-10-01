@@ -17,8 +17,6 @@ ReactDOM.render(
 );
 // registerServiceWorker();
 
-
-
 // could use the below: this will allow a global font 
 
 // import { injectGlobal } from 'styled-components'
@@ -35,4 +33,4 @@ ReactDOM.render(
 
 //the not(i) would exclude the icons, which are fonts
 
-// couls also refactor the colors using the theme provider from styled component and then just call props.theme.blue, for example. 
+// could also refactor the colors using the theme provider from styled component and then just call props.theme.blue, for example. 

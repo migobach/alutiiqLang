@@ -13,8 +13,6 @@ export const getSongs = () => {
   }
 }
 
-
-
 export default ( state=[], action ) => {
   switch(action.type){
     case SONGS:
