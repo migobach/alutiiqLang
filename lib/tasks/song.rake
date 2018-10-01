@@ -2,7 +2,7 @@ require 'csv'
 
 namespace :song do
   task database: :environment do
-    csv_text = File.read(Rails.root.join('lib', 'seeds', 'newSongsAws.csv'))
+    csv_text = File.read(Rails.root.join('lib', 'seeds', 'songaws.csv'))
     puts csv_text
     csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
     
