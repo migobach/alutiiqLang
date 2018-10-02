@@ -103,6 +103,9 @@ class Dictionary extends Component {
     let filtered_words = dictionaryWords.filter( e => 
       e.english.includes(searchTerms) )
 
+      // add the other terms here something like e.alutiiq_north.include(searchTerms)
+      
+
     return(
       filtered_words.map( (word)  =>
       <Grid.Row key={word.id}>
@@ -127,7 +130,7 @@ class Dictionary extends Component {
     const { total_pages, searchTerms, page, searchView } = this.state
     return(
 
-// fist section describing the dictiona and welcoming user
+// fist section describing the dictionary and welcoming user
 
     <Fragment>
       <BlueDiv>

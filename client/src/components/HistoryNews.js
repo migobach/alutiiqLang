@@ -69,7 +69,7 @@ class HistoryNews extends Component {
               <Grid.Row columns={5}>
                 <Grid.Column width={2}/>
                 <Grid.Column textAlign='center' width={5}>
-                  <a href='https://www.facebook.com/alutiiqlanguage/'>
+                  <a href='https://www.facebook.com/alutiiqlanguage/' target='_blank'>
                   <SpecialDiv>
                     <Button color='facebook' size='huge'>
                       <Icon name='facebook'/> Facebook
@@ -79,7 +79,7 @@ class HistoryNews extends Component {
                 </Grid.Column>
                 <Grid.Column width={1}/>
                 <Grid.Column textAlign='center' width={5}>
-                  <a href='https://www.instagram.com/alutiiqlearners/?hl=en'>
+                  <a href='https://www.instagram.com/alutiiqlearners/?hl=en' target='_blank'>
                   <SpecialDiv>
                     <Button color='instagram' size='huge'>
                       <Icon name='instagram'/> Instagram

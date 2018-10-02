@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import ReactPlayer from 'react-player'
 import {
   Divider,
@@ -40,7 +40,7 @@ class SongView extends Component {
 
   render() {
     return(
-      <div>
+      <Fragment>
         <SpecialDiv>
           <SongHead>
             <i>{this.props.song.title_alutiiq}</i>
@@ -50,10 +50,15 @@ class SongView extends Component {
           <ContentStyle>
             {this.props.song.title_english}
           </ContentStyle>
-
+        
+        {/* shared by ternary  */}
+        {this.props.song.credit ?
           <ContentStyle>
             Shared by: {this.props.song.credit}
           </ContentStyle>
+          :
+          null
+        }
 
         {/* Audio ternary  */}
 
@@ -63,7 +68,7 @@ class SongView extends Component {
               // playing='false'
               controls='true'
               height='5em'
-              width='22em'
+              width='25em'
               loop='false'
             />
             :
@@ -79,7 +84,7 @@ class SongView extends Component {
               playing='false'
               controls='true'
               height='17em'
-              width='22em'
+              width='30em'
               
             />
             </div>
@@ -142,7 +147,7 @@ class SongView extends Component {
           }
            
         </SpecialDiv>
-      </div>
+      </Fragment>
     )
   }
 

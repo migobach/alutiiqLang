@@ -23,6 +23,7 @@ import {
   IconLink,
   Watermark,
   SongDiv,
+
 } from './styles/CommonStyles'
 import SongView from './SongView'
 
@@ -162,21 +163,21 @@ class Songs extends Component {
                       { this.songs() }
                   </Grid>
                 )}
-
-                <Rail position='right'>
-                  <Sticky context={contextRef} as={SongDiv}>
-                  { this.state.songView === false ?
-                    <SpecialDiv>
-                      <Watermark>
-                        Click on a song to view 
-                      </Watermark>
-                    </SpecialDiv>
-                  :
-                    this.renderingSongView() 
-                  
-                  }
-                  </Sticky>
-                </Rail>
+                  <Rail position='right'>
+                
+                    <Sticky context={contextRef} as={SongDiv}>
+                    { this.state.songView === false ?
+                      <SongDiv>
+                        <Watermark>
+                          Click on a song to view 
+                        </Watermark>
+                      </SongDiv>
+                    :
+                      this.renderingSongView() 
+                    }
+                    </Sticky>
+                
+                  </Rail>
               </SpecialDiv>
            </div>
         </Grid.Column>  

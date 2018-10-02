@@ -125,7 +125,7 @@ export const SpecialDiv = styled.div`
 `
 
 export const SongDiv = SpecialDiv.extend`
-  width: 20em;
+  width: 35em;
   padding: .5em;
 `
 
