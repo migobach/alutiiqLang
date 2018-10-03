@@ -72,6 +72,65 @@ class DictionaryView extends Component {
     }
   }
 
+  handleAudio = () => {
+    if (this.props.word.north_audio === this.props.word.south_audio) {
+      return(<ReactPlayer
+        url={this.props.word.north_audio}
+        controls='true'
+        height='5em'
+        width='25em'
+        loop='false'
+      />)
+    } else if (this.props.word.north_audio === null) {
+      return(<ReactPlayer
+        url={this.props.word.south_audio}
+        controls='true'
+        height='5em'
+        width='25em'
+        loop='false'
+      />)
+    } else if (this.props.word.south_audio === null) {
+      return(<ReactPlayer
+        url={this.props.word.north_audio}
+        controls='true'
+        height='5em'
+        width='25em'
+        loop='false'
+      />)
+    } else if ( this.props.word.north_audio && this.props.word.south_audio) {
+      return(<Grid>
+        <Grid.Row>
+          <Grid.Column width={8} stretched>
+            <ContentStyle>
+              Northern Style Alutiiq:
+            </ContentStyle>
+              <ReactPlayer
+              url={this.props.word.north_audio}
+              controls='true'
+              height='5em'
+              width='15em'
+              loop='false'
+            />
+          </Grid.Column>
+          <Grid.Column width={8} stretched>
+            <ContentStyle>
+              Southern Style Alutiiq:
+            </ContentStyle>
+              <ReactPlayer
+              url={this.props.word.south_audio}
+              controls='true'
+              height='5em'
+              width='15em'
+              loop='false'
+            />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>)
+    } else {
+      return ''
+    }
+  }
+
   render() {
     return(
       <div>
@@ -88,8 +147,12 @@ class DictionaryView extends Component {
           <ContentStyle style={englishStyle}>
             {this.props.word.english}
           </ContentStyle>
+        
+          { this.handleAudio() }
+
+          <Divider hidden />
           
-          {this.handleSentence()}
+          { this.handleSentence() }
 
           <Divider hidden />
           <Divider hidden />

@@ -63,7 +63,7 @@ class SongView extends Component {
         {/* Audio ternary  */}
 
           {this.props.song.audio ?
-            <ReactPlayer 
+            <widthPlayer 
               url={this.props.song.audio}
               // playing='false'
               controls='true'
