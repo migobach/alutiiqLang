@@ -63,7 +63,7 @@ class SongView extends Component {
         {/* Audio ternary  */}
 
           {this.props.song.audio ?
-            <widthPlayer 
+            <ReactPlayer 
               url={this.props.song.audio}
               // playing='false'
               controls='true'
@@ -81,7 +81,7 @@ class SongView extends Component {
             <div style={paddingStyle}>
             <ReactPlayer 
               url={this.props.song.video}
-              playing='false'
+              // playing='false'
               controls='true'
               height='17em'
               width='30em'
