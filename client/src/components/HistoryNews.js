@@ -17,10 +17,6 @@ import Revitalization from './happenings/Revitalization'
 import Worldview from './happenings/Worldview'
 import News from './happenings/AlutiiqNews'
 
- const xtrapadding = {
-  padding: '50px',
-}
-
 class HistoryNews extends Component { 
   state = { revitalizationComp: false, worldviewComp: false, newsComp: false }
 
@@ -69,7 +65,7 @@ class HistoryNews extends Component {
               <Grid.Row columns={5}>
                 <Grid.Column width={2}/>
                 <Grid.Column textAlign='center' width={5}>
-                  <a href='https://www.facebook.com/alutiiqlanguage/' target='_blank'>
+                  <a href='https://www.facebook.com/alutiiqlanguage/' rel='noopener noreferrer' target='_blank'>
                   <SpecialDiv>
                     <Button color='facebook' size='huge'>
                       <Icon name='facebook'/> Facebook
@@ -79,7 +75,7 @@ class HistoryNews extends Component {
                 </Grid.Column>
                 <Grid.Column width={1}/>
                 <Grid.Column textAlign='center' width={5}>
-                  <a href='https://www.instagram.com/alutiiqlearners/?hl=en' target='_blank'>
+                  <a href='https://www.instagram.com/alutiiqlearners/?hl=en' rel='noopener noreferrer' target='_blank'>
                   <SpecialDiv>
                     <Button color='instagram' size='huge'>
                       <Icon name='instagram'/> Instagram

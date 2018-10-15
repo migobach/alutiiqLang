@@ -148,14 +148,25 @@ class DictionaryView extends Component {
             {this.props.word.english}
           </ContentStyle>
         
-          { this.handleAudio() }
+    {/* Audio player ternery */}
+          {
+          this.props.word.audio_north === null && this.props.word.audio_south === null ?
+          null
+          :
+          this.handleAudio()
+          }
 
           <Divider hidden />
-          
-          { this.handleSentence() }
 
-          <Divider hidden />
-          <Divider hidden />
+    {/* Sentence ternery */}
+          { 
+          this.props.word.north_sentence === null && this.props.word.south_sentence === null ?
+          null 
+          : 
+          this.handleSentence()
+          }
+
+          <Divider hidden/>
 
           <ContentStyle>
             Part of speech: {this.props.word.part_of_speech}
