@@ -7,7 +7,7 @@ import {
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
-  SongHead,
+  WordStyle,
   ContentStyle,
 } from './styles/CommonStyles'
 
@@ -21,10 +21,8 @@ class DictionaryView extends Component {
     if (this.props.word.north_sentence === this.props.word.south_sentence &&  this.props.word.north_sentence != null) {
       return(<ContentStyle> Example sentence: {this.props.word.north_sentence}</ContentStyle>)
     } else if (this.props.word.north_sentence != null) {
-      // debugger
       return((<ContentStyle>Northern style example sentence: {this.props.word.north_sentence}</ContentStyle>))
     } else if (this.props.word.south_sentence != null) {
-      // debugger
       return((<ContentStyle> Southern style example sentence: {this.props.word.south_sentence}</ContentStyle>))
     } else {
       return ''
@@ -35,34 +33,34 @@ class DictionaryView extends Component {
     if (this.props.word.alutiiq_north === null) {
       return(
       <div>
-        <SongHead>
+        <WordStyle>
           <i>{this.props.word.alutiiq_south}</i>
-        </SongHead>
+        </WordStyle>
       </div>
       )
     } else if (this.props.word.alutiiq_south === null) {
       return(
       <div>
-        <SongHead>
+        <WordStyle>
           <i>{this.props.word.alutiiq_north}</i>
-        </SongHead>
+        </WordStyle>
       </div>
       )
     } else {
       return(
           <Grid columns={2}>
             <Grid.Column>
-              <SongHead>
+              <WordStyle>
                 <i>{this.props.word.alutiiq_north}</i>
-              </SongHead>
+              </WordStyle>
               <ContentStyle>
                 Northern Style Alutiiq 
               </ContentStyle>
             </Grid.Column>
             <Grid.Column>
-              <SongHead>
+              <WordStyle>
                 <i>{this.props.word.alutiiq_south}</i>
-              </SongHead>
+              </WordStyle>
               <ContentStyle>
                 Southern Style Alutiiq 
               </ContentStyle>
@@ -137,9 +135,9 @@ class DictionaryView extends Component {
         <SpecialDiv>
             {
               this.props.word.alutiiq_north === this.props.word.alutiiq_south ?
-                <SongHead>
+                <WordStyle>
                   <i>{this.props.word.alutiiq_north}</i>
-                </SongHead>
+                </WordStyle>
               :
               this.handleWord() 
             }
@@ -150,13 +148,13 @@ class DictionaryView extends Component {
         
     {/* Audio player ternery */}
           {
-          this.props.word.audio_north === null && this.props.word.audio_south === null ?
+          this.props.word.north_audio === null && this.props.word.south_audio === null ?
           null
           :
           this.handleAudio()
           }
 
-          <Divider hidden />
+        <Divider hidden />
 
     {/* Sentence ternery */}
           { 

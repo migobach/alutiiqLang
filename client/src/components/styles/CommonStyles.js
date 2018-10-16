@@ -51,6 +51,7 @@ export const ColumnHead = styled.h3`
   line-height: 1.5;
 `
 
+// at the top of each main page (i.e. songs, materials, etc.)
 export const SectionHead = styled.h3`
   color: #FBBD08;
   font-size: 1.5em;
@@ -61,6 +62,11 @@ export const SectionHead = styled.h3`
 export const SongHead = styled.h3`
   color: #FBBD08;
   font-size: 1.5em;
+`
+
+export const WordStyle = styled.h3`
+  color: #FBBD08;
+  font-size: 2.5em;
 `
 
 // green focused blocks header
@@ -82,11 +88,10 @@ export const ContentHead = styled.h3`
   padding: .5em;
 `
 
+// removed padding: .5em in order to make the dictionary view a bit cleaner - not sure how it will impact everything else. 
 export const ContentStyle = styled.p`
   font-size: 1em;
-  padding: .5em;
   color: #A9A9A9;
-  
 `
 
 export const SongStyle = styled.p`
@@ -95,7 +100,7 @@ color: #A9A9A9;
 text-align: center;
 padding: 1em;
 `
-
+//////////////////////////////////////////////////////////////////make sure to change all the px to em - below is a 14 px. 
 export const ContentStyleWhite = styled.div`
   color: white;
   line-height: 2;
