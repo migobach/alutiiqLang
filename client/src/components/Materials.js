@@ -33,10 +33,6 @@ import Posters from './materials/Posters'
 import Games from './materials/Games'
 import Stories from './materials/Stories'
 
-const materialsView = {
-  height: '20em',
-}
-
 class Materials extends Component {
   state = { compMaterials: [], searchResources: '', searchView: false, page: 1, total_pages: 0, outsideLinks: false, booksComp: false, postersComp: false, gamesComp: false, storiesComp: false }
   
@@ -93,25 +89,18 @@ class Materials extends Component {
   handleChange = (e, { name, value}) => {
     this.setState({ [name]: value })
   }
-
-  // WIP - need to figure out if I would like to use the infite scrtolling here, or pagination. What is the most logical way to implement this? How will people be interacting? 
-  
-  // loadMore = () => {
-  //   const page = this.state.page + 1
-  //   axios.get(`/api/materials?page=${page}`)
-  //     .then( ({ data }) => {
-  //       this.setState(state => {
-  //         return{ dictionaryWords: [...state.compMaterials, ...data.materials], page: state.page + 1 }
-  //       })
-  //     })
-  // }
   
   renderSearchMaterials = () => {
     const { searchResources, compMaterials } = this.state
 
-    let filtered_materials = compMaterials.filter( i =>
-      i.resource_title.includes(searchResources) )
-      // debugger
+    const lowerCaseSearch = searchResources.toLowerCase() 
+
+    let filtered_materials = compMaterials.filter( i => 
+      i.resource_title.toLowerCase().includes(lowerCaseSearch) )
+
+
+    // let filtered_materials = compMaterials.filter( i =>
+    //   i.resource_title.includes(searchResources) )
 
     return(
       filtered_materials.map( (material) =>
