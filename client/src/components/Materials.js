@@ -98,10 +98,6 @@ class Materials extends Component {
     let filtered_materials = compMaterials.filter( i => 
       i.resource_title.toLowerCase().includes(lowerCaseSearch) )
 
-
-    // let filtered_materials = compMaterials.filter( i =>
-    //   i.resource_title.includes(searchResources) )
-
     return(
       filtered_materials.map( (material) =>
         <Grid.Row key={material.id}>

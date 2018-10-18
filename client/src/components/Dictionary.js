@@ -100,8 +100,10 @@ class Dictionary extends Component {
   renderSearchWords = () => {
     const { searchTerms, dictionaryWords } = this.state
 
+    const lowerCaseSearchWord = searchTerms.toLowerCase()
+
     let filtered_words = dictionaryWords.filter( e => 
-      e.english.includes(searchTerms) )
+      e.english.toLowerCase().includes(lowerCaseSearchWord) )
 
       // add the other terms here something like e.alutiiq_north.include(searchTerms)
       
