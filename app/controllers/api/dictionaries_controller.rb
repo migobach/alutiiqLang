@@ -3,9 +3,10 @@ class Api::DictionariesController < ApplicationController
   before_action :set_page
   
   def index
-    dictionaries = Dictionary.page(@page)
-    total_pages = dictionaries.total_pages
-    render json: { dictionaries: dictionaries, total_pages: total_pages}
+    render json: Dictionary.all
+    # dictionaries = Dictionary.page(@page)
+    # total_pages = dictionaries.total_pages
+    # render json: { dictionaries: dictionaries, total_pages: total_pages}
   end
 
   def show

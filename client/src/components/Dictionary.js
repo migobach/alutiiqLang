@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 import InfiniteScroll from 'react-infinite-scroller'
 import { connect } from 'react-redux'
+import { getWords } from '../reducers/dictionary'
 import {  
   Header,
   Grid,
@@ -27,21 +28,19 @@ class Dictionary extends Component {
   state = { dictionaryWords: [], page: 1, total_pages: 0, searchTerms: '', wordView: false, wordData: {}, searchView: false }
 
   componentDidMount() {
-    axios.get('/api/dictionaries')
-      .then( res => { 
-          this.setState({ dictionaryWords: res.data.dictionaries, total_pages: res.data.total_pages  })
-      })
+    const { dispatch } = this.props
+    dispatch(getWords())
   }
 
-  loadMore = () => {
-    const page = this.state.page + 1
-    axios.get(`/api/dictionaries?page=${page}`)
-      .then( ({ data }) => {
-        this.setState(state => {
-          return{ dictionaryWords: [...state.dictionaryWords, ...data.dictionaries], page: state.page + 1 }
-        })
-      })
-  }
+  // loadMore = () => {
+  //   const page = this.state.page + 1
+  //   axios.get(`/api/dictionaries?page=${page}`)
+  //     .then( ({ data }) => {
+  //       this.setState(state => {
+  //         return{ dictionaryWords: [...state.dictionaryWords, ...data.dictionaries], page: state.page + 1 }
+  //       })
+  //     })
+  // }
 
   setWord = (word) => {
     this.setState( { wordData: {...word}, wordView: true})
@@ -76,8 +75,9 @@ class Dictionary extends Component {
   }
   
   words = () => {
-    const { dictionaryWords } = this.state
-    return dictionaryWords.map( word => {
+    // const { dictionaryWords } = this.state
+    // return dictionaryWords.map( word => {
+    return this.props.words.map( word => {
       return(
       <Grid.Row key={word.id}>
         <Grid.Column width={6} verticalAlign='middle'>
@@ -98,7 +98,8 @@ class Dictionary extends Component {
   }
 
   renderSearchWords = () => {
-    const { searchTerms, dictionaryWords } = this.state
+    const searchTerms = this.state
+    const dictionaryWords = this.props.words
 
     const lowerCaseSearchWord = searchTerms.toLowerCase()
 
@@ -177,13 +178,13 @@ class Dictionary extends Component {
         <Grid.Row only='computer tablet'>
           <Grid.Column>
             <Div>
-              <InfiniteScroll
+              {/* <InfiniteScroll
                 pageStart={page}
                 loadMore={this.loadMore}
                 hasMore={ page < total_pages }
                 loader={<Loader />}
                 useWindow={false}
-              >
+              > */}
                 <Grid celled='internally'>
                   <Grid.Row>
                     <Grid.Column width={6} verticalAlign='middle'>
@@ -208,7 +209,7 @@ class Dictionary extends Component {
                       this.words() 
                     }
                 </Grid>
-              </InfiniteScroll>
+              {/* </InfiniteScroll> */}
             </Div>
           </Grid.Column>
 
@@ -286,5 +287,10 @@ class Dictionary extends Component {
 
 }
 
+const mapStateToProps = (state) => {
+  return{
+    words: state.words
+  }
+}
 
-export default connect()(Dictionary)
+export default connect(mapStateToProps)(Dictionary)
