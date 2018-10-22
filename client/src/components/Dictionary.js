@@ -98,9 +98,8 @@ class Dictionary extends Component {
   }
 
   renderSearchWords = () => {
-    const searchTerms = this.state
+    const searchTerms = this.state.searchTerms
     const dictionaryWords = this.props.words
-
     const lowerCaseSearchWord = searchTerms.toLowerCase()
 
     let filtered_words = dictionaryWords.filter( e => 
