@@ -1,9 +1,6 @@
 import React, { Component, Fragment } from 'react'
-// import axios from 'axios'
 import { connect } from 'react-redux'
-import InfiniteScroll from 'react-infinite-scroller'
 import { getMaterials } from '../reducers/materials'
-import DocumentMeta from 'react-document-meta'
 import { 
   Header, 
   Image,
@@ -161,16 +158,10 @@ class Materials extends Component {
   }
 
   render() {
-    const meta = {
-      name:"viewport",
-      content:"width=device-width, initial-scale=1"
-    }
     const { searchResources, searchView } = this.state
 
     return(
-      
-      <Fragment>
-       
+    <Fragment>
       <SpecialDiv>
         <Header textAlign='center'>
           <SectionHead>

@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import InfiniteScroll from 'react-infinite-scroller'
 import { connect } from 'react-redux'
 import { getWords } from '../reducers/dictionary'
 import {  
@@ -7,7 +6,6 @@ import {
   Grid,
   Icon, 
   Form,
-  Loader,
   Button,
 } from 'semantic-ui-react'
 import {
@@ -22,24 +20,17 @@ import {
 } from './styles/CommonStyles'
 import DictionaryView from './DictionaryView'
 
+const r = '\u{0280}'
+const russianR = new RegExp(`[${r}]`,'g');
+
 class Dictionary extends Component {
 
-  state = { dictionaryWords: [], page: 1, total_pages: 0, searchTerms: '', wordView: false, wordData: {}, searchView: false }
+  state = { dictionaryWords: [], searchTerms: '', wordView: false, wordData: {}, searchView: false }
 
   componentDidMount() {
     const { dispatch } = this.props
     dispatch(getWords())
   }
-
-  // loadMore = () => {
-  //   const page = this.state.page + 1
-  //   axios.get(`/api/dictionaries?page=${page}`)
-  //     .then( ({ data }) => {
-  //       this.setState(state => {
-  //         return{ dictionaryWords: [...state.dictionaryWords, ...data.dictionaries], page: state.page + 1 }
-  //       })
-  //     })
-  // }
 
   setWord = (word) => {
     this.setState( { wordData: {...word}, wordView: true})
@@ -99,21 +90,21 @@ class Dictionary extends Component {
   renderSearchWords = () => {
     const searchTerms = this.state.searchTerms
     const dictionaryWords = this.props.words
-    const lowerCaseSearchWord = searchTerms.toLowerCase()
+    const lowerCaseSearchWord = searchTerms.replace("'", "").toLowerCase()
 // debugger
     let filtered_words = dictionaryWords.filter( e => 
 
       ((e.alutiiq_north != null) ? 
-      e.alutiiq_north.toLowerCase().includes(lowerCaseSearchWord)
+      e.alutiiq_north.replace("'", "").replace(russianR , "r").toLowerCase().includes(lowerCaseSearchWord)
       :
       null)
       ||
       ((e.alutiiq_south != null) ?
-      e.alutiiq_south.toLowerCase().includes(lowerCaseSearchWord)
+      e.alutiiq_south.replace("'", "").replace(russianR , "r").toLowerCase().includes(lowerCaseSearchWord)
       :
       null)
       ||
-      e.english.toLowerCase().includes(lowerCaseSearchWord)
+      e.english.replace("'", "").toLowerCase().includes(lowerCaseSearchWord)
      // text the letter v - but other snippets in english don't work
     )
     
@@ -147,7 +138,7 @@ class Dictionary extends Component {
  
 
   render() {
-    const { total_pages, searchTerms, page, searchView } = this.state
+    const { searchTerms, searchView } = this.state
     return(
 
 // fist section describing the dictionary and welcoming user
@@ -195,38 +186,30 @@ class Dictionary extends Component {
         <Grid.Row only='computer tablet'>
           <Grid.Column>
             <Div>
-              {/* <InfiniteScroll
-                pageStart={page}
-                loadMore={this.loadMore}
-                hasMore={ page < total_pages }
-                loader={<Loader />}
-                useWindow={false}
-              > */}
-                <Grid celled='internally'>
-                  <Grid.Row>
-                    <Grid.Column width={6} verticalAlign='middle'>
-                      <ColumnHead>
-                        English
-                      </ColumnHead>
-                    </Grid.Column>
-                    <Grid.Column width={6} verticalAlign='middle'>
-                      <ColumnHead>
-                        Alutiiq
-                      </ColumnHead>
-                    </Grid.Column>
-                    <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
-                      <ColumnHead>
-                        Details
-                      </ColumnHead>
-                    </Grid.Column>
-                  </Grid.Row>
-                    {searchView === true ?
-                      this.renderSearchWords()
-                      :
-                      this.words() 
-                    }
-                </Grid>
-              {/* </InfiniteScroll> */}
+              <Grid celled='internally'>
+                <Grid.Row>
+                  <Grid.Column width={6} verticalAlign='middle'>
+                    <ColumnHead>
+                      English
+                    </ColumnHead>
+                  </Grid.Column>
+                  <Grid.Column width={6} verticalAlign='middle'>
+                    <ColumnHead>
+                      Alutiiq
+                    </ColumnHead>
+                  </Grid.Column>
+                  <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
+                    <ColumnHead>
+                      Details
+                    </ColumnHead>
+                  </Grid.Column>
+                </Grid.Row>
+                  {searchView === true ?
+                    this.renderSearchWords()
+                    :
+                    this.words() 
+                  }
+              </Grid>
             </Div>
           </Grid.Column>
 
@@ -260,41 +243,33 @@ class Dictionary extends Component {
     {/* dictionary list of words */}
       <Grid.Row only='mobile'>
         <Grid.Column>
-            <Div>
-              <InfiniteScroll
-                pageStart={page}
-                loadMore={this.loadMore}
-                hasMore={ page < total_pages }
-                loader={<Loader />}
-                useWindow={false}
-              >
-                <Grid celled='internally'>
-                  <Grid.Row>
-                    <Grid.Column width={6} verticalAlign='middle'>
-                      <ColumnHead>
-                        English
-                      </ColumnHead>
-                    </Grid.Column>
-                    <Grid.Column width={6} verticalAlign='middle'>
-                      <ColumnHead>
-                        Alutiiq
-                      </ColumnHead>
-                    </Grid.Column>
-                    <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
-                      <ColumnHead>
-                        Details
-                      </ColumnHead>
-                    </Grid.Column>
-                  </Grid.Row>
-                    {searchView === true ?
-                      this.renderSearchWords()
-                      :
-                      this.words() 
-                    }
-                </Grid>
-              </InfiniteScroll>
-            </Div>
-          </Grid.Column>
+          <Div>
+              <Grid celled='internally'>
+                <Grid.Row>
+                  <Grid.Column width={6} verticalAlign='middle'>
+                    <ColumnHead>
+                      English
+                    </ColumnHead>
+                  </Grid.Column>
+                  <Grid.Column width={6} verticalAlign='middle'>
+                    <ColumnHead>
+                      Alutiiq
+                    </ColumnHead>
+                  </Grid.Column>
+                  <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
+                    <ColumnHead>
+                      Details
+                    </ColumnHead>
+                  </Grid.Column>
+                </Grid.Row>
+                  {searchView === true ?
+                    this.renderSearchWords()
+                    :
+                    this.words() 
+                  }
+              </Grid>
+          </Div>
+        </Grid.Column>
       </Grid.Row>
       </Grid>
     </Fragment>

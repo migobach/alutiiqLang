@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import React, { Component } from 'react'
 import ReactPlayer from 'react-player'
 import {
@@ -107,7 +106,7 @@ class DictionaryView extends Component {
               controls='true'
               height='5em'
               width='15em'
-              loop='false'
+              loop= 'false'
             />
           </Grid.Column>
           <Grid.Column width={8} stretched>
