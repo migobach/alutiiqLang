@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import axios from 'axios'
 import InfiniteScroll from 'react-infinite-scroller'
 import { connect } from 'react-redux'
 import { getWords } from '../reducers/dictionary'
@@ -71,7 +70,7 @@ class Dictionary extends Component {
   }
 
   clearSearch = () => {
-    this.setState({ searchView: false, searchTerms: '' })
+    this.setState({ searchView: false, searchTerms: '', wordView: false })
   }
   
   words = () => {
@@ -101,13 +100,31 @@ class Dictionary extends Component {
     const searchTerms = this.state.searchTerms
     const dictionaryWords = this.props.words
     const lowerCaseSearchWord = searchTerms.toLowerCase()
-
+// debugger
     let filtered_words = dictionaryWords.filter( e => 
-      e.english.toLowerCase().includes(lowerCaseSearchWord) )
 
-      // add the other terms here something like e.alutiiq_north.include(searchTerms)
+      ((e.alutiiq_north != null) ? 
+      e.alutiiq_north.toLowerCase().includes(lowerCaseSearchWord)
+      :
+      null)
+      ||
+      ((e.alutiiq_south != null) ?
+      e.alutiiq_south.toLowerCase().includes(lowerCaseSearchWord)
+      :
+      null)
+      ||
+      e.english.toLowerCase().includes(lowerCaseSearchWord)
+     // text the letter v - but other snippets in english don't work
+    )
+    
       
-
+      // e.alutiiq_south != null, e.alutiiq_south.toLowerCase().includes(lowerCaseSearchWord)
+    // )
+     
+      // e.alutiiq_north.toLowerCase().includes(lowerCaseSearchWord) || e.alutiiq_south.toLowerCase().includes(lowerCaseSearchWord))
+      // add the other terms here something like e.alutiiq_north.include(searchTerms)
+      // need to add some sort of terniary statement to handle the issue of if there is nothing in one of the alutiiq north or south columns
+    
     return(
       filtered_words.map( (word)  =>
       <Grid.Row key={word.id}>
@@ -127,6 +144,7 @@ class Dictionary extends Component {
       )
     ) 
   }
+ 
 
   render() {
     const { total_pages, searchTerms, page, searchView } = this.state
