@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import React, { Component, Fragment } from 'react'
 import { getMaterials } from '../reducers/materials'
 import { 
   Header, 
@@ -88,30 +88,48 @@ class Materials extends Component {
   }
   
   renderSearchMaterials = () => {
-    const { searchResources, compMaterials } = this.state
-
+    const { searchResources } = this.state
+    const resources = this.props.materials
     const lowerCaseSearch = searchResources.toLowerCase() 
 
-    let filtered_materials = compMaterials.filter( i => 
-      i.resource_title.toLowerCase().includes(lowerCaseSearch) )
+    let filtered_materials = resources.filter( i => 
+        i.resource_title.toLowerCase().includes(lowerCaseSearch)
+        || 
+        ((i.author != null) ?
+        i.author.toLowerCase().includes(lowerCaseSearch)
+        :
+        null)
+        ||
+        ((i.keywords != null) ?
+        i.keywords.toLowerCase().includes(lowerCaseSearch)
+        :
+        null)
+        ||
+        ((i.subjects != null) ?
+        i.subjects.toLowerCase().includes(lowerCaseSearch)
+        :
+        null)
+      )
 
     return(
       filtered_materials.map( (material) =>
         <Grid.Row key={material.id}>
-          <Grid.Column computer={6} tablet={6} mobile={10} verticalAlign='middle'>
+          <Grid.Column computer={5} tablet={5} mobile={10} verticalAlign='middle'>
             <ContentStyle>
               <i>{material.resource_title}</i>
             </ContentStyle>
           </Grid.Column>
-          <Grid.Column width={6} verticalAlign='middle' only='computer tablet'>
+          <Grid.Column width={5} verticalAlign='middle' only='computer tablet'>
             <ContentStyle>
               {material.subjects}
             </ContentStyle>
           </Grid.Column>
-          <Grid.Column computer={4} tablet={4} mobile={6} textAlign='center' verticalAlign='middle'>
+          <Grid.Column width={3} verticalAlign='middle' only='computer tablet' textAlign='center' verticalAlign='middle'>
+            <Icon name='info' size='large' color='grey' />
+          </Grid.Column>
+          <Grid.Column computer={3} tablet={3} mobile={6} textAlign='center' verticalAlign='middle'>
             {
               material.file_url ? 
-              // Need to interpolate: http://alutiiqeducation.org/files/resource_pdf/{material.file_url}
               <a href={"http://alutiiqeducation.org/files/resource_pdf/".concat(material.file_url)}>
                 <Icon name='eye' size='large' color='grey' />
               </a>
@@ -123,37 +141,6 @@ class Materials extends Component {
           </Grid.Column>
         </Grid.Row>
       )
-    )
-  }
-
-  materials = () => {
-    const { compMaterials } = this.state
-    return compMaterials.map( material => 
-      <Grid.Row key={material.id}>
-        <Grid.Column computer={6} tablet={6} mobile={10} verticalAlign='middle'>
-          <ContentStyle>
-            <i>{material.resource_title}</i>
-          </ContentStyle>
-        </Grid.Column>
-        <Grid.Column width={6} verticalAlign='middle' only='computer tablet'>
-          <ContentStyle>
-            {material.subjects}
-          </ContentStyle>
-        </Grid.Column>
-        <Grid.Column computer={4} tablet={4} mobile={6} textAlign='center' verticalAlign='middle'>
-          {
-            material.file_url ? 
-            // Need to interpolate: http://alutiiqeducation.org/files/resource_pdf/{material.file_url}
-            <a href={"http://alutiiqeducation.org/files/resource_pdf/".concat(material.file_url)}>
-              <Icon name='eye' size='large' color='grey' />
-            </a>
-            : 
-            <a href={material.url}>
-            <Icon name='linkify' size='large' color='grey' />
-            </a>
-          }
-        </Grid.Column>
-      </Grid.Row>
     )
   }
 
@@ -179,7 +166,7 @@ class Materials extends Component {
         </ContentStyle>
       </SpecialDiv>
 
-      {/* Card section  */}
+  {/* CARD SECTION  */}
 
       <ContainerPad>
           <Card.Group itemsPerRow={3} stackable centered doubling>
@@ -325,16 +312,17 @@ class Materials extends Component {
           </Card.Group>
         </ContainerPad>
 
-      {/* conditionally rendered components */}
+  {/* CONDITIONALLY RENDERED COMPONENTS */}
 
       { this.renderingComponents() }
 
-      {/* Featured Quote */}
+  {/* FEATURED QUOTE */}
 
         <GreenDiv>
           <Grid stackable columns={2} verticalAlign='middle'>
 
-            {/* only visible on computer and tablet */}
+  {/* ONLY VISIBLE ON COMPUTER AND TABLET */}
+
             <Grid.Row only='computer tablet'>
               <Grid.Column width={4}>
                 <Image src={Alisha} size='medium' floated='left' verticalAlign='middle' />
@@ -349,7 +337,8 @@ class Materials extends Component {
               </Grid.Column>
             </Grid.Row>
 
-            {/* only visibile on a mobile phone */}
+  {/* ONLY VISIBLE ON MOBILE */}
+
             <Grid.Row only='mobile'>
               <SubSectionHead>
                 Materials
@@ -358,7 +347,7 @@ class Materials extends Component {
           </Grid>
         </GreenDiv>
       
-    {/* search field and buttons   */}
+  {/* MATERIALS SEARCH FIELD AND BUTTONS */}
 
         <SpecialDiv>
           <Form>
@@ -377,49 +366,39 @@ class Materials extends Component {
               value={true}
               onClick={this.handleChange}
             />
-    
           </Form>
         </SpecialDiv>
 
-    {/* database table */}
+    {/* DATABASE TABLE */}
       
       <SpecialDiv>
-       {/* <InfiniteScroll
-         pageStart={page}
-         loadMore={this.loadMore}
-         hasMore={ page < total_pages }
-         loader={<Loader />}
-         useWindow={false}
-       > */}
         <Div>
           <Grid celled='internally'>
             <Grid.Row>
-              <Grid.Column computer={6} tablet={6} mobile={10} verticalAlign='middle'>
+              <Grid.Column computer={5} tablet={5} mobile={10} verticalAlign='middle'>
                 <ColumnHead>
                   Title
                 </ColumnHead>
               </Grid.Column>
-              <Grid.Column width={6} verticalAlign='middle' only='computer tablet'>
+              <Grid.Column width={5} verticalAlign='middle' only='computer tablet'>
                 <ColumnHead>
                   Subject
                 </ColumnHead>
               </Grid.Column>
-              <Grid.Column computer={4} tablet={4} mobile={6} textAlign='center' verticalAlign='middle'>
+              <Grid.Column width={3} verticalAlign='middle' only='computer tablet' textAlign='center' verticalAlign='middle'>
+                <ColumnHead>
+                  Information
+                </ColumnHead>
+              </Grid.Column>
+              <Grid.Column computer={3} tablet={3} mobile={6} textAlign='center' verticalAlign='middle'>
                 <ColumnHead>
                   View
                 </ColumnHead>
               </Grid.Column>
             </Grid.Row>
-
-            { searchView === true ?
-              this.renderSearchMaterials()
-              :
-              this.materials() 
-            }
-
+              { this.renderSearchMaterials() }
           </Grid>
         </Div>
-        {/* </InfiniteScroll> */}
       </SpecialDiv>
     </Fragment>
     )
