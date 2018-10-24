@@ -7,6 +7,8 @@ import {
   Icon, 
   Form,
   Button,
+  Loader,
+  Dimmer,
 } from 'semantic-ui-react'
 import {
   BlueDiv,
@@ -25,11 +27,19 @@ const russianR = new RegExp(`[${r}]`,'g');
 
 class Dictionary extends Component {
 
-  state = { dictionaryWords: [], searchTerms: '', wordView: false, wordData: {}, searchView: false }
+  state = { searchTerms: '', wordView: false, wordData: {}, loading: true }
 
   componentDidMount() {
     const { dispatch } = this.props
     dispatch(getWords())
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.words !== prevProps.words) {
+      this.setState( {loading: false} )
+    } else {
+      return
+    }
   }
 
   setWord = (word) => {
@@ -61,39 +71,22 @@ class Dictionary extends Component {
   }
 
   clearSearch = () => {
-    this.setState({ searchView: false, searchTerms: '', wordView: false })
+    this.setState({ searchTerms: '', wordView: false })
   }
   
-  words = () => {
-    // const { dictionaryWords } = this.state
-    // return dictionaryWords.map( word => {
-    return this.props.words.map( word => {
-      return(
-      <Grid.Row key={word.id}>
-        <Grid.Column width={6} verticalAlign='middle'>
-          <ContentStyle>
-            {word.english}
-          </ContentStyle>
-        </Grid.Column>
-        <Grid.Column width={6} verticalAlign='middle'>
-            <i>{this.handleNorthSouth(word)}</i>
-        </Grid.Column>
-        
-        <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
-          <Icon name='eye' size='large' color='grey' onClick= {() => this.setWord(word)} />
-        </Grid.Column>
-      </Grid.Row>
-      )
-    })
-  }
+  nowLoading = () => {
+    return ( 
+      <Dimmer active inverted>
+         <Loader size="huge" inverted> Utaqaligiu... </Loader>
+       </Dimmer>
+     )
+   }
 
   renderSearchWords = () => {
     const searchTerms = this.state.searchTerms
     const dictionaryWords = this.props.words
     const lowerCaseSearchWord = searchTerms.replace("'", "").toLowerCase()
-// debugger
     let filtered_words = dictionaryWords.filter( e => 
-
       ((e.alutiiq_north != null) ? 
       e.alutiiq_north.replace("'", "").replace(russianR , "r").toLowerCase().includes(lowerCaseSearchWord)
       :
@@ -105,17 +98,7 @@ class Dictionary extends Component {
       null)
       ||
       e.english.replace("'", "").toLowerCase().includes(lowerCaseSearchWord)
-     // text the letter v - but other snippets in english don't work
     )
-    
-      
-      // e.alutiiq_south != null, e.alutiiq_south.toLowerCase().includes(lowerCaseSearchWord)
-    // )
-     
-      // e.alutiiq_north.toLowerCase().includes(lowerCaseSearchWord) || e.alutiiq_south.toLowerCase().includes(lowerCaseSearchWord))
-      // add the other terms here something like e.alutiiq_north.include(searchTerms)
-      // need to add some sort of terniary statement to handle the issue of if there is nothing in one of the alutiiq north or south columns
-    
     return(
       filtered_words.map( (word)  =>
       <Grid.Row key={word.id}>
@@ -136,12 +119,13 @@ class Dictionary extends Component {
     ) 
   }
  
+// RENDERING THE COMPONENET
 
   render() {
-    const { searchTerms, searchView } = this.state
+    const { searchTerms, loading } = this.state
     return(
 
-// fist section describing the dictionary and welcoming user
+// FIRST SECTION WELCOMING THE USER TO THE PAGE
 
     <Fragment>
       <BlueDiv>
@@ -155,33 +139,26 @@ class Dictionary extends Component {
         </ContentStyleWhite>
       </BlueDiv>
       
-{/* Search Function */}
+{/* SEARCH FUNCTION */}
       <SpecialDiv>
         <Form>
           <Form.Input
             placeholder="Search Words..."
-            autoFocus={"true"}
+            autoFocus={true}
             name='searchTerms'
             value={searchTerms}
             onChange={this.handleChange}
             fluid
             />
               <Button
-                name='searchView'
-                value={true}
-                onClick={this.handleChange}
-                >Search
-              </Button>
-              <Button
                 onClick={this.clearSearch}
               >Clear
               </Button>
-            {/* </div> */}
         </Form>
       </SpecialDiv>
-       {/* </Form.Input> */}
        
-{/* dictionary table - for computer and tablet only */}
+{/* DICTIONARY FOR COMPUTER AND TABLET ONLY */}
+
       <Grid columns={2}>
         <Grid.Row only='computer tablet'>
           <Grid.Column>
@@ -204,16 +181,17 @@ class Dictionary extends Component {
                     </ColumnHead>
                   </Grid.Column>
                 </Grid.Row>
-                  {searchView === true ?
-                    this.renderSearchWords()
-                    :
-                    this.words() 
-                  }
+                { loading === true ?
+                  this.nowLoading()
+                  :
+                  this.renderSearchWords()
+                }
               </Grid>
             </Div>
           </Grid.Column>
 
-{/* Word View */}
+{/* WORD VIEW */}
+
         <Grid.Column>
           {this.state.wordView === false ?
           <Watermark>
@@ -226,7 +204,8 @@ class Dictionary extends Component {
       </Grid.Row>
     </Grid>
 
-{/* dictionary table - mobile only  */}
+{/* DICTIONARY TABLE MOBILE ONLY  */}
+
   <Grid>
     <Grid.Row only='mobile'>
     {/* word view */}
@@ -240,7 +219,9 @@ class Dictionary extends Component {
         }
         </Grid.Column>
       </Grid.Row>
-    {/* dictionary list of words */}
+
+  {/* DICTIONARY LIST OF WORDS */}
+
       <Grid.Row only='mobile'>
         <Grid.Column>
           <Div>
@@ -262,11 +243,7 @@ class Dictionary extends Component {
                     </ColumnHead>
                   </Grid.Column>
                 </Grid.Row>
-                  {searchView === true ?
-                    this.renderSearchWords()
-                    :
-                    this.words() 
-                  }
+                  { this.renderSearchWords() }
               </Grid>
           </Div>
         </Grid.Column>
@@ -275,8 +252,6 @@ class Dictionary extends Component {
     </Fragment>
     )
   }
-
-
 }
 
 const mapStateToProps = (state) => {

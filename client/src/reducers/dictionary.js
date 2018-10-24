@@ -7,7 +7,7 @@ export const getWords = () => {
   return(dispatch) => {
     axios.get('/api/dictionaries')
       .then(res => {
-        dispatch({ type: WORDS, words: res.data})
+        dispatch({ type: WORDS, words: res.data })
       })
       .catch( (err) => dispatch(setFlash('Failed to retrieve words', 'red')) )
     }

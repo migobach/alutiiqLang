@@ -18,11 +18,11 @@ class DictionaryView extends Component {
  
   handleSentence = () => {
     if (this.props.word.north_sentence === this.props.word.south_sentence &&  this.props.word.north_sentence != null) {
-      return(<ContentStyle> Example sentence: {this.props.word.north_sentence}</ContentStyle>)
+      return(<ContentStyle>Example sentence: <i>{this.props.word.north_sentence}</i></ContentStyle>)
     } else if (this.props.word.north_sentence != null) {
-      return((<ContentStyle>Northern style example sentence: {this.props.word.north_sentence}</ContentStyle>))
+      return((<ContentStyle>Northern style example sentence: <i>{this.props.word.north_sentence}</i></ContentStyle>))
     } else if (this.props.word.south_sentence != null) {
-      return((<ContentStyle> Southern style example sentence: {this.props.word.south_sentence}</ContentStyle>))
+      return((<ContentStyle>Southern style example sentence: <i>{this.props.word.south_sentence}</i></ContentStyle>))
     } else {
       return ''
     }
