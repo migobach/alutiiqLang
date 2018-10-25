@@ -112,7 +112,9 @@ class Dictionary extends Component {
         </Grid.Column>
         
         <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
-          <Icon name='eye' size='large' color='grey' onClick= {() => this.setWord(word)} />
+          <a>
+            <Icon name='eye' size='large' color='grey' onClick= {() => this.setWord(word)} />
+          </a>
         </Grid.Column>
       </Grid.Row>
       )

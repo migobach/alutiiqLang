@@ -9,6 +9,8 @@ import {
   Button,
   Icon,
   Form,
+  Dimmer, 
+  Loader,
  } from 'semantic-ui-react'
 import {
   SpecialDiv,
@@ -29,9 +31,24 @@ import Books from './materials/Books'
 import Posters from './materials/Posters'
 import Games from './materials/Games'
 import Stories from './materials/Stories'
+import MaterialsView from './MaterialsView'
 
 class Materials extends Component {
-  state = { compMaterials: [], searchResources: '', searchView: false, page: 1, total_pages: 0, outsideLinks: false, booksComp: false, postersComp: false, gamesComp: false, storiesComp: false }
+  state = { 
+    compMaterials: [], 
+    searchResources: '', 
+    searchView: false, 
+    page: 1, 
+    total_pages: 0, 
+    outsideLinks: false, 
+    booksComp: false, 
+    postersComp: false, 
+    gamesComp: false, 
+    storiesComp: false, 
+    loading: true, 
+    materialView: false,
+    materialData: {} 
+  }
   
   componentDidMount() {
     const { dispatch } = this.props
@@ -40,8 +57,16 @@ class Materials extends Component {
 
   componentDidUpdate(prevProps) {
     if(prevProps !== this.props)
-      this.setState({ compMaterials: this.props.materials })
+      this.setState({ compMaterials: this.props.materials, loading: false })
   }
+
+  nowLoading = () => {
+    return ( 
+      <Dimmer active inverted>
+         <Loader size="huge" inverted> Utaqaligiu... </Loader>
+       </Dimmer>
+     )
+   }
 
   toggleLinksComp = () => {
     this.setState({ outsideLinks: !this.state.outsideLinks, booksComp: false, postersComp: false, gamesComp: false, storiesComp: false})
@@ -87,6 +112,24 @@ class Materials extends Component {
     this.setState({ [name]: value })
   }
   
+  setMaterial = (material) => {
+    this.setState( {materialData: { ...material}, materialView: true})
+  }
+
+  // renderMaterialView = (material) => {
+
+  // }  
+  
+  
+  // renderWordView = () => {
+  //   const { wordView } = this.state
+  //   if(wordView === true) {
+  //     return <DictionaryView word={this.state.wordData} toggleView={this.state.wordView} />
+  //   } else
+  //   return <SpecialDiv />
+  // }
+  
+
   renderSearchMaterials = () => {
     const { searchResources } = this.state
     const resources = this.props.materials
@@ -125,7 +168,7 @@ class Materials extends Component {
             </ContentStyle>
           </Grid.Column>
           <Grid.Column width={3} verticalAlign='middle' only='computer tablet' textAlign='center' verticalAlign='middle'>
-            <Icon name='info' size='large' color='grey' />
+            <Icon name='info' size='large' color='grey' onClick= {() => this.setMaterial(material)}/>
           </Grid.Column>
           <Grid.Column computer={3} tablet={3} mobile={6} textAlign='center' verticalAlign='middle'>
             {
@@ -145,7 +188,7 @@ class Materials extends Component {
   }
 
   render() {
-    const { searchResources, searchView } = this.state
+    const { searchResources, loading } = this.state
 
     return(
     <Fragment>
@@ -396,7 +439,11 @@ class Materials extends Component {
                 </ColumnHead>
               </Grid.Column>
             </Grid.Row>
-              { this.renderSearchMaterials() }
+              { loading ? 
+              this.nowLoading()
+              :
+              this.renderSearchMaterials() 
+              }
           </Grid>
         </Div>
       </SpecialDiv>
