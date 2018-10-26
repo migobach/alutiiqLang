@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :dictionaries
     resources :materials
     resources :curriculums
+    resources :books
   end
   
   #Do not place any routes below this one

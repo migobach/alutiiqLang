@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import React, { Component, Fragment } from 'react'
+import { Link } from 'react-router-dom'
 import { getMaterials } from '../reducers/materials'
 import { 
   Header, 
@@ -71,26 +72,6 @@ class Materials extends Component {
 
   toggleView = () => {
     this.setState({ materialView: !this.state.materialView})
-  }
-
-  toggleLinksComp = () => {
-    this.setState({ outsideLinks: !this.state.outsideLinks, booksComp: false, postersComp: false, gamesComp: false, storiesComp: false})
-  }
-
-  toggleBooksComp = () => {
-    this.setState({ booksComp: !this.state.booksComp, outsideLinks: false, postersComp: false, gamesComp: false, storiesComp: false})
-  }
-
-  togglePostersComp = () => {
-    this.setState({ postersComp: !this.state.postersComp, outsideLinks: false, booksComp: false, gamesComp: false, storiesComp: false})
-  }
-
-  toggleGamesComp = () => {
-    this.setState({ gamesComp: !this.state.gamesComp, outsideLinks: false, booksComp: false, postersComp: false, storiesComp: false})
-  }
-
-  toggleStoriesComp = () => {
-    this.setState({ storiesComp: !this.state.storiesComp, outsideLinks: false, booksComp: false, postersComp: false, gamesComp: false})
   }
 
   renderingComponents = () => {
@@ -236,15 +217,12 @@ class Materials extends Component {
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-              {this.state.booksComp === false ?
-                <Button color='yellow' size='small' fluid onClick={this.toggleBooksComp}>
+              <Link to={`/Books`}>
+                <Button color='yellow' size='small' fluid>
                   Go 
                 </Button>
-                : 
-                <Button color='grey' size='small' fluid onClick={this.toggleBooksComp}>
-                  Hide
-                </Button>
-              }
+              </Link>
+                
             </Card>
 
             <Card>
@@ -260,15 +238,11 @@ class Materials extends Component {
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-              {this.state.postersComp === false ?
-                <Button color='yellow' size='small' fluid onClick={this.togglePostersComp}>
+              <Link to={`/posters`}>
+                <Button color='yellow' size='small' fluid>
                   Go 
                 </Button>
-                : 
-                <Button color='grey' size='small' fluid onClick={this.togglePostersComp}>
-                  Hide
-                </Button>
-              }
+              </Link>
             </Card>
 
             <Card>
@@ -284,15 +258,11 @@ class Materials extends Component {
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-              {this.state.gamesComp === false ? 
-                <Button color='yellow' size='small' fluid onClick={this.toggleGamesComp}>
+              <Link to={`/games`}>
+                <Button color='yellow' size='small' fluid>
                   Go 
                 </Button>
-                :
-                <Button color='grey' size='small' fluid onClick={this.toggleGamesComp}>
-                  Hide
-                </Button>
-              }
+              </Link>
             </Card>
 
               <Card>
@@ -308,15 +278,11 @@ class Materials extends Component {
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-              {this.state.outsideLinks === false ?
-                <Button color='yellow' size='small' fluid onClick={this.toggleLinksComp}>
+              <Link to={'/links'}>
+                <Button color='yellow' size='small' fluid>
                   Go 
                 </Button>
-                :
-                <Button color='grey' size='small' fluid onClick={this.toggleLinksComp}>
-                  Hide
-                </Button>
-              }
+              </Link>
             </Card>
 
             <Card>
@@ -332,15 +298,11 @@ class Materials extends Component {
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-              {this.state.storiesComp === false ?
-                <Button color='yellow' size='small' fluid onClick={this.toggleStoriesComp}>
+              <Link to={`/stories`}>
+                <Button color='yellow' size='small' fluid>
                   Go 
                 </Button>
-                :
-                <Button color='grey' size='small' fluid onClick={this.toggleStoriesComp}>
-                  Hide
-                </Button>
-              }
+              </Link>
             </Card>
 
             <Card>

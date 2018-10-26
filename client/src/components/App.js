@@ -22,6 +22,11 @@ import AuthRoute from './AuthRoute'
 import Login from './Login'
 import Register from './Register'
 import Footer from './Footer'
+import Books from './materials/Books'
+import Posters from './materials/Posters'
+import Games from './materials/Games'
+import Stories from './materials/Stories'
+import OutsideLinks from './materials/OutsideLinks' 
 
 const menuPad = {
   padding: '1em',
@@ -111,6 +116,11 @@ class App extends Component {
           <Route exact path="/songs" component={Songs} />
           <Route exact path="/classes" component={Classes} />
           <Route exact path="/happenings" component={HistoryNews} />
+          <Route exact path="/books" component={Books} />
+          <Route exact path="/posters" component={Posters} />
+          <Route exact path="/Stories" component={Stories} />
+          <Route exact path="/games" component={Games} />
+          <Route exact path="/links" component={OutsideLinks} />
                 
           <ProtectedRoute exact path="/kasainaq" component={AdminLogin} />
           <AuthRoute exact path='/login' component={Login} />
