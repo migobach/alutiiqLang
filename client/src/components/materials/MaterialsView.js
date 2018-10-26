@@ -146,7 +146,7 @@ class MaterialsView extends Component {
 
       {/* RENDERING INFORMATION FOR MOBILE USERS ONLY */}
 
-          <Grid.Row>
+        <Grid.Row only='mobile'>
           <Grid.Column>
               {this.handleAuthorYear()}
 

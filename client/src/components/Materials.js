@@ -150,6 +150,16 @@ class Materials extends Component {
         i.subjects.toLowerCase().includes(lowerCaseSearch)
         :
         null)
+        ||
+        ((i.standards != null) ?
+        i.standards.includes(lowerCaseSearch)
+        :
+        null)
+        ||
+        ((i.resource_title != null) ?
+        i.resource_title.toLowerCase().includes(lowerCaseSearch)
+        :
+        null)
       )
 
     return(
