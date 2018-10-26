@@ -31,15 +31,14 @@ import Books from './materials/Books'
 import Posters from './materials/Posters'
 import Games from './materials/Games'
 import Stories from './materials/Stories'
-import MaterialsView from './MaterialsView'
+import MaterialsView from './materials/MaterialsView'
 
 class Materials extends Component {
   state = { 
-    compMaterials: [], 
     searchResources: '', 
     searchView: false, 
-    page: 1, 
-    total_pages: 0, 
+    // page: 1, 
+    // total_pages: 0, 
     outsideLinks: false, 
     booksComp: false, 
     postersComp: false, 
@@ -47,7 +46,8 @@ class Materials extends Component {
     storiesComp: false, 
     loading: true, 
     materialView: false,
-    materialData: {} 
+    materialData: {}, 
+    showView: false,
   }
   
   componentDidMount() {
@@ -57,7 +57,7 @@ class Materials extends Component {
 
   componentDidUpdate(prevProps) {
     if(prevProps !== this.props)
-      this.setState({ compMaterials: this.props.materials, loading: false })
+      this.setState({ loading: false })
   }
 
   nowLoading = () => {
@@ -67,6 +67,10 @@ class Materials extends Component {
        </Dimmer>
      )
    }
+
+  toggleView = () => {
+    this.setState({ materialView: !this.state.materialView})
+  }
 
   toggleLinksComp = () => {
     this.setState({ outsideLinks: !this.state.outsideLinks, booksComp: false, postersComp: false, gamesComp: false, storiesComp: false})
@@ -113,23 +117,16 @@ class Materials extends Component {
   }
   
   setMaterial = (material) => {
-    this.setState( {materialData: { ...material}, materialView: true})
+    this.setState( { materialData: {...material}, materialView: true})
   }
-
-  // renderMaterialView = (material) => {
-
-  // }  
   
+  renderMaterialView = () => {
+    if (this.state.materialView === true) {
+      return <MaterialsView material={this.state.materialData} view={this.toggleView} />
+    } else 
+    return
+  }
   
-  // renderWordView = () => {
-  //   const { wordView } = this.state
-  //   if(wordView === true) {
-  //     return <DictionaryView word={this.state.wordData} toggleView={this.state.wordView} />
-  //   } else
-  //   return <SpecialDiv />
-  // }
-  
-
   renderSearchMaterials = () => {
     const { searchResources } = this.state
     const resources = this.props.materials
@@ -167,7 +164,7 @@ class Materials extends Component {
               {material.subjects}
             </ContentStyle>
           </Grid.Column>
-          <Grid.Column width={3} verticalAlign='middle' only='computer tablet' textAlign='center' verticalAlign='middle'>
+          <Grid.Column width={3} verticalAlign='middle' only='computer tablet' textAlign='center'>
             <Icon name='info' size='large' color='grey' onClick= {() => this.setMaterial(material)}/>
           </Grid.Column>
           <Grid.Column computer={3} tablet={3} mobile={6} textAlign='center' verticalAlign='middle'>
@@ -188,7 +185,7 @@ class Materials extends Component {
   }
 
   render() {
-    const { searchResources, loading } = this.state
+    const { searchResources, loading, materialView } = this.state
 
     return(
     <Fragment>
@@ -412,6 +409,15 @@ class Materials extends Component {
           </Form>
         </SpecialDiv>
 
+    {/* CONDITIONALLY RENDER THE MATERIALS VIEW COMPONENT HERE */}
+
+    {
+      materialView === true ?
+      this.renderMaterialView()
+      : 
+      null
+    }
+
     {/* DATABASE TABLE */}
       
       <SpecialDiv>
@@ -428,7 +434,7 @@ class Materials extends Component {
                   Subject
                 </ColumnHead>
               </Grid.Column>
-              <Grid.Column width={3} verticalAlign='middle' only='computer tablet' textAlign='center' verticalAlign='middle'>
+              <Grid.Column width={3} verticalAlign='middle' only='computer tablet' textAlign='center'>
                 <ColumnHead>
                   Information
                 </ColumnHead>

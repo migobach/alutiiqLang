@@ -145,7 +145,8 @@ class DictionaryView extends Component {
             {this.props.word.english}
           </ContentStyle>
         
-    {/* Audio player ternery */}
+    {/* AUDIO PLAYER TERNARY */}
+    
           {
           this.props.word.north_audio === null && this.props.word.south_audio === null ?
           null
@@ -155,7 +156,8 @@ class DictionaryView extends Component {
 
         <Divider hidden />
 
-    {/* Sentence ternery */}
+    {/* SENTENCE TERNARY */}
+
           { 
           this.props.word.north_sentence === null && this.props.word.south_sentence === null ?
           null 

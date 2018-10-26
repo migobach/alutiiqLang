@@ -232,3 +232,7 @@ export const Watermark = styled.h1`
   font-size: 1.5em;
   line-height: 2;
 `
+
+export const Pointer = styled.div`
+  cursor: pointer;
+`

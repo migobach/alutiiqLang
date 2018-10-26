@@ -47,9 +47,8 @@ class Dictionary extends Component {
   }
   
   renderWordView = () => {
-    const { wordView } = this.state
-    if(wordView === true) {
-      return <DictionaryView word={this.state.wordData} toggleView={this.state.wordView} />
+     if (this.state.wordView === true) {       
+      return <DictionaryView word={this.state.wordData} />
     } else
     return <SpecialDiv />
   }
@@ -112,9 +111,7 @@ class Dictionary extends Component {
         </Grid.Column>
         
         <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
-          <a>
             <Icon name='eye' size='large' color='grey' onClick= {() => this.setWord(word)} />
-          </a>
         </Grid.Column>
       </Grid.Row>
       )
