@@ -12,10 +12,6 @@ import {
   IconHover,
 } from '../styles/CommonStyles'
 
-const iconPad = {
-  paddingTop: '5em',
-}
-
 class MaterialsView extends Component {
 
   

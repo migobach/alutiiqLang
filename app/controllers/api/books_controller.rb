@@ -34,7 +34,7 @@ class Api::BooksController < ApplicationController
     end
 
     def book_params
-      params.reqire(:book).permit(:book_title_alutiiq, :book_title_english, :description, :image, :file, :audio, :type)
+      params.reqire(:book).permit(:book_title_alutiiq, :book_title_english, :description, :image, :file, :audio, :book_type)
     end
 
 end

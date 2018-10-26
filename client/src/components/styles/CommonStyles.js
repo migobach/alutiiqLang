@@ -80,6 +80,7 @@ export const SubSectionHead = styled.h3`
   color: #FBBD08;
   font-size: 1.5em;
   padding: 50px;
+  text-align: center;
 `
 
 export const ContentHead = styled.h3`

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getBooks } from '../../reducers/materials'
+import { getBooks } from '../../reducers/books'
 import {
   Header,
 } from 'semantic-ui-react'
@@ -17,7 +17,6 @@ class Books extends Component {
     const { dispatch } = this.props
     dispatch(getBooks())
   }
-
 
   render() {
     return(
@@ -45,7 +44,6 @@ class Books extends Component {
       </div>
     )
   }
-
 }
 
 const mapStateToProps = (state) => {

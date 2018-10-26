@@ -28,27 +28,14 @@ import {
   Pointer,
 } from './styles/CommonStyles'
 import Alisha from '../images/alisha.jpg'
-import OutsideLinks from './materials/OutsideLinks'
-import Books from './materials/Books'
-import Posters from './materials/Posters'
-import Games from './materials/Games'
-import Stories from './materials/Stories'
 import MaterialsView from './materials/MaterialsView'
 
 class Materials extends Component {
   state = { 
     searchResources: '', 
-    searchView: false, 
-    // page: 1, 
-    // total_pages: 0, 
-    outsideLinks: false, 
-    booksComp: false, 
-    postersComp: false, 
-    gamesComp: false, 
-    storiesComp: false, 
+    searchView: false,  
     loading: true, 
     materialView: false,
-    materialData: {}, 
     showView: false,
   }
   
@@ -72,22 +59,6 @@ class Materials extends Component {
 
   toggleView = () => {
     this.setState({ materialView: !this.state.materialView})
-  }
-
-  renderingComponents = () => {
-    const { outsideLinks, booksComp, postersComp, gamesComp, storiesComp } = this.state
-    if (outsideLinks === true ) {
-      return <OutsideLinks />
-    } else if (booksComp === true) {
-      return <Books />
-    } else if (postersComp === true) {
-      return <Posters />
-    } else if (gamesComp === true) {
-      return <Games />
-    } else if (storiesComp === true) {
-      return <Stories />
-    } else
-      return <SpecialDiv />
   }
 
   clearSearch = () => {
@@ -217,7 +188,7 @@ class Materials extends Component {
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-              <Link to={`/Books`}>
+              <Link to={`/books`}>
                 <Button color='yellow' size='small' fluid>
                   Go 
                 </Button>
@@ -326,10 +297,6 @@ class Materials extends Component {
             </Card>
           </Card.Group>
         </ContainerPad>
-
-  {/* CONDITIONALLY RENDERED COMPONENTS */}
-
-      { this.renderingComponents() }
 
   {/* FEATURED QUOTE */}
 

@@ -118,7 +118,7 @@ class App extends Component {
           <Route exact path="/happenings" component={HistoryNews} />
           <Route exact path="/books" component={Books} />
           <Route exact path="/posters" component={Posters} />
-          <Route exact path="/Stories" component={Stories} />
+          <Route exact path="/stories" component={Stories} />
           <Route exact path="/games" component={Games} />
           <Route exact path="/links" component={OutsideLinks} />
                 
