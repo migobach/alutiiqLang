@@ -19,6 +19,7 @@ import {
   SpecialDiv,
   Div,
   Watermark,
+  Pointer,
 } from './styles/CommonStyles'
 import DictionaryView from './DictionaryView'
 
@@ -111,7 +112,9 @@ class Dictionary extends Component {
         </Grid.Column>
         
         <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
+          <Pointer>
             <Icon name='eye' size='large' color='grey' onClick= {() => this.setWord(word)} />
+          </Pointer>
         </Grid.Column>
       </Grid.Row>
       )

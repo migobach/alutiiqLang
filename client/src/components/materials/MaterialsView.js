@@ -106,10 +106,6 @@ class MaterialsView extends Component {
       // this needs to be finalized. Currently the urls are not in one spot- gotta clean the data before I make this useable
     }
 
-    handleButton = (e) => {
-      
-    }
-
   render() {
     return(
       <div>
@@ -120,6 +116,9 @@ class MaterialsView extends Component {
         <Divider />
 
         <Grid>
+
+      {/* RENDERING INFORMATION FOR THE COMPUTER AND TABLET ONLY  */}
+
           <Grid.Row only='computer tablet'>
             <Grid.Column width={14}>
               {this.handleAuthorYear()}
@@ -145,6 +144,32 @@ class MaterialsView extends Component {
             </Grid.Column>
           </Grid.Row>
 
+      {/* RENDERING INFORMATION FOR MOBILE USERS ONLY */}
+
+          <Grid.Row>
+          <Grid.Column>
+              {this.handleAuthorYear()}
+
+              {this.handleNotes()}
+
+              {this.handleGrade()}
+
+              {this.handleSponsor()}
+
+              {this.handleValues()}
+
+            <Divider />
+              <IconLinkGrey>
+                <IconHover name='cloud download' />
+              </IconLinkGrey>
+            <Divider hidden />
+
+              <Button type='button' onClick={this.props.view}>
+                Close
+              </Button>
+            </Grid.Column>
+
+          </Grid.Row>
         </Grid>
 
         {/* ADD DOWNLOAD RESOURCE BUTTON WITH THE CLOUD LIKE ON THE SONG VIEW */}

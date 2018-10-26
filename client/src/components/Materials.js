@@ -24,6 +24,7 @@ import {
   CardHeader,
   ColumnHead,
   Div,
+  Pointer,
 } from './styles/CommonStyles'
 import Alisha from '../images/alisha.jpg'
 import OutsideLinks from './materials/OutsideLinks'
@@ -164,10 +165,12 @@ class Materials extends Component {
               {material.subjects}
             </ContentStyle>
           </Grid.Column>
-          <Grid.Column width={3} verticalAlign='middle' only='computer tablet' textAlign='center'>
-            <Icon name='info' size='large' color='grey' onClick= {() => this.setMaterial(material)}/>
-          </Grid.Column>
           <Grid.Column computer={3} tablet={3} mobile={6} textAlign='center' verticalAlign='middle'>
+            <Pointer>
+              <Icon name='info' size='large' color='grey' onClick= {() => this.setMaterial(material)}/>
+            </Pointer>
+          </Grid.Column>
+          <Grid.Column width={3} verticalAlign='middle' only='computer tablet' textAlign='center'>
             {
               material.file_url ? 
               <a href={"http://alutiiqeducation.org/files/resource_pdf/".concat(material.file_url)}>
@@ -434,12 +437,12 @@ class Materials extends Component {
                   Subject
                 </ColumnHead>
               </Grid.Column>
-              <Grid.Column width={3} verticalAlign='middle' only='computer tablet' textAlign='center'>
+              <Grid.Column computer={3} tablet={3} mobile={6} textAlign='center' verticalAlign='middle'>
                 <ColumnHead>
                   Information
                 </ColumnHead>
               </Grid.Column>
-              <Grid.Column computer={3} tablet={3} mobile={6} textAlign='center' verticalAlign='middle'>
+              <Grid.Column width={3} verticalAlign='middle' only='computer tablet' textAlign='center'>
                 <ColumnHead>
                   View
                 </ColumnHead>
