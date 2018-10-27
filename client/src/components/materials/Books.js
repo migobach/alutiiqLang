@@ -3,19 +3,63 @@ import { connect } from 'react-redux'
 import { getBooks } from '../../reducers/books'
 import {
   Header,
+  Grid,
+  Icon,
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
   SectionHead,
   BlueDiv,
   ContentStyle,
+  Div,
+  Pointer,
+  ColumnHead,
 } from '../styles/CommonStyles'
+import BookView from './BookView'
 
 class Books extends Component {
+
+  state = { searchBooks: '', bookData: {}, bookView: false }
 
   componentDidMount() {
     const { dispatch } = this.props
     dispatch(getBooks())
+  }
+
+  setBook = (book) => {
+    this.setState({ bookData: {...book}, bookView: true})
+  }
+
+  renderBookView = () => {
+    if (this.state.bookView === true) {       
+      return <BookView book={this.state.bookData} />
+    } 
+  }
+
+  renderBooks = () => {
+    const books = this.props.books
+
+    return(
+      books.map( (b) =>
+        <Grid.Row key={b.id}>
+          <Grid.Column computer={6} tablet={6} mobile={10} verticalAlign='middle'>
+            <ContentStyle>
+              <i>{b.book_title_alutiiq}</i>
+            </ContentStyle>
+          </Grid.Column>
+          <Grid.Column width={6} verticalAlign='middle' only='computer tablet'>
+            <ContentStyle>
+              {b.book_title_english}
+            </ContentStyle>
+          </Grid.Column>
+          <Grid.Column computer={4} tablet={4} mobile={6} textAlign='center' verticalAlign='middle'>
+            <Pointer>
+              <Icon name='eye' size='large' color='grey' onClick= {() => this.setBook(b)}/>
+            </Pointer>
+          </Grid.Column>
+        </Grid.Row>
+      )
+    )
   }
 
   render() {
@@ -41,6 +85,35 @@ class Books extends Component {
           </ContentStyle>
         </SpecialDiv>
 
+        { this.renderBookView() }
+
+        <SpecialDiv>
+          <Div>
+            <Grid celled='internally'>
+              <Grid.Row>
+                <Grid.Column computer={6} tablet={6} mobile={10} verticalAlign='middle'>
+                  <ColumnHead>
+                    Title
+                  </ColumnHead>
+                </Grid.Column>
+                <Grid.Column width={6} verticalAlign='middle' only='computer tablet'>
+                  <ColumnHead>
+                    Subject
+                  </ColumnHead>
+                </Grid.Column>
+                <Grid.Column computer={4} tablet={4} mobile={6} textAlign='center' verticalAlign='middle'>
+                  <ColumnHead>
+                    View
+                  </ColumnHead>
+                </Grid.Column>
+              </Grid.Row>
+                
+                { this.renderBooks() }
+                
+            </Grid>
+          </Div>
+        </SpecialDiv>
+
       </div>
     )
   }
@@ -48,8 +121,8 @@ class Books extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    books: state.book
+    books: state.books
   }
 }
 
-export default connect(mapStateToProps) (Books)
+export default connect(mapStateToProps)(Books)
