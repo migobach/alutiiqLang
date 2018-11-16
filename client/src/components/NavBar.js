@@ -7,7 +7,7 @@ import styled from 'styled-components'
 
 const Menuitems = styled(MenuItem)`
   align-content: center;
-  font-size: 1em;
+  font-size: 1.25em;
   color: #A9A9A9;
   `
 export const handleNavBar = (e) => { this.setState({ activeItem: this.props.location.pathname }) }

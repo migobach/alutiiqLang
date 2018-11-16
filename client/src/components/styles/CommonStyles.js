@@ -10,11 +10,12 @@ import {
 // beige: #EAD8C2
 // blue: #3B568C
 // grey: #A9A9A9
+// new grey : #3D3D3D
 
 // title on homepage
 export const MainHeader = styled.h1`
   color: white;
-  font-size: 2em; 
+  font-size: 3em; 
 `
 
 // sub-title on homepage
@@ -41,7 +42,7 @@ export const MainDiv = styled.div`
 
 export const CardHeader = styled.h3`
  color: #3B568C;
- font-size: 1em;
+ font-size: 1.25em;
  line-height: 1.5;
 `
 
@@ -92,12 +93,12 @@ export const ContentHead = styled.h3`
 // removed padding: .5em in order to make the dictionary view a bit cleaner - not sure how it will impact everything else. 
 export const ContentStyle = styled.p`
   font-size: 1em;
-  color: #A9A9A9;
+  color: #3D3D3D;
 `
 
 export const SongStyle = styled.p`
 font-size: 1em;
-color: #A9A9A9;
+color: #3D3D3D;
 text-align: center;
 padding: 1em;
 `
@@ -116,7 +117,7 @@ export const WhiteTitle = styled.h4`
 `
 
 export const GreyTitle = styled.h4`
-  color: #A9A9A9;
+  color: #3D3D3D;
   font-size: 1.25em;
 `
 
@@ -192,8 +193,8 @@ export const BodyLink = styled.a`
 `
 
 export const FootLink = styled.a`
-  color: #A9A9A9;
-  &:visited { text-decoration: none; color: #A9A9A9; }
+  color: #3D3D3D;
+  &:visited { text-decoration: none; color: #3D3D3D; }
   &:hover { text-decoration: none; color: #508365; }
   &:focus { text-decoration: none; color:#508365; }
   &:hover, a:active { text-decoration: none; color:#508365 }
@@ -208,11 +209,11 @@ export const IconLink = styled.a`
 `
 
 export const IconLinkGrey = styled.a`
-  color: color: #A9A9A9;
-  &:visited { text-decoration: none; color: #A9A9A9; }
-  &:hover { text-decoration: none; color: #A9A9A9; }
-  &:focus { text-decoration: none; color: #A9A9A9; }
-  &:hover, a:active { text-decoration: none; color: #A9A9A9; }
+  color: color: #3D3D3D;
+  &:visited { text-decoration: none; color: #3D3D3D; }
+  &:hover { text-decoration: none; color: #3D3D3D; }
+  &:focus { text-decoration: none; color: #3D3D3D; }
+  &:hover, a:active { text-decoration: none; color: #3D3D3D; }
 `
 
 export const LinkHead = styled.h3`
@@ -223,11 +224,11 @@ export const LinkHead = styled.h3`
 
 export const GreenLink = styled.a`
   color: #508365;
-  &:hover { text-decoration: none; color: #A9A9A9; }
+  &:hover { text-decoration: none; color: #3D3D3D; }
 `
 
 export const Watermark = styled.h1`
-  color: #A9A9A9;
+  color: #3D3D3D;
   text-align: center;
   align-content: center;
   font-size: 1.5em;

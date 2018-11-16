@@ -186,7 +186,7 @@ class Dictionary extends Component {
                 { loading === true ?
                   this.nowLoading()
                   :
-                  this.renderSearchWords()
+                  this.renderSearchWords().sort()
                 }
               </Grid>
             </Div>
