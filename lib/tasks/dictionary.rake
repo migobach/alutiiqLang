@@ -7,9 +7,8 @@ namespace :dictionary do
     csv_text = File.read(Rails.root.join('lib', 'seeds', 'dictionary.csv'))
     puts csv_text
     csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+    
     csv.each do |row|
-      
-
       d = Dictionary.new
       d.english = row['english']
       d.part_of_speech = row['part_of_speech']
