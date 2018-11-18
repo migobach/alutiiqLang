@@ -11,4 +11,4 @@ Rails.application.routes.draw do
   
   #Do not place any routes below this one
   get '*other', to: 'static#index'
-end
+end 

@@ -1,0 +1,2 @@
+class Erinarpet < ApplicationRecord
+end
