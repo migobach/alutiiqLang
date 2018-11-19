@@ -11,7 +11,7 @@ import {
   SectionHead,
   ContentStyle, 
   BlueDiv,
-  GreyTitle,
+  WhiteTitle,
   ContentStyleQuote,
   QuotePerson,
   IconHover,
@@ -39,9 +39,9 @@ const Revitalization = () => (
 
       <BlueDiv>
         <Header textAlign='center'>
-          <GreyTitle>
+          <WhiteTitle>
             Encouragement, Guidance, Insights, and Lessons Learned for Native Language Activists Developing Their Own Tribal language Programs
-          </GreyTitle>
+          </WhiteTitle>
         </Header>
         <SpecialDiv>
           <Container textAlign='center'>

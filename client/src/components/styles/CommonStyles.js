@@ -102,6 +102,12 @@ color: #3D3D3D;
 text-align: center;
 padding: 1em;
 `
+// used in the erinarpet return on the AlutiiqNews page. Used to make the topic justified left
+export const SongStyleLeft = SongStyle.extend`
+font-size: 1em;
+color: #3D3D3D;
+padding: 1em;
+`
 //////////////////////////////////////////////////////////////////make sure to change all the px to em - below is a 14 px. 
 export const ContentStyleWhite = styled.div`
   color: white;

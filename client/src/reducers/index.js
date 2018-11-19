@@ -6,6 +6,7 @@ import materials from './materials'
 import words from './words'
 import curriculum from './curriculum'
 import books from './books'
+import articles from './articles'
 
 const rootReducer = combineReducers({
   user,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   curriculum,
   words,
   books,
+  articles,
   flash
 });
 
