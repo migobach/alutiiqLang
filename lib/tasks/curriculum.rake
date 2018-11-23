@@ -14,7 +14,7 @@ namespace :curriculum do
           row['link_to_item']
         else
           # binding.pry
-          "https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/curriculum/" + row['link_to_item'] + ".pdf"
+          "https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/" + row['link_to_item']
         end
       c.level = row['level']
       c.lesson_number = row['lesson_number']
