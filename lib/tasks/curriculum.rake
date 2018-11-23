@@ -9,7 +9,13 @@ namespace :curriculum do
       puts row.to_hash
       c = Curriculum.new
       c.curricular_name = row['curricular_name']
-      c.link_to_item = row['link_to_item']
+      c.link_to_item = 
+        if row['link_to_item'] == nil
+          row['link_to_item']
+        else
+          # binding.pry
+          "https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/curriculum/" + row['link_to_item'] + ".pdf"
+        end
       c.level = row['level']
       c.lesson_number = row['lesson_number']
       c.notes = row['notes']
