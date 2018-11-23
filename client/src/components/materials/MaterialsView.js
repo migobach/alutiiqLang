@@ -14,7 +14,6 @@ import {
 
 class MaterialsView extends Component {
 
-  
   handleAuthorYear = () => {
     if (this.props.material.author === null && this.props.material.year === null) {
       return 

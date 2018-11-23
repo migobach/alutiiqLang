@@ -68,10 +68,6 @@ class Nest extends Component {
           </ContentStyle>
         </SpecialDiv>
 
-        <SectionHead>
-          Proof of concept
-        </SectionHead>
-
          <SpecialDiv>
             <Div>
               <Grid celled='internally'>
@@ -97,8 +93,6 @@ class Nest extends Component {
             </Div>
           </SpecialDiv>
       </div>
-    
-    
     )
   }
 }

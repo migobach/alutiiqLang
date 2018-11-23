@@ -188,8 +188,8 @@ export const IconHover = styled(Icon)`
   padding-top: 10px;
   &:hover {
   transform: scale(1.33)
-}
-`
+  }`
+
 export const BodyLink = styled.a`
   color: #508365;
   &:visited { text-decoration: none; color: #508365; }
