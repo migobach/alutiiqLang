@@ -3,17 +3,60 @@ import { connect } from 'react-redux'
 import {
   Header, 
   Grid,
+  Icon,
+  Container,
+  Divider,
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
   SectionHead,
   ContentStyle,
   ColumnHead,
+  SongStyle, 
+  Pointer,
+  IconLinkGrey,
+  IconHover,
 } from '../styles/CommonStyles'
 
 class Thematic extends Component {
 
-  // Create a SQL query to search the materials
+  renderUnits = () => {
+    return this.props.curriculum.map( unit => {
+      if (unit.group_name != "Thematic Units") {
+        return
+      } else 
+        return (
+            <Grid.Row>
+              <Grid.Column computer={6} tablet={6} mobile={10} verticalAlign='middle'>
+                <SongStyle>
+                  {unit.curricular_name}
+                </SongStyle>
+              </Grid.Column>
+
+              <Grid.Column width={6} only='computer tablet' verticalAlign='middle'>
+                <SongStyle>
+                  {unit.level}
+                </SongStyle>
+              </Grid.Column>
+
+              <Grid.Column computer={4} tablet={4} mobile={6} verticalAlign='middle'>
+                <SongStyle>
+                  { unit.link_to_item ?
+                    <Pointer>
+                      <a href={unit.link_to_item}>
+                        <Icon name='eye' size='large' color='grey'/>
+                      </a>
+                    </Pointer>
+                    :
+                    <Icon name='dont' size='large' color='grey' />
+                  }
+                </SongStyle>
+              </Grid.Column>
+
+            </Grid.Row>
+        )
+    })
+  }
 
   render() {
     return(
@@ -25,32 +68,45 @@ class Thematic extends Component {
             </SectionHead>
           </Header>
           <ContentStyle>
-            Developed by teachers for teachers, our Alutiiq Heritage Thematic Units book contains 6 units, targeted at grades Kindergarden through 5th grade. Each unit contains between 6 to 11 lessons for use within a classroom. Teachers are encouraged to send in comments or lesson expansion ideas for revision of this teachers' curriculum workbook as it is test piloted with students. Spiral bound copies of the book are available at NVA for educators and learners of the Alutiiq language. Download the full workbook from the link below, or contact the Native Village of Afognak at (907) 486-6357 for a copy or to share your ideas for expansion and revision.
+            Developed by teachers for teachers, our Alutiiq Heritage Thematic Units book contains 6 units, targeted at grades Kindergarden through 5th grade. Each unit contains between 6 to 11 lessons for use within a classroom. Teachers are encouraged to send in comments or lesson expansion ideas for revision of this teachers' curriculum workbook as it is test piloted with students. 
+          </ContentStyle>
+          <ContentStyle>
+            Spiral bound copies of the book are available at NVA for educators and learners of the Alutiiq language. Download the full workbook from the link below, or contact the Native Village of Afognak at (907) 486-6357 for a copy or to share your ideas for expansion and revision.
           </ContentStyle>
         </SpecialDiv>
 
         <SpecialDiv>
+          <Container textAlign='center'>
+            <IconLinkGrey href={"https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/curriculum/Thematic+Units.pdf"} target="_blank">
+              <IconHover name='cloud download' />
+            </IconLinkGrey>
+            <Divider hidden />
+          </Container>
+        </SpecialDiv>
+        <Divider hidden />
+
+        <SpecialDiv>
           <Grid celled='internally'>
             <Grid.Row>
-              <Grid.Column width={6} verticalAlign='middle'>
+              <Grid.Column computer={6} tablet={6} mobile={10} verticalAlign='middle' textAlign='center'>
                 <ColumnHead>
                   Title
                 </ColumnHead>
               </Grid.Column>
 
-              <Grid.Column width={6} verticalAlign='middle'>
+              <Grid.Column width={6} only='computer tablet' verticalAlign='middle' textAlign='center'>
                 <ColumnHead>
                   Grade Level
                 </ColumnHead>
               </Grid.Column>
 
-              <Grid.Column width={4} verticalAlign='middle'>
+              <Grid.Column width={4} tablet={4} mobile={6} verticalAlign='middle' textAlign='center'>
                 <ColumnHead>
                   View
                 </ColumnHead>
               </Grid.Column>
-
             </Grid.Row>
+            { this.renderUnits() }
           </Grid>
         </SpecialDiv>
       </Fragment>
@@ -58,4 +114,10 @@ class Thematic extends Component {
   }
 }
 
-export default connect()(Thematic)
+const mapStateToProps = (state) => {
+  return {
+    curriculum: state.curriculum
+  }
+}
+
+export default connect(mapStateToProps)(Thematic)

@@ -20,12 +20,12 @@ class Nest extends Component {
 
   renderCurriculum = () => {
     return this.props.curriculum.map( curriculum => {
-      if (curriculum.level != "Language Nest") {
+      if (curriculum.group_name != "Language Nest") {
         return
       } else 
         return (
         <Grid.Row key={curriculum.id}>
-          <Grid.Column computer={5} tablet={5}>
+          <Grid.Column computer={5} tablet={5} mobile={10}>
             <SongStyle>
               <i>{curriculum.curricular_name}</i> 
             </SongStyle>
@@ -35,7 +35,7 @@ class Nest extends Component {
               {curriculum.level}
             </SongStyleLeft>
           </Grid.Column>
-          <Grid.Column computer={4} tablet={4} textAlign='center'>
+          <Grid.Column computer={4} tablet={4} mobile={6} textAlign='center'>
             <SongStyle>
               { curriculum.link_to_item ?
                 <Pointer>

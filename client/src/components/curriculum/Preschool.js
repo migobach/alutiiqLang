@@ -34,11 +34,10 @@ class Preschool extends Component {
 
         <SpecialDiv>
           <Container textAlign='center'>
-            <IconLinkGrey>
+            <IconLinkGrey href={"https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/curriculum/Preschool+Curriculum.pdf"} target="_blank">
               <IconHover name='cloud download' />
             </IconLinkGrey>
             <Divider hidden />
-         
           </Container>
         </SpecialDiv>
         <Divider hidden />
