@@ -22,7 +22,7 @@ class Thematic extends Component {
 
   renderUnits = () => {
     return this.props.curriculum.map( unit => {
-      if (unit.group_name != "Thematic Units") {
+      if (unit.group_name !== "Thematic Units") {
         return
       } else 
         return (

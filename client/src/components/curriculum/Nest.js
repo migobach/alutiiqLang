@@ -20,7 +20,7 @@ class Nest extends Component {
 
   renderCurriculum = () => {
     return this.props.curriculum.map( curriculum => {
-      if (curriculum.group_name != "Language Nest") {
+      if (curriculum.group_name !== "Language Nest") {
         return
       } else 
         return (
