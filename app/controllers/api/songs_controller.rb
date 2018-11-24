@@ -10,7 +10,6 @@ class Api::SongsController < ApplicationController
   end
 
   def create
-    binding.pry
     song = Song.create(song_params)
 
     if song.save
