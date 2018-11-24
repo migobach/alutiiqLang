@@ -39,7 +39,7 @@ class Thematic extends Component {
                 </SongStyle>
               </Grid.Column>
 
-              <Grid.Column computer={4} tablet={4} mobile={6} verticalAlign='middle'>
+              <Grid.Column computer={4} tablet={4} mobile={6} verticalAlign='middle' textAlign='center'>
                 <SongStyle>
                   { unit.link_to_item ?
                     <Pointer>
@@ -88,19 +88,19 @@ class Thematic extends Component {
         <SpecialDiv>
           <Grid celled='internally'>
             <Grid.Row>
-              <Grid.Column computer={6} tablet={6} mobile={10} verticalAlign='middle' textAlign='center'>
+              <Grid.Column computer={6} tablet={6} mobile={10}  textAlign='center'>
                 <ColumnHead>
                   Title
                 </ColumnHead>
               </Grid.Column>
 
-              <Grid.Column width={6} only='computer tablet' verticalAlign='middle' textAlign='center'>
+              <Grid.Column width={6} only='computer tablet' textAlign='center'>
                 <ColumnHead>
                   Grade Level
                 </ColumnHead>
               </Grid.Column>
 
-              <Grid.Column width={4} tablet={4} mobile={6} verticalAlign='middle' textAlign='center'>
+              <Grid.Column computer={4} tablet={4} mobile={6} textAlign='center'>
                 <ColumnHead>
                   View
                 </ColumnHead>
