@@ -42,7 +42,7 @@ class News extends Component {
             <SongStyle>
               { article.article_pdf ?
                 <Pointer>
-                  <a href={article.article_pdf}>
+                  <a href={article.article_pdf} target='_blank'>
                     <Icon name='eye' size='large' color='grey'/>
                   </a>
                 </Pointer>

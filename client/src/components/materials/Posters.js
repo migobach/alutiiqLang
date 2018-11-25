@@ -1,15 +1,63 @@
 import React, {Component} from 'react'
+import { connect } from 'react-redux'
+import { getPosters } from '../../reducers/posters'
 import {
   Header,
+  Grid,
+  Icon, 
+  Image,
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
   SectionHead,
   BlueDiv,
   ContentStyle,
+  ColumnHead,
+  SongStyle,
+  SongStyleLeft,
+  Pointer, 
+  Div,
 } from '../styles/CommonStyles'
+import Values from '../../images/ValuesPoster.jpg'
 
 class Posters extends Component {
+
+  componentDidMount() {
+    const { dispatch } = this.props
+    dispatch(getPosters())
+  }
+
+
+  renderPosters = () => {
+    return this.props.posters.map( poster => 
+      <Grid.Row key={poster.id}>
+      <Grid.Column computer={5} tablet={5} mobile={10}>
+        <SongStyle>
+          {poster.title} 
+        </SongStyle>
+      </Grid.Column>
+      <Grid.Column width={7} only='computer tablet'>
+        <SongStyleLeft>
+          {poster.author}
+        </SongStyleLeft>
+      </Grid.Column>
+      <Grid.Column computer={4} tablet={4} mobile={6} textAlign='center'>
+        <SongStyle>
+          { poster.poster_link ?
+            <Pointer>
+              <a href={poster.poster_link} target='_blank'>
+                <Icon name='eye' size='large' color='grey'/>
+              </a>
+            </Pointer>
+            :
+            <Icon name='dont' size='large' color='grey' />
+          }
+        </SongStyle>
+      </Grid.Column>
+    </Grid.Row>
+    )
+  }
+
   render() {
     return(
       <div>
@@ -30,9 +78,63 @@ class Posters extends Component {
           </ContentStyle>
         </SpecialDiv>
 
+
+
+
+
+
+        <Grid stackable columns={2} verticalAlign='middle'>
+        
+          <Grid.Column width={6} textAlign='center'>
+            <Image src={Values} 
+              size='medium'
+              verticalAlign='middle' 
+              href="https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/poster/Alutiiq+Values+Poster.pdf" 
+              target="_blank" 
+              centerd image />
+          </Grid.Column>
+
+          <Grid.Column width={10}>
+            <SpecialDiv>
+                <Div>
+                  <Grid celled='internally'>
+                    <Grid.Row>
+                      <Grid.Column computer={5} tablet={5} mobile={10} verticalAlign='middle' textAlign='center'>
+                        <ColumnHead >
+                          Poster Title
+                        </ColumnHead>
+                      </Grid.Column>
+                      <Grid.Column width={7} verticalAlign='middle' only='computer tablet' textAlign='center'>
+                        <ColumnHead>
+                          Creator
+                        </ColumnHead>
+                      </Grid.Column>
+                      <Grid.Column computer={4} tablet={4} mobile={6} verticalAlign='middle' textAlign='center'>
+                        <ColumnHead>
+                          View
+                        </ColumnHead>
+                      </Grid.Column>
+                    </Grid.Row>
+                    { this.renderPosters() }
+                  </Grid>
+                </Div>
+              </SpecialDiv>
+          </Grid.Column>
+        </Grid>
+
+
+
+
+
       </div>
     )
   }
 }
 
-export default Posters
+const mapStateToProps = (state) => {
+  return {
+    posters: state.posters
+  }
+}
+
+export default connect(mapStateToProps)(Posters)

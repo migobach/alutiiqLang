@@ -38,6 +38,3 @@ class Api::PostersController < ApplicationController
       params.require(:poster).permit(:title, :poster_link, :author, :notes)
     end
 end
-
-
-# TODO fill this out 
