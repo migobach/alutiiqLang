@@ -91,7 +91,7 @@ class Posters extends Component {
               verticalAlign='middle' 
               href="https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/poster/Alutiiq+Values+Poster.pdf" 
               target="_blank" 
-              centerd image />
+              />
           </Grid.Column>
 
           <Grid.Column width={10}>
