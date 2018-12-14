@@ -1,5 +1,7 @@
 require 'csv'
 
+@littler = "\u0280"
+
 namespace :song do
   task database: :environment do
     csv_text = File.read(Rails.root.join('lib', 'seeds', 'songaws.csv'))
@@ -12,13 +14,45 @@ namespace :song do
       
       s = Song.new
       s.title_english = row['title_english']
-      s.title_alutiiq = row['title_alutiiq']
+      s.title_alutiiq = 
+        if row['title_alutiiq'] == nil
+          row['title_alutiiq']
+        else (
+          if row['title_alutiiq'].include? 'R'
+            (
+              if row['title_alutiiq'].index('R') == 0 
+                row['title_alutiiq']
+              else
+                row['title_alutiiq'].gsub!('R', @littler.encode('utf-8') )
+              end
+            )
+          else
+            row['title_alutiiq']
+          end
+        )
+        end
       s.credit = row['credit']
       s.audio = row['audio']
       s.video = row['video']
       s.script = row['script']
       s.script_english_words = row['script_english_words']
-      s.script_alutiiq_words = row['script_alutiiq_words']
+      s.script_alutiiq_words = 
+          if row['script_alutiiq_words'] == nil
+            row['script_alutiiq_words']
+          else (
+            if row['script_alutiiq_words'].include? 'R'
+              (
+                if row['script_alutiiq_words'].index('_') == 0 
+                  row['script_alutiiq_words']
+                else
+                  row['script_alutiiq_words'].gsub!('R', @littler.encode('utf-8') )
+                end
+              )
+            else
+              row['script_alutiiq_words']
+            end
+          )
+          end
       s.traditional = row['traditional']
         if row['traditional'] == 'TRUE'
           row['traditional'] = true
