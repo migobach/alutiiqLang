@@ -7,6 +7,8 @@ import {
   Icon,
   Container,
   Grid,
+  Button,
+  Form,
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
@@ -26,7 +28,12 @@ import {
 import SongView from './SongView'
 
 class Songs extends Component {
-  state = {songData: {}, songView: false }
+  state = {
+    songData: {}, 
+    songView: false,
+    searchSongs: '',
+    searchView: false,
+  }
 
   componentDidMount() {
     const { dispatch } = this.props
@@ -45,9 +52,58 @@ class Songs extends Component {
       return <SpecialDiv />
   }
 
-  handleContextRef = contextRef => {
-    this.setState({ ref: {contextRef}})
-  }
+ handleChange = (e, { name, value }) => {
+    this.setState({ [name]: value })
+ }
+
+ renderSearchSongs = () => {
+   const { searchSongs } = this.state
+   const songs = this.props.songs
+   const lowerCaseSearch = searchSongs.toLowerCase()
+
+   let filtered_songs = songs.filter( s => 
+    s.title_english.toLowerCase().includes(lowerCaseSearch)
+    ||
+    s.title_alutiiq.toLowerCase().includes(lowerCaseSearch)
+    ||
+    ((s.credit != null) ?
+    s.credit.toLowerCase().includes(lowerCaseSearch)
+    :
+    null)
+    ||
+    ((s.traditional === true) ?
+    s.traditional 
+    :
+    null)
+    ||
+    ((s.notes != null) ?
+    s.notes.toLowerCase().includes(lowerCaseSearch)
+    : 
+    null)
+  )
+
+  return(
+    filtered_songs.map( (song) =>
+      <Grid.Row key={song.id}>
+        <Grid.Column computer={6} tablet={6}>
+          <SongStyle>
+            <i>{song.title_alutiiq}</i> 
+          </SongStyle>
+        </Grid.Column>
+        <Grid.Column width={6} only='computer tablet'>
+          <SongStyle>
+            {song.title_english}
+          </SongStyle>
+        </Grid.Column>
+        <Grid.Column computer={4} tablet={4} textAlign='center'>
+        <SongStyle>
+          <Icon name='eye' size='large' color='grey' onClick={() => this.setSong(song)}/>
+        </SongStyle>
+        </Grid.Column>
+      </Grid.Row>
+    )
+  )
+ }
 
   songs = () => {
     return this.props.songs.map( song => 
@@ -70,7 +126,7 @@ class Songs extends Component {
       </Grid.Row>
     )
   }
-
+//TODO is this necessary? Can all the views be refactored into the search view functionality? 
   songsMobile = () => {
     return this.props.songs.map( song => 
       <Grid.Row key={song.id}>
@@ -89,6 +145,8 @@ class Songs extends Component {
   }
 
   render() {
+    const { searchSongs } = this.state
+
     return(
     <div> 
 {/* header and welcome section of songs page  */}
@@ -132,6 +190,28 @@ class Songs extends Component {
         </Grid.Row>
       </Grid>
 
+{/* Song search field and buttons */}
+
+      <SpecialDiv>
+        <Form>
+          <Form.Input
+            placeholder='Search Songs...'
+            name='searchSongs'
+            value={searchSongs}
+            onChange={this.handleChange}
+            fluid
+          />
+          <Button
+            content='search'
+            icon='search'
+            labelPosition='right'
+            name='searchView'
+            value={true}
+            onClick={this.handleChange}
+          />
+        </Form>
+      </SpecialDiv>
+
 {/* start of the song list and conditional component - only renders on computer and tablet */}
 
       <Grid columns={2}>
@@ -157,7 +237,7 @@ class Songs extends Component {
                       </ColumnHead>
                     </Grid.Column>
                   </Grid.Row>
-                    { this.songs() }
+                    { this.renderSearchSongs() }
                 </Grid>
               </SpecialDiv>
             </SongHeight>
