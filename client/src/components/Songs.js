@@ -71,7 +71,7 @@ class Songs extends Component {
     :
     null)
     ||
-    ((s.traditional === true) ?
+    ((lowerCaseSearch === 'traditional') ?
     s.traditional 
     :
     null)
@@ -85,7 +85,7 @@ class Songs extends Component {
   return(
     filtered_songs.map( (song) =>
       <Grid.Row key={song.id}>
-        <Grid.Column computer={6} tablet={6}>
+        <Grid.Column computer={6} tablet={6} mobile={10}>
           <SongStyle>
             <i>{song.title_alutiiq}</i> 
           </SongStyle>
@@ -95,7 +95,7 @@ class Songs extends Component {
             {song.title_english}
           </SongStyle>
         </Grid.Column>
-        <Grid.Column computer={4} tablet={4} textAlign='center'>
+        <Grid.Column computer={4} tablet={4} mobile={4} textAlign='center'>
         <SongStyle>
           <Icon name='eye' size='large' color='grey' onClick={() => this.setSong(song)}/>
         </SongStyle>
@@ -105,44 +105,6 @@ class Songs extends Component {
   )
  }
 
-  songs = () => {
-    return this.props.songs.map( song => 
-      <Grid.Row key={song.id}>
-        <Grid.Column computer={6} tablet={6}>
-          <SongStyle>
-            <i>{song.title_alutiiq}</i> 
-          </SongStyle>
-        </Grid.Column>
-        <Grid.Column width={6} only='computer tablet'>
-          <SongStyle>
-            {song.title_english}
-          </SongStyle>
-        </Grid.Column>
-        <Grid.Column computer={4} tablet={4} textAlign='center'>
-        <SongStyle>
-          <Icon name='eye' size='large' color='grey' onClick={() => this.setSong(song)}/>
-        </SongStyle>
-        </Grid.Column>
-      </Grid.Row>
-    )
-  }
-//TODO is this necessary? Can all the views be refactored into the search view functionality? 
-  songsMobile = () => {
-    return this.props.songs.map( song => 
-      <Grid.Row key={song.id}>
-        <Grid.Column width={10}>
-          <SongStyle>
-            <i>{song.title_alutiiq}</i> 
-          </SongStyle>
-        </Grid.Column>
-        <Grid.Column width={6} textAlign='center'>
-          <SongStyle>
-            <Icon name='eye' size='large' color='grey' onClick={() => this.setSong(song)}/>
-          </SongStyle>
-        </Grid.Column>
-      </Grid.Row>
-    )
-  }
 
   render() {
     const { searchSongs } = this.state
@@ -275,7 +237,7 @@ class Songs extends Component {
                 </ColumnHead>
               </Grid.Column>
             </Grid.Row>
-              { this.songsMobile() }
+              { this.renderSearchSongs() }
           </Grid>
         )}
         </SpecialDiv>

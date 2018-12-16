@@ -68,7 +68,7 @@ class SongView extends Component {
               // playing='false'
               controls='true'
               height='5em'
-              width='25em'
+              width='20em'
               loop='false'
             />
             :
@@ -76,21 +76,27 @@ class SongView extends Component {
           }
 
           {/* Video ternary */}
-
-          {this.props.song.video ?
-            <div style={paddingStyle}>
-            <ReactPlayer 
-              url={this.props.song.video}
-              // playing='false'
-              controls='true'
-              height='17em'
-              width='30em'
-              
-            />
-            </div>
-            :
-            null  
-          }
+          <Grid>
+            <Grid.Row only='computer tablet'>
+              {this.props.song.video ?
+                <div style={paddingStyle}>
+                <ReactPlayer 
+                  url={this.props.song.video}
+                  // playing='false'
+                  controls='true'
+                  height='17em'
+                  width='30em'
+                  
+                />
+                </div>
+                :
+                null  
+              }
+            </Grid.Row>
+            <Grid.Row only='mobile'>
+              <Divider hidden />
+            </Grid.Row>
+          </Grid>
 
           {/* English and Alutiiq script */}
 
