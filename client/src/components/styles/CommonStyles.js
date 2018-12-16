@@ -138,8 +138,7 @@ export const SpecialDiv = styled.div`
 `
 
 export const SongDiv = SpecialDiv.extend`
-  width: 35em;
-  padding: .5em;
+  padding: 5em;
 `
 
 export const QuotePerson = styled.div`
@@ -173,6 +172,9 @@ export const Div = styled.div`
   width: auto;
   padding: 1em;
   overflow: auto;
+`
+export const SongHeight = Div.extend`
+  height: 85em;
 `
 
 // export const SongDiv = styled.div`
@@ -234,7 +236,7 @@ export const GreenLink = styled.a`
 `
 
 export const Watermark = styled.h1`
-  color: #3D3D3D;
+  color: #737373;
   text-align: center;
   align-content: center;
   font-size: 1.5em;

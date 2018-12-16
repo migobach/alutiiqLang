@@ -7,8 +7,6 @@ import {
   Icon,
   Container,
   Grid,
-  Sticky, 
-  Rail,
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
@@ -23,12 +21,12 @@ import {
   IconLink,
   Watermark,
   SongDiv,
-
+  SongHeight,
 } from './styles/CommonStyles'
 import SongView from './SongView'
 
 class Songs extends Component {
-  state = {songData: {}, songView: false, ref: {} }
+  state = {songData: {}, songView: false }
 
   componentDidMount() {
     const { dispatch } = this.props
@@ -91,7 +89,6 @@ class Songs extends Component {
   }
 
   render() {
-    const {contextRef} = this.state.ref
     return(
     <div> 
 {/* header and welcome section of songs page  */}
@@ -136,54 +133,52 @@ class Songs extends Component {
       </Grid>
 
 {/* start of the song list and conditional component - only renders on computer and tablet */}
+
       <Grid columns={2}>
         <Grid.Row only='computer tablet'>
           <Grid.Column>
-            <div ref={this.handleContextRef}>
+            <SongHeight>
               <SpecialDiv>
-                {_.times(1, i => 
-                  <Grid celled='internally' key={i}>
-                    <Grid.Row>
-                      <Grid.Column computer={6} tablet={6} textAlign='center'>
-                        <ColumnHead>
-                          Alutiiq Title
-                        </ColumnHead>
-                      </Grid.Column>
-                      <Grid.Column width={6} only='computer tablet' textAlign='center'>
-                        <ColumnHead>
-                          English Title
-                        </ColumnHead>
-                      </Grid.Column>
-                      <Grid.Column computer={4} tablet={4} textAlign='center'>
-                        <ColumnHead>
-                          View
-                        </ColumnHead>
-                      </Grid.Column>
-                    </Grid.Row>
-                      { this.songs() }
-                  </Grid>
-                )}
-                  <Rail position='right'>
-                
-                    <Sticky context={contextRef} as={SongDiv}>
-                    { this.state.songView === false ?
-                      <SongDiv>
-                        <Watermark>
-                          Click on a song to view 
-                        </Watermark>
-                      </SongDiv>
-                    :
-                      this.renderingSongView() 
-                    }
-                    </Sticky>
-                
-                  </Rail>
+                <Grid celled='internally' > 
+                  <Grid.Row>
+                    <Grid.Column computer={6} tablet={6} textAlign='center'>
+                      <ColumnHead>
+                        Alutiiq Title
+                      </ColumnHead>
+                    </Grid.Column>
+                    <Grid.Column width={6} only='computer tablet' textAlign='center'>
+                      <ColumnHead>
+                        English Title
+                      </ColumnHead>
+                    </Grid.Column>
+                    <Grid.Column computer={4} tablet={4} textAlign='center'>
+                      <ColumnHead>
+                        View
+                      </ColumnHead>
+                    </Grid.Column>
+                  </Grid.Row>
+                    { this.songs() }
+                </Grid>
               </SpecialDiv>
-           </div>
+            </SongHeight>
         </Grid.Column>  
+
+        {/* New conditionally rendered song view - not sticky */}
+        <Grid.Column>
+          { this.state.songView === false ?
+            <SongDiv>
+              <Watermark>
+                Click on a song to view
+              </Watermark>
+            </SongDiv>
+            :
+            this.renderingSongView()
+          }
+        </Grid.Column>
       </Grid.Row>
 
 {/* start of the song list and conditional component - only renders on phones */}
+
       <Grid.Row only='mobile'>
         <SpecialDiv>
         {_.times(1, i => 
