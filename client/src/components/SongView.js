@@ -130,7 +130,7 @@ class SongView extends Component {
               Download song script
             </ContentStyle>
             <br />
-            <IconLinkGrey href={this.props.song.script} style={iconPad}>
+            <IconLinkGrey href={this.props.song.script} style={iconPad} target="_blank">
               <IconHover name='cloud download' />
             </IconLinkGrey>
           </div>

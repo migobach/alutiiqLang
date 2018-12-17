@@ -34,7 +34,12 @@ namespace :song do
       s.credit = row['credit']
       s.audio = row['audio']
       s.video = row['video']
-      s.script = row['script']
+      s.script = 
+        if row['script'] == nil
+          row['script']
+        else
+          "https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/song_script/" + row['script'] + ".pdf"
+        end
       s.script_english_words = row['script_english_words']
       s.script_alutiiq_words = 
           if row['script_alutiiq_words'] == nil
