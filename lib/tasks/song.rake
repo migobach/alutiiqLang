@@ -32,7 +32,12 @@ namespace :song do
         )
         end
       s.credit = row['credit']
-      s.audio = row['audio']
+      s.audio = 
+        if row['audio'] == nil
+          row['audio']
+        else
+          "https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/songs/" + row['audio'] + ".mp3"
+        end
       s.video = row['video']
       s.script = 
         if row['script'] == nil
