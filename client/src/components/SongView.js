@@ -3,6 +3,7 @@ import ReactPlayer from 'react-player'
 import {
   Divider,
   Grid,
+  Button,
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
@@ -153,6 +154,16 @@ class SongView extends Component {
           }
            
         </SpecialDiv>
+
+        <SpecialDiv>
+
+          <Button type='button' onClick={this.props.view}>
+            Close
+          </Button>
+
+        </SpecialDiv>
+
+          <Divider hidden />
       </Fragment>
     )
   }

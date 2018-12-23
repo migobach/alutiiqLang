@@ -44,10 +44,14 @@ class Songs extends Component {
     this.setState( { songData: {...song}, songView: true })
   }
 
+  toggleView = () => {
+    this.setState( { songView: !this.state.songView })
+  }
+
   renderingSongView = () => {
     const { songView } = this.state
     if (songView === true) {
-      return <SongView song={this.state.songData} toggleView={this.state.songView} />
+      return <SongView song={this.state.songData} view={this.toggleView} />
     } else 
       return <SpecialDiv />
   }
