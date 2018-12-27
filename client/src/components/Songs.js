@@ -230,7 +230,7 @@ class Songs extends Component {
         {_.times(1, i => 
           <Grid celled='internally' key={i}>
             <Grid.Row>
-              <Grid.Column width={10}>
+              <Grid.Column width={10} textAlign='center'>
                 <ColumnHead>
                   Alutiiq Title
                 </ColumnHead>

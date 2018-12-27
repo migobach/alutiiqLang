@@ -21,7 +21,7 @@ class Nest extends Component {
   renderCurriculum = () => {
     return this.props.curriculum.map( curriculum => {
       if (curriculum.group_name !== "Language Nest") {
-        return
+        return ( null )
       } else 
         return (
         <Grid.Row key={curriculum.id}>
@@ -39,7 +39,7 @@ class Nest extends Component {
             <SongStyle>
               { curriculum.link_to_item ?
                 <Pointer>
-                  <a href={curriculum.link_to_item}>
+                  <a href={curriculum.link_to_item} target='_blank'>
                     <Icon name='eye' size='large' color='grey'/>
                   </a>
                 </Pointer>

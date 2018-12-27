@@ -46,6 +46,7 @@ class BookView extends Component {
               {this.props.book.book_type}
             </ContentStyle>
             }
+            <Divider hidden />
             { this.props.book.file ?
               <IconLinkGrey href={this.props.book.file}>
                 <IconHover name='cloud download' />

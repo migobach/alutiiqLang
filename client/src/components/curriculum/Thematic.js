@@ -23,7 +23,7 @@ class Thematic extends Component {
   renderUnits = () => {
     return this.props.curriculum.map( unit => {
       if (unit.group_name !== "Thematic Units") {
-        return
+        return ( null )
       } else 
         return (
             <Grid.Row>
@@ -43,7 +43,7 @@ class Thematic extends Component {
                 <SongStyle>
                   { unit.link_to_item ?
                     <Pointer>
-                      <a href={unit.link_to_item}>
+                      <a href={unit.link_to_item} target='_blank'>
                         <Icon name='eye' size='large' color='grey'/>
                       </a>
                     </Pointer>

@@ -77,6 +77,7 @@ class SongView extends Component {
           }
 
           {/* Video ternary */}
+          
           <Grid>
             <Grid.Row only='computer tablet'>
               {this.props.song.video ?
@@ -156,13 +157,10 @@ class SongView extends Component {
         </SpecialDiv>
 
         <SpecialDiv>
-
           <Button type='button' onClick={this.props.view}>
             Close
           </Button>
-
         </SpecialDiv>
-
           <Divider hidden />
       </Fragment>
     )
