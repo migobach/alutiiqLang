@@ -86,19 +86,21 @@ const Home = () => (
         <Card>
           <Card.Content header textAlign='center'>
             <CardHeader>
-              New Qbooks
+              Classes
             </CardHeader>
           </Card.Content>
           <Card.Content>
             <SpecialDiv>
               <ContentStyle>
-                Now you can have a book read to you by an Alutiiq speaker via a downloadable app on your iPad, iPhone, or Android device. Click below to learn more.
+                Are you interested in learning Alutiiq, and meeting other speakers and learners? Check out opportunities to learn in formal and informal settings by clicking the button.
               </ContentStyle>
             </SpecialDiv>
           </Card.Content>
-          <Button color='yellow' size='small' fluid>
-            Go 
-          </Button>
+            <Link to={'/classes'}>
+              <Button color='yellow' size='small' fluid>
+                Go 
+              </Button>
+            </Link>
         </Card>
 
       </Card.Group>
