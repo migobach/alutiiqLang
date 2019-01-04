@@ -28,24 +28,6 @@ const Worldview = () => (
       </Header>
     </SpecialDiv>
 
-    {/* highlighted quote */}
-
-    <BlueDiv>
-      <Grid stackable columns={2} verticalAlign='middle'>
-        <Grid.Column width={10}>
-          <Image src={Games} size='massive' floated='left' verticalAlign='middle' />
-        </Grid.Column>
-        <Grid.Column width={5}>
-          <ContentStyleQuote>
-            <i>"Language is a vehicle of culture"</i>
-          </ContentStyleQuote>
-          <QuotePerson>
-            <br />=Phyllis Fast, Koyukon Athabaskca Professor of Anthropology
-          </QuotePerson>
-        </Grid.Column>
-      </Grid>
-    </BlueDiv>
-
     {/* content and subsections */}
     <SpecialDiv>
       <Grid stackable columns = {3}>
@@ -83,6 +65,24 @@ const Worldview = () => (
         
       </Grid>
     </SpecialDiv>
+
+    {/* highlighted quote */}
+
+    <BlueDiv>
+      <Grid stackable columns={2} verticalAlign='middle'>
+        <Grid.Column width={10}>
+          <Image src={Games} size='massive' floated='left' verticalAlign='middle' />
+        </Grid.Column>
+        <Grid.Column width={5}>
+          <ContentStyleQuote>
+            <i>"Language is a vehicle of culture"</i>
+          </ContentStyleQuote>
+          <QuotePerson>
+            <br />-Phyllis Fast, Koyukon Athabaskca Professor of Anthropology
+          </QuotePerson>
+        </Grid.Column>
+      </Grid>
+    </BlueDiv>
   </div>
 )
 
