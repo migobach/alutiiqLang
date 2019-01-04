@@ -3,6 +3,7 @@ import {
   Header, 
   Grid, 
   Divider,
+  Image,
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
@@ -12,10 +13,12 @@ import {
   CardHeader,
   GreenDiv,
   WhiteTitle,
-  ContentStyleWhite,
+  ContentStyleWhiteLeft,
   GreenHead,
   ColumnHead,
+  BodyLink,
 } from './styles/CommonStyles'
+import Jenga from '../images/Jenga.jpg'
 
 class Classes extends Component {
 
@@ -55,131 +58,7 @@ class Classes extends Component {
         </Grid.Row>
       </Grid>
 
-      <GreenDiv>
-
-        <Grid celled='internally' stackable doubling>
-          <Grid.Row>
-            <Grid.Column width={6} textAlign='center' verticalAlign='middle'>
-              <WhiteTitle>
-                <i>Pekyun</i>  
-              </WhiteTitle>
-              <ContentStyle>
-                Monday
-              </ContentStyle>
-            </Grid.Column>
-            <Grid.Column width={10} textAlign='center'>
-              {/* placeholder */}
-            </Grid.Column>
-          </Grid.Row>
-          
-          <Grid.Row>
-            <Grid.Column width={6} textAlign='center'>
-              <WhiteTitle>
-                <i>Aipi'in</i>
-              </WhiteTitle>
-              <ContentStyle>
-                Tuesday
-              </ContentStyle>
-            </Grid.Column>
-            <Grid.Column width={10} textAlign='center'>
-              {/* placeholder */}
-            </Grid.Column>
-          </Grid.Row>
-
-          <Grid.Row>
-            <Grid.Column width={6} textAlign='center' verticalAlign='middle'>
-              <WhiteTitle>
-                <i>Penga'i'in</i>
-              </WhiteTitle>
-              <ContentStyle>
-                Wednesday
-              </ContentStyle>
-            </Grid.Column>
-            <Grid.Column width={10} textAlign='center'>
-              <ContentStyleWhite>
-                Language Club
-                <br />
-                <i>Alutiit'stun Niuwawik</i> 
-                <br />
-                Alutiiq Language Nest, Upstairs from the Alutiiq Museum 
-                <br />
-                @12:00-1:00 pm
-                <br />
-                <br />
-                Family Language Night
-                <br />
-                UAF Fisheries Research Building
-                <br />
-                118 Trident Way, Near Island
-                <br />
-                @5:00-6:30 pm
-              </ContentStyleWhite>
-            </Grid.Column>
-          </Grid.Row>
-
-          <Grid.Row>
-            <Grid.Column width={6} textAlign='center'>
-              <WhiteTitle>
-                <i>Staami'in</i>
-              </WhiteTitle>
-              <ContentStyle>
-                Thursday
-              </ContentStyle>
-            </Grid.Column>
-            <Grid.Column width={10} textAlign='center'>
-              {/* placeholder */}
-            </Grid.Column>
-          </Grid.Row>
-
-          <Grid.Row>
-            <Grid.Column width={6} textAlign='center' verticalAlign='middle'>
-              <WhiteTitle>
-                <i>Tallimi'in</i>
-              </WhiteTitle>
-              <ContentStyle>
-                Friday
-              </ContentStyle>
-            </Grid.Column>
-            <Grid.Column width={10} textAlign='center'>
-              <ContentStyleWhite>
-                Elders Review & Lesson Plan Session
-                <br />
-                Alutiiq Museum
-                <br />
-                @11:00-12:15 pm
-              </ContentStyleWhite>
-            </Grid.Column>
-          </Grid.Row>
-
-          <Grid.Row>
-            <Grid.Column width={6} textAlign='center'>
-              <WhiteTitle>
-                <i>Maqineq</i>
-              </WhiteTitle>
-              <ContentStyle>
-                Saturday
-              </ContentStyle>
-            </Grid.Column>
-            <Grid.Column width={10} textAlign='center'>
-              {/* placeholder */}
-            </Grid.Column>
-          </Grid.Row>
-
-          <Grid.Row>
-            <Grid.Column width={6} textAlign='center'>
-              <WhiteTitle>
-                <i>Agayuneq</i>
-              </WhiteTitle>
-              <ContentStyle>
-                Sunday
-              </ContentStyle>
-            </Grid.Column>
-            <Grid.Column width={10} textAlign='center'>
-              {/* placeholder */}
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </GreenDiv>
+      
 
       <SpecialDiv>
         <GreenHead>
@@ -197,7 +76,7 @@ class Classes extends Component {
               215 Mission Road, Kodiak Alaska
               <br />
               <br />
-              The Alutiiq Language Club has been meeting since 2003. It is an informal group of learners and Elders who meet every week on Wednesday at noon in the Language Nest in downtown Kodiak.  All levels of learners and speakers are welcome to attend.  To find out more, contact the Alutiiq Museum at (844) 425-8844, or April Laktonen Counceller. All are welcome at Language Club.
+              The Alutiiq Language Club has been meeting since 2003. It is an informal group of learners and Elders who meet every week on Wednesday at noon in the Language Nest in downtown Kodiak.  All levels of learners and speakers are welcome to attend.  To find out more, contact the Alutiiq Museum at (844) 425-8844, or email <BodyLink href={`mailto:molly@alutiiqmuseum.org`}>Molly Odell</BodyLink> at the Alutiiq Museum for more information. All are welcome at Language Club.
             </ContentStyle>
           <br />
           <ColumnHead>
@@ -211,7 +90,7 @@ class Classes extends Component {
               118 Trident Way, Kodiak Alaska
               <br />
               <br />
-              Families gather to make soup and learn Alutiiq language in a fun and interactive envrionment. This gathering is sponsored by a grant from the Administration for Native Americans, and hosted by the Sun'aq Tribe of Kodiak, with support from the University of Alaska Fairbanks.
+              Families gather to make soup and learn Alutiiq language in a fun and interactive envrionment. This gathering is sponsored by a grant from the Administration for Native Americans, and hosted by the <BodyLink href={"http://sunaq.org/"} target="_blank">Sun'aq Tribe of Kodiak</BodyLink>, with support from the University of Alaska Fairbanks.
             </ContentStyle>
           <br />
           <ColumnHead>
@@ -225,7 +104,7 @@ class Classes extends Component {
               215 Mission Road, Kodiak Alaska
               <br />
               <br />
-              Alutiiq Elders meet each week to review teaching resources, practice lesson content, and edit songs, stories and other instructional resources. All learners and speakers are welcome to sit in on the discussions. Please call the Alutiiq Museum for up to date information at (844) 425-8844.
+              Alutiiq Elders meet each week to review teaching resources, practice lesson content, and edit songs, stories and other instructional resources. All learners and speakers are welcome to sit in on the discussions. Please call the <BodyLink href={"https://alutiiqmuseum.org/"} target="_blank">Alutiiq Museum</BodyLink> for up to date information at (844) 425-8844.
             </ContentStyle>
       </SpecialDiv>
 
@@ -241,7 +120,7 @@ class Classes extends Component {
               215 Mission Road, Suite 213, Kodiak Alaska
               <br />
               <br />
-              The Alutiiq Language Nest is operated by the Sun'aq Tribe of Kodiak and sponsored by a grant from the Administration for Native Americans. The Language nest operates Tuesday, Wednesday and Thursday 8-12 for kids age 3-5, and is also open to younger kids who are acommpanied by a cargiver. Registration is required. Guests are welcome with prior notice to the teachers. Click here to learn how to register, or for more information, contact Raissa and Jake at 907-512-5995. 
+              The Alutiiq Language Nest is operated by the Sun'aq Tribe of Kodiak and sponsored by a grant from the Administration for Native Americans. The Language nest operates Tuesday, Wednesday and Thursday 8-12 for kids age 3-5, and is also open to younger kids who are acommpanied by a cargiver. Registration is required. Guests are welcome with prior notice to the teachers. <BodyLink href={"http://sunaq.org/tamamta-liitukut/"} target="_blank">Click here</BodyLink> to learn how to register, or for more information, contact Raissa and Jake at 907-512-5995. 
             </ContentStyle>
           <br />
           <ColumnHead>
@@ -251,7 +130,7 @@ class Classes extends Component {
               <i>Registration Required</i>
               <br />
               <br />
-              UAA-Kodiak College is now offering introductory courses in the Alutiiq Language that will lead to a Certificate or AA Degree in Alutiiq Studies. Visit Kodiak College's website to verify schedules and to register for Alutiiq 101, Alutiiq 102, and an Alutiiq Orthography class. You can also call the Alutiiq Studies program at (907) 486-1276 for more information.
+              UAA-Kodiak College is now offering introductory courses in the Alutiiq Language that will lead to a Certificate or AA Degree in Alutiiq Studies. Visit <BodyLink href={"https://koc.alaska.edu/students/academics/departments/alutiiq_studies.cshtml"} target="_blank">Kodiak College's Alutiiq Studies</BodyLink> website to verify schedules and to register for Alutiiq 101, Alutiiq 102, and an Alutiiq Orthography class. You can also call the Alutiiq Studies program at (907) 486-1276 for more information.
             </ContentStyle>
           <br />
           <ColumnHead>
@@ -265,7 +144,7 @@ class Classes extends Component {
               323 Carolyn Street, Kodiak Alaska
               <br />
               <br />
-              Dig Afognak camp is a cultural education program that is geared toward youth. A central focus of camp is Alutiiq culture, values, and language. Dig Afognak is a place where young people bond through cultural activities and engagement. For more information, contact Nancy Nelson at Native Village of Afognak. If you would like to register, click here.
+              Dig Afognak camp is a cultural education program that is geared toward youth. A central focus of camp is Alutiiq culture, values, and language. Dig Afognak is a place where young people bond through cultural activities and engagement. For more information, contact Nancy Nelson at Native Village of Afognak. If you would like to register, <BodyLink href={"https://www.afognak.org/dig-afognak/"} target="_blank">click here</BodyLink>.
             </ContentStyle>
           <ColumnHead>
             Kodiak High School Language Class
@@ -274,7 +153,7 @@ class Classes extends Component {
               <i>Registration Required</i>
               <br />
               <br />
-              KHS Alutiiq Language classes are a full-year World Language class, also offered for dual credit through the Kodiak College. We offer year-long instruction in Alutiiq I and Alutiiq II for high school students. The classes are taught by Alutiiq Language Instructor, Candace Branson with support from a group of fluent Alutiiq Elders and team of other adult learners. Questions about the Kodiak High School Class or resources shared from the class can be addressed to Candace Branson at (907) 486-4449 or cmbranson@sunaq.org.
+              KHS Alutiiq Language classes are a full-year World Language class, also offered for dual credit through the Kodiak College. We offer year-long instruction in Alutiiq I and Alutiiq II for high school students. The classes are taught by Alutiiq Language Instructor, Candace Branson with support from a group of fluent Alutiiq Elders and team of other adult learners. Questions about the Kodiak High School Class or resources shared from the class can be addressed to <BodyLink href={`mailto:cmbranson@sunaq.org`}>Candace Branson</BodyLink>.
             </ContentStyle>
       </SpecialDiv>
 
@@ -284,19 +163,33 @@ class Classes extends Component {
           <Divider />
         </GreenHead>
           <ColumnHead>
-            <i>Nuta'at Niugnelistet</i>- New Words Council
-          </ColumnHead>
-            <ContentStyle>
-              The Nuta’at Niugnelistet (New Word Makers), also known as the Alutiiq New Words Council (NWC) has monthly or bimonthly since 2007 to develop new modern terms in the Kodiak Alutiiq language. It is made up of fluent Elder and learner participants. To learn more about the NWC, contact the Alutiiq Museum at (844) 425-8844, or email their Executive Director April Laktonen Counceller.
-            </ContentStyle>
-          <br />
-          <ColumnHead>
             <i>Qik'rtarmiut Alutiit</i> Regional Language Advisory Committee
           </ColumnHead>
             <ContentStyle>
-              The <i>Qik’rtarmiut Alutiit</i> (Alutiiq People of the Island) Regional Language Advisory Committee (known as the “Qik Committee”) started in 2003, and is a grassroots committee made up of representatives from island-wide tribes and organizations, as well as interested Elders and other individuals. The committee meets every few months to guide projects in the language revitalization movement and inform members of project updates and events. To get on the agenda for the next Qik Committee meeting, or to be signed up to the mailing list for meeting announcements, call the Alutiiq Museum at (844) 425-8844 or e-mail April Laktonen Counceller.
+              The <i>Qik’rtarmiut Alutiit</i> (Alutiiq People of the Island) Regional Language Advisory Committee (known as the “Qik Committee”) started in 2003, and is a grassroots committee made up of representatives from island-wide tribes and organizations, as well as interested Elders and other individuals. The committee meets every few months to guide projects in the language revitalization movement and inform members of project updates and events. To get on the agenda for the next Qik Committee meeting, or to be signed up to the mailing list for meeting announcements, call the Alutiiq Museum at (844) 425-8844 or email <BodyLink href={`mailto:molly@alutiiqmuseum.org`}>Molly Odell</BodyLink>.
             </ContentStyle>
       </SpecialDiv>
+      
+      <Divider hidden />
+
+      <GreenDiv>
+        <Grid stackable columns={2} verticalAlign='middle'>
+          <Grid.Column width={10}>
+            <Image src={Jenga} size='massive' floated='left' verticalAlign='middle' />
+          </Grid.Column>
+          <Grid.Column width={5}>
+            <WhiteTitle>
+              <i>Allrani wamlita allrilugmi.</i>
+            </WhiteTitle>
+            <ContentStyleWhiteLeft>
+              Sometimes we all play games together. That way, we all have fun! Playing games makes learning Alutiiq fun, and engages all of us. 
+              <br />
+              <br />
+              This picture was taken at the Alutiiq Nation Festival. Language learners are playing a game of super-sized Jenga! 
+            </ContentStyleWhiteLeft>
+          </Grid.Column>
+        </Grid>
+      </GreenDiv>
 
     </div>
 

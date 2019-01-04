@@ -116,6 +116,12 @@ export const ContentStyleWhite = styled.div`
   text-align: center;
   padding-bottom: 14px;
 `
+export const ContentStyleWhiteLeft = styled.div`
+  color: white;
+  line-height: 2;
+  font_size: 1em;
+  padding-bottom: 14px;
+`
 
 export const WhiteTitle = styled.h4`
   color: white;
