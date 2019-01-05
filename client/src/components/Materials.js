@@ -289,7 +289,7 @@ class Materials extends Component {
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-              <a href='https://quizlet.com/cbranson01'>
+              <a href='https://quizlet.com/cbranson01' target='_blank'>
                 <Button color='yellow' size='small' fluid>
                   Go 
                 </Button>

@@ -39,7 +39,7 @@ class BookView extends Component {
               </ContentStyle>    
             { this.props.book.book_type === 'Qbook' ?
             <ContentStyle>
-              This book is available for iPhone through the App Store and also available through the Google Play store for Android devices. 
+              This book is available for through the App Store for iPhones and iPads and available through the Google Play store for Android devices. 
             </ContentStyle>
             : 
             <ContentStyle>
@@ -48,7 +48,7 @@ class BookView extends Component {
             }
             <Divider hidden />
             { this.props.book.file ?
-              <IconLinkGrey href={this.props.book.file}>
+              <IconLinkGrey href={this.props.book.file} target='_blank'>
                 <IconHover name='cloud download' />
               </IconLinkGrey>
               :
