@@ -360,7 +360,7 @@ class Materials extends Component {
       null
     }
 
-    {/* DATABASE TABLE */}
+    {/* ALUTIIQ EDUCATION.ORG DATABASE TABLE */}
       
       <SpecialDiv>
         <Div>

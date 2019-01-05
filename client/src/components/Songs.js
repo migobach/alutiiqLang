@@ -24,6 +24,7 @@ import {
   Watermark,
   SongDiv,
   SongHeight,
+  Div
 } from './styles/CommonStyles'
 import SongView from './SongView'
 
@@ -89,12 +90,12 @@ class Songs extends Component {
   return(
     filtered_songs.map( (song) =>
       <Grid.Row key={song.id}>
-        <Grid.Column computer={6} tablet={6} mobile={10}>
+        <Grid.Column computer={6} tablet={10} mobile={10}>
           <SongStyle>
             <i>{song.title_alutiiq}</i> 
           </SongStyle>
         </Grid.Column>
-        <Grid.Column width={6} only='computer tablet'>
+        <Grid.Column width={6} only='computer'>
           <SongStyle>
             {song.title_english}
           </SongStyle>
@@ -187,12 +188,12 @@ class Songs extends Component {
               <SpecialDiv>
                 <Grid celled='internally' > 
                   <Grid.Row>
-                    <Grid.Column computer={6} tablet={6} textAlign='center'>
+                    <Grid.Column computer={6} tablet={10} textAlign='center'>
                       <ColumnHead>
                         Alutiiq Title
                       </ColumnHead>
                     </Grid.Column>
-                    <Grid.Column width={6} only='computer tablet' textAlign='center'>
+                    <Grid.Column width={6} only='computer' textAlign='center'>
                       <ColumnHead>
                         English Title
                       </ColumnHead>
@@ -224,9 +225,16 @@ class Songs extends Component {
       </Grid.Row>
 
 {/* start of the song list and conditional component - only renders on phones */}
-
+      
       <Grid.Row only='mobile'>
-        <SpecialDiv>
+        { this.state.songView === false ?
+          null
+          :
+          this.renderingSongView() 
+        }
+      </Grid.Row>
+      <Grid.Row only='mobile'>
+        <Div>
         {_.times(1, i => 
           <Grid celled='internally' key={i}>
             <Grid.Row>
@@ -244,19 +252,9 @@ class Songs extends Component {
               { this.renderSearchSongs() }
           </Grid>
         )}
-        </SpecialDiv>
+        </Div>
       </Grid.Row>
-      <Grid.Row only='mobile'>
-        { this.state.songView === false ?
-          <SpecialDiv>
-            <Watermark>
-              Click on a song to view
-            </Watermark>
-          </SpecialDiv>
-          :
-          this.renderingSongView() 
-        }
-      </Grid.Row>
+      
     </Grid>
 
 {/* blue songbook section at the bottom of the page */}
