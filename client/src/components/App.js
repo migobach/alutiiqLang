@@ -42,11 +42,11 @@ class App extends Component {
   render() {
     return(
       <div>
-        <Responsive minWidth={768}>
+        <Responsive minWidth={767}>
           <NavBar />
         </Responsive>
         
-        <Responsive maxWidth={767}>
+        <Responsive maxWidth={766}>
           <div style={menuPad}>
             <Menu.Item 
               as={Button}
@@ -103,7 +103,7 @@ class App extends Component {
               </Link>
               <Link to='/happenings'>
                 <Menu.Item>
-                  Happenings
+                  History & News
                 </Menu.Item>
               </Link>
             </Sidebar>

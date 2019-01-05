@@ -44,7 +44,6 @@ class NavBar extends Component {
   // }
 
   render() {
-    // const { activeItem } = this.state
     const { activeItem } = this.state
 
     return (
@@ -63,7 +62,7 @@ class NavBar extends Component {
             as={Link} to='/curriculum' 
           />
           <Menuitems 
-            name='learning_materials'
+            name='materials'
             active={activeItem === '/materials'}
             onClick={this.handleItemClick}
             as={Link} to="/materials"
@@ -87,11 +86,13 @@ class NavBar extends Component {
             as={Link} to="/classes"
           />  
             <Menuitems 
-            name='happenings'
+            // name='history_and_news'
             active={activeItem === '/happenings'}
             onClick={this.handleItemClick}
             as={Link} to="/happenings"
-          />         
+          >
+          History & News
+          </Menuitems>         
         </Menu>
       </div>
     );

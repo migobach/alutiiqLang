@@ -163,6 +163,7 @@ export const GreenDiv = styled.div`
   background-position: center center;
   background-size: cover;
   height: auto;
+  width: auto;
 `
 
 export const BlueDiv = GreenDiv.extend`
