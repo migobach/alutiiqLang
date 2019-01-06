@@ -6,6 +6,7 @@ import {
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
+  SpecialDivCenter,
   ContentStyle,
   WordStyle,
   IconLinkGrey,
@@ -15,15 +16,15 @@ import {
 class MaterialsView extends Component {
 
   handleAuthorYear = () => {
-    if (this.props.material.author === null && this.props.material.year === null) {
+    if (this.props.material.author === null && this.props.material.year === 0) {
       return 
-    } else if (this.props.material.author && this.props.material.year === null) {
+    } else if (this.props.material.author != null && this.props.material.year === 0) {
       return(
         <ContentStyle>
           {this.props.material.author}
         </ContentStyle>
       )
-    } else if (this.props.material.year && this.props.material.author === null) {
+    } else if (this.props.material.year !== 0 && this.props.material.author === null) {
       return(
         <ContentStyle>
           {this.props.material.year}
@@ -97,8 +98,34 @@ class MaterialsView extends Component {
       }
     }
 
-    handleUrl = () => {
-      // this needs to be finalized. Currently the urls are not in one spot- gotta clean the data before I make this useable
+    handleUrl = () => { 
+      if (this.props.material.url != null && this.props.material.file_url != null) {
+        return(
+        <div>
+          <IconLinkGrey href={this.props.material.url} target='_blank'>
+            <IconHover name='linkify'/>
+          </IconLinkGrey>
+        <Divider hidden />
+          <IconLinkGrey href={this.props.material.file_url} target='_blank'>
+            <IconHover name='cloud download' />
+          </IconLinkGrey>
+        </div>
+        )
+      } else if (this.props.material.url != null && this.props.material.file_url === null) {
+        return(
+          <IconLinkGrey href={this.props.material.url} target='_blank'>
+            <IconHover name='linkify'/>
+          </IconLinkGrey>
+        )
+      } else if (this.props.material.url === null && this.props.material.file_url != null) {
+        return(
+          <IconLinkGrey href={this.props.material.file_url} target='_blank'>
+            <IconHover name='cloud download' />
+          </IconLinkGrey>
+        )
+      } else {
+        return
+      }
     }
 
   render() {
@@ -133,9 +160,7 @@ class MaterialsView extends Component {
             </Grid.Column>
 
             <Grid.Column width={2} verticalAlign='middle'>
-              <IconLinkGrey>
-                <IconHover name='cloud download' />
-              </IconLinkGrey>
+              {this.handleUrl()}
             </Grid.Column>
           </Grid.Row>
 
@@ -154,10 +179,9 @@ class MaterialsView extends Component {
               {this.handleValues()}
 
             <Divider />
-              <IconLinkGrey>
-                <IconHover name='cloud download' />
-              </IconLinkGrey>
-            <Divider hidden />
+              <SpecialDivCenter>
+                {this.handleUrl()}
+              </SpecialDivCenter>
 
               <Button type='button' onClick={this.props.view}>
                 Close

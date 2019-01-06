@@ -7,7 +7,6 @@ import {
   Icon,
   Container,
   Grid,
-  Button,
   Form,
 } from 'semantic-ui-react'
 import {
@@ -167,14 +166,6 @@ class Songs extends Component {
             value={searchSongs}
             onChange={this.handleChange}
             fluid
-          />
-          <Button
-            content='search'
-            icon='search'
-            labelPosition='right'
-            name='searchView'
-            value={true}
-            onClick={this.handleChange}
           />
         </Form>
       </SpecialDiv>

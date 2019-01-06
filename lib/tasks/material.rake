@@ -11,7 +11,17 @@ namespace :material do
       # puts row.to_hash
       m = Material.new
       m.resource_title = row['resource_title']
-      m.file_url = row['file_url']
+      m.file_url =
+        if row['file_url'] == nil 
+          row['file_url']
+        else (
+          if row['file_url'].include? 'http'
+            row['file_url']
+          else
+            "http://alutiiqeducation.org/files/resource_pdf/" + row['file_url']
+          end
+        )
+        end 
       m.url = row['url']
       m.author = row['author']
       m.year = row['year']

@@ -116,32 +116,20 @@ class Materials extends Component {
     return(
       filtered_materials.map( (material) =>
         <Grid.Row key={material.id}>
-          <Grid.Column computer={5} tablet={5} mobile={10} verticalAlign='middle'>
+          <Grid.Column computer={6} tablet={6} mobile={10} verticalAlign='middle'>
             <ContentStyle>
               <i>{material.resource_title}</i>
             </ContentStyle>
           </Grid.Column>
-          <Grid.Column width={5} verticalAlign='middle' only='computer tablet'>
+          <Grid.Column width={6} verticalAlign='middle' only='computer tablet'>
             <ContentStyle>
               {material.subjects}
             </ContentStyle>
           </Grid.Column>
-          <Grid.Column computer={3} tablet={3} mobile={6} textAlign='center' verticalAlign='middle'>
+          <Grid.Column computer={4} tablet={4} mobile={6} textAlign='center' verticalAlign='middle'>
             <Pointer>
               <Icon name='info' size='large' color='grey' onClick= {() => this.setMaterial(material)}/>
             </Pointer>
-          </Grid.Column>
-          <Grid.Column width={3} verticalAlign='middle' only='computer tablet' textAlign='center'>
-            {
-              material.file_url ? 
-              <a href={"http://alutiiqeducation.org/files/resource_pdf/".concat(material.file_url)}>
-                <Icon name='eye' size='large' color='grey' />
-              </a>
-              : 
-              <a href={material.url}>
-              <Icon name='linkify' size='large' color='grey' />
-              </a>
-            }
           </Grid.Column>
         </Grid.Row>
       )
@@ -339,14 +327,6 @@ class Materials extends Component {
               onChange={this.handleChange}
               fluid
             />
-            <Button
-              content='search'
-              icon='search'
-              labelPosition='right'
-              name='searchView'
-              value={true}
-              onClick={this.handleChange}
-            />
           </Form>
         </SpecialDiv>
 
@@ -365,24 +345,19 @@ class Materials extends Component {
         <Div>
           <Grid celled='internally'>
             <Grid.Row>
-              <Grid.Column computer={5} tablet={5} mobile={10} verticalAlign='middle'>
+              <Grid.Column computer={6} tablet={6} mobile={10} verticalAlign='middle'>
                 <ColumnHead>
                   Title
                 </ColumnHead>
               </Grid.Column>
-              <Grid.Column width={5} verticalAlign='middle' only='computer tablet'>
+              <Grid.Column width={6} verticalAlign='middle' only='computer tablet'>
                 <ColumnHead>
                   Subject
                 </ColumnHead>
               </Grid.Column>
-              <Grid.Column computer={3} tablet={3} mobile={6} textAlign='center' verticalAlign='middle'>
+              <Grid.Column computer={4} tablet={4} mobile={6} textAlign='center' verticalAlign='middle'>
                 <ColumnHead>
                   Information
-                </ColumnHead>
-              </Grid.Column>
-              <Grid.Column width={3} verticalAlign='middle' only='computer tablet' textAlign='center'>
-                <ColumnHead>
-                  View
                 </ColumnHead>
               </Grid.Column>
             </Grid.Row>

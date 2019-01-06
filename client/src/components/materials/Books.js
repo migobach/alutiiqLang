@@ -15,6 +15,7 @@ import {
   Div,
   Pointer,
   ColumnHead,
+  BodyLink, 
 } from '../styles/CommonStyles'
 import BookView from './BookView'
 
@@ -109,10 +110,10 @@ class Books extends Component {
 
         <SpecialDiv>
           <ContentStyle>
-            Native Village of Afognak along with the Alutiiq Museum and Archaeological Repository have partnered with KIWA Media to create storybooks that read to you, spell for you, and allow you to be immersed in an Alutiiq storyetelling experience
+            <BodyLink href={'https://www.afognak.org/'} target={'_blank'}>Native Village of Afognak</BodyLink> along with the <BodyLink href={'https://alutiiqmuseum.org/'} target={'_blank'}>Alutiiq Museum and Archaeological Repository</BodyLink> have partnered with KIWA Media to create storybooks that read to you, spell for you, and allow you to be immersed in an Alutiiq storyetelling experience.
             <br />
             <br />
-            Free to download on both iOS and Android devices, all you need to do is search "Alutiiq" or "Native Village of Afoganak" wherever you get your apps to find the titles
+            Free to download on both iOS and Android devices, all you need to do is search "Native Village of Afoganak" wherever you get your apps to find the titles.
             <br />
             <br />
             Titles are also available as PDFs below. With the PDF versions, you can print them out in black and white and use them as coloring books, or read them to a loved one. Practice with the application to master pronunciation, and then share the story with your own voice.

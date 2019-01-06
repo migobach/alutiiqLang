@@ -152,7 +152,7 @@ export const QuotePerson = styled.div`
 `
 
 export const SpecialDivCenter = SpecialDiv.extend`
-  align-content: center;
+  text-align: center;
 `
 
 export const GreenDiv = styled.div`
