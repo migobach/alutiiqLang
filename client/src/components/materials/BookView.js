@@ -34,6 +34,13 @@ class BookView extends Component {
               <ContentStyle>
                 {this.props.book.book_title_english}
               </ContentStyle>
+             { this.props.book.creator != null ?
+              <ContentStyle>
+                Creator: {this.props.book.creator}
+              </ContentStyle>
+              : 
+              null
+              } 
               <ContentStyle>
                 {this.props.book.description}
               </ContentStyle>    
