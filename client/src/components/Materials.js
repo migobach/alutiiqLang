@@ -36,7 +36,6 @@ class Materials extends Component {
     searchView: false,  
     loading: true, 
     materialView: false,
-    showView: false,
   }
   
   componentDidMount() {
@@ -58,7 +57,7 @@ class Materials extends Component {
    }
 
   toggleView = () => {
-    this.setState({ materialView: !this.state.materialView})
+    this.setState({ materialView: !this.state.materialView })
   }
 
   clearSearch = () => {

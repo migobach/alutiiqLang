@@ -3,6 +3,7 @@ import {
   Divider,
   Image,
   Grid,
+  Button,
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
@@ -61,6 +62,10 @@ class BookView extends Component {
               :
               null
             }
+            <Divider hidden />
+              <Button type='button' onClick={this.props.view}>
+                Close
+              </Button>
             </Grid.Column>
           </Grid.Row>
         </Grid>
