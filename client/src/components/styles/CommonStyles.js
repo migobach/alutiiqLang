@@ -207,6 +207,10 @@ export const BodyLink = styled.a`
   &:hover, a:active { text-decoration: none; color: #ECA414 }
 `
 
+export const BodyLinkBig = BodyLink.extend`
+  font_size: 3em;
+`
+
 export const FootLink = styled.a`
   color: #3D3D3D;
   &:visited { text-decoration: none; color: #3D3D3D; }
@@ -236,6 +240,22 @@ export const LinkHead = styled.h3`
   font-size: 1.5em;
   padding: .5em;
 `
+
+export const LinkHeadA = styled.a`
+  font-size: 1.5em;
+  padding: .5em;  
+  color: #D91A1A;
+  &:hover { text-decoration: none; color: #3D3D3D; }
+`
+
+// yellow: #ECA414
+// semantic-yellow: #FBBD08
+// red: #D91A1A
+// green: #508365
+// beige: #EAD8C2
+// blue: #3B568C
+// grey: #A9A9A9
+// new grey : #3D3D3D
 
 export const GreenLink = styled.a`
   color: #508365;
