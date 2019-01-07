@@ -10,6 +10,7 @@ import {
   ContentStyle,
   ContainerPad,
   FootLink,
+  GreenDiv,
 } from './styles/CommonStyles'
 import AKHF from '../logos/AKHF.jpg'
 import ANA from '../logos/ANAlogo.png'
@@ -21,6 +22,9 @@ import Koniag from '../logos/koniagLogo.png'
 import NPS from '../logos/NPSlogo.png'
 import NVA from '../logos/NVA.jpg'
 import Sunaq from '../logos/Sunaq.png'
+import Dancers from '../logos/DancerLogo.jpg'
+import Niuwawik from '../logos/LanguageNestLogo.jpg'
+import KOC from '../logos/KOCLogo.png'
 
 const Footer = () => (
   <div>
@@ -61,7 +65,16 @@ const Footer = () => (
 
       {/* logos of sponsors */}
     
-      <Grid.Row columns={10} only='tablet computer'>
+      <Grid.Row columns={13} only='tablet computer'>
+        <Grid.Column>
+          <Image src={Niuwawik} size='tiny' />
+        </Grid.Column>
+        <Grid.Column>
+          <Image src={Dancers} size='tiny' />
+        </Grid.Column>
+        <Grid.Column>
+          <Image src={KOC} size='tiny' />
+        </Grid.Column>
         <Grid.Column >
           <Image src={AKHF} size='tiny'  />
         </Grid.Column>
