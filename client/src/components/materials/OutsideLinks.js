@@ -24,7 +24,7 @@ const OutsideLinks = () => (
 
     <SpecialDiv>
       <LinkHead>
-        <GreenLink href='https://alutiiqmuseum.org/'>
+        <GreenLink href='https://alutiiqmuseum.org/' target='_blank'>
           The Alutiiq Museum and Archaeological Repository 
         </GreenLink>
         <Divider />
@@ -38,7 +38,7 @@ const OutsideLinks = () => (
         <br />
 
       <LinkHead>
-        <GreenLink href='https://alutiiqeducation.org/'>
+        <GreenLink href='https://alutiiqeducation.org/' target='_blank'>
           Alutiiq Education
         </GreenLink>
         <Divider />
@@ -49,7 +49,7 @@ const OutsideLinks = () => (
         <br />
 
       <LinkHead>
-        <GreenLink href='https://letsteachfromstories.weebly.com/'>
+        <GreenLink href='https://letsteachfromstories.weebly.com/' target='_blank'>
           <i>Qulianguanek Litnauwilita</i>
         </GreenLink>
         <Divider />
@@ -60,7 +60,7 @@ const OutsideLinks = () => (
         <br />
 
       <LinkHead>
-        <GreenLink href='https://alutiiqmuseum.mukurtu.net/'>
+        <GreenLink href='https://alutiiqmuseum.mukurtu.net/' target='_blank'>
           <i>Naken-Natmen</i> Online Language Archive
         </GreenLink>
         <Divider />
@@ -71,7 +71,7 @@ const OutsideLinks = () => (
         <br />
 
       <LinkHead>
-        <GreenLink href='https://vimeo.com/alutiiq'>
+        <GreenLink href='https://vimeo.com/alutiiq' target='_blank'>
           Alutiiq Language Speakers on Vimeo
         </GreenLink>
         <Divider />
@@ -82,7 +82,7 @@ const OutsideLinks = () => (
         <br />
 
       <LinkHead>
-        <GreenLink href='https://vimeo.com/channels/827412'>
+        <GreenLink href='https://vimeo.com/channels/827412' target='_blank'>
           <i>Alutiiq Atuutet:</i> Alutiiq Songs of the Kodiak Archipelago
         </GreenLink>
         <Divider />
@@ -93,7 +93,7 @@ const OutsideLinks = () => (
         <br />
 
       <LinkHead>
-        <GreenLink href='https://www.uaf.edu/anla/'>
+        <GreenLink href='https://www.uaf.edu/anla/' target='_blank'>
           Alaska Native Language Archive
         </GreenLink>
         <Divider />

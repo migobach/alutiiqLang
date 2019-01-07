@@ -23,7 +23,7 @@ class Stories extends Component {
 
         <SpecialDiv>
           <ContentStyle>
-            Being able to sit and listen to traditional stories is an opportunity few of us can take advantage of. However, by clicking on the stories and transcripts below, you can listen to a story and follow along. 
+            Being able to sit and listen to traditional stories is an opportunity few of us can take advantage of. However, various institutions have collected or continue to collect traditional stories in both Alutiiq and English. Click on some of the links below to find narratives from across the Alutiiq Nation.
           </ContentStyle>
         </SpecialDiv>
 
