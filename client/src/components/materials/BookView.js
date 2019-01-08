@@ -11,6 +11,7 @@ import {
   WordStyle,
   IconHover,
   IconLinkGrey,
+  BodyLink,
 } from '../styles/CommonStyles'
 
 class BookView extends Component {
@@ -47,7 +48,7 @@ class BookView extends Component {
               </ContentStyle>    
             { this.props.book.book_type === 'Qbook' ?
             <ContentStyle>
-              This book is available for through the App Store for iPhones and iPads and available through the Google Play store for Android devices. 
+              This book is available for through the <BodyLink href='https://itunes.apple.com/us/developer/native-village-of-afognak/id571827052' target='_blank'>App Store</BodyLink> for iPhones and iPads and available through the <BodyLink href='https://play.google.com/store/search?q=native%20village%20of%20afognak&c=apps' target='_blank'>Google Play</BodyLink> store for Android devices. 
             </ContentStyle>
             : 
             <ContentStyle>

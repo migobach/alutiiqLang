@@ -96,8 +96,22 @@ class Stories extends Component {
             </ContentStyle>
           <br />
 
-
+{/* STORIES FROM CANDACE  */}
+        <Divider hidden />
+          <LinkHeadA href='https://www.afognak.org/' traget='_blank'>
+            Qulianguanek Litnauwilita
+          </LinkHeadA>
+          <Divider />
           
+            <BodyLinkBig href='https://letsteachfromstories.weebly.com/qulianguaq-the-story.html' target='_blank'>
+              Qateryuk
+            </BodyLinkBig>
+            <ContentStyle> 
+              Originally documented by ethnologist Frank Golder in the early 1900s. He came to Alaska as the sole schoolteacher in the village of Unga for three years. Unga is an Unangan village, where Golder reports that he heard Alutiiq stories from a man from Kodiak Island. As one of the few literate community members there, he was asked to do many favors, which included reading and writing official documents, and letters. This story, <i>Qateryuk</i> may have been one of these stories. 
+            </ContentStyle>
+          <br />
+
+         
 
          
 
