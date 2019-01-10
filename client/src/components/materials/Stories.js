@@ -111,17 +111,58 @@ class Stories extends Component {
             </ContentStyle>
           <br />
 
-         
-
-         
-
+{/* AUDIO FROM ALASKA NATIVE LANGUAGE ARCHIVE */}
+          <Divider hidden />
+          <LinkHeadA href='https://www.uaf.edu/anla/' traget='_blank'>
+            Alaska Native Language Archive
+          </LinkHeadA>
+          <Divider />
           
+            <BodyLinkBig href='https://letsteachfromstories.weebly.com/qulianguaq-the-story.html' target='_blank'>
+              Lore of Kodiak Island
+            </BodyLinkBig>
+            <ContentStyle> 
+              Originally collected by Dr. Jeff Leer. Lore of the Kodiak Alutiiq as told by Larry Matfay.
+            </ContentStyle>
+          <br />
+            <BodyLinkBig href='https://www.uaf.edu/anla/collections/search/resultDetail.xml?resource=3206&sessionId=&searchId=' target='_blank'>
+              Nydia Chya, Mary Haakanson, Sven Haakanson Jr.
+            </BodyLinkBig>
+            <ContentStyle> 
+              Originally collected by Dr. Jeff Leer. Conversations and stories by Nydia Chy, Mary Haakanson, and Sven Haakanson Jr. Recorded in Old Harbor, Alaska. 
+            </ContentStyle>
+          <br />
+            <BodyLinkBig href='https://www.uaf.edu/anla/collections/search/resultDetail.xml?resource=3201&sessionId=&searchId=' target='_blank'>
+              Polly Inga, Mary Haakanson, Sven Haakanson Jr.
+            </BodyLinkBig>
+            <ContentStyle> 
+              Side A:  Mary Haakanson, Sven Haakanson Jr.at home talking about everyday things in Old Harbor. Side B: Polly Inga looking at the Verb and Grammar of Kosbiaq (sp?) Alutiiq. It sounds like they are going over a textbook. At one point a man says Unit 9, page 108.  45:38
+            </ContentStyle>
+          <br />
+            <BodyLinkBig href='https://www.uaf.edu/anla/collections/search/resultDetail.xml?resource=3182&sessionId=&searchId=' target='_blank'>
+              Larry Matfay: Elicitations
+            </BodyLinkBig>
+            <ContentStyle> 
+              Dr. Jeff Leer asks Larry Matfay for Alutiiq translations of English phrases. 
+            </ContentStyle>
+          <br />
+            <BodyLinkBig href='https://www.uaf.edu/anla/collections/search/resultDetail.xml?resource=3181&sessionId=&searchId=' target='_blank'>
+              Roy Nellie
+            </BodyLinkBig>
+            <ContentStyle> 
+              Collected by Dr. Jeff Leer. Clear recording, discussion topics that include going by boat and hunting. Trapping foxes and getting were $6 for their skin, 12 cents for weasels. They did not get enough money for their work. Hunting bears and seals and sea lions. Staying in a sod house while hunting. Water would come in the sod house, the roof would leak. 
+            </ContentStyle>
+          <br />
         </SpecialDiv>
-        
 
       </div>
+        
+        // 
+        // 
     )
   }
 }
 
 export default Stories
+
+// to add: 
