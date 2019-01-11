@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getCurriculum } from '../../reducers/curriculum'
+// import { getCurriculum } from '../../reducers/curriculum'
 import {
   Header,
   Container,
   Grid,
+  Icon,
 } from 'semantic-ui-react'
 import {
   SpecialDiv, 
@@ -15,15 +16,20 @@ import {
   ContentStyleWhite,
   IconHover,
   IconLink, 
+  SongStyle, 
+  Pointer, 
+  ColumnHead,
 } from '../styles/CommonStyles'
 
 class Workbook extends Component {
   state = { workbookLessons: [] }
 
-  componentDidMount() {
-    const { dispatch } = this.props
-    dispatch(getCurriculum())
-  }
+  // componentDidMount() {
+  //   const { dispatch } = this.props
+  //   dispatch(getCurriculum())
+  // }
+
+  // THIS NEEDS TO BE CLEANED UP. REMOVE UN-NEEDED FUNCTIONALITY
 
   // componentDidUpdate(prevProps) {
   //   if(prevProps !== this.props)
@@ -42,6 +48,44 @@ class Workbook extends Component {
   //     </Grid.Row>
   //   )
   // }
+
+  renderLessons = () => {
+    return this.props.curriculum.map( unit => {
+      if (unit.group_name !== "Elementary Language") {
+        return ( null )
+      } else 
+        return (
+            <Grid.Row>
+              <Grid.Column computer={6} tablet={6} mobile={10} verticalAlign='middle'>
+                <SongStyle>
+                  {unit.curricular_name}
+                </SongStyle>
+              </Grid.Column>
+
+              <Grid.Column width={6} only='computer tablet' verticalAlign='middle'>
+                <SongStyle>
+                  {unit.level}
+                </SongStyle>
+              </Grid.Column>
+
+              <Grid.Column computer={4} tablet={4} mobile={6} verticalAlign='middle' textAlign='center'>
+                <SongStyle>
+                  { unit.link_to_item ?
+                    <Pointer>
+                      <a href={unit.link_to_item} target='_blank'>
+                        <Icon name='eye' size='large' color='grey'/>
+                      </a>
+                    </Pointer>
+                    :
+                    <Icon name='dont' size='large' color='grey' />
+                  }
+                </SongStyle>
+              </Grid.Column>
+
+            </Grid.Row>
+        )
+    })
+  }
   
   render() {
     return(
@@ -80,7 +124,26 @@ class Workbook extends Component {
 
         <SpecialDiv>
           <Grid celled='internally'>
-            {/* { this.lessons()} */}
+            <Grid.Row>
+              <Grid.Column computer={6} tablet={6} mobile={10}  textAlign='center'>
+                <ColumnHead>
+                  Title
+                </ColumnHead>
+              </Grid.Column>
+
+              <Grid.Column width={6} only='computer tablet' textAlign='center'>
+                <ColumnHead>
+                  Grade Level
+                </ColumnHead>
+              </Grid.Column>
+
+              <Grid.Column computer={4} tablet={4} mobile={6} textAlign='center'>
+                <ColumnHead>
+                  View
+                </ColumnHead>
+              </Grid.Column>
+            </Grid.Row>
+            { this.renderLessons() }
           </Grid>
         </SpecialDiv>
 
@@ -93,7 +156,7 @@ class Workbook extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    curriculum: state.curriculums
+    curriculum: state.curriculum
   }
 }
 
