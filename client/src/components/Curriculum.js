@@ -58,6 +58,11 @@ class Curriculum extends Component {
   render() {
     return( 
     <div>
+
+    {/* CONDITIONALLY RENDERED CURRICULUM COMPONENTS */}
+      
+    { this.renderingComponents() }
+
       <SpecialDiv>
         <Header textAlign="center">
           <SectionHead>
@@ -129,10 +134,6 @@ class Curriculum extends Component {
         </Grid.Row>
       </Grid>
       </SpecialDiv>
-
-    {/* Conditionally rendered components */}
-      
-    { this.renderingComponents() }
 
     </div>
     )

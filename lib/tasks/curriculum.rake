@@ -12,7 +12,7 @@ namespace :curriculum do
         if row['link_to_item'] == nil
           row['link_to_item']
         else
-          "https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/" + row['link_to_item']
+          "https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/curriculum/" + row['link_to_item']
         end
       c.level = row['level']
       c.lesson_number = row['lesson_number']

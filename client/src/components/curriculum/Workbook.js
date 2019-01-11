@@ -71,7 +71,7 @@ class Workbook extends Component {
             </ContentStyleWhite>
             <SpecialDiv>
               <Container textAlign='center'>
-                <IconLink>
+                <IconLink href='https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/curriculum/Workbook.pdf' target='_blank'>
                   <IconHover name='book' />
                 </IconLink>
               </Container>
