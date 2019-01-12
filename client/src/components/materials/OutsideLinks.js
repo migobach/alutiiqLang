@@ -102,6 +102,20 @@ const OutsideLinks = () => (
           The Alaska Native Language Archive documents all Alaska Native languages to preserve Alaska's unique linguistic heritage for future generations. The collection includes both published and unpublished resources in Alutiiq (Sug'piaq) along with other Alaska Native languages. <br /><br />Not sure how to search the archive? Click here to watch a short tutorial on using the resource. 
         </ContentStyle>
         <br />
+
+        <LinkHead>
+        <GreenLink href='https://whereareyourkeys.org/' target='_blank'>
+          Where Are Your Keys? 
+        </GreenLink>
+        <Divider />
+      </LinkHead>
+        <ContentStyle>
+         The WAYK system is a comprehensive method for revitalizing endangered languages and skills. Endangered languages are languages on the precipice, with only a handful of speakers left as a result of colonization, and the impact of modern economic culture. The Alutiiq language revitalization efforts has partnered with WAYK to implement teaching and learning methods to bring Alutiiq back to the community. 
+        </ContentStyle>
+        <br />
+
+
+        
         
     </SpecialDiv>
   </div>
