@@ -18,6 +18,7 @@ namespace :curriculum do
       c.lesson_number = row['lesson_number']
       c.notes = row['notes']
       c.group_name = row['group_name']
+      c.order = row['order']
       c.save
       puts "#{c.curricular_name} saved"
     end

@@ -96,6 +96,10 @@ export const ContentStyle = styled.p`
   color: #3D3D3D;
 `
 
+export const ContentStyleCenter = ContentStyle.extend`
+  text-align: center;
+`
+
 export const SongStyle = styled.p`
 font-size: 1em;
 color: #3D3D3D;

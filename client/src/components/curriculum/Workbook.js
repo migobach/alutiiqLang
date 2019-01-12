@@ -49,12 +49,19 @@ class Workbook extends Component {
   //   )
   // }
 
+
+  // THIS WORKS WHEN THE DEBUGGER IS RIGHT AT THE RENDERLESSONS START
+  // this.props.curriculum.sort(function(a,b){ if(a.lesson_number < b.lesson_number) {return -1; } if(a.lesson_number > b.lesson_number) {return 1; } return 0; })
+
+
   renderLessons = () => {
-    return this.props.curriculum.map( unit => {
+    let sortedLessons = this.props.curriculum.sort(function(a,b){ if(a.order < b.order) {return -1; } if(a.order > b.order) {return 1; } return 0; })
+
+    return sortedLessons.map( unit => {
       if (unit.group_name !== "Elementary Language") {
         return ( null )
       } else 
-        return (
+        return(
             <Grid.Row>
               <Grid.Column computer={6} tablet={6} mobile={10} verticalAlign='middle'>
                 <SongStyle>
@@ -62,9 +69,15 @@ class Workbook extends Component {
                 </SongStyle>
               </Grid.Column>
 
-              <Grid.Column width={6} only='computer tablet' verticalAlign='middle'>
+              <Grid.Column width={3} only='computer tablet' verticalAlign='middle'>
                 <SongStyle>
                   {unit.level}
+                </SongStyle>
+              </Grid.Column>
+
+              <Grid.Column width={3} only='computer tablet' verticalAlign='middle'>
+                <SongStyle>
+                  {unit.lesson_number}
                 </SongStyle>
               </Grid.Column>
 
@@ -131,9 +144,15 @@ class Workbook extends Component {
                 </ColumnHead>
               </Grid.Column>
 
-              <Grid.Column width={6} only='computer tablet' textAlign='center'>
+              <Grid.Column width={3} only='computer tablet' textAlign='center'>
                 <ColumnHead>
                   Grade Level
+                </ColumnHead>
+              </Grid.Column>
+
+              <Grid.Column width={3} only='computer tablet' textAlign='center'>
+                <ColumnHead>
+                  Lesson
                 </ColumnHead>
               </Grid.Column>
 
