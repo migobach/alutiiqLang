@@ -19,6 +19,7 @@ import {
   SongStyle, 
   Pointer, 
   ColumnHead,
+  Div,
 } from '../styles/CommonStyles'
 
 class Workbook extends Component {
@@ -56,7 +57,7 @@ class Workbook extends Component {
 
   renderLessons = () => {
     let sortedLessons = this.props.curriculum.sort(function(a,b){ if(a.order < b.order) {return -1; } if(a.order > b.order) {return 1; } return 0; })
-
+    
     return sortedLessons.map( unit => {
       if (unit.group_name !== "Elementary Language") {
         return ( null )
@@ -135,7 +136,7 @@ class Workbook extends Component {
             </SpecialDiv>
         </GreenDiv>
 
-        <SpecialDiv>
+        <Div>
           <Grid celled='internally'>
             <Grid.Row>
               <Grid.Column computer={6} tablet={6} mobile={10}  textAlign='center'>
@@ -164,10 +165,7 @@ class Workbook extends Component {
             </Grid.Row>
             { this.renderLessons() }
           </Grid>
-        </SpecialDiv>
-
-
-        
+        </Div>
       </div>
     )
   }

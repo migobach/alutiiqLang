@@ -4,6 +4,7 @@ import {
   Header, 
   Grid,
   Icon,
+  Divider,
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
@@ -19,7 +20,10 @@ import {
 class Nest extends Component {
 
   renderCurriculum = () => {
-    return this.props.curriculum.map( curriculum => {
+
+    let sortedLessons = this.props.curriculum.sort(function(a,b) { if(a.order < b.order) {return -1;} if(a.order > b.order) {return 1;} return 0;})
+
+    return sortedLessons.map( curriculum => {
       if (curriculum.group_name !== "Language Nest") {
         return ( null )
       } else 
@@ -68,30 +72,29 @@ class Nest extends Component {
           </ContentStyle>
         </SpecialDiv>
 
-         <SpecialDiv>
-            <Div>
-              <Grid celled='internally'>
-                <Grid.Row>
-                  <Grid.Column computer={5} tablet={5} mobile={10} verticalAlign='middle' textAlign='center'>
-                    <ColumnHead >
-                      Title
-                    </ColumnHead>
-                  </Grid.Column>
-                  <Grid.Column width={7} verticalAlign='middle' only='computer tablet' textAlign='center'>
-                    <ColumnHead>
-                      Level
-                    </ColumnHead>
-                  </Grid.Column>
-                  <Grid.Column width={4} verticalAlign='middle' only='computer tablet' textAlign='center'>
-                    <ColumnHead>
-                      View
-                    </ColumnHead>
-                  </Grid.Column>
-                </Grid.Row>
-                { this.renderCurriculum() }
-              </Grid>
-            </Div>
-          </SpecialDiv>
+         <Div>
+          <Grid celled='internally'>
+            <Grid.Row>
+              <Grid.Column computer={5} tablet={5} mobile={10} verticalAlign='middle' textAlign='center'>
+                <ColumnHead >
+                  Title
+                </ColumnHead>
+              </Grid.Column>
+              <Grid.Column width={7} verticalAlign='middle' only='computer tablet' textAlign='center'>
+                <ColumnHead>
+                  Level
+                </ColumnHead>
+              </Grid.Column>
+              <Grid.Column width={4} verticalAlign='middle' only='computer tablet' textAlign='center'>
+                <ColumnHead>
+                  View
+                </ColumnHead>
+              </Grid.Column>
+            </Grid.Row>
+            { this.renderCurriculum() }
+          </Grid>
+        </Div>
+        <Divider />
       </div>
     )
   }

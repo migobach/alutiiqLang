@@ -16,6 +16,7 @@ import {
   Pointer,
   IconLinkGrey,
   IconHover,
+  Div,
 } from '../styles/CommonStyles'
 
 class Thematic extends Component {
@@ -85,7 +86,7 @@ class Thematic extends Component {
         </SpecialDiv>
         <Divider hidden />
 
-        <SpecialDiv>
+        <Div>
           <Grid celled='internally'>
             <Grid.Row>
               <Grid.Column computer={6} tablet={6} mobile={10}  textAlign='center'>
@@ -108,7 +109,8 @@ class Thematic extends Component {
             </Grid.Row>
             { this.renderUnits() }
           </Grid>
-        </SpecialDiv>
+        </Div>
+        <Divider />
       </Fragment>
     )
   }
