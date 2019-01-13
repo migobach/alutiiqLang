@@ -44,13 +44,13 @@ class Curriculum extends Component {
   renderingComponents = () => {
     const { workbookComp, preschoolComp, nestComp, thematicComp } = this.state
     if (workbookComp === true) {
-      return <Workbook />
+      return <Workbook view={this.toggleWorkbookComp}/>
     } else if (preschoolComp === true) {
-      return <Preschool />
+      return <Preschool view={this.togglePreschoolComp}/>
     } else if (nestComp === true) {
-      return <Nest />
+      return <Nest view={this.toggleNestComp}/>
     } else if (thematicComp === true) {
-      return <Thematic />
+      return <Thematic view={this.toggleThematicComp} />
     } else 
       return <SpecialDiv />
   }

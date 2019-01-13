@@ -10,7 +10,6 @@ import {
   ContentStyle,
   ContainerPad,
   FootLink,
-  GreenDiv,
 } from './styles/CommonStyles'
 import AKHF from '../logos/AKHF.jpg'
 import ANA from '../logos/ANAlogo.png'

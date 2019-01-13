@@ -4,11 +4,11 @@ import {
   Header,
   Container, 
   Divider,
+  Button,
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
   SectionHead,
-  ContentStyle,
   ContentStyleCenter,
   IconLinkGrey,
   IconHover,
@@ -55,6 +55,13 @@ class Preschool extends Component {
             <Divider hidden />
           </Container>
         </SpecialDiv>
+
+        <SpecialDiv>
+          <Button type='button' onClick={this.props.view}>
+            Close
+          </Button>
+        </SpecialDiv>
+
         <Divider />
       </div>
     )

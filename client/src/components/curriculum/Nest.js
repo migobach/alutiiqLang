@@ -5,6 +5,7 @@ import {
   Grid,
   Icon,
   Divider,
+  Button,
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
@@ -94,6 +95,13 @@ class Nest extends Component {
             { this.renderCurriculum() }
           </Grid>
         </Div>
+
+        <SpecialDiv>
+          <Button type='button' onClick={this.props.view}>
+            Close
+          </Button>
+        </SpecialDiv>
+
         <Divider />
       </div>
     )

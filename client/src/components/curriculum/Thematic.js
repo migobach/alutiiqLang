@@ -6,6 +6,7 @@ import {
   Icon,
   Container,
   Divider,
+  Button,
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
@@ -110,6 +111,13 @@ class Thematic extends Component {
             { this.renderUnits() }
           </Grid>
         </Div>
+
+        <SpecialDiv>
+          <Button type='button' onClick={this.props.view}>
+            Close
+          </Button>
+        </SpecialDiv>
+        
         <Divider />
       </Fragment>
     )
