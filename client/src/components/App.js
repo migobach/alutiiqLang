@@ -23,8 +23,8 @@ import Login from './Login'
 import Register from './Register'
 import Footer from './Footer'
 import Books from './materials/Books'
-import Posters from './materials/Posters'
-import Games from './materials/Games'
+import PostersGames from './materials/PostersGames'
+import Videos from './materials/Videos'
 import Stories from './materials/Stories'
 import OutsideLinks from './materials/OutsideLinks' 
 
@@ -117,9 +117,9 @@ class App extends Component {
           <Route exact path="/classes" component={Classes} />
           <Route exact path="/happenings" component={HistoryNews} />
           <Route exact path="/books" component={Books} />
-          <Route exact path="/posters" component={Posters} />
+          <Route exact path="/postersandgames" component={PostersGames} />
           <Route exact path="/stories" component={Stories} />
-          <Route exact path="/games" component={Games} />
+          <Route exact path="/videos" component={Videos} />
           <Route exact path="/links" component={OutsideLinks} />
                 
           <ProtectedRoute exact path="/kasainaq" component={AdminLogin} />

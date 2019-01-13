@@ -186,17 +186,17 @@ class Materials extends Component {
             <Card>
               <Card.Content header textAlign='center'>
                 <CardHeader>
-                  Posters
+                  Posters & Games
                 </CardHeader>
               </Card.Content>
               <Card.Content>
                 <SpecialDiv>
                   <ContentStyle>
-                    Posters have been created to visually cue learners into speaking Alutiiq. They may be posted around the house, office, or classroom to bring Alutiiq language into your daily routines, or perform basic conversation in Alutiiq, identify foods, colors, emotions, or items visible all around us on a daily basis. 
+                    Posters have been created to visually cue learners into speaking Alutiiq. Games are a fun way to expand language usage. Posters may be displayed around the house, office, or classroom to bring Alutiiq language into your daily routines. Games can be played with family and friends to focus language use around a specific, engaging activity.
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-              <Link to={`/posters`}>
+              <Link to={`/postersandgames`}>
                 <Button color='yellow' size='small' fluid>
                   Go 
                 </Button>
@@ -206,17 +206,17 @@ class Materials extends Component {
             <Card>
               <Card.Content header textAlign='center'>
                 <CardHeader>
-                  Games
+                  Videos
                 </CardHeader>
               </Card.Content>
               <Card.Content>
                 <SpecialDiv>
                   <ContentStyle>
-                    Games are fun way to expand language use! By playing <i>Kinam Pi'ki?</i>, <i>Pingua</i>, or <i>Naama Kluucaten?</i> you can learn new words, and play with the words and language you already have. Click on the <i>Wamqutat</i> - Games link below to see how to get started! 
+                    Being able to hear the Alutiiq language, while seeing it contextualized through activity, dance, or other setting helps learners access language in ways otherwise unavailable to them.  
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-              <Link to={`/games`}>
+              <Link to={`/videos`}>
                 <Button color='yellow' size='small' fluid>
                   Go 
                 </Button>

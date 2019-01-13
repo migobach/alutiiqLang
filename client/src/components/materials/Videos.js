@@ -16,14 +16,14 @@ class Games extends Component {
         <BlueDiv>
           <Header textAlign='center'>
             <SectionHead>
-              <i>Wamqutat</i>: Games
+              Videos
             </SectionHead>
           </Header>
         </BlueDiv> 
 
         <SpecialDiv>
           <ContentStyle>
-            In addition to the games and activity resources located within the Lesson Pages on this website, there are other games that can be played in Alutiiq listed below. Each game listed includes the information and resources needed to successfully play at your next game night. 
+            This page is a work in progress. 
           </ContentStyle>
         </SpecialDiv>
 
