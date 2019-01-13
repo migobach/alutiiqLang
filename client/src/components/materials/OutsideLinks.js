@@ -1,7 +1,9 @@
 import React from 'react'
+import ReactPlayer from 'react-player'
 import { 
   Header, 
   Divider,
+  Grid,
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
@@ -10,6 +12,7 @@ import {
   GreenLink,
   LinkHead,
   BlueDiv,
+  BodyLink,
 } from '../styles/CommonStyles'
 
 const OutsideLinks = () => (
@@ -59,15 +62,32 @@ const OutsideLinks = () => (
         </ContentStyle>
         <br />
 
-      <LinkHead>
-        <GreenLink href='https://alutiiqmuseum.mukurtu.net/' target='_blank'>
-          <i>Naken-Natmen</i> Online Language Archive
-        </GreenLink>
-        <Divider />
-      </LinkHead>
-        <ContentStyle>
-          The online archives is curated and cared for by the Alutiiq Museum and Archaeolgocial Resposity, and aims to bring archival resources out of the collections room, and into the homes and ears of Museum patrons. Click on the link above to begin exploring recordings dating back to the 1950s. <br /><br />Not sure how to search the archive? Click here to watch a short tutorial on using the resource. 
-        </ContentStyle>
+        <Grid stackable columns={2}>
+          <Grid.Row>
+            <Grid.Column width={10}>
+              <LinkHead>
+                <GreenLink href='https://alutiiqmuseum.mukurtu.net/' target='_blank'>
+                  <i>Naken-Natmen</i> Online Language Archive
+                </GreenLink>
+                <Divider />
+              </LinkHead>
+                <ContentStyle>
+                  The online archives is curated and cared for by the Alutiiq Museum and Archaeolgocial Resposity, and aims to bring archival resources out of the collections room, and into the homes and ears of Museum patrons. Click on the link above to begin exploring recordings dating back to the 1950s. <br /><br />Not sure how to search the archive? <BodyLink href='https://vimeo.com/267462441' target='_blank'>Click here</BodyLink> to watch a short tutorial on using the resource. 
+                </ContentStyle>
+            </Grid.Column>
+            <Grid.Column width={6} textAlign='center' verticalAlign='center'>
+              <SpecialDiv>
+              <ReactPlayer
+                url='https://vimeo.com/267462441'
+                controls='true'
+                height='auto'
+                width='auto'
+                loop='false'
+              />
+              </SpecialDiv>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
         <br />
 
       <LinkHead>
@@ -92,15 +112,32 @@ const OutsideLinks = () => (
         </ContentStyle>
         <br />
 
-      <LinkHead>
-        <GreenLink href='https://www.uaf.edu/anla/' target='_blank'>
-          Alaska Native Language Archive
-        </GreenLink>
-        <Divider />
-      </LinkHead>
-        <ContentStyle>
-          The Alaska Native Language Archive documents all Alaska Native languages to preserve Alaska's unique linguistic heritage for future generations. The collection includes both published and unpublished resources in Alutiiq (Sug'piaq) along with other Alaska Native languages. <br /><br />Not sure how to search the archive? Click here to watch a short tutorial on using the resource. 
-        </ContentStyle>
+      <Grid stackable columns={2}>
+        <Grid.Row>
+          <Grid.Column width={10}>
+            <LinkHead>
+              <GreenLink href='https://www.uaf.edu/anla/' target='_blank'>
+                Alaska Native Language Archive
+              </GreenLink>
+              <Divider />
+            </LinkHead>
+              <ContentStyle>
+                The Alaska Native Language Archive documents all Alaska Native languages to preserve Alaska's unique linguistic heritage for future generations. The collection includes both published and unpublished resources in Alutiiq (Sug'piaq) along with other Alaska Native languages. <br /><br />Not sure how to search the archive? <BodyLink href='https://vimeo.com/267462070' target='_blank'>Click here</BodyLink> to watch a short tutorial on using the resource. 
+              </ContentStyle>
+          </Grid.Column>
+          <Grid.Column width={6}>
+          <SpecialDiv>
+              <ReactPlayer
+                url='https://vimeo.com/267462070'
+                controls='true'
+                height='auto'
+                width='auto'
+                loop='false'
+              />
+              </SpecialDiv>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
         <br />
 
         <LinkHead>
