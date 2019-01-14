@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_13_211045) do
+ActiveRecord::Schema.define(version: 2019_01_14_023642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,10 +77,10 @@ ActiveRecord::Schema.define(version: 2019_01_13_211045) do
     t.string "link_to_item"
     t.string "game_group"
     t.text "notes"
-    t.string "order"
     t.string "creator"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "order"
   end
 
   create_table "materials", force: :cascade do |t|

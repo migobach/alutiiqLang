@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { getPosters } from '../../reducers/posters'
+import { getGames } from '../../reducers/game'
 import {
   Header,
   Grid,
@@ -25,6 +26,7 @@ class Posters extends Component {
   componentDidMount() {
     const { dispatch } = this.props
     dispatch(getPosters())
+    dispatch(getGames())
   }
 
 
