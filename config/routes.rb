@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :books
     resources :erinarpets
     resources :posters
+    resources :games
   end
   
   #Do not place any routes below this one

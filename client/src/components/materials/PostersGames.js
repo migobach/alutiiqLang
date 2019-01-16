@@ -1,12 +1,13 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { getPosters } from '../../reducers/posters'
-import { getGames } from '../../reducers/game'
+import { getGames } from '../../reducers/games'
 import {
   Header,
   Grid,
   Icon, 
   Image,
+  Divider,
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
@@ -20,15 +21,16 @@ import {
   Div,
 } from '../styles/CommonStyles'
 import Values from '../../images/ValuesPoster.jpg'
+import Games from '../../images/games.jpg'
 
 class Posters extends Component {
 
+
   componentDidMount() {
     const { dispatch } = this.props
-    dispatch(getPosters())
     dispatch(getGames())
+    dispatch(getPosters())
   }
-
 
   renderPosters = () => {
     return this.props.posters.map( poster => 
@@ -60,13 +62,37 @@ class Posters extends Component {
     )
   }
 
+  renderGameNames = () => {
+    return this.props.games.map( game => {
+      if (game.order !== 1) {
+        return ( null )
+      } else 
+      return (
+        <Grid.Row>
+          <Grid.Column width = {10}>
+            <SongStyle>
+              {game.game_name_english}
+            </SongStyle>
+          </Grid.Column>
+          <Grid.Column width={6} textAlign='center'>
+            <Pointer>
+              <a href={game.link_to_item} target='_blank'>
+                <Icon name='eye' size='large' color='grey' />
+              </a>
+            </ Pointer>
+          </Grid.Column>
+        </Grid.Row>
+      )
+    })
+  }
+
   render() {
     return(
       <div>
         <BlueDiv>
           <Header textAlign='center'>
             <SectionHead>
-              Posters
+              Posters and Games
             </SectionHead>
           </Header>
         </BlueDiv> 
@@ -80,13 +106,9 @@ class Posters extends Component {
           </ContentStyle>
         </SpecialDiv>
 
-
-
-
-
+{/* POSTER SECTION */}
 
         <Grid stackable columns={2} verticalAlign='middle'>
-        
           <Grid.Column width={6} textAlign='center'>
             <Image src={Values} 
               size='medium'
@@ -95,7 +117,6 @@ class Posters extends Component {
               target="_blank" 
               />
           </Grid.Column>
-
           <Grid.Column width={10}>
             <SpecialDiv>
                 <Div>
@@ -124,10 +145,45 @@ class Posters extends Component {
           </Grid.Column>
         </Grid>
 
+        <Divider hidden/>
 
+{/* GAMES SECTION */}
 
+        <Grid stackable columns={2} verticalAlign='middle'>
+          <Grid.Column width={8}>
+            <SpecialDiv>
+                <Div>
+                  <Grid celled='internally'>
+                    <Grid.Row>
+                      <Grid.Column computer={10} tablet={10} mobile={10} verticalAlign='middle' textAlign='center'>
+                        <ColumnHead >
+                          Game Title
+                        </ColumnHead>
+                      </Grid.Column>
+                     
+                      <Grid.Column computer={6} tablet={6} mobile={6} verticalAlign='middle' textAlign='center'>
+                        <ColumnHead>
+                          View
+                        </ColumnHead>
+                      </Grid.Column>
+                    </Grid.Row>
+                    { this.renderGameNames() }
+                  </Grid>
+                </Div>
+              </SpecialDiv>
+          </Grid.Column>
 
-
+          <Grid.Column width={8} textAlign='center'>
+          <BlueDiv>
+            <Image src={Games} 
+              size='massive'
+              verticalAlign='middle' 
+              href="https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/poster/Alutiiq+Values+Poster.pdf" 
+              target="_blank" 
+              />
+              </BlueDiv>
+          </Grid.Column>
+        </Grid>
       </div>
     )
   }
@@ -135,7 +191,8 @@ class Posters extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    posters: state.posters
+    posters: state.posters,
+    games: state.games
   }
 }
 

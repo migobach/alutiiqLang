@@ -9,13 +9,13 @@ import {
   SpecialDiv,
   SectionHead,
   ContentStyle, 
-  BlueDiv,
+  GreenDiv,
   ContentStyleQuote,
   QuotePerson,
   GreenHead,
   BodyLink,
 } from '../styles/CommonStyles'
-import Games from '../../images/games.jpg'
+import WorldView from '../../images/longHill.jpg'
 import Values from '../../images/LlamSuaValues.jpg'
 
 const Worldview = () => (
@@ -68,10 +68,10 @@ const Worldview = () => (
 
     {/* highlighted quote */}
 
-    <BlueDiv>
+    <GreenDiv>
       <Grid stackable columns={2} verticalAlign='middle'>
         <Grid.Column width={10}>
-          <Image src={Games} size='massive' floated='left' verticalAlign='middle' />
+          <Image src={WorldView} size='massive' floated='left' verticalAlign='middle' />
         </Grid.Column>
         <Grid.Column width={5}>
           <ContentStyleQuote>
@@ -82,7 +82,7 @@ const Worldview = () => (
           </QuotePerson>
         </Grid.Column>
       </Grid>
-    </BlueDiv>
+    </GreenDiv>
   </div>
 )
 

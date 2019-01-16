@@ -16,7 +16,7 @@ export const getGames = () => {
 export default ( state=[], action ) => {
   switch(action.type){
     case GAMES:
-      return action.books
+      return action.games
     default: 
       return state
   }

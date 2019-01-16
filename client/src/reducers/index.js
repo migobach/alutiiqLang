@@ -8,7 +8,7 @@ import curriculum from './curriculum'
 import books from './books'
 import articles from './articles'
 import posters from './posters'
-import games from './game'
+import games from './games'
 
 const rootReducer = combineReducers({
   user,
