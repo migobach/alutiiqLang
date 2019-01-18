@@ -20,16 +20,33 @@ import {
   Pointer, 
   Div,
 } from '../styles/CommonStyles'
+import GameView from './GameView.js'
 import Values from '../../images/ValuesPoster.jpg'
 import Games from '../../images/games.jpg'
 
 class Posters extends Component {
-
+  state = { gameViewComp: false, gameData: {} }
 
   componentDidMount() {
     const { dispatch } = this.props
     dispatch(getGames())
     dispatch(getPosters())
+  }
+
+  setGame = () => {
+    this.setState( { gameViewComp: !this.state.gameViewComp })
+  }
+
+  renderGameView = () => {
+    const { gameViewComp } = this.state
+    if (gameViewComp === true) {
+      return (
+        <SpecialDiv>
+          <GameView song={this.state.gameData} view={this.toggleView} />
+        </SpecialDiv>
+      )
+    } else 
+      return <SpecialDiv />
   }
 
   renderPosters = () => {
@@ -74,12 +91,12 @@ class Posters extends Component {
               {game.game_name_english}
             </SongStyle>
           </Grid.Column>
-          <Grid.Column width={6} textAlign='center'>
-            <Pointer>
-              <a href={game.link_to_item} target='_blank'>
-                <Icon name='eye' size='large' color='grey' />
-              </a>
-            </ Pointer>
+          <Grid.Column width={6} textAlign='center' verticalAlign='center'>
+            <SongStyle>
+              <Pointer>
+                <Icon name='eye' size='large' color='grey' onClick={() => this.setGame(game)} />
+              </Pointer>
+            </SongStyle>  
           </Grid.Column>
         </Grid.Row>
       )
@@ -147,7 +164,25 @@ class Posters extends Component {
 
         <Divider hidden/>
 
-{/* GAMES SECTION */}
+{/* RENDERING GAME VIEW */}
+
+        <Grid>
+          <Grid.Row>
+            {/* <SpecialDiv> */}
+              {
+                this.state.gameViewComp == true ? 
+                  
+                  this.renderGameView() 
+                  
+                : 
+                null
+              }
+            {/* </SpecialDiv> */}
+          </Grid.Row>
+        </Grid>
+
+
+{/* GAMES LIST SECTION */}
 
         <Grid stackable columns={2} verticalAlign='middle'>
           <Grid.Column width={8}>
@@ -174,14 +209,16 @@ class Posters extends Component {
           </Grid.Column>
 
           <Grid.Column width={8} textAlign='center'>
-          <BlueDiv>
-            <Image src={Games} 
-              size='massive'
-              verticalAlign='middle' 
-              href="https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/poster/Alutiiq+Values+Poster.pdf" 
-              target="_blank" 
-              />
+            <SpecialDiv>
+              <BlueDiv>
+                <Image src={Games} 
+                  size='massive'
+                  verticalAlign='middle' 
+                  href="https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/poster/Alutiiq+Values+Poster.pdf" 
+                  target="_blank" 
+                  />
               </BlueDiv>
+            </SpecialDiv>
           </Grid.Column>
         </Grid>
       </div>
