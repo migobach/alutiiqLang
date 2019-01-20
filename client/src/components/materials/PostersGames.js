@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getPosters } from '../../reducers/posters'
 import { getGames } from '../../reducers/games'
@@ -25,7 +25,7 @@ import Values from '../../images/ValuesPoster.jpg'
 import Games from '../../images/games.jpg'
 
 class Posters extends Component {
-  state = { gameViewComp: false, gameData: {} }
+  state = { gameViewComp: false, gameData: [] }
 
   componentDidMount() {
     const { dispatch } = this.props
@@ -33,8 +33,14 @@ class Posters extends Component {
     dispatch(getPosters())
   }
 
-  setGame = () => {
-    this.setState( { gameViewComp: !this.state.gameViewComp })
+  setGame = (game) => {
+    const gamesList = this.props.games
+    const getGroup = game.game_group
+
+    let filtered_games = gamesList.filter( g => 
+      g.game_group === getGroup
+      )
+    this.setState({ gameData: [...filtered_games], gameViewComp: true })
   }
 
   renderGameView = () => {
@@ -42,7 +48,7 @@ class Posters extends Component {
     if (gameViewComp === true) {
       return (
         <SpecialDiv>
-          <GameView song={this.state.gameData} view={this.toggleView} />
+          <GameView game={this.state.gameData} view={this.toggleView} />
         </SpecialDiv>
       )
     } else 
@@ -88,7 +94,7 @@ class Posters extends Component {
         <Grid.Row>
           <Grid.Column width = {10}>
             <SongStyle>
-              {game.game_name_english}
+              {game.game_group}
             </SongStyle>
           </Grid.Column>
           <Grid.Column width={6} textAlign='center' verticalAlign='center'>
@@ -168,16 +174,11 @@ class Posters extends Component {
 
         <Grid>
           <Grid.Row>
-            {/* <SpecialDiv> */}
-              {
-                this.state.gameViewComp == true ? 
-                  
-                  this.renderGameView() 
-                  
-                : 
-                null
-              }
-            {/* </SpecialDiv> */}
+            {this.state.gameViewComp === true ? 
+              this.renderGameView() 
+              : 
+              null
+            }
           </Grid.Row>
         </Grid>
 

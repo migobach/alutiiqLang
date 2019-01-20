@@ -26,10 +26,10 @@ class SongView extends Component {
   // using state so that I can use the same form to update the site via admin permissions
   state = {}
 
-  componentDidMount() {
-    if (this.props.song)
-    this.setState({...this.props.song})
-  }
+  // componentDidMount() {
+  //   if (this.props.song)
+  //   this.setState({...this.props.song})
+  // }
 
   linesToParagraph(...lines) {
     return lines
