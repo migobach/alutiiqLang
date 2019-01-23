@@ -1,5 +1,13 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { getPosters } from '../reducers/posters'
+import { getGames } from '../reducers/games'
+import { getArticles } from '../reducers/articles'
+import { getBooks } from '../reducers/books'
+import { getCurriculum } from '../reducers/curriculum'
+import { getMaterials } from '../reducers/materials'
+import { getSongs } from '../reducers/songs'
 import {  
   Card,
   Button, 
@@ -10,6 +18,7 @@ import {
 import { Parallax } from 'react-parallax'
 import Banner from '../images/Afognak.jpg'
 import Teaching from '../images/teaching.jpg'
+
 import { 
   CardHeader,
   ContainerPad,
@@ -22,130 +31,149 @@ import {
   SubHeaderContent,
 } from './styles/CommonStyles'
 
-const Home = () => (
-  <div>
-    <Parallax
-      bgImage={Banner}
-      bgImageAlt="Afognak village beach, Afognak Island, Alaska"
-      strength={500}
-    >
-      <div style={{height: 500}}>
-        <MainDiv>
-          <MainHeader>
-            <i>Liicugtukut Alutiit'stun</i>
-            <MainHeaderContent>
-              We want to learn Alutiiq
-            </MainHeaderContent>
-          </MainHeader>
-        </MainDiv>
+class Home extends Component {
+  componentDidMount() {
+    const { dispatch } = this.props
+    dispatch(getGames())
+    dispatch(getPosters())
+    dispatch(getArticles())
+    dispatch(getBooks())
+    dispatch(getCurriculum())
+    dispatch(getMaterials())
+    dispatch(getSongs())
+  }
+  
+  render() {
+    return (
+      <div>
+        <Parallax
+          bgImage={Banner}
+          bgImageAlt="Afognak village beach, Afognak Island, Alaska"
+          strength={500}
+        >
+          <div style={{height: 500}}>
+            <MainDiv>
+              <MainHeader>
+                <i>Liicugtukut Alutiit'stun</i>
+                <MainHeaderContent>
+                  We want to learn Alutiiq
+                </MainHeaderContent>
+              </MainHeader>
+            </MainDiv>
+          </div>
+        </Parallax>
+          
+        <ContainerPad>
+          <Card.Group itemsPerRow={3} stackable={true}>
+            <Card>
+              <Card.Content header textAlign='center'>
+                <CardHeader>
+                  Happenings
+                </CardHeader>
+              </Card.Content>
+              <Card.Content>
+                <SpecialDiv>
+                  <ContentStyle>
+                    What is happeing, and how do you get involved? Click below to learn more about the history of language revitalization on the Kodiak Archipelago and learn about Alutiiq worldviews.
+                  </ContentStyle>
+                </SpecialDiv>
+              </Card.Content>
+                <Link to={`/happenings`} >
+                  <Button color='yellow' size='small' fluid>
+                    Go 
+                  </Button>
+                </Link>
+            </Card>
+    
+            <Card>
+              <Card.Content header textAlign='center'>
+                <CardHeader>
+                  Dictionary
+                </CardHeader>
+              </Card.Content>
+              <Card.Content>
+                <SpecialDiv>
+                  <ContentStyle>
+                    Discover new words in the Alutiiq language. Hear words being said by an Alutiiq speaker, and explore how to use words in full sentences.
+                  </ContentStyle>
+                </SpecialDiv>
+              </Card.Content>
+                <Link to={'/dictionary'}>
+                  <Button color='yellow' size='small' fluid>
+                    Go 
+                  </Button>
+                </Link>
+            </Card>
+    
+            <Card>
+              <Card.Content header textAlign='center'>
+                <CardHeader>
+                  Classes
+                </CardHeader>
+              </Card.Content>
+              <Card.Content>
+                <SpecialDiv>
+                  <ContentStyle>
+                    Are you interested in learning Alutiiq, and meeting other speakers and learners? Check out opportunities to learn in formal and informal settings by clicking the button.
+                  </ContentStyle>
+                </SpecialDiv>
+              </Card.Content>
+                <Link to={'/classes'}>
+                  <Button color='yellow' size='small' fluid>
+                    Go 
+                  </Button>
+                </Link>
+            </Card>
+    
+          </Card.Group>
+        </ContainerPad>
+    
+         <Parallax
+          bgImage={Teaching}
+          blur={{min: 5, max:3}}
+          bgImageAlt="Teaching Alutiiq, Afognak Island, Alaska"
+          strength={500}
+        >
+          <div style={{height: 700}} >
+          <Container textAlign='center' verticalAlign='center'>
+          <SpecialDiv>
+            <SpecialDiv>
+              <Header textAlign='center'>
+                <SubHeader>
+                  <i>Alutiit'stun Niuwawik</i> Registration is Open!
+                </SubHeader>
+                  <Divider />
+              </Header>
+            </SpecialDiv>
+    
+              <SubHeaderContent>
+                Are you interested in registering your little one in the Alutiiq Language Nest? The Alutiit'stun Niuwawik is now accepting student registrations for the fall of 2018.
+                <br />
+                <br />
+                The Language Nest is a child-focused Alutiiq language immersion environment where language is acquired naturally. Children develop kindergarten readiness skills while they problem solve, explore, and play through the language in a supportive multi-generational setting.
+              </SubHeaderContent>
+            </SpecialDiv>
+              <Button size='big' href='http://sunaq.org/tamamta-liitukut/'>
+                Learn more
+              </Button>
+          </Container>
+          </div>
+        </Parallax>
       </div>
-    </Parallax>
-      
-    <ContainerPad>
-      <Card.Group itemsPerRow={3} stackable={true}>
-        <Card>
-          <Card.Content header textAlign='center'>
-            <CardHeader>
-              Happenings
-            </CardHeader>
-          </Card.Content>
-          <Card.Content>
-            <SpecialDiv>
-              <ContentStyle>
-                What is happeing, and how do you get involved? Click below to learn more about the history of language revitalization on the Kodiak Archipelago and learn about Alutiiq worldviews.
-              </ContentStyle>
-            </SpecialDiv>
-          </Card.Content>
-            <Link to={`/happenings`} >
-              <Button color='yellow' size='small' fluid>
-                Go 
-              </Button>
-            </Link>
-        </Card>
+    )
+  } 
+}
 
-        <Card>
-          <Card.Content header textAlign='center'>
-            <CardHeader>
-              Dictionary
-            </CardHeader>
-          </Card.Content>
-          <Card.Content>
-            <SpecialDiv>
-              <ContentStyle>
-                Discover new words in the Alutiiq language. Hear words being said by an Alutiiq speaker, and explore how to use words in full sentences.
-              </ContentStyle>
-            </SpecialDiv>
-          </Card.Content>
-            <Link to={'/dictionary'}>
-              <Button color='yellow' size='small' fluid>
-                Go 
-              </Button>
-            </Link>
-        </Card>
+const mapStateToProps = (state) => {
+  return {
+    posters: state.posters,
+    games: state.games, 
+    articles: state.articles,
+    books: state.books,
+    curriculum: state.curriculum,
+    materials: state.material,
+    songs: state.songs
+  }
+ }
+export default connect(mapStateToProps)(Home)
 
-        <Card>
-          <Card.Content header textAlign='center'>
-            <CardHeader>
-              Classes
-            </CardHeader>
-          </Card.Content>
-          <Card.Content>
-            <SpecialDiv>
-              <ContentStyle>
-                Are you interested in learning Alutiiq, and meeting other speakers and learners? Check out opportunities to learn in formal and informal settings by clicking the button.
-              </ContentStyle>
-            </SpecialDiv>
-          </Card.Content>
-            <Link to={'/classes'}>
-              <Button color='yellow' size='small' fluid>
-                Go 
-              </Button>
-            </Link>
-        </Card>
-
-      </Card.Group>
-    </ContainerPad>
-
-     <Parallax
-      bgImage={Teaching}
-      blur={{min: 5, max:3}}
-      bgImageAlt="Teaching Alutiiq, Afognak Island, Alaska"
-      strength={500}
-    >
-      <div style={{height: 700}} >
-      <Container textAlign='center' verticalAlign='center'>
-      <SpecialDiv>
-        <SpecialDiv>
-          <Header textAlign='center'>
-            <SubHeader>
-              <i>Alutiit'stun Niuwawik</i> Registration is Open!
-            </SubHeader>
-              <Divider />
-          </Header>
-        </SpecialDiv>
-
-          <SubHeaderContent>
-            Are you interested in registering your little one in the Alutiiq Language Nest? The Alutiit'stun Niuwawik is now accepting student registrations for the fall of 2018.
-            <br />
-            <br />
-            The Language Nest is a child-focused Alutiiq language immersion environment where language is acquired naturally. Children develop kindergarten readiness skills while they problem solve, explore, and play through the language in a supportive multi-generational setting.
-          </SubHeaderContent>
-        </SpecialDiv>
-          <Button size='big' href='http://sunaq.org/tamamta-liitukut/'>
-            Learn more
-          </Button>
-      </Container>
-      </div>
-    </Parallax>
-
-
-    {/* <GreenDiv>
-      <ContentStyleWhite>
-
-      </ContentStyleWhite>
-    </GreenDiv> */}
-  </div>
-
-)
-
-export default Home
