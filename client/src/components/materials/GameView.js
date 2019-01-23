@@ -51,11 +51,14 @@ class GameView extends Component {
             <i>{this.props.game[0].game_name_alutiiq}</i> Resources:
           </WordStyle>
           <Divider />
-          <ContentStyle>
-            {this.props.game[0].game_group} Resources
-          </ContentStyle>
+          { this.props.game[0].notes ?
+              <ContentStyle>
+                <strong>Notes:</strong> {this.props.game[0].notes}
+              </ContentStyle>
+            :
+            null 
+          }
         </SpecialDiv>
-
       {        
         this.props.game.length >= 2 ?
         <SpecialDiv>
