@@ -107,6 +107,11 @@ color: #3D3D3D;
 text-align: center;
 padding: 1em;
 `
+// used in search render on home page
+export const SongStyleWhite = SongStyle.extend`
+color:white;
+`
+
 // used in the erinarpet return on the AlutiiqNews page. Used to make the topic justified left
 export const SongStyleLeft = SongStyle.extend`
 font-size: 1em;

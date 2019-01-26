@@ -34,12 +34,15 @@ import {
   GreenDiv,
   WhiteTitle,
   ContentStyleWhiteLeft,
+  Div,
+  SongStyleWhite, 
 } from './styles/CommonStyles'
 
 class Home extends Component {
   state = { 
     itemData: {},
-    searchData: ''
+    searchData: '',
+    renderSearch: false
   }
 
   componentDidMount() {
@@ -57,12 +60,116 @@ class Home extends Component {
     this.setState({ [name]: value })
   }
 
+  handleRenderingSearchData = () => {
+    this.setState({ renderSearch: true })
+    
+  }
+
+  renderSearchArticles = () => {
+    const searchData = this.state.searchData
+    const articles = this.props.articles // topic, author
+    const lowerCaseSearch = searchData.toLowerCase()
+
+    let filtered_articles = articles.filter(a => 
+      a.topic.toLowerCase().includes(lowerCaseSearch)
+      ||
+      a.author.toLowerCase().includes(lowerCaseSearch)    
+    )
+
+    if (filtered_articles != null) {
+      return(
+        filtered_articles.map( (article) => 
+        <Grid.Row key={article.id}>
+            <Grid.Column computer={6} tablet={10} mobile={10}>
+              <SongStyleWhite>
+                {article.topic} 
+              </SongStyleWhite>
+            </Grid.Column>
+            <Grid.Column width={6} only='computer'>
+              <SongStyleWhite>
+                {article.author}
+              </SongStyleWhite>
+            </Grid.Column>
+            <Grid.Column computer={4} tablet={4} mobile={4} textAlign='center'>
+              <SongStyleWhite>
+                <Icon name='eye' size='large' />
+              </SongStyleWhite>
+            </Grid.Column>
+          </Grid.Row>
+        )
+      )
+    } else 
+      return(
+        <Grid.Row>
+          <SongStyleWhite>
+            <i>No articles</i>
+          </SongStyleWhite>
+        </Grid.Row>
+      )
+
+  }
+
+  renderSearchBooks = () => {
+    const searchData = this.state.searchData
+    const books = this.props.books // book_title_alutiiq, book_title_alutiiq, creator
+    const lowerCaseSearch = searchData.toLowerCase()
+
+    let filtered_books = books.filter(b => 
+      b.book_title_alutiiq.toLowerCase().includes(lowerCaseSearch)
+      ||
+      b.book_title_english.toLowerCase().includes(lowerCaseSearch)
+      ||
+      b.creator.toLowerCase().includes(lowerCaseSearch)
+    )
+    
+    if (filtered_books != null ) {
+      return(
+        filtered_books.map( (book) => 
+        <Grid.Row key={book.id}>
+            <Grid.Column computer={6} tablet={10} mobile={10}>
+              <SongStyleWhite>
+                {book.book_title_english} 
+              </SongStyleWhite>
+            </Grid.Column>
+            <Grid.Column width={6} only='computer'>
+              <SongStyleWhite>
+                {book.creator}
+              </SongStyleWhite>
+            </Grid.Column>
+            <Grid.Column computer={4} tablet={4} mobile={4} textAlign='center'>
+              <SongStyleWhite>
+                <Icon name='eye' size='large' />
+              </SongStyleWhite>
+            </Grid.Column>
+          </Grid.Row>
+        )
+      )
+    } else 
+      return(
+        <Grid.Row>
+          <SongStyleWhite>
+            <i>No books</i>
+          </SongStyleWhite>
+        </Grid.Row>
+      )
+    
+  }
+
+  // WORKING: 
+  
+  // const curriculum = this.props.curriculum // curricular_name, group_name, 
+  // const games = this.props.games // game_group, creator
+  // const posters = this.props.posters // author, title
+  // const songs = this.props.songs // credit, title_alutiiq, title_english
+  // const lowerCaseSearch = searchData.toLowerCase()
+
+ 
+
   render() {
-    const { searchData } = this.state
+    const { searchData, renderSearch } = this.state
 
     return (
       <div>
-
 {/* HEAD BANNER WITH AFOGNAK BEACH IN THE BACKGROUND */}
 
         <Parallax
@@ -174,8 +281,31 @@ class Home extends Component {
                     onChange={this.handleChange}
                     fluid
                   />
+                  <Button onClick={() => this.handleRenderingSearchData() }>
+                    Test
+                  </Button>
                 </Form> 
               </ContentStyleWhiteLeft>
+              {
+                renderSearch ?
+                  <Div>
+                    <Grid>
+                      <Grid.Row>
+                        Articles:
+                      </Grid.Row>
+                      { this.renderSearchArticles() }
+                    </Grid>
+
+                    <Grid>
+                      <Grid.Row>
+                        Books:
+                      </Grid.Row>
+                      { this.renderSearchBooks() }
+                    </Grid>
+                  </Div>
+                :
+                null
+              }
             </Grid.Column>
           </Grid>
         </GreenDiv>
