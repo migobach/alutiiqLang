@@ -15,6 +15,8 @@ import {
   Divider,
   Container,
   Grid,
+  Icon, 
+  Form,
 } from 'semantic-ui-react'
 import { Parallax } from 'react-parallax'
 import Banner from '../images/Afognak.jpg'
@@ -35,6 +37,11 @@ import {
 } from './styles/CommonStyles'
 
 class Home extends Component {
+  state = { 
+    itemData: {},
+    searchData: ''
+  }
+
   componentDidMount() {
     const { dispatch } = this.props
     dispatch(getGames())
@@ -46,9 +53,18 @@ class Home extends Component {
     dispatch(getSongs())
   }
   
+  handleChange = (e, { name, value }) => {
+    this.setState({ [name]: value })
+  }
+
   render() {
+    const { searchData } = this.state
+
     return (
       <div>
+
+{/* HEAD BANNER WITH AFOGNAK BEACH IN THE BACKGROUND */}
+
         <Parallax
           bgImage={Banner}
           bgImageAlt="Afognak village beach, Afognak Island, Alaska"
@@ -65,6 +81,8 @@ class Home extends Component {
             </MainDiv>
           </div>
         </Parallax>
+
+{/* CARD OPTIONS THAT LEAD TO DIFFERENT COMPONENTS */}
           
         <ContainerPad>
           <Card.Group itemsPerRow={3} stackable={true}>
@@ -136,17 +154,27 @@ class Home extends Component {
         <GreenDiv>
           <Grid stackable columns={2} verticalAlign='middle'>
             <Grid.Column width={4}> 
-            <WhiteTitle>
-              Search:
-            </WhiteTitle>
+            <Icon name='search' size='big' />
+              <WhiteTitle>
+                Search
+              </WhiteTitle>
+            <Divider />
               <ContentStyleWhiteLeft>
-                Find a good search picture here. Or a nice explanaition of what people can search for. 
+                Where to start? Search the site for songs, books, curriculuar materials, games, articles, or posters. <i>Kita! Iwailuten caqia qainek!</i> 
               </ContentStyleWhiteLeft>
             </Grid.Column>
 
             <Grid.Column width={12}>
               <ContentStyleWhiteLeft>
-                Here is where the search bar will be. 
+                <Form>
+                  <Form.Input
+                    placeholder='Search...'
+                    name='searchData'
+                    value={searchData}
+                    onChange={this.handleChange}
+                    fluid
+                  />
+                </Form> 
               </ContentStyleWhiteLeft>
             </Grid.Column>
           </Grid>
@@ -154,7 +182,7 @@ class Home extends Component {
 
 {/* SPECIAL CONTENT FEATURING SOMETHING IN THE NEAR FUTURE  */}
 
-          <Container textAlign='center' verticalAlign='center'>
+          <Container textAlign='center' verticalAlign='middle'>
           <SpecialDiv>
             <SpecialDiv>
               <Header textAlign='center'>

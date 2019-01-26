@@ -75,7 +75,7 @@ const OutsideLinks = () => (
                   The online archives is curated and cared for by the Alutiiq Museum and Archaeolgocial Resposity, and aims to bring archival resources out of the collections room, and into the homes and ears of Museum patrons. Click on the link above to begin exploring recordings dating back to the 1950s. <br /><br />Not sure how to search the archive? <BodyLink href='https://vimeo.com/267462441' target='_blank'>Click here</BodyLink> to watch a short tutorial on using the resource. 
                 </ContentStyle>
             </Grid.Column>
-            <Grid.Column width={6} textAlign='center' verticalAlign='center'>
+            <Grid.Column width={6} textAlign='center' verticalAlign='middle'>
               <SpecialDiv>
               <ReactPlayer
                 url='https://vimeo.com/267462441'

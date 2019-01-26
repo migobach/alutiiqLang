@@ -97,7 +97,7 @@ class Posters extends Component {
               {game.game_group}
             </SongStyle>
           </Grid.Column>
-          <Grid.Column width={6} textAlign='center' verticalAlign='center'>
+          <Grid.Column width={6} textAlign='center' verticalAlign='middle'>
             <SongStyle>
               <Pointer>
                 <Icon name='eye' size='large' color='grey' onClick={() => this.setGame(game)} />
