@@ -10,12 +10,15 @@ import {
   Grid,
   Button,
  } from 'semantic-ui-react'
+ import { Parallax } from 'react-parallax'
  import { 
   ColumnHead,
   SectionHead,
   ContentStyle,
   SpecialDiv,
+  ContentStyleWhite,
 } from './styles/CommonStyles'
+import Teaching from '../images/teaching.jpg'
 
 class Curriculum extends Component {
   state = { workbookComp: false, preschoolComp: false, nestComp: false, thematicComp: false }
@@ -63,16 +66,25 @@ class Curriculum extends Component {
       
     { this.renderingComponents() }
 
-      <SpecialDiv>
-        <Header textAlign="center">
-          <SectionHead>
-            Alutiiq Language K-5 Curriculum Resources
-          </SectionHead>
-        </Header>
-        <ContentStyle>
-          All published Alutiiq language materials on this webpage are for educational usage. You will find audio links for lesson vocabulary in both the Northern and Southern Kodiak Alutiiq styles to support the diverse ways of speaking Alutiiq across the region. We hope educators will take advantage of this opportunity to share insights and recommendations so we can continue to improve these resources.
-        </ContentStyle>
-      </SpecialDiv>
+    <Parallax
+          bgImage={Teaching}
+          blur={{min: 5, max:3}}
+          bgImageAlt="Teaching Alutiiq, Afognak Island, Alaska"
+          strength={500}
+        >
+        <div style={{height: 300}}>
+          <SpecialDiv>
+            <Header textAlign="center">
+              <SectionHead>
+                Alutiiq Language K-5 Curriculum Resources
+              </SectionHead>
+            </Header>
+            <ContentStyleWhite>
+              All published Alutiiq language materials on this webpage are for educational usage. You will find audio links for lesson vocabulary in both the Northern and Southern Kodiak Alutiiq styles to support the diverse ways of speaking Alutiiq across the region. We hope educators will take advantage of this opportunity to share insights and recommendations so we can continue to improve these resources.
+            </ContentStyleWhite>
+          </SpecialDiv>
+        </div>
+    </Parallax>
   
       <SpecialDiv>
       <Grid stackable>

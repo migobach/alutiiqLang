@@ -14,10 +14,10 @@ import {
   Header,
   Divider,
   Container,
+  Grid,
 } from 'semantic-ui-react'
 import { Parallax } from 'react-parallax'
 import Banner from '../images/Afognak.jpg'
-import Teaching from '../images/teaching.jpg'
 
 import { 
   CardHeader,
@@ -29,6 +29,9 @@ import {
   ContentStyle,
   SubHeader,
   SubHeaderContent,
+  GreenDiv,
+  WhiteTitle,
+  ContentStyleWhiteLeft,
 } from './styles/CommonStyles'
 
 class Home extends Component {
@@ -127,14 +130,30 @@ class Home extends Component {
     
           </Card.Group>
         </ContainerPad>
-    
-         <Parallax
-          bgImage={Teaching}
-          blur={{min: 5, max:3}}
-          bgImageAlt="Teaching Alutiiq, Afognak Island, Alaska"
-          strength={500}
-        >
-          <div style={{height: 700}} >
+
+{/* GREEN DIV WITH ALL COMPONENET SEARCH FEATURE: MINUS DICTIOANRY */}
+
+        <GreenDiv>
+          <Grid stackable columns={2} verticalAlign='middle'>
+            <Grid.Column width={4}> 
+            <WhiteTitle>
+              Search:
+            </WhiteTitle>
+              <ContentStyleWhiteLeft>
+                Find a good search picture here. Or a nice explanaition of what people can search for. 
+              </ContentStyleWhiteLeft>
+            </Grid.Column>
+
+            <Grid.Column width={12}>
+              <ContentStyleWhiteLeft>
+                Here is where the search bar will be. 
+              </ContentStyleWhiteLeft>
+            </Grid.Column>
+          </Grid>
+        </GreenDiv>
+
+{/* SPECIAL CONTENT FEATURING SOMETHING IN THE NEAR FUTURE  */}
+
           <Container textAlign='center' verticalAlign='center'>
           <SpecialDiv>
             <SpecialDiv>
@@ -153,13 +172,12 @@ class Home extends Component {
                 The Language Nest is a child-focused Alutiiq language immersion environment where language is acquired naturally. Children develop kindergarten readiness skills while they problem solve, explore, and play through the language in a supportive multi-generational setting.
               </SubHeaderContent>
             </SpecialDiv>
-              <Button size='big' href='http://sunaq.org/tamamta-liitukut/'>
+              <Button size='big' href='http://sunaq.org/languageprograms/language-nest/' target='_blank'>
                 Learn more
               </Button>
           </Container>
           </div>
-        </Parallax>
-      </div>
+     
     )
   } 
 }

@@ -3,15 +3,12 @@ import {
   Divider,
   Icon,
   Grid,
-  Button,
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
   ContentStyle,
   WordStyle,
   SongStyle,
-  IconHover,
-  IconLinkGrey,
   Pointer,
 } from '../styles/CommonStyles'
 

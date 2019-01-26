@@ -24,8 +24,9 @@ export const MainHeaderContent = MainHeader.extend`
 `
 
 // bottom section of homepage
+// this was color: white;
 export const SubHeader = styled.h2`
-  color: white;
+  color: #3D3D3D;
   font-size: 1.25em;
   line-height: 2;
 `
