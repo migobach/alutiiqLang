@@ -36,6 +36,8 @@ import {
   ContentStyleWhiteLeft,
   Div,
   SongStyleWhite, 
+  Pointer,
+  IconLink,
 } from './styles/CommonStyles'
 
 class Home extends Component {
@@ -67,7 +69,7 @@ class Home extends Component {
 
   renderSearchArticles = () => {
     const searchData = this.state.searchData
-    const articles = this.props.articles // topic, author
+    const articles = this.props.articles // topic, author, LINK: article_pdf
     const lowerCaseSearch = searchData.toLowerCase()
 
     let filtered_articles = articles.filter(a => 
@@ -76,7 +78,15 @@ class Home extends Component {
       a.author.toLowerCase().includes(lowerCaseSearch)    
     )
 
-    if (filtered_articles != null) {
+    if (filtered_articles <= []) {
+      return(
+        <Grid.Row>
+          <SongStyleWhite>
+            <i>No articles with those keywords.</i>
+          </SongStyleWhite>
+        </Grid.Row>
+      )     
+    } else 
       return(
         filtered_articles.map( (article) => 
         <Grid.Row key={article.id}>
@@ -91,27 +101,26 @@ class Home extends Component {
               </SongStyleWhite>
             </Grid.Column>
             <Grid.Column computer={4} tablet={4} mobile={4} textAlign='center'>
-              <SongStyleWhite>
+                
+                
+                <Pointer>
+              <IconLink href={article.article_pdf} target='_blank'>
+                
                 <Icon name='eye' size='large' />
-              </SongStyleWhite>
+              
+              </IconLink>
+                </Pointer>
+
+
             </Grid.Column>
           </Grid.Row>
         )
       )
-    } else 
-      return(
-        <Grid.Row>
-          <SongStyleWhite>
-            <i>No articles</i>
-          </SongStyleWhite>
-        </Grid.Row>
-      )
-
   }
 
   renderSearchBooks = () => {
     const searchData = this.state.searchData
-    const books = this.props.books // book_title_alutiiq, book_title_alutiiq, creator
+    const books = this.props.books // book_title_alutiiq, book_title_alutiiq, creator, LINK: link
     const lowerCaseSearch = searchData.toLowerCase()
 
     let filtered_books = books.filter(b => 
@@ -122,46 +131,45 @@ class Home extends Component {
       b.creator.toLowerCase().includes(lowerCaseSearch)
     )
     
-    if (filtered_books != null ) {
-      return(
-        filtered_books.map( (book) => 
-        <Grid.Row key={book.id}>
-            <Grid.Column computer={6} tablet={10} mobile={10}>
-              <SongStyleWhite>
-                {book.book_title_english} 
-              </SongStyleWhite>
-            </Grid.Column>
-            <Grid.Column width={6} only='computer'>
-              <SongStyleWhite>
-                {book.creator}
-              </SongStyleWhite>
-            </Grid.Column>
-            <Grid.Column computer={4} tablet={4} mobile={4} textAlign='center'>
-              <SongStyleWhite>
-                <Icon name='eye' size='large' />
-              </SongStyleWhite>
-            </Grid.Column>
-          </Grid.Row>
-        )
-      )
-    } else 
+    if (filtered_books <= [] ) {
       return(
         <Grid.Row>
           <SongStyleWhite>
-            <i>No books</i>
+            <i>No books with those keywords.</i>
           </SongStyleWhite>
         </Grid.Row>
       )
-    
+    } else 
+    return(
+      filtered_books.map( (book) => 
+      <Grid.Row key={book.id}>
+          <Grid.Column computer={6} tablet={10} mobile={10}>
+            <SongStyleWhite>
+              {book.book_title_english} 
+            </SongStyleWhite>
+          </Grid.Column>
+          <Grid.Column width={6} only='computer'>
+            <SongStyleWhite>
+              {book.creator}
+            </SongStyleWhite>
+          </Grid.Column>
+          <Grid.Column computer={4} tablet={4} mobile={4} textAlign='center'>
+            <SongStyleWhite>
+              <Icon name='eye' size='large' />
+            </SongStyleWhite>
+          </Grid.Column>
+        </Grid.Row>
+      )
+    )
   }
 
   // WORKING: 
   
-  // const curriculum = this.props.curriculum // curricular_name, group_name, 
-  // const games = this.props.games // game_group, creator
-  // const posters = this.props.posters // author, title
-  // const songs = this.props.songs // credit, title_alutiiq, title_english
-  // const lowerCaseSearch = searchData.toLowerCase()
+  // const curriculum = this.props.curriculum // curricular_name, group_name, link_to_item
+  // const games = this.props.games // game_group, creator, NEED TO GO TO THE GAMES PAGE
+  // const posters = this.props.posters // author, title, poster_link
+  // const songs = this.props.songs // credit, title_alutiiq, title_english, NEED TO GO TO THE SONG VIEW
+  
 
  
 
@@ -291,14 +299,22 @@ class Home extends Component {
                   <Div>
                     <Grid>
                       <Grid.Row>
-                        Articles:
+                        <Link to={{ pathname: "/happenings", state: {newsComp: true} }}>
+                          <WhiteTitle>
+                            <Icon name='external alternate' size='small' /> Articles:
+                          </WhiteTitle>
+                        </Link>
                       </Grid.Row>
                       { this.renderSearchArticles() }
                     </Grid>
 
-                    <Grid>
-                      <Grid.Row>
-                        Books:
+                    <Grid>                       
+                      <Grid.Row>                                        
+                        <Link to={'/books'}>
+                          <WhiteTitle>
+                            <Icon name='external alternate' size='small' /> Books: 
+                          </WhiteTitle>
+                        </Link>                                         
                       </Grid.Row>
                       { this.renderSearchBooks() }
                     </Grid>

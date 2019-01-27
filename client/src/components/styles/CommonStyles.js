@@ -245,6 +245,8 @@ export const IconLinkGrey = styled.a`
   &:hover, a:active { text-decoration: none; color: #3D3D3D; }
 `
 
+
+
 export const LinkHead = styled.h3`
   color: #508365;
   font-size: 1.5em;
