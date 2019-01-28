@@ -37,7 +37,11 @@ class Songs extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props
+
+    this.props.location.state == null ?
     dispatch(getSongs())
+    : 
+    this.setState( {songView: this.props.location.state.songView, songData: this.props.location.state.songData} ) // add this.props.location.state.songDataId
   }
 
   setSong = (song) => {

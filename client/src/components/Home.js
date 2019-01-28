@@ -69,7 +69,7 @@ class Home extends Component {
 
   renderSearchArticles = () => {
     const searchData = this.state.searchData
-    const articles = this.props.articles // topic, author, LINK: article_pdf
+    const articles = this.props.articles // topic, author, article_pdf
     const lowerCaseSearch = searchData.toLowerCase()
 
     let filtered_articles = articles.filter(a => 
@@ -101,17 +101,11 @@ class Home extends Component {
               </SongStyleWhite>
             </Grid.Column>
             <Grid.Column computer={4} tablet={4} mobile={4} textAlign='center'>
-                
-                
-                <Pointer>
-              <IconLink href={article.article_pdf} target='_blank'>
-                
-                <Icon name='eye' size='large' />
-              
-              </IconLink>
-                </Pointer>
-
-
+              <Pointer>
+                <IconLink href={article.article_pdf} target='_blank'>              
+                  <Icon name='eye' size='large' />              
+                </IconLink>
+              </Pointer>
             </Grid.Column>
           </Grid.Row>
         )
@@ -120,7 +114,7 @@ class Home extends Component {
 
   renderSearchBooks = () => {
     const searchData = this.state.searchData
-    const books = this.props.books // book_title_alutiiq, book_title_alutiiq, creator, LINK: link
+    const books = this.props.books // book_title_alutiiq, book_title_alutiiq, creator, file
     const lowerCaseSearch = searchData.toLowerCase()
 
     let filtered_books = books.filter(b => 
@@ -154,24 +148,208 @@ class Home extends Component {
             </SongStyleWhite>
           </Grid.Column>
           <Grid.Column computer={4} tablet={4} mobile={4} textAlign='center'>
-            <SongStyleWhite>
-              <Icon name='eye' size='large' />
-            </SongStyleWhite>
+            <Pointer>
+              <IconLink href={book.file} target='_blank'>
+                <Icon name='eye' size='large' />
+              </IconLink>
+            </Pointer>                
           </Grid.Column>
         </Grid.Row>
       )
     )
   }
 
-  // WORKING: 
-  
-  // const curriculum = this.props.curriculum // curricular_name, group_name, link_to_item
-  // const games = this.props.games // game_group, creator, NEED TO GO TO THE GAMES PAGE
-  // const posters = this.props.posters // author, title, poster_link
-  // const songs = this.props.songs // credit, title_alutiiq, title_english, NEED TO GO TO THE SONG VIEW
-  
+  renderSearchCurriculum = () => {
+    const searchData = this.state.searchData
+    const curriculum = this.props.curriculum // curricular_name, group_name, link_to_item
+    const lowerCaseSearch = searchData.toLowerCase()
 
- 
+    let filtered_curriculum = curriculum.filter(c => 
+      c.curricular_name.toLowerCase().includes(lowerCaseSearch)
+      ||
+      c.group_name.toLowerCase().includes(lowerCaseSearch)
+      ||
+      c.level.toLowerCase().includes(lowerCaseSearch)
+    )
+    
+    if (filtered_curriculum <= [] ) {
+      return(
+        <Grid.Row>
+          <SongStyleWhite>
+            <i>No curricular items with those keywords.</i>
+          </SongStyleWhite>
+        </Grid.Row>
+      )
+    } else 
+    return(
+      filtered_curriculum.map( (curriculum) => 
+      <Grid.Row key={curriculum.id}>
+          <Grid.Column computer={6} tablet={10} mobile={10}>
+            <SongStyleWhite>
+              {curriculum.curricular_name} 
+            </SongStyleWhite>
+          </Grid.Column>
+          <Grid.Column width={6} only='computer'>
+            <SongStyleWhite>
+              {curriculum.group_name}
+            </SongStyleWhite>
+          </Grid.Column>
+          <Grid.Column computer={4} tablet={4} mobile={4} textAlign='center'>
+            <Pointer>
+              <IconLink href={curriculum.link_to_item} target='_blank'>
+                <Icon name='eye' size='large' />
+              </IconLink>
+            </Pointer>                
+          </Grid.Column>
+        </Grid.Row>
+      )
+    )
+  } 
+  
+  renderSearchPoster = () => {
+    const searchData = this.state.searchData
+    const poster = this.props.posters // author, title, poster_link, NEED TO OPEN THE POSTER COMP
+    const lowerCaseSearch = searchData.toLowerCase()
+
+    let filtered_posters = poster.filter(p => 
+      p.title.toLowerCase().includes(lowerCaseSearch)
+      ||
+      p.author.toLowerCase().includes(lowerCaseSearch)    
+    )
+    
+    if (filtered_posters <= [] ) {
+      return(
+        <Grid.Row>
+          <SongStyleWhite>
+            <i>No posters with those keywords.</i>
+          </SongStyleWhite>
+        </Grid.Row>
+      )
+    } else 
+    return(
+      filtered_posters.map( (poster) => 
+      <Grid.Row key={poster.id}>
+          <Grid.Column computer={6} tablet={10} mobile={10}>
+            <SongStyleWhite>
+              {poster.title} 
+            </SongStyleWhite>
+          </Grid.Column>
+          <Grid.Column width={6} only='computer'>
+            <SongStyleWhite>
+              {poster.author}
+            </SongStyleWhite>
+          </Grid.Column>
+          <Grid.Column computer={4} tablet={4} mobile={4} textAlign='center'>
+            <Pointer>
+              <IconLink href={poster.poster_link} target='_blank'>
+                <Icon name='eye' size='large' />
+              </IconLink>
+            </Pointer>                
+          </Grid.Column>
+        </Grid.Row>
+      )
+    )
+  }  
+
+  renderSearchGames = () => {
+    const searchData = this.state.searchData
+    const games = this.props.games   // GAMES: game_group, creator, link_to_item, game_name_english
+    const lowerCaseSearch = searchData.toLowerCase()
+
+    let filtered_games = games.filter(g => 
+      g.game_group.toLowerCase().includes(lowerCaseSearch)
+      ||
+      g.creator.toLowerCase().includes(lowerCaseSearch)    
+      || 
+      g.game_name_english.toLowerCase().includes(lowerCaseSearch)
+    )
+    
+    if (filtered_games <= [] ) {
+      return(
+        <Grid.Row>
+          <SongStyleWhite>
+            <i>No games with those keywords.</i>
+          </SongStyleWhite>
+        </Grid.Row>
+      )
+    } else 
+    return(
+      filtered_games.map( (game) => 
+      <Grid.Row key={game.id}>
+          <Grid.Column computer={6} tablet={10} mobile={10}>
+            <SongStyleWhite>
+              {game.game_name_english} 
+            </SongStyleWhite>
+          </Grid.Column>
+          <Grid.Column width={6} only='computer'>
+            <SongStyleWhite>
+              {game.creator}
+            </SongStyleWhite>
+          </Grid.Column>
+          <Grid.Column computer={4} tablet={4} mobile={4} textAlign='center'>
+            <Pointer>
+              <IconLink href={game.link_to_item} target='_blank'>
+                <Icon name='eye' size='large' />
+              </IconLink>
+            </Pointer>                
+          </Grid.Column>
+        </Grid.Row>
+      )
+    )
+  } 
+
+  renderSearchSongs = () => {
+    const searchData = this.state.searchData
+    const song = this.props.songs   // SONGS: credit, title_alutiiq, title_english, NEED TO GO TO THE SONG VIEW (CARRY STATE)
+    const lowerCaseSearch = searchData.toLowerCase()
+    
+   let filtered_songs = song.filter(s => 
+      s.title_english.toLowerCase().includes(lowerCaseSearch)
+      ||
+      s.credit != null ? s.credit.toLowerCase().includes(lowerCaseSearch) : null
+      ||
+      s.title_alutiiq.toLowerCase().includes(lowerCaseSearch)
+      || 
+      s.notes != null ? s.notes.toLowerCase().includes(lowerCaseSearch) : null
+    )
+    
+    if (filtered_songs <= [] ) {
+      return(
+        <Grid.Row>
+          <SongStyleWhite>
+            <i>No songs with those keywords.</i>
+          </SongStyleWhite>
+        </Grid.Row>
+      )
+    } else 
+    return(
+      filtered_songs.map( (song) => 
+      <Grid.Row key={song.id}>
+          <Grid.Column computer={6} tablet={10} mobile={10}>
+            <SongStyleWhite>
+              {song.title_english} 
+            </SongStyleWhite>
+          </Grid.Column>
+          <Grid.Column width={6} only='computer'>
+            <SongStyleWhite>
+              {song.credit}
+            </SongStyleWhite>
+          </Grid.Column>
+          <Grid.Column computer={4} tablet={4} mobile={4} textAlign='center'>
+              <Link to={{ pathname: '/songs', state: {songView: true, songData: (song) } }}>
+            <Pointer>
+              <IconLink target='_blank'>
+                <Icon name='eye' size='large' />
+              </IconLink>
+            </Pointer>                
+              </Link>
+          </Grid.Column>
+        </Grid.Row>
+      )
+    )
+  } 
+
+// COMPONENET RENDER STARTS HERE
 
   render() {
     const { searchData, renderSearch } = this.state
@@ -298,6 +476,14 @@ class Home extends Component {
                 renderSearch ?
                   <Div>
                     <Grid>
+                    <Grid.Row>                                        
+                        <Link to={'/songs'}>
+                          <WhiteTitle>
+                            <Icon name='external alternate' size='small' /> Songs: 
+                          </WhiteTitle>
+                        </Link>                                         
+                      </Grid.Row>
+                      { this.renderSearchSongs() }
                       <Grid.Row>
                         <Link to={{ pathname: "/happenings", state: {newsComp: true} }}>
                           <WhiteTitle>
@@ -305,10 +491,7 @@ class Home extends Component {
                           </WhiteTitle>
                         </Link>
                       </Grid.Row>
-                      { this.renderSearchArticles() }
-                    </Grid>
-
-                    <Grid>                       
+                      { this.renderSearchArticles() }                      
                       <Grid.Row>                                        
                         <Link to={'/books'}>
                           <WhiteTitle>
@@ -317,6 +500,23 @@ class Home extends Component {
                         </Link>                                         
                       </Grid.Row>
                       { this.renderSearchBooks() }
+                      <Grid.Row>                                        
+                        <Link to={'/curriculum'}>
+                          <WhiteTitle>
+                            <Icon name='external alternate' size='small' /> Curriculum: 
+                          </WhiteTitle>
+                        </Link>                                         
+                      </Grid.Row>
+                      { this.renderSearchCurriculum() }
+                      <Grid.Row>                                        
+                        <Link to={'/postersandgames'}>
+                          <WhiteTitle>
+                            <Icon name='external alternate' size='small' /> Posters and Games: 
+                          </WhiteTitle>
+                        </Link>                                         
+                      </Grid.Row>
+                      { this.renderSearchPoster() }
+                      { this.renderSearchGames() }
                     </Grid>
                   </Div>
                 :
