@@ -15,22 +15,5 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
+
 // registerServiceWorker();
-
-// could use the below: this will allow a global font 
-
-// import { injectGlobal } from 'styled-components'
-// injectGlobal`
-//   @font-face{
-//     font-family: 'notoSans', sans-serif;
-//     src: (google font)
-//   }
-// `
-
-// html * not(i) {
-//   font-family: 'notoSants, sans-serif;
-// }
-
-//the not(i) would exclude the icons, which are fonts
-
-// could also refactor the colors using the theme provider from styled component and then just call props.theme.blue, for example. 

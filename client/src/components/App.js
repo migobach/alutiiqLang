@@ -122,7 +122,7 @@ class App extends Component {
           <Route exact path="/videos" component={Videos} />
           <Route exact path="/links" component={OutsideLinks} />
                 
-          <ProtectedRoute exact path="/kasainaq" component={AdminLogin} />
+          <ProtectedRoute exact path='/kasainaq' component={AdminLogin} />
           <AuthRoute exact path='/login' component={Login} />
           <AuthRoute exact path='/register' component={Register} />
     
