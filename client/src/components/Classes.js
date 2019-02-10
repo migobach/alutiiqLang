@@ -17,10 +17,18 @@ import {
   GreenHead,
   ColumnHead,
   BodyLink,
+  Pointer,
 } from './styles/CommonStyles'
 import Jenga from '../images/Jenga.jpg'
 
+let firstButton = new Audio('')
+
 class Classes extends Component {
+
+  toggleFirstIcon = () => {
+    console.log(firstButton)
+    firstButton.play()
+  }
 
   render() {
     return(
@@ -46,7 +54,9 @@ class Classes extends Component {
         <Grid.Row columns={1}>
           <Grid.Column textAlign='center'>
             <SpecialDiv>
-              <IconHover name='talk' size='large' color='grey' />
+              <Pointer>
+                <IconHover name='talk' size='large' color='grey' onClick={this.toggleFirstIcon} />
+              </Pointer>
               <CardHeader>
                 <i>Katurlita!</i>
               </CardHeader>

@@ -166,7 +166,9 @@ class Songs extends Component {
           </Grid.Column>
           <Grid.Column textAlign='center'>
             <SpecialDiv>
-              <IconHover name='talk' size='large' color='grey' onClick={this.toggleSecondIcon} />
+              <Pointer>
+                <IconHover name='talk' size='large' color='grey' onClick={this.toggleSecondIcon} />
+              </Pointer>
               <CardHeader>
                 <i>Atuut'ciqar'penga-qaa?</i>
               </CardHeader>
