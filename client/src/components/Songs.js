@@ -23,16 +23,20 @@ import {
   Watermark,
   SongDiv,
   SongHeight,
-  Div
+  Div, 
+  Pointer
 } from './styles/CommonStyles'
 import SongView from './SongView'
+
+let firstButton = new Audio('https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/dictionary_audio/accordiann.mp3')
+let secondButton = new Audio('https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/dictionary_audio/headsoupn.mp3')
 
 class Songs extends Component {
   state = {
     songData: {}, 
     songView: false,
     searchSongs: '',
-    searchView: false,
+    searchView: false
   }
 
   componentDidMount() {
@@ -45,11 +49,21 @@ class Songs extends Component {
   }
 
   setSong = (song) => {
-    this.setState( { songData: {...song}, songView: true })
+    this.setState( { songData: {...song}, songView: true } )
   }
 
   toggleView = () => {
-    this.setState( { songView: !this.state.songView })
+    this.setState( { songView: !this.state.songView } ) 
+  }
+
+  toggleFirstIcon = () => {
+    console.log(firstButton)
+    firstButton.play() 
+  }
+
+  toggleSecondIcon = () => {
+    console.log(secondButton)
+    secondButton.play()
   }
 
   renderingSongView = () => {
@@ -63,6 +77,8 @@ class Songs extends Component {
  handleChange = (e, { name, value }) => {
     this.setState({ [name]: value })
  }
+
+ 
 
  renderSearchSongs = () => {
    const { searchSongs } = this.state
@@ -115,7 +131,7 @@ class Songs extends Component {
 
 
   render() {
-    const { searchSongs } = this.state
+    const { searchSongs, songView } = this.state
 
     return(
     <div> 
@@ -137,7 +153,9 @@ class Songs extends Component {
         <Grid.Row centered columns={2} divided only='computer tablet'>
           <Grid.Column textAlign='center'>
             <SpecialDiv>
-              <IconHover name='talk' size='large' color='grey' />
+              <Pointer>
+                <IconHover name='talk' size='large' color='grey' onClick={this.toggleFirstIcon}/>              
+              </Pointer>
               <CardHeader>
                 <i>Aturlita!</i>
               </CardHeader>
@@ -148,7 +166,7 @@ class Songs extends Component {
           </Grid.Column>
           <Grid.Column textAlign='center'>
             <SpecialDiv>
-              <IconHover name='talk' size='large' color='grey' />
+              <IconHover name='talk' size='large' color='grey' onClick={this.toggleSecondIcon} />
               <CardHeader>
                 <i>Atuut'ciqar'penga-qaa?</i>
               </CardHeader>
@@ -207,7 +225,7 @@ class Songs extends Component {
 
         {/* New conditionally rendered song view - not sticky */}
         <Grid.Column>
-          { this.state.songView === false ?
+          { songView === false ?
             <SongDiv>
               <Watermark>
                 Click on a song to view
@@ -222,7 +240,7 @@ class Songs extends Component {
 {/* start of the song list and conditional component - only renders on phones */}
       
       <Grid.Row only='mobile'>
-        { this.state.songView === false ?
+        { songView === false ?
           null
           :
           this.renderingSongView() 
