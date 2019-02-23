@@ -25,6 +25,8 @@ let firstButton = new Audio('')
 
 class Classes extends Component {
 
+  // state = { editClassForm = false }
+
   toggleFirstIcon = () => {
     console.log(firstButton)
     firstButton.play()
@@ -67,8 +69,6 @@ class Classes extends Component {
           </Grid.Column>
         </Grid.Row>
       </Grid>
-
-      
 
       <SpecialDiv>
         <GreenHead>

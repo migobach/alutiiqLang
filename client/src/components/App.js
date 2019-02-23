@@ -27,6 +27,7 @@ import PostersGames from './materials/PostersGames'
 import Videos from './materials/Videos'
 import Stories from './materials/Stories'
 import OutsideLinks from './materials/OutsideLinks' 
+import Upload from './Upload'
 
 const menuPad = {
   padding: '1em',
@@ -122,9 +123,13 @@ class App extends Component {
           <Route exact path="/videos" component={Videos} />
           <Route exact path="/links" component={OutsideLinks} />
                 
-          <ProtectedRoute exact path='/kasainaq' component={AdminLogin} />
+          {/* <ProtectedRoute exact path='/kasainaq' component={AdminLogin} /> */}
           <AuthRoute exact path='/login' component={Login} />
-          <AuthRoute exact path='/register' component={Register} />
+          <ProtectedRoute exact path='/upload' component={Upload} />
+
+      {/* ROUTES BELOW ARE ONLY ACCESSIBLE TO SITE ADMINS */}
+
+          {/* <AuthRoute exact path='/register' component={Register} />  */}
     
           <Route component={NoMatch} />
         </Switch>

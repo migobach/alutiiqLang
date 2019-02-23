@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Menu, MenuItem } from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import { handleLogout } from '../reducers/user';
+import { handleLogout } from '../reducers/user';
 import styled from 'styled-components'
 
 const Menuitems = styled(MenuItem)`
@@ -27,21 +27,28 @@ class NavBar extends Component {
   }
 
 
-// this will be used once I have admin permissions for super-users
-  // rightNavs = () => {
-  //   const { user, dispatch, history } = this.props;
+  rightNavs = () => {
+    const { user, dispatch, history } = this.props
+    const { activeItem } = this.state
 
-  //   if (user.id) {
-  //     return (
-  //       <Menu.Menu position='right'>
-  //         <MenuItem
-  //           name='Logout'
-  //           onClick={() => dispatch(handleLogout(history))}
-  //         />
-  //       </Menu.Menu>
-  //     );
-  //   }
-  // }
+    if (user.id) {
+      return (
+        <Menu.Menu position='right'>
+            <Menuitems
+              name='Upload'
+              active={activeItem === '/upload'}
+              onClick={this.handleItemClick}
+              as={Link} to='/upload'
+            />
+          <Menuitems
+            name='Logout'
+            onClick={() => dispatch(handleLogout(history))}
+          />
+        </Menu.Menu>
+      );
+      
+    }
+  }
 
   render() {
     const { activeItem } = this.state
@@ -86,13 +93,14 @@ class NavBar extends Component {
             as={Link} to="/classes"
           />  
             <Menuitems 
-            // name='history_and_news'
             active={activeItem === '/happenings'}
             onClick={this.handleItemClick}
             as={Link} to="/happenings"
           >
           History & News
-          </Menuitems>         
+          </Menuitems>   
+
+          { this.rightNavs() }      
         </Menu>
       </div>
     );
