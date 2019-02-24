@@ -1,17 +1,22 @@
 import React, { Component } from 'react'
 import Dropzone from 'react-dropzone'
 import classNames from 'classnames'
+import CsvParse from '@vtex/react-csv-parse'
 import {
   Header,
   Form,
   Button,
   Dropdown,
   Divider,
+  Card,
+  Icon
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
   ContentStyle,
   Pointer,
+  CardHeader,
+  IconLinkGrey,
 } from './styles/CommonStyles'
 
 
@@ -34,9 +39,12 @@ class Upload extends Component {
   }
 
   onDrop = (acceptedFiles, rejectedFiles) => {
-
+    console.log(acceptedFiles)
   }
-  
+
+  handleData = (data) => {
+    this.setState({data})
+  }
   
   render() {
     const csvOptions = [
@@ -73,8 +81,30 @@ class Upload extends Component {
         value: 'Songs'
       }
     ]
+    const booksKeys = [
+      "book_title_alutiiq", 
+      "book_title_english", 
+      "description", 
+      "image",
+      "file", 
+      "audio",
+      "created_at",
+      "updated_at",
+      "book_type",
+      "creator"
+    ]
+
     return(
       <div>
+{/* CSV PARSE DOES NOT RENDER ANYTHING, JUST FOR PARSING THE FILE */}
+    <CsvParse
+      keys={booksKeys}
+      onDataUploaded={this.handleData}
+      onError={this.handleError}
+      render={onChange => <input type="file" onChange={onChange} />}
+    />
+
+{/* RENDERING STARTS HERE */}
       <SpecialDiv>
         <Header>
           Upload Content
@@ -88,32 +118,52 @@ class Upload extends Component {
         <Form>
             <Dropdown placeholder={this.state.updateDatabase} fluid selection options={csvOptions} onChange={this.handleDropdownChange}/>
           <Divider hidden />
-          <Pointer>
-            <Button type='submit' onSubmit={this.handleSubmit}>
-              Upload
-            </Button>
 
         <SpecialDiv>
-          <Dropzone onDrop={this.onDrop}>
-            {({getRootProps, getInputProps, isDragActive}) => {
-              return (
-                <div
-                  {...getRootProps()}
-                  className={classNames('dropzone', {'dropzone--isActive': isDragActive})}
-                >
-                  <input {...getInputProps()} />
-                  {
-                    isDragActive ?
-                      <p>Drop files here...</p> :
-                      <p>Try dropping some files here, or click to select files to upload.</p>
-                  }
-                </div>
-              )
-            }}
-          </Dropzone>
-          </SpecialDiv>
-          
-          </Pointer>
+          <Card fluid color='grey'>
+            <Card.Content textAlign='center'>
+              <CardHeader>
+                CSV File Upload
+              </CardHeader>
+            </Card.Content>
+
+            <Card.Content textAlign='center'>
+              <SpecialDiv>
+                <Dropzone onDrop={this.onDrop}>
+                  {({getRootProps, getInputProps, isDragActive}) => {
+                    return (
+                      <div
+                      {...getRootProps()}
+                      className={classNames('dropzone', {'dropzone--isActive': isDragActive})}
+                      >
+                        <input {...getInputProps()} />
+                        {
+                          isDragActive ?
+                            <Icon name='cloud upload' size='massive' color='grey' /> 
+                            :
+                            <Pointer>
+                              <p>Try dropping some files here, or click to select files to upload.</p>
+                            </Pointer>
+                        }
+                      </div>
+                    )
+                  }}
+                </Dropzone>
+              </SpecialDiv>
+            </Card.Content>
+          </Card>
+        </SpecialDiv>
+        {
+          this.state.upload ?
+        <Pointer>
+          <Button type='submit' onSubmit={this.handleSubmit}>
+            Upload
+          </Button>
+        </Pointer>
+        : 
+        null
+        }
+        
         </Form>
       </SpecialDiv>
       </div>
