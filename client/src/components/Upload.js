@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
+import Dropzone from 'react-dropzone'
+import classNames from 'classnames'
 import {
   Header,
   Form,
   Button,
+  Dropdown,
+  Divider,
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
@@ -13,7 +17,7 @@ import {
 
 class Upload extends Component {
   state = {
-    updateDatabase: '',
+    updateDatabase: 'Datbase type',
     upload: false
   }
   
@@ -23,6 +27,14 @@ class Upload extends Component {
 
   handleDropdownChange = (e, data) => {
     this.setState({updateDatabase: data.value, upload: true})
+  }
+
+  handleCancel = () => {
+    this.setState({updateDatabase: '', upload: false})
+  }
+
+  onDrop = (acceptedFiles, rejectedFiles) => {
+
   }
   
   
@@ -74,27 +86,34 @@ class Upload extends Component {
 
       <SpecialDiv>
         <Form>
-          <Form.Group widths='equal'>
-            <Form.Dropdown
-              selection
-              label='Database type'
-              value={csvOptions}
-              placeholder='Database type'
-              required
-              options={csvOptions}
-              onChange={this.handleDropdownChange}
-            />
-           
-           {/* <Pointer>
-             <Button type='submit' onSubmit={this.handleSubmit}>
-                Upload
-             </Button>
-             <Button type='button'>
-                Cancel
-             </Button>
-           </Pointer> */}
+            <Dropdown placeholder={this.state.updateDatabase} fluid selection options={csvOptions} onChange={this.handleDropdownChange}/>
+          <Divider hidden />
+          <Pointer>
+            <Button type='submit' onSubmit={this.handleSubmit}>
+              Upload
+            </Button>
 
-          </Form.Group>
+        <SpecialDiv>
+          <Dropzone onDrop={this.onDrop}>
+            {({getRootProps, getInputProps, isDragActive}) => {
+              return (
+                <div
+                  {...getRootProps()}
+                  className={classNames('dropzone', {'dropzone--isActive': isDragActive})}
+                >
+                  <input {...getInputProps()} />
+                  {
+                    isDragActive ?
+                      <p>Drop files here...</p> :
+                      <p>Try dropping some files here, or click to select files to upload.</p>
+                  }
+                </div>
+              )
+            }}
+          </Dropzone>
+          </SpecialDiv>
+          
+          </Pointer>
         </Form>
       </SpecialDiv>
       </div>
