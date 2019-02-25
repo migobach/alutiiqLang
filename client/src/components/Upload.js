@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import Dropzone from 'react-dropzone'
-import classNames from 'classnames'
 import CsvParse from '@vtex/react-csv-parse'
 import {
   Header,
@@ -25,9 +23,8 @@ class Upload extends Component {
     updateDatabase: 'Datbase type',
     upload: false
   }
-  
-  handleSubmit = () => {
-    
+
+  handleSubmit = () => { 
   }
 
   handleDropdownChange = (e, data) => {
@@ -38,11 +35,12 @@ class Upload extends Component {
     this.setState({updateDatabase: '', upload: false})
   }
 
-  onDrop = (acceptedFiles, rejectedFiles) => {
-    console.log(acceptedFiles)
-  }
-
+  // I might need to just scrap the whole dropzone thing. See if I can format the csv parser in a nice way, then I 
+  // can just build the logic there to populate the correct database. It won't be pretty, but it'll work. 
+  // if I scrap the whole dropzone thing, then I need to make sure I uninstall the npm package. 
+  
   handleData = (data) => {
+    debugger
     this.setState({data})
   }
   
@@ -93,17 +91,10 @@ class Upload extends Component {
       "book_type",
       "creator"
     ]
-
+    
     return(
       <div>
-{/* CSV PARSE DOES NOT RENDER ANYTHING, JUST FOR PARSING THE FILE */}
-    <CsvParse
-      keys={booksKeys}
-      onDataUploaded={this.handleData}
-      onError={this.handleError}
-      render={onChange => <input type="file" onChange={onChange} />}
-    />
-
+        
 {/* RENDERING STARTS HERE */}
       <SpecialDiv>
         <Header>
@@ -126,33 +117,20 @@ class Upload extends Component {
                 CSV File Upload
               </CardHeader>
             </Card.Content>
-
-            <Card.Content textAlign='center'>
-              <SpecialDiv>
-                <Dropzone onDrop={this.onDrop}>
-                  {({getRootProps, getInputProps, isDragActive}) => {
-                    return (
-                      <div
-                      {...getRootProps()}
-                      className={classNames('dropzone', {'dropzone--isActive': isDragActive})}
-                      >
-                        <input {...getInputProps()} />
-                        {
-                          isDragActive ?
-                            <Icon name='cloud upload' size='massive' color='grey' /> 
-                            :
-                            <Pointer>
-                              <p>Try dropping some files here, or click to select files to upload.</p>
-                            </Pointer>
-                        }
-                      </div>
-                    )
-                  }}
-                </Dropzone>
-              </SpecialDiv>
-            </Card.Content>
+            
+            <SpecialDiv>
+              {/* CSV PARSE DOES NOT RENDER ANYTHING, JUST FOR PARSING THE FILE */}
+              {/* RENDERS SIMPLE ARRAY WITH NO HEADERS */}
+                  <CsvParse
+                    keys={booksKeys}
+                    onDataUploaded={this.handleData}
+                    onError={this.handleError}
+                    render={onChange => <input type="file" onChange={onChange} />}
+                  />
+            </SpecialDiv>
           </Card>
         </SpecialDiv>
+
         {
           this.state.upload ?
         <Pointer>
@@ -171,7 +149,5 @@ class Upload extends Component {
   }
 }
 
+
 export default Upload
-
-
-
