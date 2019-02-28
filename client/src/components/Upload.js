@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 import CsvParse from '@vtex/react-csv-parse'
 import {
   Header,
@@ -20,11 +21,27 @@ import {
 
 class Upload extends Component {
   state = {
+    data: [],
     updateDatabase: 'Datbase type',
-    upload: false
+    upload: false,
+    dataPresent: false
   }
 
   handleSubmit = () => { 
+    const { dispatch } = this.props
+    const { data, updateDatabase, upload } = this.state
+    let submission = { ...data }
+    debugger
+
+    if ( updateDatabase === 'Books' && upload === true ) {
+      axios.post('api/books', { submission })
+      .then( () => this.resetState() 
+      )
+    }
+  }
+
+  resetState = () => {
+    this.setState({data: [], updateDatase: '', upload: false})
   }
 
   handleDropdownChange = (e, data) => {
@@ -35,13 +52,11 @@ class Upload extends Component {
     this.setState({updateDatabase: '', upload: false})
   }
 
-  // I might need to just scrap the whole dropzone thing. See if I can format the csv parser in a nice way, then I 
   // can just build the logic there to populate the correct database. It won't be pretty, but it'll work. 
   // if I scrap the whole dropzone thing, then I need to make sure I uninstall the npm package. 
   
   handleData = (data) => {
-    debugger
-    this.setState({data})
+    this.setState({data, dataPresent: true})
   }
   
   render() {
@@ -131,16 +146,16 @@ class Upload extends Component {
           </Card>
         </SpecialDiv>
 
-        {
-          this.state.upload ?
-        <Pointer>
-          <Button type='submit' onSubmit={this.handleSubmit}>
-            Upload
-          </Button>
-        </Pointer>
-        : 
-        null
-        }
+          {
+            (this.state.upload === true && this.state.dataPresent === true) ?
+          <Pointer>
+            <Button type='submit' onClick={this.handleSubmit}>
+              Upload
+            </Button>
+          </Pointer>
+          : 
+          null
+          }
         
         </Form>
       </SpecialDiv>

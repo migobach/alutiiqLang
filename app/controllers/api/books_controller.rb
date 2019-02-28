@@ -10,12 +10,20 @@ class Api::BooksController < ApplicationController
   end
 
   def create
-    book = Book.create(book_params)
+    # book = Book.create(book_params)
 
-    if book.save
-      render json: book
+    # if book.save
+    #   render json: book
+    # else
+    #   render json: { errors: book.errors.full_message.join(',')}
+    # end
+    binding.pry
+    submission = Book.new(book_params)
+    if current_user
+      binding.pry
+      #do someting
     else
-      render json: { errors: book.errors.full_message.join(',')}
+      puts "Sorry, you cannot do that."
     end
   end
 
