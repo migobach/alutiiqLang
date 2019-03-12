@@ -22,7 +22,6 @@ import {
 class Upload extends Component {
   state = {
     data: [],
-    csvData: [],
     updateDatabase: 'Datbase type',
     upload: false,
     dataPresent: false
@@ -33,7 +32,7 @@ class Upload extends Component {
 
 // need to make some sort of flash message saying that the upload was successful
     handleSubmit = () => { 
-      const { data, csvData, updateDatabase, upload, dataPresent } = this.state
+      const { data, updateDatabase, upload, dataPresent } = this.state
       // data.forEach(function(row) { csvData.push(row.book_title_alutiiq, row.book_title_english, row.description, row.image, row.file, row.audio, row.book_type, row.creator).join })
       debugger
 
