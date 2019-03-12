@@ -1,8 +1,6 @@
 class Api::BooksController < ApplicationController
   before_action :set_book, only: [:show]
   before_action :book_params, only: [:import]
- 
-  require 'csv'
 
   def index
     render json: Book.all
@@ -25,6 +23,9 @@ class Api::BooksController < ApplicationController
     Book.import(book_params) # was just params, and I had my object just fine, not permitted || also had it as book_params but book was empty
   end
 
+
+
+
     private
 
     def set_book
@@ -33,7 +34,7 @@ class Api::BooksController < ApplicationController
 
     def book_params
       binding.pry
-      params.require(:book).permit(:book_title_alutiiq, :book_title_english, :description, :image, :file, :audio, :book_type, :creator)
+      params.permit(book: [:book_title_alutiiq, :book_title_english, :description, :image, :file, :audio, :book_type, :creator])
     end
 
 end

@@ -34,11 +34,11 @@ class Upload extends Component {
 // need to make some sort of flash message saying that the upload was successful
     handleSubmit = () => { 
       const { data, csvData, updateDatabase, upload, dataPresent } = this.state
-      data.forEach(function(row) { csvData.push(row.book_title_alutiiq, row.book_title_english, row.description, row.image, row.file, row.audio, row.book_type, row.creator).join })
+      // data.forEach(function(row) { csvData.push(row.book_title_alutiiq, row.book_title_english, row.description, row.image, row.file, row.audio, row.book_type, row.creator).join })
       debugger
 
       if ( updateDatabase === 'Books' && upload === true && dataPresent === true) {
-        axios.post('api/books/import', { book: csvData })
+        axios.post('api/books/import', { book: data })
         .then( () => this.resetState() 
         )
       }

@@ -700,6 +700,7 @@ GEM
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
     ruby_dep (1.5.0)
+    smarter_csv (1.2.6)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -739,6 +740,7 @@ DEPENDENCIES
   pry
   puma (~> 3.11)
   rails (~> 5.2.0)
+  smarter_csv (~> 1.1, >= 1.1.4)
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data

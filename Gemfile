@@ -13,6 +13,7 @@ gem 'kaminari'
 gem 'dotenv-rails'
 gem 'aws-sdk'
 gem 'active_interaction', '~> 3.7' #for managing the CSV files in the controller
+gem 'smarter_csv', '~> 1.1', '>= 1.1.4' #may or may not need.... 
 
 
 group :development, :test do
