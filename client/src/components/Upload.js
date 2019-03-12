@@ -104,8 +104,6 @@ class Upload extends Component {
       "image",
       "file", 
       "audio",
-      // "created_at",
-      // "updated_at",
       "book_type",
       "creator"
     ]
