@@ -1,5 +1,8 @@
 class Api::BooksController < ApplicationController
   before_action :set_book, only: [:show]
+  before_action :book_params, only: [:import]
+ 
+  require 'csv'
 
   def index
     render json: Book.all
@@ -7,24 +10,6 @@ class Api::BooksController < ApplicationController
 
   def show
     render json: @book
-  end
-
-  def create
-    # book = Book.create(book_params)
-
-    # if book.save
-    #   render json: book
-    # else
-    #   render json: { errors: book.errors.full_message.join(',')}
-    # end
-    binding.pry
-    submission = Book.new(book_params)
-    if current_user
-      binding.pry
-      #do someting
-    else
-      puts "Sorry, you cannot do that."
-    end
   end
 
   def update
@@ -35,6 +20,11 @@ class Api::BooksController < ApplicationController
     end 
   end
 
+  def import 
+    binding.pry
+    Book.import(book_params) # was just params, and I had my object just fine, not permitted || also had it as book_params but book was empty
+  end
+
     private
 
     def set_book
@@ -42,7 +32,8 @@ class Api::BooksController < ApplicationController
     end
 
     def book_params
-      params.reqire(:book).permit(:book_title_alutiiq, :book_title_english, :description, :image, :file, :audio, :book_type)
+      binding.pry
+      params.require(:book).permit(:book_title_alutiiq, :book_title_english, :description, :image, :file, :audio, :book_type, :creator)
     end
 
 end

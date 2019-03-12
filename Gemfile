@@ -12,6 +12,7 @@ gem 'devise_token_auth'
 gem 'kaminari'
 gem 'dotenv-rails'
 gem 'aws-sdk'
+gem 'active_interaction', '~> 3.7' #for managing the CSV files in the controller
 
 
 group :development, :test do

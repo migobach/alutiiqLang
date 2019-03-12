@@ -22,44 +22,48 @@ import {
 class Upload extends Component {
   state = {
     data: [],
+    csvData: [],
     updateDatabase: 'Datbase type',
     upload: false,
     dataPresent: false
   }
 
-  handleSubmit = () => { 
-    const { dispatch } = this.props
-    const { data, updateDatabase, upload } = this.state
-    let submission = { ...data }
-    debugger
 
-    if ( updateDatabase === 'Books' && upload === true ) {
-      axios.post('api/books', { submission })
-      .then( () => this.resetState() 
-      )
+  // data.forEach(function(row) { empty.push(row.book_title_alutiiq) }) need to parse the data this way maybe into a new array? 
+
+// need to make some sort of flash message saying that the upload was successful
+    handleSubmit = () => { 
+      const { data, csvData, updateDatabase, upload, dataPresent } = this.state
+      data.forEach(function(row) { csvData.push(row.book_title_alutiiq, row.book_title_english, row.description, row.image, row.file, row.audio, row.book_type, row.creator).join })
+      debugger
+
+      if ( updateDatabase === 'Books' && upload === true && dataPresent === true) {
+        axios.post('api/books/import', { book: csvData })
+        .then( () => this.resetState() 
+        )
+      }
     }
-  }
-
-  resetState = () => {
-    this.setState({data: [], updateDatase: '', upload: false})
-  }
-
-  handleDropdownChange = (e, data) => {
-    this.setState({updateDatabase: data.value, upload: true})
-  }
-
-  handleCancel = () => {
-    this.setState({updateDatabase: '', upload: false})
-  }
-
-  // can just build the logic there to populate the correct database. It won't be pretty, but it'll work. 
-  // if I scrap the whole dropzone thing, then I need to make sure I uninstall the npm package. 
+    
+    resetState = () => {
+      this.setState({data: [], updateDatase: '', upload: false, dataPresent: false})
+    }
   
-  handleData = (data) => {
-    this.setState({data, dataPresent: true})
-  }
-  
-  render() {
+    handleDropdownChange = (e, data) => {
+      this.setState({updateDatabase: data.value, upload: true})
+    }
+    
+    handleCancel = () => {
+      this.setState({updateDatabase: '', upload: false})
+    }
+    
+    // can just build the logic there to populate the correct database. It won't be pretty, but it'll work. 
+    // if I scrap the whole dropzone thing, then I need to make sure I uninstall the npm package. 
+    
+    handleData = (data) => {
+      this.setState({data, dataPresent: true})
+    }
+    
+    render() {
     const csvOptions = [
       {
         text: 'Books',
@@ -101,8 +105,8 @@ class Upload extends Component {
       "image",
       "file", 
       "audio",
-      "created_at",
-      "updated_at",
+      // "created_at",
+      // "updated_at",
       "book_type",
       "creator"
     ]
