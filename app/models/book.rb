@@ -1,18 +1,8 @@
 class Book < ApplicationRecord
 
-  require 'smarter_csv'
-
-
   def self.import(file)
-
-    # at this point I have my file as a hash, I need to translate that hash to a csv
-    # Can this help? https://stackoverflow.com/questions/8183706/how-to-save-a-hash-into-a-csv
-    # below is the original proof of concept, but links were coming through right. 
-    # binding.pry
-    # file[:book].each do |row|
-    #   Book.create! row 
-    # end
-
+    Book.delete_all
+  
     # below is borrowed from the rake file
       file[:book].each do |row|
         b = Book.new
@@ -54,7 +44,7 @@ class Book < ApplicationRecord
           b.save
         puts "#{b.book_title_alutiiq} saved"
       end
-      puts "There are now #{Book.count} rows in the books table"
+    puts "There are now #{Book.count} rows in the books table"
   end
 end
 
