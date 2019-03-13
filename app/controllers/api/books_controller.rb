@@ -19,8 +19,6 @@ class Api::BooksController < ApplicationController
   end
 
   def import 
-    # binding.pry
-    # Book.import(book_params) # was just params, and I had my object just fine, not permitted || also had it as book_params but book was empty
     Book.import(book_params)
   end
 

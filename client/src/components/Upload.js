@@ -27,9 +27,6 @@ class Upload extends Component {
     dataPresent: false
   }
 
-
-  // data.forEach(function(row) { empty.push(row.book_title_alutiiq) }) need to parse the data this way maybe into a new array? 
-
 // need to make some sort of flash message saying that the upload was successful
     handleSubmit = () => { 
       const { data, updateDatabase, upload, dataPresent } = this.state
@@ -52,7 +49,7 @@ class Upload extends Component {
     }
     
     handleCancel = () => {
-      this.setState({updateDatabase: '', upload: false})
+      this.setState({updateDatabase: 'Database type', upload: false, data: []})
     }
     
     // can just build the logic there to populate the correct database. It won't be pretty, but it'll work. 
@@ -149,11 +146,20 @@ class Upload extends Component {
 
           {
             (this.state.upload === true && this.state.dataPresent === true) ?
-          <Pointer>
-            <Button type='submit' onClick={this.handleSubmit}>
-              Upload
-            </Button>
-          </Pointer>
+          <SpecialDiv>
+            <ContentStyle>
+              <Icon name='warning sign'/>
+               The {this.state.updateDatabase.toLowerCase()} database will be deleted and replaced with the new data. Click upload to continue. 
+            </ContentStyle>
+
+            <Pointer>
+              <Button type='submit' onClick={this.handleSubmit}>
+                Upload
+              </Button>
+              
+            </Pointer>
+
+          </SpecialDiv>
           : 
           null
           }
