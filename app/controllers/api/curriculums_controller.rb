@@ -1,5 +1,6 @@
 class Api::CurriculumsController < ApplicationController
   before_action :set_curriculum, only: [:show]
+  before_action :curriculum_params
 
   def index
     render json: Curriculum.all
@@ -27,6 +28,10 @@ class Api::CurriculumsController < ApplicationController
     end
   end
 
+  def import
+    Curriculum.import(curriculum_params)
+  end
+
     private
 
     def set_curriculum
@@ -34,7 +39,7 @@ class Api::CurriculumsController < ApplicationController
     end
 
     def curriculum_params
-      params.require(:curriculum).permit(:curricular_name, :linke_to_item, :level, :lesson_number, :notes)
+      params.permit(curriculum: [:curricular_name, :link_to_item, :level, :lesson_number, :notes, :group_name, :order])
     end
 
 end

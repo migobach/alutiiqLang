@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     resources :songs
     resources :dictionaries
     resources :materials
-    resources :curriculums
+    resources :curriculums do
+      collection { post :import }
+    end
     resources :books do 
       collection { post :import }
     end

@@ -22,6 +22,7 @@ import {
 class Upload extends Component {
   state = {
     data: [],
+    keys: [],
     updateDatabase: 'Datbase type',
     upload: false,
     dataPresent: false
@@ -35,28 +36,60 @@ class Upload extends Component {
 
       if ( updateDatabase === 'Books' && upload === true && dataPresent === true) {
         axios.post('api/books/import', { book: data })
-        .then( () => this.resetState() 
-        )
+        .then( () => this.resetState() )
+      } else if ( updateDatabase === 'Curriculum' && upload === true && dataPresent === true) {
+        axios.post('api/curriculums/import', { curriculum: data })
+        .then( () => this.resetState() )
       }
     }
     
     resetState = () => {
-      this.setState({data: [], updateDatase: '', upload: false, dataPresent: false})
+      this.setState({data: [], keys: [], updateDatase: '', upload: false, dataPresent: false})
     }
   
     handleDropdownChange = (e, data) => {
-      this.setState({updateDatabase: data.value, upload: true})
+      this.setState({
+        updateDatabase: data.value, 
+        upload: true
+      })
+      this.handleKeys(data.value)
     }
     
     handleCancel = () => {
-      this.setState({updateDatabase: 'Database type', upload: false, data: []})
+      this.setState({ updateDatabase: 'Database type', upload: false, data: [] })
     }
-    
-    // can just build the logic there to populate the correct database. It won't be pretty, but it'll work. 
-    // if I scrap the whole dropzone thing, then I need to make sure I uninstall the npm package. 
-    
+        
     handleData = (data) => {
       this.setState({data, dataPresent: true})
+    }
+
+    handleKeys = (database) => {
+      debugger
+      if (database === "Books") {
+        this.setState({keys:
+          [ "book_title_alutiiq", 
+            "book_title_english", 
+            "description", 
+            "image",
+            "file", 
+            "audio",
+            "book_type",
+            "creator"
+          ]
+        })
+      }
+      else if (database === "Curriculum") {
+        this.setState({keys:
+          [ "curricular_name",
+            "group_name",
+            "level",
+            "lesson_number",
+            "link_to_item",
+            "notes",
+            "order"
+          ]
+        })
+      }
     }
     
     render() {
@@ -94,17 +127,8 @@ class Upload extends Component {
         value: 'Songs'
       }
     ]
-    const booksKeys = [
-      "book_title_alutiiq", 
-      "book_title_english", 
-      "description", 
-      "image",
-      "file", 
-      "audio",
-      "book_type",
-      "creator"
-    ]
-    
+    const keys = this.state.keys 
+
     return(
       <div>
         
@@ -134,12 +158,12 @@ class Upload extends Component {
             <SpecialDiv>
               {/* CSV PARSE DOES NOT RENDER ANYTHING, JUST FOR PARSING THE FILE */}
               {/* RENDERS SIMPLE ARRAY WITH NO HEADERS */}
-                  <CsvParse
-                    keys={booksKeys}
-                    onDataUploaded={this.handleData}
-                    onError={this.handleError}
-                    render={onChange => <input type="file" onChange={onChange} />}
-                  />
+              <CsvParse
+                keys={keys}
+                onDataUploaded={this.handleData}
+                onError={this.handleError}
+                render={onChange => <input type="file" onChange={onChange} />}
+              />
             </SpecialDiv>
           </Card>
         </SpecialDiv>

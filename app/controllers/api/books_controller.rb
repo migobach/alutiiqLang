@@ -29,7 +29,6 @@ class Api::BooksController < ApplicationController
     end
 
     def book_params
-      binding.pry
       params.permit(book: [:book_title_alutiiq, :book_title_english, :description, :image, :file, :audio, :book_type, :creator])
     end
 

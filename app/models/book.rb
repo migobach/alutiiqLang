@@ -1,4 +1,6 @@
 class Book < ApplicationRecord
+  
+  @littler = "\u0280"
 
   def self.import(file)
     Book.delete_all
