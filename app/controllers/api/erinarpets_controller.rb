@@ -1,5 +1,6 @@
 class Api::ErinarpetsController < ApplicationController
   before_action :set_erinarpets, only: [:show]
+  before_action :erinarpet_params, only: [:import]
 
   def index
     render json: Erinarpet.all
@@ -27,6 +28,10 @@ class Api::ErinarpetsController < ApplicationController
     end
   end
 
+  def import 
+    Erinarpet.import(erinarpet_params)
+  end
+
     private 
 
     def set_erinarpets
@@ -34,14 +39,14 @@ class Api::ErinarpetsController < ApplicationController
     end
 
     def erinarpet_params
-      params.require(:erinarpet).permit(
+      params.permit(article: [
         :print_date,
         :topic,
         :author, 
         :article_pdf,
         :image,
         :notes
-      )
+      ])
     end
 
 end

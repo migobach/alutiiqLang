@@ -12,7 +12,9 @@ Rails.application.routes.draw do
     resources :books do 
       collection { post :import }
     end
-    resources :erinarpets
+    resources :erinarpets do
+      collection { post :import }
+    end
     resources :posters
     resources :games
     

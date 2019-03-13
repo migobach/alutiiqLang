@@ -28,6 +28,8 @@ class Upload extends Component {
     dataPresent: false
   }
 
+  
+
 // need to make some sort of flash message saying that the upload was successful
     handleSubmit = () => { 
       const { data, updateDatabase, upload, dataPresent } = this.state
@@ -39,6 +41,9 @@ class Upload extends Component {
         .then( () => this.resetState() )
       } else if ( updateDatabase === 'Curriculum' && upload === true && dataPresent === true) {
         axios.post('api/curriculums/import', { curriculum: data })
+        .then( () => this.resetState() )
+      } else if ( updateDatabase === 'Articles' && upload === true && dataPresent === true) {
+        axios.post('api/erinarpets/import', { article: data })
         .then( () => this.resetState() )
       }
     }
@@ -64,7 +69,6 @@ class Upload extends Component {
     }
 
     handleKeys = (database) => {
-      debugger
       if (database === "Books") {
         this.setState({keys:
           [ "book_title_alutiiq", 
@@ -88,6 +92,17 @@ class Upload extends Component {
             "notes",
             "order"
           ]
+        })
+      }
+      else if (database === "Articles") {
+        this.setState({keys:
+        [ "print_date",
+        "topic",
+        "author",
+        "article_pdf",
+        "image",
+        "notes"
+        ]
         })
       }
     }
@@ -194,6 +209,5 @@ class Upload extends Component {
     )
   }
 }
-
 
 export default Upload
