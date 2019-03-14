@@ -15,8 +15,8 @@ amazon:
   service: S3
   access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %> 
   secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
-  region: <%= ENV['BUCKETEER_AWS_REGION'] %>
-  bucket: <%= ENV['BUCKETEER_BUCKET_NAME'] %>
+  region: 'us-west-2'
+  bucket: 'alutiiq-language-resources'
 
 # Remember not to checkin your GCS keyfile to a repository
 # google:
