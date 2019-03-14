@@ -1,6 +1,6 @@
 class Api::CurriculumsController < ApplicationController
   before_action :set_curriculum, only: [:show]
-  before_action :curriculum_params
+  before_action :curriculum_params, only: [:import]
 
   def index
     render json: Curriculum.all
