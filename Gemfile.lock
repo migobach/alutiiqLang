@@ -876,6 +876,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk
+  aws-sdk-s3
   bootsnap (>= 1.1.0)
   devise
   devise_token_auth
