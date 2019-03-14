@@ -1956,7 +1956,7 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-// app.listen(9000); previous
+// app.listen(9000); previous script, then added below after getting a heroku error. Found the result here: 'https://stackoverflow.com/questions/14322989/first-heroku-deploy-failed-error-code-h10'
 app.listen(process.env.PORT || 3000, () => { console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env); })
 ```
 
