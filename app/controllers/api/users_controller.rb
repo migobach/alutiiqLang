@@ -34,12 +34,12 @@ class Api::UsersController < ApplicationController
   private
 
     def set_user
-      params.require(:user)
+      params.require(:user)[
         :first_name, 
         :last_name,
         :email,
         :phone,
         :nickname,
-        :image,
+        :image]
     end
 end
