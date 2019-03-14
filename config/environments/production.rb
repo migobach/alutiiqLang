@@ -31,7 +31,7 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system (see config/storage.yml for options)
   # config.active_storage.service = :local I AM CHANGING THIS TO SEE IF IT FIXES THE BUG I HAVE AFTER DEPLOYING
-  config.active_storage.service = :test
+  config.active_storage.service = :amazon
 
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil

@@ -11,5 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "npm": "^6.9.0"
+  }, "scripts": {
+    "start": "node server.js"
   }
 }
