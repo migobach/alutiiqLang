@@ -1956,7 +1956,8 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-app.listen(9000);
+// app.listen(9000); previous
+app.listen(process.env.PORT || 3000, () => { console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env); })
 ```
 
 The choice of your server software isn’t important either. Since Create React App is completely platform-agnostic, there’s no need to explicitly use Node.
