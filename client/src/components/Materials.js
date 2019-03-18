@@ -212,15 +212,15 @@ class Materials extends Component {
               <Card.Content>
                 <SpecialDiv>
                   <ContentStyle>
-                    Being able to hear the Alutiiq language, while seeing it contextualized through activity, dance, or other setting helps learners access language in ways otherwise unavailable to them.  
+                    Being able to hear the Alutiiq language, while seeing it contextualized through activity, dance, or other setting helps learners access language in ways otherwise unavailable to them. Subscribe to the channel to stay updated! 
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-              <Link to={`/videos`}>
+              <a href='https://www.youtube.com/channel/UCLDNH9GmHDEz2WUk0MtBrLQ/playlists' target='_blank' rel='noopener noreferrer'>
                 <Button color='yellow' size='small' fluid>
                   Go 
                 </Button>
-              </Link>
+              </a>
             </Card>
 
               <Card>

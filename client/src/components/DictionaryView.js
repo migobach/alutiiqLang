@@ -73,26 +73,26 @@ class DictionaryView extends Component {
     if (this.props.word.north_audio === this.props.word.south_audio) {
       return(<ReactPlayer
         url={this.props.word.north_audio}
-        controls='true'
+        controls= {true}
         height='5em'
         width='25em'
-        loop='false'
+        loop={false}
       />)
     } else if (this.props.word.north_audio === null) {
       return(<ReactPlayer
         url={this.props.word.south_audio}
-        controls='true'
+        controls= {true}
         height='5em'
         width='25em'
-        loop='false'
+        loop={false}
       />)
     } else if (this.props.word.south_audio === null) {
       return(<ReactPlayer
         url={this.props.word.north_audio}
-        controls='true'
+        controls= {true}
         height='5em'
         width='25em'
-        loop='false'
+        loop={false}
       />)
     } else if ( this.props.word.north_audio && this.props.word.south_audio) {
       return(<Grid>
@@ -103,10 +103,10 @@ class DictionaryView extends Component {
             </ContentStyle>
               <ReactPlayer
               url={this.props.word.north_audio}
-              controls='true'
+              controls= {true}
               height='5em'
               width='15em'
-              loop= 'false'
+              loop= {false}
             />
           </Grid.Column>
           <Grid.Column width={8} stretched>
@@ -115,10 +115,10 @@ class DictionaryView extends Component {
             </ContentStyle>
               <ReactPlayer
               url={this.props.word.south_audio}
-              controls='true'
+              controls= {true}
               height='5em'
               width='15em'
-              loop='false'
+              loop={false}
             />
           </Grid.Column>
         </Grid.Row>

@@ -123,14 +123,16 @@ class App extends Component {
             <Route exact path="/stories" component={Stories} />
             <Route exact path="/videos" component={Videos} />
             <Route exact path="/links" component={OutsideLinks} />
+            
                   
             {/* <ProtectedRoute exact path='/kasainaq' component={AdminLogin} /> */}
             <AuthRoute exact path='/login' component={Login} />
+            <ProtectedRoute exact path='/register' component={Register} /> 
             <ProtectedRoute exact path='/upload' component={Upload} />
+            {/* <ProtectedRoute exact path='/media' component={Media} /> */}
 
         {/* ROUTES BELOW ARE ONLY ACCESSIBLE TO SITE ADMINS */}
 
-            {/* <AuthRoute exact path='/register' component={Register} />  */}
       
             <Route component={NoMatch} />
           </Switch>
