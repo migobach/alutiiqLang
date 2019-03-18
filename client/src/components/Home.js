@@ -64,7 +64,6 @@ class Home extends Component {
 
   handleRenderingSearchData = () => {
     this.setState({ renderSearch: true })
-    
   }
 
   renderSearchArticles = () => {
@@ -302,15 +301,15 @@ class Home extends Component {
     const searchData = this.state.searchData
     const song = this.props.songs   // SONGS: credit, title_alutiiq, title_english, NEED TO GO TO THE SONG VIEW (CARRY STATE)
     const lowerCaseSearch = searchData.toLowerCase()
-    
+     
    let filtered_songs = song.filter(s => 
-      s.title_english.toLowerCase().includes(lowerCaseSearch)
+      ((s.title_english != null) ? s.title_english.toLowerCase().includes(lowerCaseSearch) : null)
       ||
-      s.credit != null ? s.credit.toLowerCase().includes(lowerCaseSearch) : null
+      ((s.credit != null) ? s.credit.toLowerCase().includes(lowerCaseSearch) : null)
       ||
       s.title_alutiiq.toLowerCase().includes(lowerCaseSearch)
       || 
-      s.notes != null ? s.notes.toLowerCase().includes(lowerCaseSearch) : null
+      ((s.notes != null) ? s.notes.toLowerCase().includes(lowerCaseSearch) : null)
     )
     
     if (filtered_songs <= [] ) {
@@ -468,7 +467,7 @@ class Home extends Component {
                     fluid
                   />
                   <Button onClick={() => this.handleRenderingSearchData() }>
-                    Test
+                    Search
                   </Button>
                 </Form> 
               </ContentStyleWhiteLeft>
@@ -483,7 +482,7 @@ class Home extends Component {
                           </WhiteTitle>
                         </Link>                                         
                       </Grid.Row>
-                      { this.renderSearchSongs() }
+                      { searchData ? this.renderSearchSongs() : null }
                       <Grid.Row>
                         <Link to={{ pathname: "/happenings", state: {newsComp: true} }}>
                           <WhiteTitle>
