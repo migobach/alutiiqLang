@@ -16,6 +16,9 @@ import {
   Pointer,
   CardHeader,
 } from './../styles/CommonStyles'
+import { setFlash } from '../../reducers/flash'
+import { connect } from 'react-redux'
+import Flash from '../Flash'
 
 
 class Upload extends Component {
@@ -32,18 +35,24 @@ class Upload extends Component {
 // need to make some sort of flash message saying that the upload was successful
     handleSubmit = () => { 
       const { data, updateDatabase, upload, dataPresent } = this.state
+      const { dispatch } = this.props
       // data.forEach(function(row) { csvData.push(row.book_title_alutiiq, row.book_title_english, row.description, row.image, row.file, row.audio, row.book_type, row.creator).join })
       debugger
 
       if ( updateDatabase === 'Books' && upload === true && dataPresent === true) {
         axios.post('api/books/import', { book: data })
-        .then( () => this.resetState() )
+        .then( () => this.resetState(), dispatch(setFlash('Success! Books updated', 'green')) )
+        .catch( res => { 
+          debugger 
+          dispatch(setFlash('Something went wrong!', 'red')) })
       } else if ( updateDatabase === 'Curriculum' && upload === true && dataPresent === true) {
         axios.post('api/curriculums/import', { curriculum: data })
-        .then( () => this.resetState() )
+        .then( () => this.resetState(), dispatch(setFlash('Success! Curriculum updated', 'green')) )
+        .catch( res => { dispatch(setFlash('Something went wrong!', 'red')) })
       } else if ( updateDatabase === 'Articles' && upload === true && dataPresent === true) {
         axios.post('api/erinarpets/import', { article: data })
-        .then( () => this.resetState() )
+        .then( () => this.resetState(), dispatch(setFlash('Success! Articles updated!', 'green')) )
+        .catch( res => { dispatch(setFlash('Something went wrong!', 'red'))})
       }
     }
     
@@ -163,6 +172,9 @@ class Upload extends Component {
           <Divider hidden />
 
         <SpecialDiv>
+
+          <Flash />
+
           <Card fluid color='grey'>
             <Card.Content textAlign='center'>
               <CardHeader>
@@ -212,4 +224,4 @@ class Upload extends Component {
   }
 }
 
-export default Upload
+export default connect()(Upload)

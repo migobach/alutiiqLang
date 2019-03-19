@@ -33,16 +33,20 @@ class AdminMenu extends Component {
     this.setState({ registerView: !this.state.registerView })
   }
 
+  toggleViewAddMedia = () => {
+    this.setState({ addMediaView: !this.state.addMediaView })
+  }
+
   renderConditionalView = () => {
     if (this.state.adminViewCSV === true) {
       return <Upload view={this.toggleViewCSVAdmin} />
     } else if (this.state.registerView === true) {
       return <Register view={this.toggleViewRegister} />
-    } else
+    } else if (this.state.addMediaView === true) {
+      return <AddFile view={this.toggleViewAddMedia} />
+    } else 
     return
   }
-
-  
 
   render() {
     return(
@@ -73,11 +77,9 @@ class AdminMenu extends Component {
                     </ContentStyle>
                   </SpecialDiv>
                 </Card.Content>
-                {/* <Link to={`/upload`}> */}
                   <Button color='yellow' size='small' fluid onClick={ () => this.toggleViewCSVAdmin() }>
                     Go 
                   </Button>
-                {/* </Link> */}
               </Card>
 
               <Card>
@@ -93,11 +95,9 @@ class AdminMenu extends Component {
                     </ContentStyle>
                   </SpecialDiv>
                 </Card.Content>
-                {/* <Link to={`/register`}> */}
                   <Button color='yellow' size='small' fluid onClick={ () => this.toggleViewRegister() }>
                     Go 
                   </Button>
-                {/* </Link> */}
               </Card>
 
               <Card>
@@ -113,12 +113,9 @@ class AdminMenu extends Component {
                     </ContentStyle>
                   </SpecialDiv>
                 </Card.Content>
-                  <Link to={'/add'}>
-                    <Button color='yellow' size='small' fluid>
+                    <Button color='yellow' size='small' fluid onClick={ () => this.toggleViewAddMedia() }>
                       Go 
                     </Button>
-                
-                  </Link>
               </Card>
 
               </Card.Group>
