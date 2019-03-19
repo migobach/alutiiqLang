@@ -15,21 +15,34 @@ import {
   ContainerPad,
 } from './styles/CommonStyles'
 import Upload from './admin/Upload'
+import Register from './Register'
 import AddFile from './admin/AddFile'
 
 class AdminMenu extends Component {
-  state = { adminView: false }
-
-  toggleViewAdmin = () => {
-    this.setState({ adminView: !this.state.adminView })
+  state = { 
+    adminViewCSV: false,
+    registerView: false,
+    addMediaView: false 
   }
 
-  renderAdminView = () => {
-    if (this.state.adminView === true) {
-      return <Upload view={this.toggleViewAdmin} />
-    } else 
+  toggleViewCSVAdmin = () => {
+    this.setState({ adminViewCSV: !this.state.adminViewCSV })
+  }
+
+  toggleViewRegister = () => {
+    this.setState({ registerView: !this.state.registerView })
+  }
+
+  renderConditionalView = () => {
+    if (this.state.adminViewCSV === true) {
+      return <Upload view={this.toggleViewCSVAdmin} />
+    } else if (this.state.registerView === true) {
+      return <Register view={this.toggleViewRegister} />
+    } else
     return
   }
+
+  
 
   render() {
     return(
@@ -42,7 +55,7 @@ class AdminMenu extends Component {
           </Header>
 
           <SpecialDiv>
-            { this.renderAdminView() }
+            { this.renderConditionalView() }
           </SpecialDiv>
 
           <ContainerPad>
@@ -61,7 +74,7 @@ class AdminMenu extends Component {
                   </SpecialDiv>
                 </Card.Content>
                 {/* <Link to={`/upload`}> */}
-                  <Button color='yellow' size='small' fluid onClick={ () => this.toggleViewAdmin()}>
+                  <Button color='yellow' size='small' fluid onClick={ () => this.toggleViewCSVAdmin() }>
                     Go 
                   </Button>
                 {/* </Link> */}
@@ -80,11 +93,11 @@ class AdminMenu extends Component {
                     </ContentStyle>
                   </SpecialDiv>
                 </Card.Content>
-                <Link to={`/register`}>
-                  <Button color='yellow' size='small' fluid>
+                {/* <Link to={`/register`}> */}
+                  <Button color='yellow' size='small' fluid onClick={ () => this.toggleViewRegister() }>
                     Go 
                   </Button>
-                </Link>
+                {/* </Link> */}
               </Card>
 
               <Card>

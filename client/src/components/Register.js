@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { Header, Form, Button, Segment } from 'semantic-ui-react';
+import { 
+  Header, 
+  Form, 
+  Button, 
+  Segment, 
+  Divider,
+} from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { registerUser } from '../reducers/user';
 import { setFlash } from '../reducers/flash';
@@ -64,6 +70,9 @@ class Register extends Component {
             <Button type='submit'>Submit</Button>
           </Segment>
         </Form>
+
+            <Divider />
+            <Button type='button' onClick={this.props.view}>Cancel</Button>
       </Segment>
     );
   }

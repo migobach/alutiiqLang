@@ -202,7 +202,7 @@ class Upload extends Component {
         
           <Divider />
           <Button type='button' onClick={this.props.view}>
-            Close
+            Cancel
           </Button>
         </Form>
       </SpecialDiv>
