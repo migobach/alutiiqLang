@@ -29,6 +29,7 @@ import Videos from './materials/Videos'
 import Stories from './materials/Stories'
 import OutsideLinks from './materials/OutsideLinks' 
 import Upload from './admin/Upload'
+import Add from './admin/AddFile'
 import FetchUser from './FetchUser'
 
 const menuPad = {
@@ -132,6 +133,7 @@ class App extends Component {
             <ProtectedRoute exact path='/admin' component={AdminMenu} />
             <ProtectedRoute exact path='/register' component={Register} /> 
             <ProtectedRoute exact path='/upload' component={Upload} />
+            <ProtectedRoute exact path='/add' component={Add} />
             {/* <ProtectedRoute exact path='/media' component={Media} /> */}
 
         {/* ERROR PAGE  */}
