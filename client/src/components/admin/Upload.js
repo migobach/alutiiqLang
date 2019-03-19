@@ -149,8 +149,9 @@ class Upload extends Component {
 {/* RENDERING STARTS HERE */}
       <SpecialDiv>
         <Header>
-          Upload Content
+          <Icon name='database' size='large' color='grey'/>  Upload Content 
         </Header>
+          <Divider />
         <ContentStyle>
           Select the database you would like to update with a new CSV file. 
         </ContentStyle>

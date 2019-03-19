@@ -5,21 +5,24 @@ import {
   Button, 
   Segment, 
   Divider,
+  Icon,
 } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { registerUser } from '../reducers/user';
 import { setFlash } from '../reducers/flash';
+import Flash from './Flash'
 
 class Register extends Component {
-  state = { email: '', password: '', passwordConfirmation: '' };
+  state = { name: '', email: '', password: '', passwordConfirmation: '' };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { email, password, passwordConfirmation } = this.state;
-    const { dispatch, history } = this.props;
+    const { name, email, password, passwordConfirmation } = this.state;
+    const { dispatch, history } = this.props
     if (password === passwordConfirmation) {
-      dispatch(registerUser({ email, password, passwordConfirmation }, history));
-    } else dispatch(setFlash('Passwords do not match!, please try again', 'red'));
+      setTimeout(this.props.view, 5000)
+      dispatch(registerUser({ name, email, password, passwordConfirmation }, history))
+    } else dispatch(setFlash('Passwords do not match! Please try again', 'red'));
   }
 
   handleChange = (e) => {
@@ -28,12 +31,28 @@ class Register extends Component {
   }
 
   render() {
-    const { email, password, passwordConfirmation } = this.state;
+    const { name, email, password, passwordConfirmation } = this.state;
 
     return (
       <Segment basic>
-        <Header as='h1' textAlign='center'>Register Component</Header>
+        <Header>
+          <Icon name='add user' size='large' color='grey'/>Register New Admin
+        </Header>
+          <Divider />
+
+        <Flash />
+
         <Form onSubmit={this.handleSubmit}>
+          <Form.Field>
+            <label htmlFor='name'>Name</label>
+            <input
+              id='name'
+              placeholder='Name'
+              required
+              value={name}
+              onChange={this.handleChange}
+            />
+          </Form.Field>
           <Form.Field>
             <label htmlFor='email'>Email</label>
             <input
