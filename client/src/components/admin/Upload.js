@@ -15,8 +15,7 @@ import {
   ContentStyle,
   Pointer,
   CardHeader,
-  IconLinkGrey,
-} from './styles/CommonStyles'
+} from './../styles/CommonStyles'
 
 
 class Upload extends Component {

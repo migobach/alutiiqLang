@@ -545,12 +545,11 @@ class Home extends Component {
                 The Language Nest is a child-focused Alutiiq language immersion environment where language is acquired naturally. Children develop kindergarten readiness skills while they problem solve, explore, and play through the language in a supportive multi-generational setting.
               </SubHeaderContent>
             </SpecialDiv>
-              <Button size='big' href='http://sunaq.org/languageprograms/language-nest/' target='_blank'>
+              <Button size='big' href='http://sunaq.org/languageprograms/' target='_blank'>
                 Learn more
               </Button>
           </Container>
-          </div>
-     
+        </div>
     )
   } 
 }

@@ -35,10 +35,10 @@ class NavBar extends Component {
       return (
         <Menu.Menu position='right'>
             <Menuitems
-              name='Upload'
-              active={activeItem === '/upload'}
+              name='Admin'
+              active={activeItem === '/admin'}
               onClick={this.handleItemClick}
-              as={Link} to='/upload'
+              as={Link} to='/admin'
             />
           <Menuitems
             name='Logout'

@@ -18,6 +18,7 @@ import Songs from './Songs'
 import Classes from './Classes'
 import HistoryNews from './HistoryNews'
 import AdminLogin from './AdminLogin'
+import AdminMenu from './AdminMenu'
 import AuthRoute from './AuthRoute'
 import Login from './Login'
 import Register from './Register'
@@ -27,7 +28,7 @@ import PostersGames from './materials/PostersGames'
 import Videos from './materials/Videos'
 import Stories from './materials/Stories'
 import OutsideLinks from './materials/OutsideLinks' 
-import Upload from './Upload'
+import Upload from './admin/Upload'
 import FetchUser from './FetchUser'
 
 const menuPad = {
@@ -124,16 +125,17 @@ class App extends Component {
             <Route exact path="/videos" component={Videos} />
             <Route exact path="/links" component={OutsideLinks} />
             
+        {/* ROUTES BELOW ARE ONLY ACCESSIBLE TO SITE ADMINS */}
                   
             {/* <ProtectedRoute exact path='/kasainaq' component={AdminLogin} /> */}
             <AuthRoute exact path='/login' component={Login} />
+            <ProtectedRoute exact path='/admin' component={AdminMenu} />
             <ProtectedRoute exact path='/register' component={Register} /> 
             <ProtectedRoute exact path='/upload' component={Upload} />
             {/* <ProtectedRoute exact path='/media' component={Media} /> */}
 
-        {/* ROUTES BELOW ARE ONLY ACCESSIBLE TO SITE ADMINS */}
-
-      
+        {/* ERROR PAGE  */}
+        
             <Route component={NoMatch} />
           </Switch>
           <Footer />
