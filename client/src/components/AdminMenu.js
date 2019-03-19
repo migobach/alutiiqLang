@@ -20,6 +20,17 @@ import AddFile from './admin/AddFile'
 class AdminMenu extends Component {
   state = { adminView: false }
 
+  toggleViewAdmin = () => {
+    this.setState({ adminView: !this.state.adminView })
+  }
+
+  renderAdminView = () => {
+    if (this.state.adminView === true) {
+      return <Upload view={this.toggleViewAdmin} />
+    } else 
+    return
+  }
+
   render() {
     return(
       <div>
@@ -29,6 +40,10 @@ class AdminMenu extends Component {
               Admin Console
             </SectionHead>
           </Header>
+
+          <SpecialDiv>
+            { this.renderAdminView() }
+          </SpecialDiv>
 
           <ContainerPad>
             <Card.Group itemsPerRow={3} stackable centered doubling>
@@ -45,11 +60,11 @@ class AdminMenu extends Component {
                     </ContentStyle>
                   </SpecialDiv>
                 </Card.Content>
-                <Link to={`/upload`}>
-                  <Button color='yellow' size='small' fluid>
+                {/* <Link to={`/upload`}> */}
+                  <Button color='yellow' size='small' fluid onClick={ () => this.toggleViewAdmin()}>
                     Go 
                   </Button>
-                </Link>
+                {/* </Link> */}
               </Card>
 
               <Card>

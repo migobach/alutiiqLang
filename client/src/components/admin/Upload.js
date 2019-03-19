@@ -194,14 +194,16 @@ class Upload extends Component {
               <Button type='submit' onClick={this.handleSubmit}>
                 Upload
               </Button>
-              
             </Pointer>
-
           </SpecialDiv>
           : 
           null
           }
         
+          <Divider />
+          <Button type='button' onClick={this.props.view}>
+            Close
+          </Button>
         </Form>
       </SpecialDiv>
       </div>
