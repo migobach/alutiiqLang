@@ -1,5 +1,6 @@
 class Api::GamesController < ApplicationController
   before_action :set_games, only: [:show]
+  before_action :game_params, only: [:import]
 
   def index
     render json: Game.all
@@ -27,6 +28,10 @@ class Api::GamesController < ApplicationController
     end
   end
 
+  def import 
+    Game.import(game_params)
+  end
+
     private
 
     def set_games
@@ -34,7 +39,7 @@ class Api::GamesController < ApplicationController
     end
 
     def game_params
-      params.require(:game).permit(
+      params.permit(game: [
         :game_name_alutiiq,
         :game_name_english,
         :link_to_item,
@@ -42,6 +47,6 @@ class Api::GamesController < ApplicationController
         :notes,
         :order,
         :creator
-      )
+      ])
     end
 end

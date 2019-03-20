@@ -29,7 +29,7 @@ class SongView extends Component {
   linesToParagraph(...lines) {
     return lines
       .map(line => typeof line === 'string' ?
-      line.split("\r\n").map(text => <p>{text}</p>) 
+      line.split(".").map(text => <p>{text}</p>) 
       : 
       line).reduce((lines, line) => lines.concat(line), [])
   }

@@ -1,5 +1,6 @@
 class Api::PostersController < ApplicationController
   before_action :set_poster, only: [:show]
+  before_action :poster_params, only: [:import]
 
   def index
     render json: Poster.all
@@ -27,6 +28,10 @@ class Api::PostersController < ApplicationController
     end
   end
 
+  def import 
+    Poster.import(poster_params)
+  end
+
 
     private
 
@@ -35,6 +40,6 @@ class Api::PostersController < ApplicationController
     end
 
     def poster_params
-      params.require(:poster).permit(:title, :poster_link, :author, :notes)
+      params.permit(poster: [:title, :poster_link, :author, :notes])
     end
 end

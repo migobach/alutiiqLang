@@ -1,5 +1,6 @@
 class Api::SongsController < ApplicationController
   before_action :set_song, only: [:show]
+  before_action :song_params, only: [:import]
 
   def index
     render json: Song.all
@@ -27,6 +28,10 @@ class Api::SongsController < ApplicationController
     end
   end
 
+  def import 
+    Song.import(song_params)
+  end
+
     private
 
     def set_song
@@ -34,6 +39,6 @@ class Api::SongsController < ApplicationController
     end
 
     def song_params
-      params.require(:song).permit(:title_english, :title_alutiiq, :credit, :audio, :video, :script, :traditional)
+      params.permit(song: [:title_english, :title_alutiiq, :credit, :audio, :video, :script, :traditional, :script_english_words, :script_alutiiq_words, :notes])
     end
 end

@@ -1,5 +1,6 @@
 class Api::MaterialsController < ApplicationController
   before_action :set_material, only: [:show]
+  before_action :material_params, only: [:import]
   
   def index
     render json: Material.all 
@@ -30,18 +31,22 @@ class Api::MaterialsController < ApplicationController
     end
   end
 
+  def import 
+    Material.import(material_params)
+  end
+
     private 
 
-    def set_page
-      @page = params[:page] || 1
-    end
+    # def set_page
+    #   @page = params[:page] || 1
+    # end
 
     def set_material
       @material = Material.find(params[:id])
     end
 
     def material_params
-      params.require(:material).permit(:resource_title, :file_url, :url, :author, :year, :grade, :standards, :subjects, :values, :sponsors, :keywords, :notes)
+      params.permit(material: [:resource_title, :file_url, :url, :author, :year, :grade, :standards, :subjects, :values, :sponsors, :keywords, :notes])
     end
 
 end

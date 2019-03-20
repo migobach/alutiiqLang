@@ -41,18 +41,38 @@ class Upload extends Component {
 
       if ( updateDatabase === 'Books' && upload === true && dataPresent === true) {
         axios.post('api/books/import', { book: data })
-        .then( () => this.resetState(), dispatch(setFlash('Success! Books updated', 'green')) )
+        .then( () => this.resetState(), dispatch(setFlash('Success! Books updated.', 'green')) )
         .catch( res => { 
           debugger 
           dispatch(setFlash('Something went wrong!', 'red')) })
       } else if ( updateDatabase === 'Curriculum' && upload === true && dataPresent === true) {
         axios.post('api/curriculums/import', { curriculum: data })
-        .then( () => this.resetState(), dispatch(setFlash('Success! Curriculum updated', 'green')) )
+        .then( () => this.resetState(), dispatch(setFlash('Success! Curriculum updated.', 'green')) )
         .catch( res => { dispatch(setFlash('Something went wrong!', 'red')) })
       } else if ( updateDatabase === 'Articles' && upload === true && dataPresent === true) {
         axios.post('api/erinarpets/import', { article: data })
-        .then( () => this.resetState(), dispatch(setFlash('Success! Articles updated!', 'green')) )
+        .then( () => this.resetState(), dispatch(setFlash('Success! Articles updated.', 'green')) )
         .catch( res => { dispatch(setFlash('Something went wrong!', 'red'))})
+      } else if ( updateDatabase === 'Games' && upload === true && dataPresent === true) {
+        axios.post('api/games/import', { game: data })
+        .then( 
+        () => this.resetState(), 
+        dispatch(setFlash('Success! Games uploaded!', 'green')) )
+        .catch( res => { dispatch(setFlash('Something went wrong!', 'red')) })
+      } else if ( updateDatabase === 'Materials' && upload === true && dataPresent === true) {
+        axios.post('api/materials/import', { material: data })
+        .then( () => this.resetState(), dispatch(setFlash('Success! Materials updated!', 'green')) )
+        .catch( res => { 
+          debugger 
+          dispatch(setFlash('Something went wrong!', 'red')) })
+      } else if ( updateDatabase === 'Posters' && upload === true && dataPresent === true) {
+        axios.post('api/posters/import', { poster: data })
+        .then( () => this.resetState(), dispatch(setFlash('Success! Posters have been uploaded!', 'green')) )
+        .catch(res => {dispatch(setFlash('Something went wrong.', 'red')) })
+      } else if ( updateDatabase === 'Songs' && upload === true && dataPresent === true) {
+        axios.post('api/songs/import', { song: data })
+        .then( () => this.resetState(), dispatch(setFlash('Success! Songs have been uploaded!', 'green')) )
+        .catch(res => {dispatch(setFlash('Something went wrong.', 'red')) })
       }
     }
     
@@ -104,12 +124,65 @@ class Upload extends Component {
       }
       else if (database === "Articles") {
         this.setState({keys:
-        [ "print_date",
-        "topic",
+          [ "print_date",
+          "topic",
+          "author",
+          "article_pdf",
+          "image",
+          "notes"
+          ]
+        })
+      }
+      else if (database === "Games") {
+        this.setState({keys:
+          [ "game_name_alutiiq",
+          "game_name_english",
+          "link_to_item",
+          "game_group",
+          "notes",
+          "order",
+          "creator"
+          ]
+        })
+      }
+      else if (database === "Materials") {
+        this.setState({keys:
+        [ "resource_title",
+        "file_url",
+        "url",
         "author",
-        "article_pdf",
-        "image",
+        "year",
+        "grade",
+        "standards",
+        "subjects",
+        "values",
+        "sponsors",
+        "keywords",
         "notes"
+        ]
+        })
+      }
+      else if (database === "Posters") {
+        this.setState({keys: 
+        [ "title",
+        "poster_link",
+        "author",
+        "notes"
+        ]
+        })
+      }
+      else if (database === "Songs") {
+        this.setState({keys:
+        [ "title_english",
+        "title_alutiiq",
+        "credit",
+        "audio",
+        "video",
+        "script",
+        "script_english_words",
+        "script_alutiiq_words",
+        "traditional",
+        "notes",
         ]
         })
       }

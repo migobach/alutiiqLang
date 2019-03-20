@@ -3,9 +3,13 @@ Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: 'api/auth'
   
   namespace :api do
-    resources :songs
+    resources :songs do 
+      collection { post :import }
+    end
     resources :dictionaries
-    resources :materials
+    resources :materials do
+      collection { post :import }
+    end
     resources :curriculums do
       collection { post :import }
     end
@@ -15,8 +19,12 @@ Rails.application.routes.draw do
     resources :erinarpets do
       collection { post :import }
     end
-    resources :posters
-    resources :games
+    resources :posters do 
+      collection { post :import }
+    end
+    resources :games do 
+      collection { post :import }
+    end
     
     resources :users, only: :update
   end

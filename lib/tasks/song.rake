@@ -10,7 +10,6 @@ namespace :song do
     
     csv.each do |row|
       puts row.to_hash
-      # binding.pry
       
       s = Song.new
       s.title_english = row['title_english']
