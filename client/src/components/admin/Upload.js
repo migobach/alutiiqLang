@@ -73,6 +73,10 @@ class Upload extends Component {
         axios.post('api/songs/import', { song: data })
         .then( () => this.resetState(), dispatch(setFlash('Success! Songs have been uploaded!', 'green')) )
         .catch(res => {dispatch(setFlash('Something went wrong.', 'red')) })
+      } else if ( updateDatabase === 'Dictionary' && upload === true && dataPresent === true) {
+        axios.post('api/dictionaries/import', { dictionary: data })
+        .then( () => this.resetState(), dispatch(setFlash('Success! Words have been uploaded and updated!', 'green')) )
+        .catch(res => {dispatch(setFlash('Something went wrong.', 'red')) })
       }
     }
     
@@ -183,6 +187,25 @@ class Upload extends Component {
         "script_alutiiq_words",
         "traditional",
         "notes",
+        ]
+        })
+      } else if (database === "Dictionary") {
+        this.setState({keys:
+        [ "english",
+        "part_of_speech",
+        "alutiiq_north",
+        "north_audio",
+        "north_sentence",
+        "alutiiq_south",
+        "south_audio",
+        "south_sentence",
+        "image_name",
+        "root_word",
+        "category",
+        "edited_by",
+        "notes",
+        "completed",
+        "approved"
         ]
         })
       }
