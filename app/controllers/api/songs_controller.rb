@@ -6,6 +6,15 @@ class Api::SongsController < ApplicationController
     render json: Song.all
   end
 
+  def export 
+    @songData = Song.all
+
+    respond_to do |format|
+      format.json
+      format.csv { send_data @songData.to_csv }
+    end
+  end
+
   def show
     render json: @song
   end

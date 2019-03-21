@@ -55,6 +55,62 @@ class Download extends Component {
         link.click();
         this.resetState();
       })
+    } else if (downloadDatabase === 'Songs' && download === true) {
+        axios({
+        url: 'api/songs/export.csv',
+        method: 'GET',
+        responseType: 'blob', // important
+      }).then((response) => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'songs.csv');
+        document.body.appendChild(link);
+        link.click();
+        this.resetState();
+      })
+    } else if (downloadDatabase === 'Books' && download === true) {
+        axios({
+        url: 'api/books/export.csv',
+        method: 'GET',
+        responseType: 'blob', // important
+      }).then((response) => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'books.csv');
+        document.body.appendChild(link);
+        link.click();
+        this.resetState();
+      })
+    } else if (downloadDatabase === 'Dictionary' && download === true) {
+        axios({
+        url: 'api/dictionaries/export.csv',
+        method: 'GET',
+        responseType: 'blob', // important
+      }).then((response) => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'dictionary.csv');
+        document.body.appendChild(link);
+        link.click();
+        this.resetState();
+      })
+    } else if (downloadDatabase === 'Curriculum' && download === true) {
+        axios({
+        url: 'api/curriculums/export.csv',
+        method: 'GET',
+        responseType: 'blob', // important
+      }).then((response) => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'curriculum.csv');
+        document.body.appendChild(link);
+        link.click();
+        this.resetState();
+      })
     }
   }
 

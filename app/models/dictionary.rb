@@ -2,6 +2,34 @@ class Dictionary < ApplicationRecord
 
   @littler = "\u0280"
 
+  def self.to_csv
+    attributes = %w{
+      english
+      part_of_speech
+      alutiiq_north
+      north_audio
+      north_sentence
+      alutiiq_south
+      south_audio
+      south_sentence
+      image_name
+      root_word
+      category
+      edited_by
+      notes
+      completed
+      approved
+    }
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |word|
+        csv << word.attributes.values_at(*attributes)
+      end
+    end
+  end
+
   def self.import(file)
 
     Dictionary.delete_all

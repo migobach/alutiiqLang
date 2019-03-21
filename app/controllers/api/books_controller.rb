@@ -6,6 +6,15 @@ class Api::BooksController < ApplicationController
     render json: Book.all
   end
 
+  def export 
+    @bookData = Book.all
+
+    respond_to do |format|
+      format.json
+      format.csv { send_data @bookData.to_csv }
+    end
+  end
+
   def show
     render json: @book
   end

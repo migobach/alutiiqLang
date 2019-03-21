@@ -2,8 +2,30 @@ class Song < ApplicationRecord
 
   @littler = "\u0280"
 
-  def self.import(file)
+  def self.to_csv
+    attributes = %w{
+      title_english
+      title_alutiiq
+      credit
+      audio
+      video
+      script
+      traditional
+      script_english_words
+      script_alutiiq_words
+      notes
+    }
+  
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
 
+      all.each do |song|
+        csv << song.attributes.values_at(*attributes)
+      end
+    end
+  end
+
+  def self.import(file)
     Song.delete_all
 
   #below is borrowed from the rake file. 

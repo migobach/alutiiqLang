@@ -4,9 +4,15 @@ class Api::DictionariesController < ApplicationController
   
   def index
     render json: Dictionary.all
-    # dictionaries = Dictionary.page(@page)
-    # total_pages = dictionaries.total_pages
-    # render json: { dictionaries: dictionaries, total_pages: total_pages}
+  end
+
+  def export 
+    @wordData = Dictionary.all
+
+    respond_to do |format|
+      format.json
+      format.csv { send_data @wordData.to_csv }
+    end
   end
 
   def show

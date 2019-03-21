@@ -5,9 +5,11 @@ Rails.application.routes.draw do
   namespace :api do
     resources :songs do 
       collection { post :import }
+      collection { get :export }
     end
     resources :dictionaries do 
       collection { post :import }
+      collection { get :export }
     end
     resources :materials do
       collection { post :import }
@@ -15,9 +17,11 @@ Rails.application.routes.draw do
     end
     resources :curriculums do
       collection { post :import }
+      collection { get :export }
     end
     resources :books do 
       collection { post :import }
+      collection { get :export }
     end
     resources :erinarpets do
       collection { post :import }

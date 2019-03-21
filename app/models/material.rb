@@ -1,7 +1,20 @@
 class Material < ApplicationRecord
 
   def self.to_csv
-    attributes = %w{resource_title file_url url author year grade standards subjects values sponsors keywords notes}
+    attributes = %w{
+        resource_title 
+        file_url 
+        url 
+        author 
+        year 
+        grade 
+        standards 
+        subjects 
+        values 
+        sponsors 
+        keywords 
+        notes
+      }
    
     CSV.generate(headers: true) do |csv|
       csv << attributes

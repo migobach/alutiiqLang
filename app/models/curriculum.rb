@@ -1,5 +1,26 @@
 class Curriculum < ApplicationRecord
 
+  def self.to_csv
+    attributes = %w{
+      curricular_name
+      link_to_item
+      level
+      lesson_number
+      notes
+      group_name
+      order
+    }
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |curriculum|
+        csv << curriculum.attributes.values_at(*attributes)
+      end
+    end
+  end
+
+
   def self.import(file)
     Curriculum.delete_all
   

@@ -6,6 +6,15 @@ class Api::CurriculumsController < ApplicationController
     render json: Curriculum.all
   end
 
+  def export 
+    @curriculumData = Curriculum.all
+
+    respond_to do |format|
+      format.json
+      format.csv { send_data @curriculumData.to_csv }
+    end
+  end
+
   def show
     render json: @curriculum
   end

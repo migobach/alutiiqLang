@@ -2,6 +2,29 @@ class Book < ApplicationRecord
   
   @littler = "\u0280"
 
+  def self.to_csv
+    attributes = %w{
+      book_title_alutiiq
+      book_title_english
+      description
+      image
+      file
+      audio
+      book_type
+      creator
+    }
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |book|
+        csv << book.attributes.values_at(*attributes)
+      end
+    end
+
+  end
+
+
   def self.import(file)
     Book.delete_all
   
