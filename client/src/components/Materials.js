@@ -276,7 +276,7 @@ class Materials extends Component {
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-              <a href='https://quizlet.com/cbranson01' target='_blank' rel='noopener noreferrer'>
+              <a href='https://quizlet.com/class/3047759/' target='_blank' rel='noopener noreferrer'>
                 <Button color='yellow' size='small' fluid>
                   Go 
                 </Button>
@@ -319,6 +319,11 @@ class Materials extends Component {
   {/* MATERIALS SEARCH FIELD AND BUTTONS */}
 
         <SpecialDiv>
+          <SpecialDiv>
+            <CardHeader>
+              Search Materials
+            </CardHeader>
+          </SpecialDiv>
           <Form>
             <Form.Input
               placeholder='Search Resources...'

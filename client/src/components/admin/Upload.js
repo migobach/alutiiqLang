@@ -25,7 +25,7 @@ class Upload extends Component {
   state = {
     data: [],
     keys: [],
-    updateDatabase: 'Datbase type',
+    updateDatabase: 'Select datbase type',
     upload: false,
     dataPresent: false
   }
@@ -254,7 +254,7 @@ class Upload extends Component {
 {/* RENDERING STARTS HERE */}
       <SpecialDiv>
         <Header>
-          <Icon name='database' size='large' color='grey'/>  Upload Content 
+          <Icon name='upload' size='large' color='grey'/>  Upload Content 
         </Header>
           <Divider />
         <ContentStyle>

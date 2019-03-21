@@ -16,15 +16,15 @@ import {
 class MaterialsView extends Component {
 
   handleAuthorYear = () => {
-    if (this.props.material.author === null && this.props.material.year === 0) {
+    if (this.props.material.author === "" && this.props.material.year === 0) {
       return 
-    } else if (this.props.material.author != null && this.props.material.year === 0) {
+    } else if (this.props.material.author != "" && this.props.material.year === 0) {
       return(
         <ContentStyle>
           {this.props.material.author}
         </ContentStyle>
       )
-    } else if (this.props.material.year !== 0 && this.props.material.author === null) {
+    } else if (this.props.material.year !== 0 && this.props.material.author === "") {
       return(
         <ContentStyle>
           {this.props.material.year}
@@ -39,7 +39,7 @@ class MaterialsView extends Component {
     }
     
     handleNotes = () => {
-      if (this.props.material.notes === null) {
+      if (this.props.material.notes === "") {
         return
       } else {
         return(
@@ -51,15 +51,15 @@ class MaterialsView extends Component {
     }
 
     handleGrade = () => {
-      if (this.props.material.grade === null && this.props.material.standards === null) {
+      if (this.props.material.grade === "" && this.props.material.standards === "") {
         return
-      } else if (this.props.material.grade && this.props.material.standards === null) {
+      } else if (this.props.material.grade && this.props.material.standards === "") {
         return(
           <ContentStyle>
             <i>This resource was designed for grades {this.props.material.grade}</i>
           </ContentStyle>
         )
-      } else if (this.props.material.standards && this.props.material.grade === null) {
+      } else if (this.props.material.standards && this.props.material.grade === "") {
         return (
           <ContentStyle>
             <i>This resources is designed to meet standards {this.props.material.standards}</i>
@@ -75,7 +75,7 @@ class MaterialsView extends Component {
     }
 
     handleSponsor = () => {
-      if (this.props.material.sponsor === null) {
+      if (this.props.material.sponsors === "") {
         return
       } else {
         return(
@@ -87,7 +87,7 @@ class MaterialsView extends Component {
     }
 
     handleValues = () => {
-      if (this.props.material.values === null) {
+      if (this.props.material.values === "") {
         return
       } else {
         return(
@@ -99,7 +99,7 @@ class MaterialsView extends Component {
     }
 
     handleUrl = () => { 
-      if (this.props.material.url != null && this.props.material.file_url != null) {
+      if (this.props.material.url != "" && this.props.material.file_url != "") {
         return(
         <div>
           <IconLinkGrey href={this.props.material.url} target='_blank'>
@@ -111,13 +111,13 @@ class MaterialsView extends Component {
           </IconLinkGrey>
         </div>
         )
-      } else if (this.props.material.url != null && this.props.material.file_url === null) {
+      } else if (this.props.material.url != "" && this.props.material.file_url === "") {
         return(
           <IconLinkGrey href={this.props.material.url} target='_blank'>
             <IconHover name='linkify'/>
           </IconLinkGrey>
         )
-      } else if (this.props.material.url === null && this.props.material.file_url != null) {
+      } else if (this.props.material.url === "" && this.props.material.file_url != "") {
         return(
           <IconLinkGrey href={this.props.material.file_url} target='_blank'>
             <IconHover name='cloud download' />

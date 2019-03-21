@@ -17,13 +17,14 @@ import {
 import Upload from './admin/Upload'
 import Register from './Register'
 import AddFile from './admin/AddFile'
-import axios from 'axios';
+import DownloadCSV from './admin/DownloadCSV'
 
 class AdminMenu extends Component {
   state = { 
     adminViewCSV: false,
     registerView: false,
-    addMediaView: false 
+    addMediaView: false, 
+    downloadView: false
   }
 
   toggleViewCSVAdmin = () => {
@@ -38,6 +39,10 @@ class AdminMenu extends Component {
     this.setState({ addMediaView: !this.state.addMediaView })
   }
 
+  toggleViewDownload = () => {
+    this.setState({ downloadView: !this.state.downloadView })
+  }
+
   renderConditionalView = () => {
     if (this.state.adminViewCSV === true) {
       return <Upload view={this.toggleViewCSVAdmin} />
@@ -45,27 +50,10 @@ class AdminMenu extends Component {
       return <Register view={this.toggleViewRegister} />
     } else if (this.state.addMediaView === true) {
       return <AddFile view={this.toggleViewAddMedia} />
-    } else 
+    } else if (this.state.downloadView === true) {
+      return <DownloadCSV view={this.toggleViewDownload} />
+    }else 
     return
-  }
-
-  handleExport = () => {
-    // axios.get('api/materials')
-    // .then()
-    axios({
-    url: 'api/materials/export.csv',
-    method: 'GET',
-    responseType: 'blob', // important
-  }).then((response) => {
-    const url = window.URL.createObjectURL(new Blob([response.data]));
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', 'file.csv');
-    document.body.appendChild(link);
-    link.click();
-  });
-  
-  
   }
 
   render() {
@@ -76,9 +64,6 @@ class AdminMenu extends Component {
             <SectionHead>
               Admin Console
             </SectionHead>
-            <Button onClick={this.handleExport}>
-              Try this! 
-            </Button>
           </Header>
 
           <SpecialDiv>
@@ -86,11 +71,11 @@ class AdminMenu extends Component {
           </SpecialDiv>
 
           <ContainerPad>
-            <Card.Group itemsPerRow={3} stackable centered doubling>
+            <Card.Group itemsPerRow={4} stackable centered doubling>
               <Card>
                 <Card.Content header textAlign='center'>
                   <CardHeader>
-                    Upload
+                    Upload CSV
                   </CardHeader>
                 </Card.Content>
                 <Card.Content>
@@ -101,6 +86,24 @@ class AdminMenu extends Component {
                   </SpecialDiv>
                 </Card.Content>
                   <Button color='yellow' size='small' fluid onClick={ () => this.toggleViewCSVAdmin() }>
+                    Go 
+                  </Button>
+              </Card>
+
+              <Card>
+                <Card.Content header textAlign='center'>
+                  <CardHeader>
+                    Download CSV
+                  </CardHeader>
+                </Card.Content>
+                <Card.Content>
+                  <SpecialDiv>
+                    <ContentStyle>
+                      Download CSV files for the books, curriculum, dictionary, articles, games, materials, posters, or songs databases. Ensure that the formate of these databases is not altered in any way! 
+                    </ContentStyle>
+                  </SpecialDiv>
+                </Card.Content>
+                  <Button color='yellow' size='small' fluid onClick={ () => this.toggleViewDownload() }>
                     Go 
                   </Button>
               </Card>

@@ -3,12 +3,10 @@ class Material < ApplicationRecord
   def self.to_csv
     attributes = %w{resource_title file_url url author year grade standards subjects values sponsors keywords notes}
    
-    binding.pry
     CSV.generate(headers: true) do |csv|
       csv << attributes
       
       all.each do |material|
-        # binding.pry
         csv << material.attributes.values_at(*attributes)
       end
     end

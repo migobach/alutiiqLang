@@ -70,10 +70,6 @@ class Dictionary extends Component {
     this.setState({ [name]: value })
   }
 
-  clearSearch = () => {
-    this.setState({ searchTerms: '', wordView: false })
-  }
-  
   nowLoading = () => {
     return ( 
       <Dimmer active inverted>
@@ -137,7 +133,10 @@ class Dictionary extends Component {
           </SectionHead>
         </Header>
         <ContentStyleWhite>
-          Search our on-line dictionary for common words, a specific word you are interested in learning, or review an entire category of words. Click the Alutiiq word to see a flashcard with an image and audio clip.
+          Search our on-line dictionary for common words, a specific word you are interested in learning, or review an entire category of words. Click the Alutiiq word to see information about the word. Most words have audio clips, example sentencences and style notes.
+          <br />
+          <br />
+          To start exploring, just begin typing in the search bar below.
         </ContentStyleWhite>
       </BlueDiv>
       
@@ -152,10 +151,6 @@ class Dictionary extends Component {
             onChange={this.handleChange}
             fluid
             />
-              <Button
-                onClick={this.clearSearch}
-              >Clear
-              </Button>
         </Form>
       </SpecialDiv>
        
@@ -186,7 +181,7 @@ class Dictionary extends Component {
                 { loading === true ?
                   this.nowLoading()
                   :
-                  this.renderSearchWords().sort()
+                  this.renderSearchWords()
                 }
               </Grid>
             </Div>
