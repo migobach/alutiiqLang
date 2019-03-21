@@ -6,6 +6,15 @@ class Api::PostersController < ApplicationController
     render json: Poster.all
   end
 
+  def export 
+    @posterData = Poster.all
+
+    respond_to do |format|
+      format.json
+      format.csv { send_data @posterData.to_csv }
+    end
+  end
+
   def show
     render json: @poster
   end

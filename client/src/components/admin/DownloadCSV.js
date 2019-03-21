@@ -111,6 +111,48 @@ class Download extends Component {
         link.click();
         this.resetState();
       })
+    } else if (downloadDatabase === 'Articles' && download === true) {
+        axios({
+        url: 'api/erinarpets/export.csv',
+        method: 'GET',
+        responseType: 'blob', // important
+      }).then((response) => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'articles.csv');
+        document.body.appendChild(link);
+        link.click();
+        this.resetState();
+      })
+    } else if (downloadDatabase === 'Games' && download === true) {
+        axios({
+        url: 'api/games/export.csv',
+        method: 'GET',
+        responseType: 'blob', // important
+      }).then((response) => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'games.csv');
+        document.body.appendChild(link);
+        link.click();
+        this.resetState();
+      })
+    } else if (downloadDatabase === 'Posters' && download === true) {
+        axios({
+        url: 'api/posters/export.csv',
+        method: 'GET',
+        responseType: 'blob', // important
+      }).then((response) => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'posters.csv');
+        document.body.appendChild(link);
+        link.click();
+        this.resetState();
+      })
     }
   }
 

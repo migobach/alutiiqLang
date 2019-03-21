@@ -1,5 +1,25 @@
 class Game < ApplicationRecord
 
+  def self.to_csv
+    attributes = %w{
+      game_name_alutiiq
+      game_name_english
+      link_to_item
+      game_group
+      notes
+      creator
+      order
+    }
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes 
+
+      all.each do |game|
+        csv << game.attributes.values_at(*attributes)
+      end
+    end
+  end
+
   def self.import(file)
     Game.delete_all
 

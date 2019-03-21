@@ -6,6 +6,15 @@ class Api::GamesController < ApplicationController
     render json: Game.all
   end
 
+  def export 
+    @gameData = Game.all
+
+    respond_to do |format|
+      format.json
+      format.csv { send_data @gameData.to_csv }
+    end
+  end
+
   def show
     render json: @game
   end

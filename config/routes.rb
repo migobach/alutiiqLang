@@ -25,12 +25,15 @@ Rails.application.routes.draw do
     end
     resources :erinarpets do
       collection { post :import }
+      collection { get :export }
     end
     resources :posters do 
       collection { post :import }
+      collection { get :export }
     end
     resources :games do 
       collection { post :import }
+      collection { get :export }
     end
     
     resources :users, only: :update

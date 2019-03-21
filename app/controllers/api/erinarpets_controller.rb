@@ -6,6 +6,15 @@ class Api::ErinarpetsController < ApplicationController
     render json: Erinarpet.all
   end
 
+  def export 
+    @articleData = Erinarpet.all
+
+    respond_to do |format|
+      format.json
+      format.csv { send_data @articleData.to_csv }
+    end
+  end
+
   def show
     render json: @erinarpet
   end

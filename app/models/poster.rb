@@ -1,5 +1,23 @@
 class Poster < ApplicationRecord
 
+  def self.to_csv
+    attributes = %w{
+      title
+      poster_link
+      author
+      notes
+    }
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |poster|
+        csv << poster.attributes.values_at(*attributes)
+      end
+    end
+  end
+
+
   def self.import(file)
     Poster.delete_all
 
