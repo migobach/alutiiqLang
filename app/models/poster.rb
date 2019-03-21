@@ -9,7 +9,7 @@ class Poster < ApplicationRecord
       e = Poster.new
       e.title = row['title']
       e.poster_link = 
-        if row['poster_link'] == nil
+        if row['poster_link'] == ""
           row['poster_link']
         else
           "https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/poster/" + row['poster_link'].gsub(' ', '+') + ".pdf"

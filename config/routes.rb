@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     end
     resources :materials do
       collection { post :import }
+      collection { get :export }
     end
     resources :curriculums do
       collection { post :import }

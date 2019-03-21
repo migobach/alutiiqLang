@@ -3,10 +3,17 @@ class Api::MaterialsController < ApplicationController
   before_action :material_params, only: [:import]
   
   def index
-    render json: Material.all 
-    # materials = Material.page(@page)
-    # total_pages = materials.total_pages
-    # render json: { materials: materials, total_pages: total_pages}
+    render json: @materialdata
+  end
+  
+  def export 
+    @materialdata = Material.all
+  
+    respond_to do |format|
+      format.json 
+      format.csv { send_data @materialdata.to_csv }
+      # @materialdata.to_csv
+    end
   end
 
   def show

@@ -1,5 +1,20 @@
 class Material < ApplicationRecord
 
+  def self.to_csv
+    attributes = %w{resource_title file_url url author year grade standards subjects values sponsors keywords notes}
+   
+    binding.pry
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+      
+      all.each do |material|
+        # binding.pry
+        csv << material.attributes.values_at(*attributes)
+      end
+    end
+  end
+
+
   def self.import(file)
     Material.delete_all
 
@@ -9,7 +24,7 @@ class Material < ApplicationRecord
       m = Material.new
       m.resource_title = row['resource_title']
       m.file_url =
-        if row['file_url'] == nil 
+        if row['file_url'] == "" 
           row['file_url']
         else (
           if row['file_url'].include? 'http'
