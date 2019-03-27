@@ -6,7 +6,6 @@ import {
   Grid,
   Icon, 
   Form,
-  Button,
   Loader,
   Dimmer,
 } from 'semantic-ui-react'

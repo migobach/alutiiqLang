@@ -6,14 +6,12 @@ import {
   Button,
   Dropdown,
   Divider,
-  Card, 
   Icon
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
   ContentStyle,
   Pointer,
-  CardHeader,
 } from './../styles/CommonStyles'
 
 
@@ -191,6 +189,7 @@ class Download extends Component {
         value: 'Songs'
       }
     ]
+    
     return(
       <div>
         <SpecialDiv>

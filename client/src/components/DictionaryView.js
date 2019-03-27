@@ -17,11 +17,11 @@ const englishStyle = {
 class DictionaryView extends Component {
  
   handleSentence = () => {
-    if (this.props.word.north_sentence === this.props.word.south_sentence &&  this.props.word.north_sentence != "") {
+    if (this.props.word.north_sentence === this.props.word.south_sentence &&  this.props.word.north_sentence !== "") {
       return(<ContentStyle>Example sentence: <i>{this.props.word.north_sentence}</i></ContentStyle>)
-    } else if (this.props.word.north_sentence != "") {
+    } else if (this.props.word.north_sentence !== "") {
       return((<ContentStyle>Northern style example sentence: <i>{this.props.word.north_sentence}</i></ContentStyle>))
-    } else if (this.props.word.south_sentence != "") {
+    } else if (this.props.word.south_sentence !== "") {
       return((<ContentStyle>Southern style example sentence: <i>{this.props.word.south_sentence}</i></ContentStyle>))
     } else {
       return ''

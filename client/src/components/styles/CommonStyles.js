@@ -153,6 +153,13 @@ export const SpecialDiv = styled.div`
   padding: 1.5em;
 `
 
+export const SpecialDivBorder = styled.div`
+  padding: 2.5em;
+  border: .1rem solid #dddbdb;
+  border-radius: 10px;
+  text-align: center;
+`
+
 export const SongDiv = styled.div`
   padding: 5em;
 `

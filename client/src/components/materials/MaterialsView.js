@@ -18,7 +18,7 @@ class MaterialsView extends Component {
   handleAuthorYear = () => {
     if (this.props.material.author === "" && this.props.material.year === 0) {
       return 
-    } else if (this.props.material.author != "" && this.props.material.year === 0) {
+    } else if (this.props.material.author !== "" && this.props.material.year === 0) {
       return(
         <ContentStyle>
           {this.props.material.author}
@@ -99,7 +99,7 @@ class MaterialsView extends Component {
     }
 
     handleUrl = () => { 
-      if (this.props.material.url != "" && this.props.material.file_url != "") {
+      if (this.props.material.url !== "" && this.props.material.file_url !== "") {
         return(
         <div>
           <IconLinkGrey href={this.props.material.url} target='_blank'>
@@ -111,13 +111,13 @@ class MaterialsView extends Component {
           </IconLinkGrey>
         </div>
         )
-      } else if (this.props.material.url != "" && this.props.material.file_url === "") {
+      } else if (this.props.material.url !== "" && this.props.material.file_url === "") {
         return(
           <IconLinkGrey href={this.props.material.url} target='_blank'>
             <IconHover name='linkify'/>
           </IconLinkGrey>
         )
-      } else if (this.props.material.url === "" && this.props.material.file_url != "") {
+      } else if (this.props.material.url === "" && this.props.material.file_url !== "") {
         return(
           <IconLinkGrey href={this.props.material.file_url} target='_blank'>
             <IconHover name='cloud download' />

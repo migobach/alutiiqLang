@@ -21,7 +21,7 @@ class HistoryNews extends Component {
   state = { revitalizationComp: false, worldviewComp: false, newsComp: false }
 
   componentDidMount = () => {
-    this.props.location.state == null ?
+    (this.props.location.state === null) ?
     null 
     :
     this.setState( {newsComp: this.props.location.state.newsComp} )
