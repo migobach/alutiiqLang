@@ -13,8 +13,7 @@ gem 'kaminari'
 gem 'dotenv-rails'
 gem 'aws-sdk'
 gem "aws-sdk-s3", require: false
-# gem 'active_interaction', '~> 3.7' #for managing the CSV files in the controller
-# gem 'smarter_csv', '~> 1.1', '>= 1.1.4' #may or may not need.... 
+gem 'rack-cors'
 
 
 group :development, :test do

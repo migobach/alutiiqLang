@@ -45,6 +45,9 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
+  #added this in order to try and make ActiveStorage work = per: https://medium.com/@ebenwoodward/linking-a-react-app-to-rails-active-storage-d414afa4bc7f
+  config.action_controller.forgery_protection_origin_check = false
+  config.consider_all_requests_local = false
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true

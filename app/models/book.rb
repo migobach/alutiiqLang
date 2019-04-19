@@ -1,5 +1,6 @@
 class Book < ApplicationRecord
-  
+  has_one_attached :book
+
   @littler = "\u0280"
 
   def self.to_csv

@@ -1,5 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import Dropzone from 'react-dropzone'
+import { DirectUpload } from "activestorage"
+import ActiveStorageProvider from 'react-activestorage-provider'
 import {
   Header,
   Form,
@@ -37,14 +39,14 @@ class AddFile extends Component {
   state = { 
     uploadTo: 'Upload media to..',
     subFolder: '',
-    upload: false
+    upload: false, 
+    file: ''
   }
   
   handleDropdownChange = (e, data) => {
     this.setState({
       uploadTo: data.value,
       upload: true
-
     })
   }
 
@@ -60,21 +62,30 @@ class AddFile extends Component {
     }
   }
 
-  onDrop = (acceptedFiles) => {
-    console.log(acceptedFiles)
+  response = (e) => {
     debugger
-    axios.post('/api/books', { file: acceptedFiles })
+    this.setState({file: e.file.name})
+    e.state = null
+  }
+  
+  
+  onDrop = (acceptedFiles) => {
+    
+    console.log(acceptedFiles)
+    const book = acceptedFiles[0]
+    debugger
+    axios.post('/api/books', { book: book }) // somehow the problem has to be how I am passing the object to the controller
+    // can I remove the [0] - the array is needed when I step through. However, how do I get the object correctly in the controller? 
+    // axios.post('/api/books', { book: (acceptedFiles) })
 
     // if (this.state.uploadTo === 'Books' && this.state.subFolder === 'pdf' && this.state.upload === true) {
-    //   axios.post('/api/books', { file: acceptedFiles })
-    // }
+      //   axios.post('/api/books', { file: acceptedFiles })
+      // }
+   
   }
 
-  // handleDropzone = () => {
   
-  // }
 
-    
 
   render() {
     const csvOptions = [
@@ -111,11 +122,8 @@ class AddFile extends Component {
         value: 'Songs'
       }
     ]
-    // const uploadOptions = {
-    //   server: 'http://localhost:3000',
-    //   signingUrlQueryParams: {uploadType: 'avatar'},
-    // } 
-    const s3Url = 'https://alutiiq-language-resources.s3.amazonaws.com'
+
+    // const s3Url = 'https://alutiiq-language-resources.s3.amazonaws.com'
 
     return(
       <div>
@@ -149,10 +157,73 @@ class AddFile extends Component {
                     {!isDragActive && 'Click here or drop a file to upload!'}
                     {isDragActive && !isDragReject && "Drop it like it's hot!"}
                     {isDragReject && "File type not accepted, sorry!"}
+                    
+    
+                  {/* this would be nice to add, like on the docs 
+                  <aside>
+                    <h4>Files</h4>
+                    <ul>{files}</ul>
+                </aside> */}
                   </div>
                 )}
               </Dropzone>
-            </SpecialDivBorder>
+{/* 
+            <ActiveStorageProvider
+               endpoint={{
+                path: `api/books`,
+                model: 'book',
+                host: `localhost:3000`,
+                method: 'POST'
+                }}
+                // endpoint={{
+                //   path: 'api/books',
+                //   model: book,
+                //   host: localhost:3001, 
+                //   attribute: 'file',
+                //   method: 'PUT',
+                // }}
+                
+                onSubmit={book => {
+                  debugger; 
+                  this.setState({ file: book.file })}
+                }
+                render={({ handleUpload, uploads, ready }) => (
+                  <div>
+                    <input
+                      type="file"
+                      disabled={!ready}
+                      onChange={e => {debugger;handleUpload(e.currentTarget.files)}}
+                    />
+ 
+                    {/* {uploads.map(upload => {
+                      switch (upload.state) {
+                        case 'waiting':
+                          return <p key={upload.id}>Waiting to upload {upload.file.name}</p>
+                        case 'uploading':
+                          return (
+                            <p key={upload.id}>
+                              Uploading {upload.file.name}: {upload.progress}%
+                            </p>
+                          )
+                        case 'error':
+                          return (
+                            <p key={upload.id}>
+                              Error uploading {upload.file.name}: {upload.error}
+                            </p>
+                          )
+                        case 'finished':
+                          return (
+                            <Fragment>
+                              {this.response(upload)}
+                              <p key={upload.id}>Finished uploading {upload.file.name}</p>
+                            </Fragment>
+                          )
+                      }
+                    })} 
+                  </div>
+                )}
+              /> */}
+            </SpecialDivBorder> 
 
             <Divider hidden />
             <Divider />

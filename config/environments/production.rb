@@ -82,6 +82,10 @@ Rails.application.configure do
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
+  
+  #added this in order to try and make ActiveStorage work = per: https://medium.com/@ebenwoodward/linking-a-react-app-to-rails-active-storage-d414afa4bc7f
+  config.action_controller.forgery_protection_origin_check = false
+  config.consider_all_requests_local = false
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
