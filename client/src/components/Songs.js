@@ -2,6 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getSongs } from '../reducers/songs';
+import { Parallax } from 'react-parallax'
 import {
   Header,
   Icon,
@@ -13,6 +14,7 @@ import {
   SpecialDiv,
   SectionHead,
   ContentStyle,
+  ContentStyleCenter,
   SongStyle,
   CardHeader,
   BlueDiv,
@@ -27,6 +29,7 @@ import {
   Pointer
 } from './styles/CommonStyles'
 import SongView from './SongView'
+import Dancers from '../images/Dancers.jpg'
 
 let firstButton = new Audio('https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/dictionary_audio/accordiann.mp3')
 let secondButton = new Audio('https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/dictionary_audio/headsoupn.mp3')
@@ -77,8 +80,6 @@ class Songs extends Component {
  handleChange = (e, { name, value }) => {
     this.setState({ [name]: value })
  }
-
- 
 
  renderSearchSongs = () => {
    const { searchSongs } = this.state
@@ -136,16 +137,25 @@ class Songs extends Component {
     return(
     <div> 
 {/* header and welcome section of songs page  */}
-      <SpecialDiv>
-        <Header textAlign='center'>
-          <SectionHead>
-            Songs
-          </SectionHead>
-        </Header>
-        <ContentStyle>
-          Songs have been sung for millenia to mark important events and people, tell stories, celebrate and honor. Traditional songs have helped inpire new, modern songs. <i>Quyanaasinaq</i> to all the lyricists and Elders who have contributed over the years to develop this growing collection of Alutiiq Songs.
-        </ContentStyle>
-      </SpecialDiv>
+      <Parallax
+          bgImage={Dancers}
+          blur={{min: 5, max:1}}
+          bgImageAlt="Illustration from Grouse Girl Book"
+          strength={500}
+        >
+        <div style={{height: 350}}>
+          <SpecialDiv>
+            <Header textAlign="center">
+              <SectionHead>
+                Songs
+              </SectionHead>
+            </Header>
+              <ContentStyleCenter>
+                Songs have been sung for millenia to mark important events and people, tell stories, celebrate and honor. Traditional songs have helped inpire new, modern songs. <i>Quyanaasinaq</i> to all the lyricists and Elders who have contributed over the years to develop this growing collection of Alutiiq Songs.
+              </ContentStyleCenter>
+          </SpecialDiv>
+        </div>
+    </Parallax>
         
 
 {/* Two columns with key sing phrases and icons */}

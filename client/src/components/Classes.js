@@ -5,10 +5,12 @@ import {
   Divider,
   Image,
 } from 'semantic-ui-react'
+import { Parallax } from 'react-parallax'
 import {
   SpecialDiv,
   SectionHead,
   ContentStyle,
+  ContentStyleCenter,
   IconHover,
   CardHeader,
   GreenDiv,
@@ -20,6 +22,7 @@ import {
   Pointer,
 } from './styles/CommonStyles'
 import Jenga from '../images/Jenga.jpg'
+import Class from '../images/Class.jpg'
 
 let firstButton = new Audio('')
 
@@ -35,22 +38,31 @@ class Classes extends Component {
   render() {
     return(
     <div>
-      <SpecialDiv>
-        <Header textAlign='center'>
-          <SectionHead>
-            Classes and Gatherings
-          </SectionHead>
-        </Header>
-        <ContentStyle>
-          Language is about communication, getting together with one another and sharing stories and time. Find a list of our frequent events below, or click on the link to follow our Facebook page to keep up with the latest events and happenings. Each season brings new events and opportunites to learn Alutiiq, and share time with one another.
-          <br />
-          <br />
-          Join other Alutiiq language learners and fluent speakers to practice the Alutiiq language at the weekly gatherings listed on the Calendar chart below, drop-ins welcome. Find out how you can get more involved by participating in these events or other learning opportunities listed after this chart.
-          <br />
-          <br />
-          If you are not in Kodiak, seek out other learners and fluent speakers to start gathering in your community to practice and celebrate the Alutiiq language.
-        </ContentStyle>
-      </SpecialDiv>
+      <Parallax
+        bgImage={Class}
+        blur={{min: 5, max:1}}
+        bgImageAlt="Illustration from Grouse Girl Book"
+        strength={500}
+      >
+        <div style={{height: 350}}>
+          <SpecialDiv>
+            <Header textAlign="center">
+              <SectionHead>
+                Classes and Gatherings
+              </SectionHead>
+            </Header>
+              <ContentStyleCenter>
+                Language is about communication, getting together with one another and sharing stories and time. Find a list of our frequent events below, or click on the link to follow our Facebook page to keep up with the latest events and happenings. Each season brings new events and opportunites to learn Alutiiq, and share time with one another.
+                <br />
+                <br />
+                Join other Alutiiq language learners and fluent speakers to practice the Alutiiq language at the weekly gatherings listed on the Calendar chart below, drop-ins welcome. Find out how you can get more involved by participating in these events or other learning opportunities listed after this chart.
+                <br />
+                <br />
+                If you are not in Kodiak, seek out other learners and fluent speakers to start gathering in your community to practice and celebrate the Alutiiq language.
+              </ContentStyleCenter>
+          </SpecialDiv>
+        </div>
+      </Parallax>
 
       <Grid>
         <Grid.Row columns={1}>

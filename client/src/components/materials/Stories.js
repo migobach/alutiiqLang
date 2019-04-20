@@ -3,32 +3,40 @@ import {
   Header,
   Divider,
 } from 'semantic-ui-react'
+import { Parallax } from 'react-parallax'
 import {
   SpecialDiv,
   SectionHead,
-  BlueDiv,
   ContentStyle,
   LinkHeadA,
   BodyLinkBig,
+  ContentStyleCenter,
 } from '../styles/CommonStyles'
+import GrouseGirl from '../../images/GrouseGirl.jpg'
 
 class Stories extends Component {
   render() {
     return(
       <div>
-        <BlueDiv>
-          <Header textAlign='center'>
-            <SectionHead>
-              <i>Qulianguat</i>: Stories
-            </SectionHead>
-          </Header>
-        </BlueDiv> 
-
-        <SpecialDiv>
-          <ContentStyle>
-            Being able to sit and listen to traditional stories is an opportunity few of us can take advantage of. However, various institutions have collected or continue to collect traditional stories in both Alutiiq and English. Click on some of the links below to find narratives from across the Alutiiq Nation.
-          </ContentStyle>
-        </SpecialDiv>
+        <Parallax
+          bgImage={GrouseGirl}
+          blur={{min: 5, max:1}}
+          bgImageAlt="Teaching Alutiiq, Afognak Island, Alaska"
+          strength={500}
+        >
+        <div style={{height: 400}}>
+          <SpecialDiv>
+            <Header textAlign="center">
+              <SectionHead>
+                <i>Qulianguat:</i> Stories
+              </SectionHead>
+            </Header>
+            <ContentStyleCenter>
+              Being able to sit and listen to traditional stories is an opportunity few of us can take advantage of. However, various institutions have collected or continue to collect traditional stories in both Alutiiq and English. Click on some of the links below to find narratives from across the Alutiiq Nation.
+            </ContentStyleCenter>
+          </SpecialDiv>
+        </div>
+    </Parallax>
 
 {/* STORIES FROM THE ALUTIIQ MUSEUM */}
 

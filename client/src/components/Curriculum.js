@@ -55,7 +55,7 @@ class Curriculum extends Component {
     } else if (thematicComp === true) {
       return <Thematic view={this.toggleThematicComp} />
     } else 
-      return <SpecialDiv />
+      return null
   }
 
   render() {

@@ -11,19 +11,30 @@ import {
   ContentStyle,
   GreenLink,
   LinkHead,
-  BlueDiv,
   BodyLink,
 } from '../styles/CommonStyles'
+import Flying from '../../images/LinksHeader.jpg'
+import { Parallax } from 'react-parallax'
+
 
 const OutsideLinks = () => (
   <div>
-    <BlueDiv>
-      <Header textAlign='center'>
-        <SectionHead>
-          Links to Outside Resources
-        </SectionHead>
-      </Header>
-    </BlueDiv>
+     <Parallax
+          bgImage={Flying}
+          blur={{min: 5, max:1}}
+          bgImageAlt="Teaching Alutiiq, Afognak Island, Alaska"
+          strength={500}
+        >
+        <div style={{height: 300}}>
+          <SpecialDiv>
+            <Header textAlign="center">
+              <SectionHead>
+                Links to Outside Resources
+              </SectionHead>
+            </Header>
+          </SpecialDiv>
+        </div>
+    </Parallax>
 
     <SpecialDiv>
       <LinkHead>

@@ -7,10 +7,11 @@ import {
   Icon,
   Form
 } from 'semantic-ui-react'
+import { Parallax } from 'react-parallax'
 import {
   SpecialDiv,
   SectionHead,
-  BlueDiv,
+  ContentStyleCenter,
   ContentStyle,
   Div,
   Pointer,
@@ -18,6 +19,7 @@ import {
   BodyLink, 
 } from '../styles/CommonStyles'
 import BookView from './BookView'
+import Gift from '../../images/Gift.jpg'
 
 class Books extends Component {
 
@@ -100,23 +102,35 @@ class Books extends Component {
 
     return(
       <div>
-        <BlueDiv>
-          <Header textAlign='center'>
-            <SectionHead>
-              <i>Naaqisutet</i>: Books
-            </SectionHead>
-          </Header>
-        </BlueDiv> 
+        <Parallax
+          bgImage={Gift}
+          blur={{min: 5, max:1}}
+          bgImageAlt="Teaching Alutiiq, Afognak Island, Alaska"
+          strength={500}
+        >
+        <div style={{height: 350}}>
+          <SpecialDiv>
+            <Header textAlign="center">
+              <SectionHead>
+                <i>Naaqisuutet:</i> Books
+              </SectionHead>
+            </Header>
+            <ContentStyleCenter>
+              <BodyLink href={'https://www.afognak.org/'} target={'_blank'}>Native Village of Afognak</BodyLink> along with the <BodyLink href={'https://alutiiqmuseum.org/'} target={'_blank'}>Alutiiq Museum and Archaeological Repository</BodyLink> have partnered with KIWA Media to create storybooks that read to you, spell for you, and allow you to be immersed in an Alutiiq storyetelling experience.
+              <br />
+              <br />
+              Free to download on both iOS and Android devices, all you need to do is search "Native Village of Afoganak" wherever you get your apps to find the titles.
+              <br />
+              <br />
+              Titles are also available as PDFs below. With the PDF versions, you can print them out in black and white and use them as coloring books, or read them to a loved one. Practice with the application to master pronunciation, and then share the story with your own voice.
+            </ContentStyleCenter>
+          </SpecialDiv>
+        </div>
+    </Parallax>
 
         <SpecialDiv>
           <ContentStyle>
-            <BodyLink href={'https://www.afognak.org/'} target={'_blank'}>Native Village of Afognak</BodyLink> along with the <BodyLink href={'https://alutiiqmuseum.org/'} target={'_blank'}>Alutiiq Museum and Archaeological Repository</BodyLink> have partnered with KIWA Media to create storybooks that read to you, spell for you, and allow you to be immersed in an Alutiiq storyetelling experience.
-            <br />
-            <br />
-            Free to download on both iOS and Android devices, all you need to do is search "Native Village of Afoganak" wherever you get your apps to find the titles.
-            <br />
-            <br />
-            Titles are also available as PDFs below. With the PDF versions, you can print them out in black and white and use them as coloring books, or read them to a loved one. Practice with the application to master pronunciation, and then share the story with your own voice.
+            
           </ContentStyle>
         </SpecialDiv>
 

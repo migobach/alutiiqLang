@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getPosters } from '../../reducers/posters'
 import { getGames } from '../../reducers/games'
+import { Parallax } from 'react-parallax'
 import {
   Header,
   Grid,
@@ -13,6 +14,7 @@ import {
   SpecialDiv,
   SectionHead,
   BlueDiv,
+  ContentStyleCenter,
   ContentStyle,
   ColumnHead,
   SongStyle,
@@ -23,6 +25,7 @@ import {
 import GameView from './GameView.js'
 import Values from '../../images/ValuesPoster.jpg'
 import Games from '../../images/games.jpg'
+import TopPic from '../../images/Hitting.jpg'
 
 class Posters extends Component {
   state = { gameViewComp: false, gameData: [] }
@@ -112,22 +115,29 @@ class Posters extends Component {
   render() {
     return(
       <div>
-        <BlueDiv>
-          <Header textAlign='center'>
-            <SectionHead>
-              Posters and Games
-            </SectionHead>
-          </Header>
-        </BlueDiv> 
+       <Parallax
+          bgImage={TopPic}
+          blur={{min: 5, max:1}}
+          bgImageAlt="Illustration from Grouse Girl Book"
+          strength={500}
+        >
+        <div style={{height: 350}}>
+          <SpecialDiv>
+            <Header textAlign="center">
+              <SectionHead>
+                Games and Posters
+              </SectionHead>
+            </Header>
+              <ContentStyleCenter>
+                Posters have been created to visually cue learners into speaking Alutiiq. They may be printed out and posted around the house, office, or classroom to bring Alutiiq language into your daily routines.
+                <br />
+                <br />
+                Some of the posters that have been developed help learners perform basic conversation in Alutiiq, identify foods, colors, emotions, or items visible all around us on a daily basis. Click on the posters below to access a printable PDF and begin using these posters to help expand your Alutiiq vocabulary and conversational abilities. 
+              </ContentStyleCenter>
+          </SpecialDiv>
+        </div>
+    </Parallax>
 
-        <SpecialDiv>
-          <ContentStyle>
-            Posters have been created to visually cue learners into speaking Alutiiq. They may be printed out and posted around the house, office, or classroom to bring Alutiiq language into your daily routines.
-            <br />
-            <br />
-            Some of the posters that have been developed help learners perform basic conversation in Alutiiq, identify foods, colors, emotions, or items visible all around us on a daily basis. Click on the posters below to access a printable PDF and begin using these posters to help expand your Alutiiq vocabulary and conversational abilities. 
-          </ContentStyle>
-        </SpecialDiv>
 
 {/* POSTER SECTION */}
 

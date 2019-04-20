@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { getWords } from '../reducers/dictionary'
+import { Parallax } from 'react-parallax'
 import {  
   Header,
   Grid,
@@ -10,17 +11,17 @@ import {
   Dimmer,
 } from 'semantic-ui-react'
 import {
-  BlueDiv,
   SectionHead,
   ColumnHead,
   ContentStyle,
-  ContentStyleWhite,
+  ContentStyleCenter,
   SpecialDiv,
   Div,
   Watermark,
   Pointer,
 } from './styles/CommonStyles'
 import DictionaryView from './DictionaryView'
+import DictionaryTop from '../images/Dictionary.jpg'
 
 const r = '\u{0280}'
 const russianR = new RegExp(`[${r}]`,'g');
@@ -125,19 +126,28 @@ class Dictionary extends Component {
 // FIRST SECTION WELCOMING THE USER TO THE PAGE
 
     <Fragment>
-      <BlueDiv>
-        <Header textAlign="center">
-          <SectionHead>
-            Dictionary
-          </SectionHead>
-        </Header>
-        <ContentStyleWhite>
-          Search our on-line dictionary for common words, a specific word you are interested in learning, or review an entire category of words. Click the Alutiiq word to see information about the word. Most words have audio clips, example sentencences and style notes.
-          <br />
-          <br />
-          To start exploring, just begin typing in the search bar below.
-        </ContentStyleWhite>
-      </BlueDiv>
+      <Parallax
+        bgImage={DictionaryTop}
+        blur={{min: 5, max:1}}
+        bgImageAlt="Page from Dr. Jeff Leer's Dictionary"
+        strength={500}
+      >
+        <div style={{height: 350}}>
+          <SpecialDiv>
+            <Header textAlign="center">
+              <SectionHead>
+                Dictionary
+              </SectionHead>
+            </Header>
+              <ContentStyleCenter>
+                Search our on-line dictionary for common words, a specific word you are interested in learning, or review an entire category of words. Click the Alutiiq word to see information about the word. Most words have audio clips, example sentencences and style notes.
+                <br />
+                <br />
+                To start exploring, just begin typing in the search bar below.
+              </ContentStyleCenter>
+          </SpecialDiv>
+        </div>
+      </Parallax>
       
 {/* SEARCH FUNCTION */}
       <SpecialDiv>

@@ -78,7 +78,7 @@ obj = s3.bucket('alutiiq-language-resources').object(name)
 binding.pry
 
 # obj.put(body: book_params[:attachment]) #> this is the step that actually stores the file data. 
-obj.put(body: path, acl:"public-read")
+obj.put(body: per, acl: 'public-read')
 binding.pry
 
 
@@ -159,7 +159,7 @@ binding.pry
     end
 
     def book_params
-      params.permit(book: [:book_title_alutiiq, :book_title_english, :description, :image, :file, :audio, :book_type, :creator, :path, files: []])
+      params.permit(book: [:book_title_alutiiq, :book_title_english, :description, :image, :file, :audio, :book_type, :creator, files: []])
     end
 
     def set_s3_direct_post

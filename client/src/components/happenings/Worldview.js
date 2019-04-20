@@ -5,6 +5,7 @@ import {
   Grid,
   Image,
 } from 'semantic-ui-react'
+import { Parallax } from 'react-parallax'
 import {
   SpecialDiv,
   SectionHead,
@@ -14,6 +15,10 @@ import {
   QuotePerson,
   GreenHead,
   BodyLink,
+  Pointer,
+  MainDiv,
+  MainHeader,
+  MainHeaderContent,
 } from '../styles/CommonStyles'
 import WorldView from '../../images/longHill.jpg'
 import Values from '../../images/LlamSuaValues.jpg'
@@ -49,7 +54,11 @@ const Worldview = () => (
 
         <Grid.Column width={5} tablet={8}>
         <SpecialDiv>
-          <Image src={Values} size='big' verticalAlign='middle' textAlign='center' />
+          <Pointer>
+            <a href='https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/poster/LlamSuaValues.pdf' target='_blank'> 
+              <Image src={Values} size='big' verticalAlign='middle' textAlign='center' />
+            </a>
+          </Pointer>
         </SpecialDiv>
         </Grid.Column>
 
@@ -68,10 +77,10 @@ const Worldview = () => (
 
     {/* highlighted quote */}
 
-    <GreenDiv>
+    {/* <GreenDiv>
       <Grid stackable columns={2} verticalAlign='middle'>
         <Grid.Column width={10}>
-          <Image src={WorldView} size='massive' floated='left' verticalAlign='middle' />
+          <Image src={WorldView} size='massive' floated='left' verticalAlign='middle' />    
         </Grid.Column>
         <Grid.Column width={5}>
           <ContentStyleQuote>
@@ -82,7 +91,23 @@ const Worldview = () => (
           </QuotePerson>
         </Grid.Column>
       </Grid>
-    </GreenDiv>
+    </GreenDiv> */}
+      <Parallax
+          bgImage={WorldView}
+          bgImageAlt="Old Womans Bay Kodiak Island, Alaska"
+          strength={-200}
+        >
+          <div style={{height: 900}}>
+            <MainDiv>
+              <MainHeader>
+                <i>"Language is a vehicle of culture."</i>
+                <MainHeaderContent>
+                -Phyllis Fast, Koyukon Athabaskca Professor of Anthropology
+                </MainHeaderContent>
+              </MainHeader>
+            </MainDiv>
+          </div>
+        </Parallax>
   </div>
 )
 

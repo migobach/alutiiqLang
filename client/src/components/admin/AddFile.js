@@ -63,18 +63,16 @@ class AddFile extends Component {
   }
 
   response = (e) => {
-    debugger
     this.setState({file: e.file.name})
     e.state = null
   }
   
   
   onDrop = (acceptedFiles) => {
-    
     console.log(acceptedFiles)
-    const book = acceptedFiles[0]
+    const files = acceptedFiles[0]
     debugger
-    axios.post('/api/books', { book: book }) // somehow the problem has to be how I am passing the object to the controller
+    axios.post('/api/books', { book: files}) // somehow the problem has to be how I am passing the object to the controller
     // can I remove the [0] - the array is needed when I step through. However, how do I get the object correctly in the controller? 
     // axios.post('/api/books', { book: (acceptedFiles) })
 

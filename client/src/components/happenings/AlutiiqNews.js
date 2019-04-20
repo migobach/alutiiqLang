@@ -109,20 +109,6 @@ class News extends Component {
                 onChange={this.handleChange}
                 fluid
               />
-              {
-                ((this.state.searchArticles === '' ) ?
-                null
-                :
-                <Button
-                  content='clear'
-                  icon='cancel'
-                  labelPosition='right'
-                  name='searchArticles'
-                  value={''}
-                  onClick={this.handleChange}
-                />
-                )
-              }
             </Form>
           </SpecialDiv>
 
