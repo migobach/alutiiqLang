@@ -6,7 +6,6 @@ import {
   Grid,
   Icon,
   Form,
-  Button,
 } from 'semantic-ui-react'
 import {
   SpecialDiv,

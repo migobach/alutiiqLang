@@ -81,7 +81,7 @@ export const GreenHead = styled.h3`
 export const SubSectionHead = styled.h3`
   color: #FBBD08;
   font-size: 1.5em;
-  padding: 50px;
+  padding: 3.125em;
   text-align: center;
 `
 
@@ -118,19 +118,19 @@ font-size: 1em;
 color: #3D3D3D;
 padding: 1em;
 `
-//////////////////////////////////////////////////////////////////make sure to change all the px to em - below is a 14 px. 
+
 export const ContentStyleWhite = styled.div`
   color: white;
   line-height: 2;
   font-size: 1em;
   text-align: center;
-  padding-bottom: 14px;
+  padding-bottom: .875em;
 `
 export const ContentStyleWhiteLeft = styled.div`
   color: white;
   line-height: 2;
   font_size: 1em;
-  padding-bottom: 14px;
+  padding-bottom: .875em;
 `
 
 export const WhiteTitle = styled.h4`
@@ -149,6 +149,10 @@ export const ContentStyleQuote = ContentStyleWhite.extend`
   text-align: left;
 `
 
+export const ContentStyleQuoteBig = ContentStyleWhite.extend`
+  font-size: 2.5em;
+`
+
 export const SpecialDiv = styled.div`
   padding: 1.5em;
 `
@@ -156,7 +160,7 @@ export const SpecialDiv = styled.div`
 export const SpecialDivBorder = styled.div`
   padding: 2.5em;
   border: .1rem solid #dddbdb;
-  border-radius: 10px;
+  border-radius: .625em;
   text-align: center;
 `
 
@@ -201,17 +205,9 @@ export const SongHeight = Div.extend`
   height: 85em;
 `
 
-// export const SongDiv = styled.div`
-//   height: 900px;
-//   width: auto;
-//   padding: 50px;
-//   overflow: auto;
- 
-// `
-
 export const IconHover = styled(Icon)`
   font-size: 3em !important;
-  padding-top: 10px;
+  padding-top: .625em;
   &:hover {
   transform: scale(1.33)
   }`

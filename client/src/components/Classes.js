@@ -10,7 +10,6 @@ import {
   SpecialDiv,
   SectionHead,
   ContentStyle,
-  ContentStyleCenter,
   IconHover,
   CardHeader,
   GreenDiv,
@@ -20,6 +19,7 @@ import {
   ColumnHead,
   BodyLink,
   Pointer,
+  ContentStyleWhite,
 } from './styles/CommonStyles'
 import Jenga from '../images/Jenga.jpg'
 import Class from '../images/Class.jpg'
@@ -44,14 +44,14 @@ class Classes extends Component {
         bgImageAlt="Illustration from Grouse Girl Book"
         strength={500}
       >
-        <div style={{height: 350}}>
+        <div style={{height: 450}}>
           <SpecialDiv>
             <Header textAlign="center">
               <SectionHead>
                 Classes and Gatherings
               </SectionHead>
             </Header>
-              <ContentStyleCenter>
+              <ContentStyleWhite>
                 Language is about communication, getting together with one another and sharing stories and time. Find a list of our frequent events below, or click on the link to follow our Facebook page to keep up with the latest events and happenings. Each season brings new events and opportunites to learn Alutiiq, and share time with one another.
                 <br />
                 <br />
@@ -59,7 +59,7 @@ class Classes extends Component {
                 <br />
                 <br />
                 If you are not in Kodiak, seek out other learners and fluent speakers to start gathering in your community to practice and celebrate the Alutiiq language.
-              </ContentStyleCenter>
+              </ContentStyleWhite>
           </SpecialDiv>
         </div>
       </Parallax>

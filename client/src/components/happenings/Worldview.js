@@ -10,15 +10,13 @@ import {
   SpecialDiv,
   SectionHead,
   ContentStyle, 
-  GreenDiv,
+  ContentStyleQuoteBig,
   ContentStyleQuote,
   QuotePerson,
   GreenHead,
   BodyLink,
   Pointer,
   MainDiv,
-  MainHeader,
-  MainHeaderContent,
 } from '../styles/CommonStyles'
 import WorldView from '../../images/longHill.jpg'
 import Values from '../../images/LlamSuaValues.jpg'
@@ -55,7 +53,7 @@ const Worldview = () => (
         <Grid.Column width={5} tablet={8}>
         <SpecialDiv>
           <Pointer>
-            <a href='https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/poster/LlamSuaValues.pdf' target='_blank'> 
+            <a href='https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/poster/LlamSuaValues.pdf' target='_blank' rel="noopener noreferrer"> 
               <Image src={Values} size='big' verticalAlign='middle' textAlign='center' />
             </a>
           </Pointer>
@@ -77,21 +75,6 @@ const Worldview = () => (
 
     {/* highlighted quote */}
 
-    {/* <GreenDiv>
-      <Grid stackable columns={2} verticalAlign='middle'>
-        <Grid.Column width={10}>
-          <Image src={WorldView} size='massive' floated='left' verticalAlign='middle' />    
-        </Grid.Column>
-        <Grid.Column width={5}>
-          <ContentStyleQuote>
-            <i>"Language is a vehicle of culture"</i>
-          </ContentStyleQuote>
-          <QuotePerson>
-            <br />-Phyllis Fast, Koyukon Athabaskca Professor of Anthropology
-          </QuotePerson>
-        </Grid.Column>
-      </Grid>
-    </GreenDiv> */}
       <Parallax
           bgImage={WorldView}
           bgImageAlt="Old Womans Bay Kodiak Island, Alaska"
@@ -99,12 +82,14 @@ const Worldview = () => (
         >
           <div style={{height: 900}}>
             <MainDiv>
-              <MainHeader>
+              <ContentStyleQuoteBig>
                 <i>"Language is a vehicle of culture."</i>
-                <MainHeaderContent>
-                -Phyllis Fast, Koyukon Athabaskca Professor of Anthropology
-                </MainHeaderContent>
-              </MainHeader>
+              </ContentStyleQuoteBig>
+                  <ContentStyleQuote>
+                <QuotePerson>
+                    <br />-Phyllis Fast, Koyukon Athabaskca Professor of Anthropology
+                </QuotePerson>
+                  </ContentStyleQuote>
             </MainDiv>
           </div>
         </Parallax>

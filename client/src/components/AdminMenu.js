@@ -13,7 +13,7 @@ import {
 } from './styles/CommonStyles'
 import Upload from './admin/Upload'
 import Register from './Register'
-import AddFile from './admin/AddFile'
+// import AddFile from './admin/AddFile'
 import DownloadCSV from './admin/DownloadCSV'
 
 class AdminMenu extends Component {
@@ -45,8 +45,8 @@ class AdminMenu extends Component {
       return <Upload view={this.toggleViewCSVAdmin} />
     } else if (this.state.registerView === true) {
       return <Register view={this.toggleViewRegister} />
-    } else if (this.state.addMediaView === true) {
-      return <AddFile view={this.toggleViewAddMedia} />
+    // } else if (this.state.addMediaView === true) {
+    //   return <AddFile view={this.toggleViewAddMedia} />
     } else if (this.state.downloadView === true) {
       return <DownloadCSV view={this.toggleViewDownload} />
     }else 
@@ -68,7 +68,7 @@ class AdminMenu extends Component {
           </SpecialDiv>
 
           <ContainerPad>
-            <Card.Group itemsPerRow={4} stackable centered doubling>
+            <Card.Group itemsPerRow={3} stackable centered doubling>
               <Card>
                 <Card.Content header textAlign='center'>
                   <CardHeader>
@@ -123,7 +123,7 @@ class AdminMenu extends Component {
                   </Button>
               </Card>
 
-              <Card>
+              {/* <Card>
                 <Card.Content header textAlign='center'>
                   <CardHeader>
                     Media
@@ -139,7 +139,7 @@ class AdminMenu extends Component {
                     <Button color='yellow' size='small' fluid onClick={ () => this.toggleViewAddMedia() }>
                       Go 
                     </Button>
-              </Card>
+              </Card> */}
 
               </Card.Group>
             </ContainerPad>

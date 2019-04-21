@@ -14,7 +14,6 @@ import {
   SpecialDiv,
   SectionHead,
   ContentStyle,
-  ContentStyleCenter,
   SongStyle,
   CardHeader,
   BlueDiv,
@@ -150,15 +149,16 @@ class Songs extends Component {
                 Songs
               </SectionHead>
             </Header>
-              <ContentStyleCenter>
+              <ContentStyleWhite>
                 Songs have been sung for millenia to mark important events and people, tell stories, celebrate and honor. Traditional songs have helped inpire new, modern songs. <i>Quyanaasinaq</i> to all the lyricists and Elders who have contributed over the years to develop this growing collection of Alutiiq Songs.
-              </ContentStyleCenter>
+              </ContentStyleWhite>
           </SpecialDiv>
         </div>
     </Parallax>
         
 
 {/* Two columns with key sing phrases and icons */}
+    <SpecialDiv>
       <Grid>
         <Grid.Row centered columns={2} divided only='computer tablet'>
           <Grid.Column textAlign='center'>
@@ -189,6 +189,7 @@ class Songs extends Component {
           </Grid.Column>
         </Grid.Row>
       </Grid>
+    </SpecialDiv>
 
 {/* Song search field and buttons */}
 
@@ -294,7 +295,7 @@ class Songs extends Component {
         </ContentStyleWhite>
           <SpecialDiv>
             <Container textAlign='center'>
-              <IconLink href='http://www.alutiiqlanguage.org/files/Alutiiq%20Songbook%20NO%20glossary.pdf'>
+              <IconLink href='https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/resources/Alutiiq+Songbook+NO+glossary.pdf' target='_blank'>
                 <IconHover name='book'/>
               </IconLink>
             </Container>
