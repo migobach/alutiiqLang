@@ -38,6 +38,7 @@ import {
   SongStyleWhite, 
   Pointer,
   IconLink,
+  CreditWatermark,
 } from './styles/CommonStyles'
 
 class Home extends Component {
@@ -372,6 +373,9 @@ class Home extends Component {
               </MainHeader>
             </MainDiv>
           </div>
+              <CreditWatermark>
+                Photo courtesy of Patrick Saltonstall
+              </CreditWatermark>
         </Parallax>
 
 {/* CARD OPTIONS THAT LEAD TO DIFFERENT COMPONENTS */}

@@ -91,12 +91,12 @@ class Curriculum extends Component {
         <Grid.Row>
           <Grid.Column width={5} textAlign='center'>
             <ColumnHead>
-              <Button size='large' onClick={(e) => this.toggleNestComp(e)}>
+              <Button size='large' onClick={(e) => this.toggleNestComp(e)} fluid>
                 <i>Alutiit'stun Niuwawik</i> Language Nest Curriculum
               </Button>
             </ColumnHead>
           </Grid.Column>
-          <Grid.Column width={11}>
+          <Grid.Column width={11} verticalAlign='middle'>
             <ContentStyle>
               Lesson outlines for a complete academic year of language nest lesson and activity plans. 
             </ContentStyle>
@@ -105,12 +105,12 @@ class Curriculum extends Component {
         <Grid.Row>
           <Grid.Column width={5} textAlign='center'>
             <ColumnHead>
-              <Button size='large' onClick={(e) => this.togglePreschoolComp(e)}>
+              <Button size='large' onClick={(e) => this.togglePreschoolComp(e)} fluid>
                 Kodiak Alutiiq Language Preschool Curriculum
               </Button>
             </ColumnHead>
           </Grid.Column>
-          <Grid.Column width={11}>
+          <Grid.Column width={11} verticalAlign='middle'>
             <ContentStyle>
               140 Lessons focused on early childhood development and school preparedness.
             </ContentStyle>
@@ -119,12 +119,12 @@ class Curriculum extends Component {
         <Grid.Row>
           <Grid.Column width={5} textAlign='center'>
             <ColumnHead>
-              <Button size='large' onClick={(e) => this.toggleWorkbookComp(e)}>
+              <Button size='large' onClick={(e) => this.toggleWorkbookComp(e)} fluid>
                 Kodiak Alutiiq Elementary Language Curriculum Workbook 
               </Button>
             </ColumnHead>
           </Grid.Column>
-          <Grid.Column width={11}>
+          <Grid.Column width={11} verticalAlign='middle' fluid>
             <ContentStyle>
               Level I & II: 40 lessons, with Alutiiq audio files
             </ContentStyle>
@@ -133,12 +133,12 @@ class Curriculum extends Component {
         <Grid.Row>
           <Grid.Column width={5} textAlign='center'>
             <ColumnHead>
-              <Button size='large' onClick={(e) => this.toggleThematicComp(e)}>
+              <Button size='large' onClick={(e) => this.toggleThematicComp(e)} fluid>
                 Kodiak Alutiiq Thematic Curriculum Units
               </Button>
             </ColumnHead>
           </Grid.Column>
-          <Grid.Column width={11}>
+          <Grid.Column width={11} verticalAlign='middle'>
             <ContentStyle>
               6 units targeted at Kindergarden through 5th grade
             </ContentStyle>

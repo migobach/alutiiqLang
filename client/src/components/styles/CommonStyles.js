@@ -10,6 +10,7 @@ import {
 // beige: #EAD8C2
 // blue: #3B568C
 // grey: #A9A9A9
+// lighter grey: #dbdbdb
 // new grey : #3D3D3D
 
 // title on homepage
@@ -263,15 +264,6 @@ export const LinkHeadA = styled.a`
   &:hover { text-decoration: none; color: #3D3D3D; }
 `
 
-// yellow: #ECA414
-// semantic-yellow: #FBBD08
-// red: #D91A1A
-// green: #508365
-// beige: #EAD8C2
-// blue: #3B568C
-// grey: #A9A9A9
-// new grey : #3D3D3D
-
 export const GreenLink = styled.a`
   color: #508365;
   &:hover { text-decoration: none; color: #3D3D3D; }
@@ -283,6 +275,14 @@ export const Watermark = styled.h1`
   align-content: center;
   font-size: 1.5em;
   line-height: 2;
+`
+
+export const CreditWatermark = styled.p`
+  color: #dbdbdb;
+  text-align: right;
+  font-size: .65em;
+  line-heigh: 2;
+  padding: 2em;
 `
 
 export const Pointer = styled.div`

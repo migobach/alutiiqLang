@@ -45,6 +45,8 @@ class Stories extends Component {
             Alutiiq Museum and Archaeological Repository
           </LinkHeadA>
           <Divider />
+
+          <SpecialDiv>
             <BodyLinkBig href='https://alutiiqmuseum.mukurtu.net/digital-heritage/nida-chya-christine-ignatin' target='_blank'>
               Nida Chya, Christine Ignatin
             </BodyLinkBig>
@@ -53,7 +55,6 @@ class Stories extends Component {
           </ContentStyle>
           <br />
 
-      
             <BodyLinkBig href='https://alutiiqmuseum.mukurtu.net/digital-heritage/fedosia-laktonen' target='_blank'>
               Fedosia Laktonen
             </BodyLinkBig>
@@ -62,7 +63,6 @@ class Stories extends Component {
           </ContentStyle>
           <br />
 
-          
             <BodyLinkBig href='https://alutiiqmuseum.mukurtu.net/digital-heritage/martha-matfay-natalie-jack' target='_blank'>
               Martha Matfay, Natalie Jack
             </BodyLinkBig>
@@ -71,7 +71,6 @@ class Stories extends Component {
           </ContentStyle>
           <br />
 
-          
             <BodyLinkBig href='https://alutiiqmuseum.mukurtu.net/digital-heritage/karluk-stories-little-people-good-bad-luck' target='_blank'>
               Karluk Stories, Little People, Good and Bad Luck
             </BodyLinkBig>
@@ -80,7 +79,6 @@ class Stories extends Component {
           </ContentStyle>
           <br />
 
-          
             <BodyLinkBig href='https://alutiiqmuseum.mukurtu.net/digital-heritage/old-harbor-iballok-lena-papa-g-mary-h' target='_blank'>
               Old Harbor Iballok, Lena A, Papa G, Mary H
             </BodyLinkBig>
@@ -88,6 +86,7 @@ class Stories extends Component {
             From the Alutiiq Museum and Archaeological Repository archives. Recording is mostly in Alutiiq, with information about winds, birds, and bays. 
           </ContentStyle>
           <br />
+          </SpecialDiv>
 
 {/* STORIES FROM NATIVE VILLAGE OF AFOGNAK */}
         <Divider hidden />
@@ -96,6 +95,7 @@ class Stories extends Component {
           </LinkHeadA>
           <Divider />
           
+          <SpecialDiv>
             <BodyLinkBig href='https://www.afognak.org/files/oral/hist/arch/Sun_and_Moon.mp3' target='_blank'>
               Sun and Moon
             </BodyLinkBig>
@@ -103,6 +103,7 @@ class Stories extends Component {
               From the Native Village of Afognak Archives. Recording is mostly in Alutiiq, with information about winds, birds, and bays. 
             </ContentStyle>
           <br />
+          </SpecialDiv>
 
 {/* STORIES FROM CANDACE  */}
         <Divider hidden />
@@ -110,7 +111,8 @@ class Stories extends Component {
             Qulianguanek Litnauwilita
           </LinkHeadA>
           <Divider />
-          
+
+          <SpecialDiv>
             <BodyLinkBig href='https://letsteachfromstories.weebly.com/qulianguaq-the-story.html' target='_blank'>
               Qateryuk
             </BodyLinkBig>
@@ -118,6 +120,7 @@ class Stories extends Component {
               Originally documented by ethnologist Frank Golder in the early 1900s. He came to Alaska as the sole schoolteacher in the village of Unga for three years. Unga is an Unangan village, where Golder reports that he heard Alutiiq stories from a man from Kodiak Island. As one of the few literate community members there, he was asked to do many favors, which included reading and writing official documents, and letters. This story, <i>Qateryuk</i> may have been one of these stories. 
             </ContentStyle>
           <br />
+          </SpecialDiv>
 
 {/* AUDIO FROM ALASKA NATIVE LANGUAGE ARCHIVE */}
           <Divider hidden />
@@ -126,6 +129,7 @@ class Stories extends Component {
           </LinkHeadA>
           <Divider />
           
+          <SpecialDiv>
             <BodyLinkBig href='https://letsteachfromstories.weebly.com/qulianguaq-the-story.html' target='_blank'>
               Lore of Kodiak Island
             </BodyLinkBig>
@@ -161,16 +165,12 @@ class Stories extends Component {
               Collected by Dr. Jeff Leer. Clear recording, discussion topics that include going by boat and hunting. Trapping foxes and getting were $6 for their skin, 12 cents for weasels. They did not get enough money for their work. Hunting bears and seals and sea lions. Staying in a sod house while hunting. Water would come in the sod house, the roof would leak. 
             </ContentStyle>
           <br />
+          </SpecialDiv>
         </SpecialDiv>
-
       </div>
-        
-        // 
-        // 
+
     )
   }
 }
 
 export default Stories
-
-// to add: 

@@ -94,6 +94,8 @@ class Dictionary extends Component {
       null)
       ||
       e.english.replace("'", "").toLowerCase().includes(lowerCaseSearchWord)
+      ||
+      e.part_of_speech.toLowerCase().includes(lowerCaseSearchWord)
     )
     return(
       filtered_words.map( (word)  =>
