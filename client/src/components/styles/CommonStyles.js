@@ -3,7 +3,6 @@ import {
   Icon,
 } from 'semantic-ui-react'
 
-// Colors pallette. 
 // yellow: #ECA414
 // semantic-yellow: #FBBD08
 // red: #D91A1A
