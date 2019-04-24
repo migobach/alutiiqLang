@@ -68,11 +68,19 @@ class AddFile extends Component {
   }
   
   
-  onDrop = (acceptedFiles) => {
+  onDrop = async (acceptedFiles) => {
+    const reader = new FileReader()
+
     console.log(acceptedFiles)
-    const files = acceptedFiles[0]
-    debugger
-    axios.post('/api/books', { book: files}) // somehow the problem has to be how I am passing the object to the controller
+    const book = acceptedFiles[0]
+
+    // Read file contents, this uses a promise to make it wait for the file contents
+    let base64File = await this.readUploadedFileAsBase64(acceptedFiles[0])
+    
+    // Join the file contents to the book object
+    let bookWFile = Object.assign(book, {file: base64File});
+
+    axios.post('/api/books', { book: bookWFile }) // somehow the problem has to be how I am passing the object to the controller
     // can I remove the [0] - the array is needed when I step through. However, how do I get the object correctly in the controller? 
     // axios.post('/api/books', { book: (acceptedFiles) })
 
@@ -82,6 +90,21 @@ class AddFile extends Component {
    
   }
 
+  readUploadedFileAsBase64 = (inputFile) => {
+    const temporaryFileReader = new FileReader();
+  
+    return new Promise((resolve, reject) => {
+      temporaryFileReader.onerror = () => {
+        temporaryFileReader.abort();
+        reject(new DOMException("Problem parsing input file."));
+      };
+  
+      temporaryFileReader.onload = () => {
+        resolve(temporaryFileReader.result);
+      };
+      temporaryFileReader.readAsDataURL(inputFile);
+    });
+  };
   
 
 
