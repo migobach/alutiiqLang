@@ -26,6 +26,7 @@ import {
   ColumnHead,
   Div,
   Pointer,
+  ContentStyleWhiteLeft,
 } from './styles/CommonStyles'
 import Alisha from '../images/alisha.jpg'
 import MaterialsView from './materials/MaterialsView'
@@ -308,10 +309,15 @@ class Materials extends Component {
 
   {/* ONLY VISIBLE ON MOBILE */}
 
-            <Grid.Row only='mobile'>
-              <SubSectionHead>
-                Materials
-              </SubSectionHead>
+            <Grid.Row textAlign='center' only='mobile'>
+              <Grid.Column width = {4}>
+                <Icon name='search' size='big' />
+              </Grid.Column>
+              <Grid.Column width={12}>
+                <ContentStyleWhiteLeft>
+                  Search the materials database by keyword to find all sorts of great resources! 
+                </ContentStyleWhiteLeft>
+              </Grid.Column>
             </Grid.Row>
           </Grid>
         </GreenDiv>

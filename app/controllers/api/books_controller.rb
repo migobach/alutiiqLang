@@ -7,6 +7,33 @@ class Api::BooksController < ApplicationController
     render json: Book.all
   end
 
+  # def create
+  #   # Make an object in your bucket for your upload
+  #   # obj = S3_BUCKET_NAME.objects[params[:file].original_filename]
+  #   obj = S3_BUCKET_NAME.objects(upload_params)
+  #   binding.pry
+  #   # Upload the file
+  #   obj.write(
+  #     file: params[:book],
+  #     acl: :public_read
+  #   )
+  #   binding.pry
+
+  #   # Create an object for the upload
+  #   @upload = Book.new(
+  #       file: obj.public_url
+  #       #add other data bits here to make it a full form
+  #   )
+
+  #   # Save the upload
+  #   if @upload.save
+  #     redirect_to uploads_path, success: 'File successfully uploaded'
+  #   else
+  #     flash.now[:notice] = 'There was an error'
+  #     render :new
+  #   end
+  # end
+  
   def create
     # We are getting base64 from the React site and need to strip away any prefix before the data we want, 
     # we are using regex to find multiple file types and slicing it out of the file string.
