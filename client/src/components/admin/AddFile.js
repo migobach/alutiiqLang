@@ -69,8 +69,6 @@ class AddFile extends Component {
   
   
   onDrop = async (acceptedFiles) => {
-    const reader = new FileReader()
-
     console.log(acceptedFiles)
     const book = acceptedFiles[0]
 
