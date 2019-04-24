@@ -34,6 +34,8 @@ class Api::BooksController < ApplicationController
   #   end
   # end
   
+
+  
   def create
     # We are getting base64 from the React site and need to strip away any prefix before the data we want, 
     # we are using regex to find multiple file types and slicing it out of the file string.
