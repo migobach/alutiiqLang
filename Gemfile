@@ -11,7 +11,8 @@ gem 'devise'
 gem 'devise_token_auth'
 gem 'kaminari'
 gem 'dotenv-rails'
-gem 'aws-sdk', '~> 3'
+gem 'aws-sdk'
+gem "aws-sdk-s3", require: false
 gem 'rack-cors'
 
 
