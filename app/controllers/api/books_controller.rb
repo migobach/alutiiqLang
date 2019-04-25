@@ -35,6 +35,44 @@ class Api::BooksController < ApplicationController
   # end
   
 
+  
+  def create
+    # We are getting base64 from the React site and need to strip away any prefix before the data we want, 
+    # we are using regex to find multiple file types and slicing it out of the file string.
+
+    regex = /\Adata:([-\w]+\/[-\w\+\.]+)?;base64,/m
+
+    name = params[:book][:path]
+    file = params[:book][:file]
+    fileType = file.match(regex)
+    file.slice! fileType[0]
+
+    # Upload to S3 using a AWS S3 Client object that is initialized in config/initializers/aws.rb.
+    # We are decoding the base64 on the fly.
+
+    obj = S3_BUCKET.put_object({
+      acl: "public-read",
+      body: Base64.decode64(file.to_s),
+      bucket: ENV['S3_BUCKET'],
+      key: name,
+    })
+
+    # Save "book" with url to database, this needs to be changed to match what you need for books.
+    book = Book.new(
+      file: "https://s3.amazonaws.com/#{ENV['S3_BUCKET']}/#{name}",
+      image: name
+    )
+
+  #   # Save the upload
+  #   if @upload.save
+  #     redirect_to uploads_path, success: 'File successfully uploaded'
+  #   else
+  #     flash.now[:notice] = 'There was an error'
+  #     render :new
+  #   end
+  # end
+  
+
   # I THINK THIS IS SHOULD MAYBE WORK
   # def create
   #   # We are getting base64 from the React site and need to strip away any prefix before the data we want, 
