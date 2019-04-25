@@ -104,6 +104,16 @@ class Songs extends Component {
     s.notes.toLowerCase().includes(lowerCaseSearch)
     : 
     null)
+    || 
+    (s.script_english_words != null ?
+    s.script_english_words.toLowerCase().includes(lowerCaseSearch)
+    :
+    null)
+    ||
+    (s.script_alutiiq_words != null ?
+      s.script_alutiiq_words.toLowerCase().includes(lowerCaseSearch)
+      :
+      null)
   )
 
   return(

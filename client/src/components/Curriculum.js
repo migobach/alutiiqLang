@@ -96,7 +96,7 @@ class Curriculum extends Component {
               </Button>
             </ColumnHead>
           </Grid.Column>
-          <Grid.Column width={11}>
+          <Grid.Column width={11} verticalAlign='middle'>
             <ContentStyle>
               Lesson outlines for a complete academic year of language nest lesson and activity plans. 
             </ContentStyle>
@@ -110,7 +110,7 @@ class Curriculum extends Component {
               </Button>
             </ColumnHead>
           </Grid.Column>
-          <Grid.Column width={11}>
+          <Grid.Column width={11} verticalAlign='middle'>
             <ContentStyle>
               140 Lessons focused on early childhood development and school preparedness.
             </ContentStyle>
@@ -124,7 +124,7 @@ class Curriculum extends Component {
               </Button>
             </ColumnHead>
           </Grid.Column>
-          <Grid.Column width={11}>
+          <Grid.Column width={11} verticalAlign='middle'>
             <ContentStyle>
               Level I & II: 40 lessons, with Alutiiq audio files
             </ContentStyle>
@@ -138,7 +138,7 @@ class Curriculum extends Component {
               </Button>
             </ColumnHead>
           </Grid.Column>
-          <Grid.Column width={11}>
+          <Grid.Column width={11} verticalAlign='middle'>
             <ContentStyle>
               6 units targeted at Kindergarden through 5th grade
             </ContentStyle>
