@@ -5,6 +5,7 @@ import {
   Header,
   Grid,
   Icon,
+  Form,
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
@@ -20,13 +21,36 @@ import {
 
 class News extends Component {
 
+  state = { searchArticles: '', searchView: false }
+
   componentDidMount() {
     const { dispatch } = this.props 
     dispatch(getArticles())
   }
 
+  handleChange = (e, { name, value }) => {
+    this.setState({ [name]: value })
+  }
+
   renderArticles = () => {
-          return this.props.articles.map( article => 
+    const { searchArticles } = this.state
+    const articles = this.props.articles
+    const lowerCaseSearch = searchArticles.toLowerCase()
+      
+    let filtered_articles = articles.filter( a => 
+      a.author.toLowerCase().includes(lowerCaseSearch)
+      ||
+      a.topic.toLowerCase().includes(lowerCaseSearch)
+      ||
+      ((a.notes != null) ?
+      a.notes.toLowerCase().includes(lowerCaseSearch)
+      :
+      null
+      )
+      )
+
+    return(
+      filtered_articles.map( article => 
         <Grid.Row key={article.id}>
           <Grid.Column computer={5} tablet={5}>
             <SongStyle>
@@ -53,10 +77,12 @@ class News extends Component {
           </Grid.Column>
         </Grid.Row>
       )
-    
+    )
   }
 
   render() {
+    const { searchArticles } = this.state
+
     return(
       <div>
         <SpecialDiv>
@@ -70,6 +96,21 @@ class News extends Component {
           <ContentStyle>
             Each Wednesday, read an article about Alutiiq language history, news and people of interest.  Click on the titles below to read from the archive of articles published in the <BodyLink href='http://www.kodiakdailymirror.com/'>Kodiak Daily Mirror</BodyLink>, written by a variety of people involved in the language movement. If you're interested in writing an article for the column, email <BodyLink href='alisha@nunaworks.com'>Alisha Drabek</BodyLink>.
           </ContentStyle>
+
+      {/* ARTICLES SEARCH FIELD */}
+
+          <SpecialDiv>
+            <Form>
+              <Form.Input
+                placeholder='Search Articles...'
+                name='searchArticles'
+                value={searchArticles}
+                onChange={this.handleChange}
+                fluid
+              />
+            </Form>
+          </SpecialDiv>
+
     
           <SpecialDiv>
             <Div>

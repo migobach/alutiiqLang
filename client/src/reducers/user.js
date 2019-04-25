@@ -18,10 +18,11 @@ export const registerUser = (user, history) => {
   return (dispatch) => {
     axios.post('/api/auth', user)
     .then( (res) => {
-      const { data: { data: user }, headers } = res;
+      // const messages = res.data.success
+      const { headers } = res;
       dispatch(setHeaders(headers));
-      dispatch(login(user));
-      history.push('/')
+      dispatch(setFlash('Success!', 'green'));
+      //history.push('/admin') // need to fix this. it is throwing an error
     })
     .catch( res => {
       const messages =

@@ -17,11 +17,11 @@ const englishStyle = {
 class DictionaryView extends Component {
  
   handleSentence = () => {
-    if (this.props.word.north_sentence === this.props.word.south_sentence &&  this.props.word.north_sentence != null) {
+    if (this.props.word.north_sentence === this.props.word.south_sentence &&  this.props.word.north_sentence !== "") {
       return(<ContentStyle>Example sentence: <i>{this.props.word.north_sentence}</i></ContentStyle>)
-    } else if (this.props.word.north_sentence != null) {
+    } else if (this.props.word.north_sentence !== "") {
       return((<ContentStyle>Northern style example sentence: <i>{this.props.word.north_sentence}</i></ContentStyle>))
-    } else if (this.props.word.south_sentence != null) {
+    } else if (this.props.word.south_sentence !== "") {
       return((<ContentStyle>Southern style example sentence: <i>{this.props.word.south_sentence}</i></ContentStyle>))
     } else {
       return ''
@@ -29,7 +29,7 @@ class DictionaryView extends Component {
   }
 
   handleWord = () => {
-    if (this.props.word.alutiiq_north === null) {
+    if (this.props.word.alutiiq_north === "") {
       return(
       <div>
         <WordStyle>
@@ -37,7 +37,7 @@ class DictionaryView extends Component {
         </WordStyle>
       </div>
       )
-    } else if (this.props.word.alutiiq_south === null) {
+    } else if (this.props.word.alutiiq_south === "") {
       return(
       <div>
         <WordStyle>
@@ -73,26 +73,26 @@ class DictionaryView extends Component {
     if (this.props.word.north_audio === this.props.word.south_audio) {
       return(<ReactPlayer
         url={this.props.word.north_audio}
-        controls='true'
+        controls= {true}
         height='5em'
         width='25em'
-        loop='false'
+        loop={false}
       />)
-    } else if (this.props.word.north_audio === null) {
+    } else if (this.props.word.north_audio === "") {
       return(<ReactPlayer
         url={this.props.word.south_audio}
-        controls='true'
+        controls= {true}
         height='5em'
         width='25em'
-        loop='false'
+        loop={false}
       />)
-    } else if (this.props.word.south_audio === null) {
+    } else if (this.props.word.south_audio === "") {
       return(<ReactPlayer
         url={this.props.word.north_audio}
-        controls='true'
+        controls= {true}
         height='5em'
         width='25em'
-        loop='false'
+        loop={false}
       />)
     } else if ( this.props.word.north_audio && this.props.word.south_audio) {
       return(<Grid>
@@ -103,10 +103,10 @@ class DictionaryView extends Component {
             </ContentStyle>
               <ReactPlayer
               url={this.props.word.north_audio}
-              controls='true'
+              controls= {true}
               height='5em'
               width='15em'
-              loop= 'false'
+              loop= {false}
             />
           </Grid.Column>
           <Grid.Column width={8} stretched>
@@ -115,10 +115,10 @@ class DictionaryView extends Component {
             </ContentStyle>
               <ReactPlayer
               url={this.props.word.south_audio}
-              controls='true'
+              controls= {true}
               height='5em'
               width='15em'
-              loop='false'
+              loop={false}
             />
           </Grid.Column>
         </Grid.Row>
@@ -148,7 +148,7 @@ class DictionaryView extends Component {
     {/* AUDIO PLAYER TERNARY */}
     
           {
-          this.props.word.north_audio === null && this.props.word.south_audio === null ?
+          this.props.word.north_audio === "" && this.props.word.south_audio === "" ?
           null
           :
           this.handleAudio()
@@ -159,7 +159,7 @@ class DictionaryView extends Component {
     {/* SENTENCE TERNARY */}
 
           { 
-          this.props.word.north_sentence === null && this.props.word.south_sentence === null ?
+          this.props.word.north_sentence === "" && this.props.word.south_sentence === "" ?
           null 
           : 
           this.handleSentence()

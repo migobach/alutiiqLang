@@ -4,11 +4,12 @@ import {
   Header,
   Container, 
   Divider,
+  Button,
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
   SectionHead,
-  ContentStyle,
+  ContentStyleCenter,
   IconLinkGrey,
   IconHover,
   BlueDiv,
@@ -21,27 +22,6 @@ class Preschool extends Component {
   render() {
     return(
       <div>
-        <SpecialDiv>
-          <Header textAlign='center'>
-            <SectionHead>
-              Alutiiq Language Preschool Curriculum
-            </SectionHead>
-          </Header>
-          <ContentStyle>
-            Throughout the past few years, our language program has been developing a Preschool Curriculum for the Alutiiq Language. This can be used for children young and old, adult learners, and anybody in between. Click the link below to view the Preschool Curriculum!
-          </ContentStyle>
-        </SpecialDiv>
-
-        <SpecialDiv>
-          <Container textAlign='center'>
-            <IconLinkGrey href={"https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/curriculum/Preschool+Curriculum.pdf"} target="_blank">
-              <IconHover name='cloud download' />
-            </IconLinkGrey>
-            <Divider hidden />
-          </Container>
-        </SpecialDiv>
-        <Divider hidden />
-
       <BlueDiv>
         <Header textAlign='center'>
           <SubSectionHead>
@@ -55,8 +35,34 @@ class Preschool extends Component {
           Through this project, we developed an early childhood Alutiiq language curriculum that reflects the Kodiak Alutiiq community values and traditions and provides a framework for sharing our values and traditions within schools and tribal education programs in the Kodiak Archipelago. The central goal to these efforts is to increase access to Alutiiq language through curriculum and instructional resources. 
         </ContentStyleWhite>
       </BlueDiv>
-      
 
+        <SpecialDiv>
+          <Header textAlign='center'>
+            <SectionHead>
+              Alutiiq Language Preschool Curriculum
+            </SectionHead>
+          </Header>
+          <ContentStyleCenter>
+            The preschool curriculum may be used for children young and old, adult learners, and anybody in between. Click the link below to view the Preschool Curriculum!
+          </ContentStyleCenter>
+        </SpecialDiv>
+
+        <SpecialDiv>
+          <Container textAlign='center'>
+            <IconLinkGrey href={"https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/curriculum/Preschool+Curriculum.pdf"} target="_blank">
+              <IconHover name='cloud download' />
+            </IconLinkGrey>
+            <Divider hidden />
+          </Container>
+        </SpecialDiv>
+
+        <SpecialDiv>
+          <Button type='button' onClick={this.props.view}>
+            Close
+          </Button>
+        </SpecialDiv>
+
+        <Divider />
       </div>
     )
   }

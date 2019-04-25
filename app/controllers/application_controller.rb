@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
   include DeviseTokenAuth::Concerns::SetUserByToken
-	# before_action :authenticate_user!, if: proc { request.controller_class.parent == Api }
+
+  include ActionController::MimeResponds #added in order to have respond_to method for exporting csv
 end

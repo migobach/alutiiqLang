@@ -10,6 +10,7 @@ import {
 // beige: #EAD8C2
 // blue: #3B568C
 // grey: #A9A9A9
+// lighter grey: #dbdbdb
 // new grey : #3D3D3D
 
 // title on homepage
@@ -24,8 +25,9 @@ export const MainHeaderContent = MainHeader.extend`
 `
 
 // bottom section of homepage
+// this was color: white;
 export const SubHeader = styled.h2`
-  color: white;
+  color: #3D3D3D;
   font-size: 1.25em;
   line-height: 2;
 `
@@ -80,7 +82,7 @@ export const GreenHead = styled.h3`
 export const SubSectionHead = styled.h3`
   color: #FBBD08;
   font-size: 1.5em;
-  padding: 50px;
+  padding: 3.125em;
   text-align: center;
 `
 
@@ -96,25 +98,40 @@ export const ContentStyle = styled.p`
   color: #3D3D3D;
 `
 
+export const ContentStyleCenter = ContentStyle.extend`
+  text-align: center;
+`
+
 export const SongStyle = styled.p`
 font-size: 1em;
 color: #3D3D3D;
 text-align: center;
 padding: 1em;
 `
+// used in search render on home page
+export const SongStyleWhite = SongStyle.extend`
+color:white;
+`
+
 // used in the erinarpet return on the AlutiiqNews page. Used to make the topic justified left
 export const SongStyleLeft = SongStyle.extend`
 font-size: 1em;
 color: #3D3D3D;
 padding: 1em;
 `
-//////////////////////////////////////////////////////////////////make sure to change all the px to em - below is a 14 px. 
+
 export const ContentStyleWhite = styled.div`
   color: white;
   line-height: 2;
   font-size: 1em;
   text-align: center;
-  padding-bottom: 14px;
+  padding-bottom: .875em;
+`
+export const ContentStyleWhiteLeft = styled.div`
+  color: white;
+  line-height: 2;
+  font_size: 1em;
+  padding-bottom: .875em;
 `
 
 export const WhiteTitle = styled.h4`
@@ -133,13 +150,23 @@ export const ContentStyleQuote = ContentStyleWhite.extend`
   text-align: left;
 `
 
+export const ContentStyleQuoteBig = ContentStyleWhite.extend`
+  font-size: 2.5em;
+`
+
 export const SpecialDiv = styled.div`
   padding: 1.5em;
 `
 
-export const SongDiv = SpecialDiv.extend`
-  width: 35em;
-  padding: .5em;
+export const SpecialDivBorder = styled.div`
+  padding: 2.5em;
+  border: .1rem solid #dddbdb;
+  border-radius: .625em;
+  text-align: center;
+`
+
+export const SongDiv = styled.div`
+  padding: 5em;
 `
 
 export const QuotePerson = styled.div`
@@ -147,7 +174,7 @@ export const QuotePerson = styled.div`
 `
 
 export const SpecialDivCenter = SpecialDiv.extend`
-  align-content: center;
+  text-align: center;
 `
 
 export const GreenDiv = styled.div`
@@ -158,6 +185,7 @@ export const GreenDiv = styled.div`
   background-position: center center;
   background-size: cover;
   height: auto;
+  width: auto;
 `
 
 export const BlueDiv = GreenDiv.extend`
@@ -174,18 +202,13 @@ export const Div = styled.div`
   padding: 1em;
   overflow: auto;
 `
-
-// export const SongDiv = styled.div`
-//   height: 900px;
-//   width: auto;
-//   padding: 50px;
-//   overflow: auto;
- 
-// `
+export const SongHeight = Div.extend`
+  height: 85em;
+`
 
 export const IconHover = styled(Icon)`
   font-size: 3em !important;
-  padding-top: 10px;
+  padding-top: .625em;
   &:hover {
   transform: scale(1.33)
   }`
@@ -196,6 +219,10 @@ export const BodyLink = styled.a`
   &:hover { text-decoration: none; color: #ECA414; }
   &:focus { text-decoration: none; color: #ECA414; }
   &:hover, a:active { text-decoration: none; color: #ECA414 }
+`
+
+export const BodyLinkBig = BodyLink.extend`
+  font_size: 3em;
 `
 
 export const FootLink = styled.a`
@@ -222,10 +249,19 @@ export const IconLinkGrey = styled.a`
   &:hover, a:active { text-decoration: none; color: #3D3D3D; }
 `
 
+
+
 export const LinkHead = styled.h3`
   color: #508365;
   font-size: 1.5em;
   padding: .5em;
+`
+
+export const LinkHeadA = styled.a`
+  font-size: 1.5em;
+  padding: .5em;  
+  color: #D91A1A;
+  &:hover { text-decoration: none; color: #3D3D3D; }
 `
 
 export const GreenLink = styled.a`
@@ -234,11 +270,19 @@ export const GreenLink = styled.a`
 `
 
 export const Watermark = styled.h1`
-  color: #3D3D3D;
+  color: #737373;
   text-align: center;
   align-content: center;
   font-size: 1.5em;
   line-height: 2;
+`
+
+export const CreditWatermark = styled.p`
+  color: #dbdbdb;
+  text-align: right;
+  font-size: .65em;
+  line-heigh: 2;
+  padding: 2em;
 `
 
 export const Pointer = styled.div`

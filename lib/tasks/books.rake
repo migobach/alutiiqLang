@@ -43,7 +43,7 @@ namespace :books do
         end
         
         b.book_type = row['book_type']
-
+        b.creator = row['creator']
         b.save
       puts "#{b.book_title_alutiiq} saved"
     end

@@ -5,6 +5,7 @@ import {
   Card, 
   Icon,
   Grid,
+  Divider,
 } from 'semantic-ui-react'
 import { 
   SpecialDiv,
@@ -12,13 +13,23 @@ import {
   SectionHead, 
   ContentStyle, 
   ContainerPad,
+  ContentStyleWhite,
 } from './styles/CommonStyles'
+import { Parallax } from 'react-parallax'
 import Revitalization from './happenings/Revitalization'
 import Worldview from './happenings/Worldview'
 import News from './happenings/AlutiiqNews'
+import HistoryAfognak from '../images/AfognakHistory.jpg'
 
 class HistoryNews extends Component { 
   state = { revitalizationComp: false, worldviewComp: false, newsComp: false }
+
+  // componentDidMount = () => {
+  //   (this.props.location.state === null) ?
+  //   null 
+  //   :
+  //   this.setState( {newsComp: this.props.location.state.newsComp} )
+  // }
 
   toggleRevitalizationComp = () => {
     this.setState({revitalizationComp: !this.state.revitalizationComp, worldviewComp: false, newsComp: false})
@@ -47,20 +58,31 @@ class HistoryNews extends Component {
   render() {
     return(
       <div>
+        <Parallax
+          bgImage={HistoryAfognak}
+          blur={{min: 5, max:1}}
+          bgImageAlt="Afognak Village, Afognak, Alaska"
+          strength={500}
+        >
+          <div style={{height: 350}}>
+            <SpecialDiv>
+              <Header textAlign="center">
+                <SectionHead>
+                  History and News
+                </SectionHead>
+                <Divider hidden />
+              </Header>
+                <ContentStyleWhite>
+                  Alutiiq scholars argue that the Alutiiq Renaissance began in 1971. Since then, many projects have focused on various aspects of language revitalization, many people have been, and continue to be involved. Discover ways for you to be involved! 
+                  <br />
+                  <br />
+                  Check out some of our social media channels to finds ways to stay connected with the language movement, or to learn more about how you can become involved. 
+                </ContentStyleWhite>
+            </SpecialDiv>
+          </div>
+        </Parallax>
+
         <SpecialDiv>
-          <Header textAlign="center">
-            <SectionHead>
-              History and News
-            </SectionHead>
-          </Header>
-          <ContentStyle>
-            Alutiiq scholars argue that the Alutiiq Renaissance began in 1971. Since then, many projects have focused on various aspects of language revitalization, many people have been, and continue to be involved. Discover ways for you to be involved! 
-            <br />
-            <br />
-            Check out some of our social media channels to finds ways to stay connected with the language movement, or to learn more about how you can become involved. 
-            <br />
-            <br />
-          </ContentStyle>
             <Grid stackable centered>
               <Grid.Row columns={5}>
                 <Grid.Column width={2}/>

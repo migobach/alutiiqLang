@@ -5,17 +5,20 @@ import {
   Grid,
   Image,
 } from 'semantic-ui-react'
+import { Parallax } from 'react-parallax'
 import {
   SpecialDiv,
   SectionHead,
   ContentStyle, 
-  BlueDiv,
+  ContentStyleQuoteBig,
   ContentStyleQuote,
   QuotePerson,
   GreenHead,
   BodyLink,
+  Pointer,
+  MainDiv,
 } from '../styles/CommonStyles'
-import Games from '../../images/games.jpg'
+import WorldView from '../../images/longHill.jpg'
 import Values from '../../images/LlamSuaValues.jpg'
 
 const Worldview = () => (
@@ -27,24 +30,6 @@ const Worldview = () => (
         </SectionHead>
       </Header>
     </SpecialDiv>
-
-    {/* highlighted quote */}
-
-    <BlueDiv>
-      <Grid stackable columns={2} verticalAlign='middle'>
-        <Grid.Column width={10}>
-          <Image src={Games} size='massive' floated='left' verticalAlign='middle' />
-        </Grid.Column>
-        <Grid.Column width={5}>
-          <ContentStyleQuote>
-            <i>"Language is a vehicle of culture"</i>
-          </ContentStyleQuote>
-          <QuotePerson>
-            <br />=Phyllis Fast, Koyukon Athabaskca Professor of Anthropology
-          </QuotePerson>
-        </Grid.Column>
-      </Grid>
-    </BlueDiv>
 
     {/* content and subsections */}
     <SpecialDiv>
@@ -67,7 +52,11 @@ const Worldview = () => (
 
         <Grid.Column width={5} tablet={8}>
         <SpecialDiv>
-          <Image src={Values} size='big' verticalAlign='middle' textAlign='center' />
+          <Pointer>
+            <a href='https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/poster/LlamSuaValues.pdf' target='_blank' rel="noopener noreferrer"> 
+              <Image src={Values} size='big' verticalAlign='middle' textAlign='center' />
+            </a>
+          </Pointer>
         </SpecialDiv>
         </Grid.Column>
 
@@ -83,6 +72,27 @@ const Worldview = () => (
         
       </Grid>
     </SpecialDiv>
+
+    {/* highlighted quote */}
+
+      <Parallax
+          bgImage={WorldView}
+          bgImageAlt="Old Womans Bay Kodiak Island, Alaska"
+          strength={-200}
+        >
+          <div style={{height: 900}}>
+            <MainDiv>
+              <ContentStyleQuoteBig>
+                <i>"Language is a vehicle of culture."</i>
+              </ContentStyleQuoteBig>
+                  <ContentStyleQuote>
+                <QuotePerson>
+                    <br />-Phyllis Fast, Koyukon Athabaskca Professor of Anthropology
+                </QuotePerson>
+                  </ContentStyleQuote>
+            </MainDiv>
+          </div>
+        </Parallax>
   </div>
 )
 

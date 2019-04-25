@@ -6,6 +6,7 @@ import {
   Icon,
   Container,
   Divider,
+  Button,
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
@@ -16,6 +17,7 @@ import {
   Pointer,
   IconLinkGrey,
   IconHover,
+  Div,
 } from '../styles/CommonStyles'
 
 class Thematic extends Component {
@@ -23,7 +25,7 @@ class Thematic extends Component {
   renderUnits = () => {
     return this.props.curriculum.map( unit => {
       if (unit.group_name !== "Thematic Units") {
-        return
+        return ( null )
       } else 
         return (
             <Grid.Row>
@@ -43,7 +45,7 @@ class Thematic extends Component {
                 <SongStyle>
                   { unit.link_to_item ?
                     <Pointer>
-                      <a href={unit.link_to_item}>
+                      <a href={unit.link_to_item} target='_blank'>
                         <Icon name='eye' size='large' color='grey'/>
                       </a>
                     </Pointer>
@@ -85,7 +87,7 @@ class Thematic extends Component {
         </SpecialDiv>
         <Divider hidden />
 
-        <SpecialDiv>
+        <Div>
           <Grid celled='internally'>
             <Grid.Row>
               <Grid.Column computer={6} tablet={6} mobile={10}  textAlign='center'>
@@ -108,7 +110,15 @@ class Thematic extends Component {
             </Grid.Row>
             { this.renderUnits() }
           </Grid>
+        </Div>
+
+        <SpecialDiv>
+          <Button type='button' onClick={this.props.view}>
+            Close
+          </Button>
         </SpecialDiv>
+        
+        <Divider />
       </Fragment>
     )
   }

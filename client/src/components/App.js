@@ -17,16 +17,19 @@ import Dictionary from './Dictionary'
 import Songs from './Songs'
 import Classes from './Classes'
 import HistoryNews from './HistoryNews'
-import AdminLogin from './AdminLogin'
+import AdminMenu from './AdminMenu'
 import AuthRoute from './AuthRoute'
 import Login from './Login'
 import Register from './Register'
 import Footer from './Footer'
 import Books from './materials/Books'
-import Posters from './materials/Posters'
-import Games from './materials/Games'
+import PostersGames from './materials/PostersGames'
+import Videos from './materials/Videos'
 import Stories from './materials/Stories'
 import OutsideLinks from './materials/OutsideLinks' 
+import Upload from './admin/Upload'
+import Add from './admin/AddFile'
+import FetchUser from './FetchUser'
 
 const menuPad = {
   padding: '1em',
@@ -42,11 +45,11 @@ class App extends Component {
   render() {
     return(
       <div>
-        <Responsive minWidth={768}>
+        <Responsive minWidth={767}>
           <NavBar />
         </Responsive>
         
-        <Responsive maxWidth={767}>
+        <Responsive maxWidth={766}>
           <div style={menuPad}>
             <Menu.Item 
               as={Button}
@@ -103,32 +106,41 @@ class App extends Component {
               </Link>
               <Link to='/happenings'>
                 <Menu.Item>
-                  Happenings
+                  History & News
                 </Menu.Item>
               </Link>
             </Sidebar>
+        <FetchUser>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/curriculum" component={Curriculum} />
+            <Route exact path="/materials" component={Materials} />
+            <Route exact path="/dictionary" component={Dictionary} />
+            <Route exact path="/songs" component={Songs} />
+            <Route exact path="/classes" component={Classes} />
+            <Route exact path="/happenings" component={HistoryNews} />
+            <Route exact path="/books" component={Books} />
+            <Route exact path="/postersandgames" component={PostersGames} />
+            <Route exact path="/stories" component={Stories} />
+            <Route exact path="/videos" component={Videos} />
+            <Route exact path="/links" component={OutsideLinks} />
+            
+        {/* ROUTES BELOW ARE ONLY ACCESSIBLE TO SITE ADMINS */}
+                  
+            {/* <ProtectedRoute exact path='/kasainaq' component={AdminLogin} /> */}
+            <AuthRoute exact path='/login' component={Login} />
+            <ProtectedRoute exact path='/admin' component={AdminMenu} />
+            <ProtectedRoute exact path='/register' component={Register} /> 
+            <ProtectedRoute exact path='/upload' component={Upload} />
+            <ProtectedRoute exact path='/add' component={Add} />
+            {/* <ProtectedRoute exact path='/media' component={Media} /> */}
 
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/curriculum" component={Curriculum} />
-          <Route exact path="/materials" component={Materials} />
-          <Route exact path="/dictionary" component={Dictionary} />
-          <Route exact path="/songs" component={Songs} />
-          <Route exact path="/classes" component={Classes} />
-          <Route exact path="/happenings" component={HistoryNews} />
-          <Route exact path="/books" component={Books} />
-          <Route exact path="/posters" component={Posters} />
-          <Route exact path="/stories" component={Stories} />
-          <Route exact path="/games" component={Games} />
-          <Route exact path="/links" component={OutsideLinks} />
-                
-          <ProtectedRoute exact path="/kasainaq" component={AdminLogin} />
-          <AuthRoute exact path='/login' component={Login} />
-          <AuthRoute exact path='/register' component={Register} />
-    
-          <Route component={NoMatch} />
-        </Switch>
-        <Footer />
+        {/* ERROR PAGE  */}
+        
+            <Route component={NoMatch} />
+          </Switch>
+          <Footer />
+        </FetchUser>
       </div>
     )
   }

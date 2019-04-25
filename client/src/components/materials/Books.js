@@ -5,21 +5,29 @@ import {
   Header,
   Grid,
   Icon,
+  Form
 } from 'semantic-ui-react'
+import { Parallax } from 'react-parallax'
 import {
   SpecialDiv,
   SectionHead,
-  BlueDiv,
+  ContentStyleCenter,
   ContentStyle,
   Div,
   Pointer,
   ColumnHead,
+  BodyLink, 
 } from '../styles/CommonStyles'
 import BookView from './BookView'
+import Gift from '../../images/Gift.jpg'
 
 class Books extends Component {
 
-  state = { searchBooks: '', bookData: {}, bookView: false }
+  state = { 
+    searchBooks: '', 
+    bookData: {}, 
+    bookView: false 
+  }
 
   componentDidMount() {
     const { dispatch } = this.props
@@ -30,17 +38,44 @@ class Books extends Component {
     this.setState({ bookData: {...book}, bookView: true})
   }
 
-  renderBookView = () => {
-    if (this.state.bookView === true) {       
-      return <BookView book={this.state.bookData} />
-    } 
+  handleChange = (e, {name, value}) => {
+    this.setState({ [name]: value})
   }
 
-  renderBooks = () => {
+  renderBookView = () => {
+    if (this.state.bookView === true) {       
+      return <BookView book={this.state.bookData} view={this.toggleView} />
+    } else 
+    return
+  }
+
+  toggleView = () => {
+    this.setState({ bookView: !this.state.bookView })
+  }
+
+  renderSearchBooks = () => {
     const books = this.props.books
+    const { searchBooks } = this.state
+    const lowerCaseSearch = searchBooks
+
+    let filtered_books = books.filter( b => 
+      b.book_title_alutiiq.toLowerCase().includes(lowerCaseSearch)
+      || 
+      b.book_title_english.toLowerCase().includes(lowerCaseSearch)
+      ||
+      ((b.creator != null) ?
+      b.creator.toLowerCase().includes(lowerCaseSearch)
+      :
+      null)
+      ||
+      ((b.description != null) ? 
+      b.description.toLowerCase().includes(lowerCaseSearch)
+      :
+      null)
+    )
 
     return(
-      books.map( (b) =>
+      filtered_books.map( (b) =>
         <Grid.Row key={b.id}>
           <Grid.Column computer={6} tablet={6} mobile={10} verticalAlign='middle'>
             <ContentStyle>
@@ -63,26 +98,62 @@ class Books extends Component {
   }
 
   render() {
+    const { searchBooks } = this.state
+
     return(
       <div>
-        <BlueDiv>
-          <Header textAlign='center'>
-            <SectionHead>
-              <i>Naaqisutet</i>: Books
-            </SectionHead>
-          </Header>
-        </BlueDiv> 
+        <Parallax
+          bgImage={Gift}
+          blur={{min: 5, max:1}}
+          bgImageAlt="Teaching Alutiiq, Afognak Island, Alaska"
+          strength={500}
+        >
+        <div style={{height: 350}}>
+          <SpecialDiv>
+            <Header textAlign="center">
+              <SectionHead>
+                <i>Naaqisuutet:</i> Books
+              </SectionHead>
+            </Header>
+            <ContentStyleCenter>
+              <BodyLink href={'https://www.afognak.org/'} target={'_blank'}>Native Village of Afognak</BodyLink> along with the <BodyLink href={'https://alutiiqmuseum.org/'} target={'_blank'}>Alutiiq Museum and Archaeological Repository</BodyLink> have partnered with KIWA Media to create storybooks that read to you, spell for you, and allow you to be immersed in an Alutiiq storyetelling experience.
+              <br />
+              <br />
+              Free to download on both iOS and Android devices, all you need to do is search "Native Village of Afoganak" wherever you get your apps to find the titles.
+              <br />
+              <br />
+              Titles are also available as PDFs below. With the PDF versions, you can print them out in black and white and use them as coloring books, or read them to a loved one. Practice with the application to master pronunciation, and then share the story with your own voice.
+            </ContentStyleCenter>
+          </SpecialDiv>
+        </div>
+    </Parallax>
 
         <SpecialDiv>
           <ContentStyle>
-            Native Village of Afognak along with the Alutiiq Museum and Archaeological Repository have partnered with KIWA Media to create storybooks that read to you, spell for you, and allow you to be immersed in an Alutiiq storyetelling experience
-            <br />
-            <br />
-            Free to download on both iOS and Android devices, all you need to do is search "Alutiiq" or "Native Village of Afoganak" wherever you get your apps to find the titles
-            <br />
-            <br />
-            Titles are also available as PDFs below. With the PDF versions, you can print them out in black and white and use them as coloring books, or read them to a loved one. Practice with the application to master pronunciation, and then share the story with your own voice.
+            
           </ContentStyle>
+        </SpecialDiv>
+
+      {/* BOOK SEARCH FILED AND BUTTONS */}
+
+        <SpecialDiv>
+          <Form>
+            <Form.Input
+              placeholder='Search Books...'
+              name='searchBooks'
+              value={searchBooks}
+              onChange={this.handleChange}
+              fluid
+            />
+            {/* <Button
+              content='search'
+              icon='search'
+              labelPosition='right'
+              name='searchView'
+              value={true}
+              onClick={this.handleChange}
+            /> */}
+          </Form>
         </SpecialDiv>
 
         { this.renderBookView() }
@@ -108,7 +179,7 @@ class Books extends Component {
                 </Grid.Column>
               </Grid.Row>
                 
-                { this.renderBooks() }
+                { this.renderSearchBooks() }
                 
             </Grid>
           </Div>

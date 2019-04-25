@@ -3,6 +3,7 @@ import {
   Divider,
   Image,
   Grid,
+  Button,
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
@@ -10,6 +11,7 @@ import {
   WordStyle,
   IconHover,
   IconLinkGrey,
+  BodyLink,
 } from '../styles/CommonStyles'
 
 class BookView extends Component {
@@ -34,25 +36,37 @@ class BookView extends Component {
               <ContentStyle>
                 {this.props.book.book_title_english}
               </ContentStyle>
+             { this.props.book.creator != null ?
+              <ContentStyle>
+                Creator: {this.props.book.creator}
+              </ContentStyle>
+              : 
+              null
+              } 
               <ContentStyle>
                 {this.props.book.description}
               </ContentStyle>    
             { this.props.book.book_type === 'Qbook' ?
             <ContentStyle>
-              This book is available for iPhone through the App Store and also available through the Google Play store for Android devices. 
+              This book is available for through the <BodyLink href='https://itunes.apple.com/us/developer/native-village-of-afognak/id571827052' target='_blank'>App Store</BodyLink> for iPhones and iPads and available through the <BodyLink href='https://play.google.com/store/search?q=native%20village%20of%20afognak&c=apps' target='_blank'>Google Play</BodyLink> store for Android devices. 
             </ContentStyle>
             : 
             <ContentStyle>
               {this.props.book.book_type}
             </ContentStyle>
             }
+            <Divider hidden />
             { this.props.book.file ?
-              <IconLinkGrey href={this.props.book.file}>
+              <IconLinkGrey href={this.props.book.file} target='_blank'>
                 <IconHover name='cloud download' />
               </IconLinkGrey>
               :
               null
             }
+            <Divider hidden />
+              <Button type='button' onClick={this.props.view}>
+                Close
+              </Button>
             </Grid.Column>
           </Grid.Row>
         </Grid>

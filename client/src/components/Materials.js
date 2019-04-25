@@ -26,6 +26,7 @@ import {
   ColumnHead,
   Div,
   Pointer,
+  ContentStyleWhiteLeft,
 } from './styles/CommonStyles'
 import Alisha from '../images/alisha.jpg'
 import MaterialsView from './materials/MaterialsView'
@@ -36,7 +37,6 @@ class Materials extends Component {
     searchView: false,  
     loading: true, 
     materialView: false,
-    showView: false,
   }
   
   componentDidMount() {
@@ -58,7 +58,7 @@ class Materials extends Component {
    }
 
   toggleView = () => {
-    this.setState({ materialView: !this.state.materialView})
+    this.setState({ materialView: !this.state.materialView })
   }
 
   clearSearch = () => {
@@ -117,32 +117,20 @@ class Materials extends Component {
     return(
       filtered_materials.map( (material) =>
         <Grid.Row key={material.id}>
-          <Grid.Column computer={5} tablet={5} mobile={10} verticalAlign='middle'>
+          <Grid.Column computer={6} tablet={6} mobile={10} verticalAlign='middle'>
             <ContentStyle>
               <i>{material.resource_title}</i>
             </ContentStyle>
           </Grid.Column>
-          <Grid.Column width={5} verticalAlign='middle' only='computer tablet'>
+          <Grid.Column width={6} verticalAlign='middle' only='computer tablet'>
             <ContentStyle>
               {material.subjects}
             </ContentStyle>
           </Grid.Column>
-          <Grid.Column computer={3} tablet={3} mobile={6} textAlign='center' verticalAlign='middle'>
+          <Grid.Column computer={4} tablet={4} mobile={6} textAlign='center' verticalAlign='middle'>
             <Pointer>
               <Icon name='info' size='large' color='grey' onClick= {() => this.setMaterial(material)}/>
             </Pointer>
-          </Grid.Column>
-          <Grid.Column width={3} verticalAlign='middle' only='computer tablet' textAlign='center'>
-            {
-              material.file_url ? 
-              <a href={"http://alutiiqeducation.org/files/resource_pdf/".concat(material.file_url)}>
-                <Icon name='eye' size='large' color='grey' />
-              </a>
-              : 
-              <a href={material.url}>
-              <Icon name='linkify' size='large' color='grey' />
-              </a>
-            }
           </Grid.Column>
         </Grid.Row>
       )
@@ -199,17 +187,17 @@ class Materials extends Component {
             <Card>
               <Card.Content header textAlign='center'>
                 <CardHeader>
-                  Posters
+                  Posters & Games
                 </CardHeader>
               </Card.Content>
               <Card.Content>
                 <SpecialDiv>
                   <ContentStyle>
-                    Posters have been created to visually cue learners into speaking Alutiiq. They may be posted around the house, office, or classroom to bring Alutiiq language into your daily routines, or perform basic conversation in Alutiiq, identify foods, colors, emotions, or items visible all around us on a daily basis. 
+                    Posters have been created to visually cue learners into speaking Alutiiq. Games are a fun way to expand language usage. Posters may be displayed around the house, office, or classroom to bring Alutiiq language into your daily routines. Games can be played with family and friends to focus language use around a specific, engaging activity.
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-              <Link to={`/posters`}>
+              <Link to={`/postersandgames`}>
                 <Button color='yellow' size='small' fluid>
                   Go 
                 </Button>
@@ -219,21 +207,21 @@ class Materials extends Component {
             <Card>
               <Card.Content header textAlign='center'>
                 <CardHeader>
-                  Games
+                  Videos
                 </CardHeader>
               </Card.Content>
               <Card.Content>
                 <SpecialDiv>
                   <ContentStyle>
-                    Games are fun way to expand language use! By playing <i>Kinam Pi'ki?</i>, <i>Pingua</i>, or <i>Naama Kluucaten?</i> you can learn new words, and play with the words and language you already have. Click on the <i>Wamqutat</i> - Games link below to see how to get started! 
+                    Being able to hear the Alutiiq language, while seeing it contextualized through activity, dance, or other setting helps learners access language in ways otherwise unavailable to them. Subscribe to the channel to stay updated! 
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-              <Link to={`/games`}>
+              <a href='https://www.youtube.com/channel/UCLDNH9GmHDEz2WUk0MtBrLQ/playlists' target='_blank' rel='noopener noreferrer'>
                 <Button color='yellow' size='small' fluid>
                   Go 
                 </Button>
-              </Link>
+              </a>
             </Card>
 
               <Card>
@@ -289,7 +277,7 @@ class Materials extends Component {
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-              <a href='https://quizlet.com/cbranson01'>
+              <a href='https://quizlet.com/class/3047759/' target='_blank' rel='noopener noreferrer'>
                 <Button color='yellow' size='small' fluid>
                   Go 
                 </Button>
@@ -321,10 +309,15 @@ class Materials extends Component {
 
   {/* ONLY VISIBLE ON MOBILE */}
 
-            <Grid.Row only='mobile'>
-              <SubSectionHead>
-                Materials
-              </SubSectionHead>
+            <Grid.Row textAlign='center' only='mobile'>
+              <Grid.Column width = {4}>
+                <Icon name='search' size='big' />
+              </Grid.Column>
+              <Grid.Column width={12}>
+                <ContentStyleWhiteLeft>
+                  Search the materials database by keyword to find all sorts of great resources! 
+                </ContentStyleWhiteLeft>
+              </Grid.Column>
             </Grid.Row>
           </Grid>
         </GreenDiv>
@@ -332,6 +325,11 @@ class Materials extends Component {
   {/* MATERIALS SEARCH FIELD AND BUTTONS */}
 
         <SpecialDiv>
+          <SpecialDiv>
+            <CardHeader>
+              Search Materials
+            </CardHeader>
+          </SpecialDiv>
           <Form>
             <Form.Input
               placeholder='Search Resources...'
@@ -339,14 +337,6 @@ class Materials extends Component {
               value={searchResources}
               onChange={this.handleChange}
               fluid
-            />
-            <Button
-              content='search'
-              icon='search'
-              labelPosition='right'
-              name='searchView'
-              value={true}
-              onClick={this.handleChange}
             />
           </Form>
         </SpecialDiv>
@@ -360,30 +350,25 @@ class Materials extends Component {
       null
     }
 
-    {/* DATABASE TABLE */}
+    {/* ALUTIIQ EDUCATION.ORG DATABASE TABLE */}
       
       <SpecialDiv>
         <Div>
           <Grid celled='internally'>
             <Grid.Row>
-              <Grid.Column computer={5} tablet={5} mobile={10} verticalAlign='middle'>
+              <Grid.Column computer={6} tablet={6} mobile={10} verticalAlign='middle'>
                 <ColumnHead>
                   Title
                 </ColumnHead>
               </Grid.Column>
-              <Grid.Column width={5} verticalAlign='middle' only='computer tablet'>
+              <Grid.Column width={6} verticalAlign='middle' only='computer tablet'>
                 <ColumnHead>
                   Subject
                 </ColumnHead>
               </Grid.Column>
-              <Grid.Column computer={3} tablet={3} mobile={6} textAlign='center' verticalAlign='middle'>
+              <Grid.Column computer={4} tablet={4} mobile={6} textAlign='center' verticalAlign='middle'>
                 <ColumnHead>
                   Information
-                </ColumnHead>
-              </Grid.Column>
-              <Grid.Column width={3} verticalAlign='middle' only='computer tablet' textAlign='center'>
-                <ColumnHead>
-                  View
                 </ColumnHead>
               </Grid.Column>
             </Grid.Row>

@@ -45,7 +45,7 @@ const Revitalization = () => (
         </Header>
         <SpecialDiv>
           <Container textAlign='center'>
-            <IconLink href='http://www.alutiiqlanguage.org/files/Articles/encouragementguidanceinsightslessons3-00-1.pdf'>
+            <IconLink href='https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/resources/EncouragementGuidanceInsightsLessons3-00-1.pdf' target='_blank'>
               <IconHover name='book' />
             </IconLink>
           </Container>

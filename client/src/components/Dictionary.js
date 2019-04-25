@@ -1,27 +1,27 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { getWords } from '../reducers/dictionary'
+import { Parallax } from 'react-parallax'
 import {  
   Header,
   Grid,
   Icon, 
   Form,
-  Button,
   Loader,
   Dimmer,
 } from 'semantic-ui-react'
 import {
-  BlueDiv,
   SectionHead,
   ColumnHead,
   ContentStyle,
-  ContentStyleWhite,
+  ContentStyleCenter,
   SpecialDiv,
   Div,
   Watermark,
   Pointer,
 } from './styles/CommonStyles'
 import DictionaryView from './DictionaryView'
+import DictionaryTop from '../images/Dictionary.jpg'
 
 const r = '\u{0280}'
 const russianR = new RegExp(`[${r}]`,'g');
@@ -70,10 +70,6 @@ class Dictionary extends Component {
     this.setState({ [name]: value })
   }
 
-  clearSearch = () => {
-    this.setState({ searchTerms: '', wordView: false })
-  }
-  
   nowLoading = () => {
     return ( 
       <Dimmer active inverted>
@@ -98,6 +94,8 @@ class Dictionary extends Component {
       null)
       ||
       e.english.replace("'", "").toLowerCase().includes(lowerCaseSearchWord)
+      ||
+      e.part_of_speech.toLowerCase().includes(lowerCaseSearchWord)
     )
     return(
       filtered_words.map( (word)  =>
@@ -130,16 +128,28 @@ class Dictionary extends Component {
 // FIRST SECTION WELCOMING THE USER TO THE PAGE
 
     <Fragment>
-      <BlueDiv>
-        <Header textAlign="center">
-          <SectionHead>
-            Dictionary
-          </SectionHead>
-        </Header>
-        <ContentStyleWhite>
-          Search our on-line dictionary for common words, a specific word you are interested in learning, or review an entire category of words. Click the Alutiiq word to see a flashcard with an image and audio clip.
-        </ContentStyleWhite>
-      </BlueDiv>
+      <Parallax
+        bgImage={DictionaryTop}
+        blur={{min: 5, max:1}}
+        bgImageAlt="Page from Dr. Jeff Leer's Dictionary"
+        strength={500}
+      >
+        <div style={{height: 350}}>
+          <SpecialDiv>
+            <Header textAlign="center">
+              <SectionHead>
+                Dictionary
+              </SectionHead>
+            </Header>
+              <ContentStyleCenter>
+                Search our on-line dictionary for common words, a specific word you are interested in learning, or review an entire category of words. Click the Alutiiq word to see information about the word. Most words have audio clips, example sentencences and style notes.
+                <br />
+                <br />
+                To start exploring, just begin typing in the search bar below.
+              </ContentStyleCenter>
+          </SpecialDiv>
+        </div>
+      </Parallax>
       
 {/* SEARCH FUNCTION */}
       <SpecialDiv>
@@ -152,10 +162,6 @@ class Dictionary extends Component {
             onChange={this.handleChange}
             fluid
             />
-              <Button
-                onClick={this.clearSearch}
-              >Clear
-              </Button>
         </Form>
       </SpecialDiv>
        
@@ -186,7 +192,7 @@ class Dictionary extends Component {
                 { loading === true ?
                   this.nowLoading()
                   :
-                  this.renderSearchWords().sort()
+                  this.renderSearchWords()
                 }
               </Grid>
             </Div>

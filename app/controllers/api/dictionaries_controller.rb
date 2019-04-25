@@ -1,12 +1,18 @@
 class Api::DictionariesController < ApplicationController
   before_action :set_dictionary, only: [:show]
-  before_action :set_page
+  before_action :dictionary_params, only: [:import]
   
   def index
     render json: Dictionary.all
-    # dictionaries = Dictionary.page(@page)
-    # total_pages = dictionaries.total_pages
-    # render json: { dictionaries: dictionaries, total_pages: total_pages}
+  end
+
+  def export 
+    @wordData = Dictionary.all
+
+    respond_to do |format|
+      format.json
+      format.csv { send_data @wordData.to_csv }
+    end
   end
 
   def show
@@ -31,6 +37,10 @@ class Api::DictionariesController < ApplicationController
     end
   end
 
+  def import 
+    Dictionary.import(dictionary_params)
+  end
+
     private 
 
     def set_page
@@ -42,7 +52,7 @@ class Api::DictionariesController < ApplicationController
     end
 
     def dictionary_params
-      params.require(:dictionary).permit(
+      params.permit(dictionary: [
         :english, 
         :part_of_speech, 
         :alutiiq_north, 
@@ -58,7 +68,7 @@ class Api::DictionariesController < ApplicationController
         :notes, 
         :completed, 
         :approved
-        )
+    ])
     end
 
 end

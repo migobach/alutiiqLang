@@ -3,6 +3,7 @@ import ReactPlayer from 'react-player'
 import {
   Divider,
   Grid,
+  Button,
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
@@ -25,15 +26,10 @@ class SongView extends Component {
   // using state so that I can use the same form to update the site via admin permissions
   state = {}
 
-  componentDidMount() {
-    if (this.props.song)
-    this.setState({...this.props.song})
-  }
-
   linesToParagraph(...lines) {
     return lines
       .map(line => typeof line === 'string' ?
-      line.split("\r\n").map(text => <p>{text}</p>) 
+      line.split(".").map(text => <p>{text}</p>) 
       : 
       line).reduce((lines, line) => lines.concat(line), [])
   }
@@ -68,7 +64,7 @@ class SongView extends Component {
               // playing='false'
               controls='true'
               height='5em'
-              width='25em'
+              width='20em'
               loop='false'
             />
             :
@@ -76,21 +72,28 @@ class SongView extends Component {
           }
 
           {/* Video ternary */}
-
-          {this.props.song.video ?
-            <div style={paddingStyle}>
-            <ReactPlayer 
-              url={this.props.song.video}
-              // playing='false'
-              controls='true'
-              height='17em'
-              width='30em'
-              
-            />
-            </div>
-            :
-            null  
-          }
+          
+          <Grid>
+            <Grid.Row only='computer tablet'>
+              {this.props.song.video ?
+                <div style={paddingStyle}>
+                <ReactPlayer 
+                  url={this.props.song.video}
+                  // playing='false'
+                  controls='true'
+                  height='17em'
+                  width='30em'
+                  
+                />
+                </div>
+                :
+                null  
+              }
+            </Grid.Row>
+            <Grid.Row only='mobile'>
+              <Divider hidden />
+            </Grid.Row>
+          </Grid>
 
           {/* English and Alutiiq script */}
 
@@ -124,7 +127,7 @@ class SongView extends Component {
               Download song script
             </ContentStyle>
             <br />
-            <IconLinkGrey href={this.props.song.script} style={iconPad}>
+            <IconLinkGrey href={this.props.song.script} style={iconPad} target="_blank">
               <IconHover name='cloud download' />
             </IconLinkGrey>
           </div>
@@ -147,6 +150,13 @@ class SongView extends Component {
           }
            
         </SpecialDiv>
+
+        <SpecialDiv>
+          <Button type='button' onClick={this.props.view}>
+            Close
+          </Button>
+        </SpecialDiv>
+          <Divider hidden />
       </Fragment>
     )
   }
