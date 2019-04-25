@@ -55,12 +55,7 @@ class Dictionary < ApplicationRecord
           end
         )
         end
-      d.north_audio = 
-        if row['north_audio'] == ""
-          row['north_audio']
-        else
-          "https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/dictionary_audio/" + row['north_audio'] 
-        end
+      d.north_audio = row['north_audio']
       d.north_sentence = row['north_sentence']
       d.alutiiq_south =
         if row['alutiiq_south'] == ""
@@ -79,12 +74,7 @@ class Dictionary < ApplicationRecord
           end
         )
         end
-      d.south_audio =
-        if row['south_audio'] == ""
-          row['south_audio']
-        else
-          "https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/dictionary_audio/" + row['south_audio'] 
-        end
+      d.south_audio = row['south_audio']
       d.south_sentence = row['south_sentence']
       d.image_name = row['image_name']
       d.root_word = row['root_word']

@@ -26,12 +26,7 @@ class Poster < ApplicationRecord
     file[:poster].each do |row| 
       e = Poster.new
       e.title = row['title']
-      e.poster_link = 
-        if row['poster_link'] == ""
-          row['poster_link']
-        else
-          "https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/poster/" + row['poster_link'].gsub(' ', '+') + ".pdf"
-        end
+      e.poster_link = row['poster_link']
       e.author = row['author']
       e.notes = row['notes']
       e.save

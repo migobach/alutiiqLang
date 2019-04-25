@@ -28,12 +28,7 @@ class Game < ApplicationRecord
         g = Game.new
         g.game_name_alutiiq = row['game_name_alutiiq']
         g.game_name_english = row['game_name_english']
-        g.link_to_item = 
-          if row['link_to_item'] == nil 
-            row['link_to_item']
-          else
-            "https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/game/" + row['link_to_item'].gsub(' ', '+')
-          end 
+        g.link_to_item = row['link_to_item']
         g.game_group = row['game_group']
         g.notes = row['notes']
         g.order = row['order']

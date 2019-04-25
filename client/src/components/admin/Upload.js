@@ -144,8 +144,8 @@ class Upload extends Component {
           "link_to_item",
           "game_group",
           "notes",
-          "order",
-          "creator"
+          "creator",
+          "order"
           ]
         })
       }
