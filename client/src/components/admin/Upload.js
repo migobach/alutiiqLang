@@ -183,9 +183,9 @@ class Upload extends Component {
         "audio",
         "video",
         "script",
+        "traditional",
         "script_english_words",
         "script_alutiiq_words",
-        "traditional",
         "notes",
         ]
         })

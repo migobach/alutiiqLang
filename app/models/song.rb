@@ -52,19 +52,19 @@ class Song < ApplicationRecord
         )
         end
       s.credit = row['credit']
-      s.audio = 
-        if row['audio'] == ""
-          row['audio']
-        else
-          "https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/songs/" + row['audio'] + ".mp3"
-        end
+      s.audio = row['audio']
+        # if row['audio'] == ""
+        #   row['audio']
+        # else
+        #   "https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/songs/" + row['audio'] + ".mp3"
+        # end
       s.video = row['video']
-      s.script = 
-        if row['script'] == ""
-          row['script']
-        else
-          "https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/song_script/" + row['script'] + ".pdf"
-        end
+      s.script = row['script']
+        # if row['script'] == ""
+        #   row['script']
+        # else
+        #   "https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/song_script/" + row['script'] + ".pdf"
+        # end
       s.script_english_words = row['script_english_words']
       s.script_alutiiq_words = 
           if row['script_alutiiq_words'] == ""
