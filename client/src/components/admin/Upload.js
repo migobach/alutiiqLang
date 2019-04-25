@@ -117,11 +117,11 @@ class Upload extends Component {
       else if (database === "Curriculum") {
         this.setState({keys:
           [ "curricular_name",
-            "group_name",
+            "link_to_item",
             "level",
             "lesson_number",
-            "link_to_item",
             "notes",
+            "group_name",
             "order"
           ]
         })

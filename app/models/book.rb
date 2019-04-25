@@ -46,24 +46,9 @@ class Book < ApplicationRecord
             row['book_title_alutiiq']
           end
         b.description = row['description']
-        b.image = 
-          if row['image'] == ""
-            row['image']
-          else
-            "https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/book_image/" + row['image']
-          end
-        b.file =
-          if row['file'] == ""
-            row['file']
-          else
-            "https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/book_pdf/" + row['file']
-          end
-        b.audio =
-          if row['audio'] == ""
-            row['audio']
-          else 
-            "https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/book_audio/" + row['audio']
-          end
+        b.image = row['image']
+        b.file = row['file']
+        b.audio = row['audio']
           
           b.book_type = row['book_type']
           b.creator = row['creator']
