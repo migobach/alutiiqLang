@@ -163,7 +163,7 @@ class Classes extends Component {
               <br />
               (907) 486-6357
               <br />
-              323 Carolyn Street, Kodiak Alaska
+              115 Mill Bay Road, Kodiak Alaska
               <br />
               <br />
               Dig Afognak camp is a cultural education program that is geared toward youth. A central focus of camp is Alutiiq culture, values, and language. Dig Afognak is a place where young people bond through cultural activities and engagement. For more information, contact Nancy Nelson at Native Village of Afognak. If you would like to register, <BodyLink href={"https://www.afognak.org/dig-afognak/"} target="_blank">click here</BodyLink>.

@@ -40,7 +40,7 @@ const Footer = () => (
               <span>
               Native Village of Afognak
               <br />
-              323 Carolyn Street
+              115 Mill Bay Road
               <br />
               Kodiak, Alaska 99615
               <br />
