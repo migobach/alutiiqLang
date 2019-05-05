@@ -142,7 +142,7 @@ class Dictionary extends Component {
               </SectionHead>
             </Header>
               <ContentStyleCenter>
-                Search our on-line dictionary for common words, a specific word you are interested in learning, or review an entire category of words. Click the Alutiiq word to see information about the word. Most words have audio clips, example sentencences and style notes.
+                Search our online dictionary for common words, a specific word you are interested in learning, or review an entire category of words. Click the Alutiiq word to see information about the word. Most words have audio clips, example sentencences and style notes.
                 <br />
                 <br />
                 To start exploring, just begin typing in the search bar below.

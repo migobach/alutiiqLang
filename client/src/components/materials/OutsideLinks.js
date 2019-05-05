@@ -58,7 +58,7 @@ const OutsideLinks = () => (
         <Divider />
       </LinkHead>
         <ContentStyle>
-          Alutiiq education is designed to serve as a clearinghouse of Kodiak Alutiiq educational resourses. By clicking on the resources tab on the homepage, users are able to search a curriculum database. Click on the link above to begin discovering resources through Alutiiq Education. 
+          Alutiiq Education is designed to serve as a clearinghouse of Kodiak Alutiiq educational resourses. By clicking on the resources tab on the homepage, users are able to search a curriculum database. Click on the link above to begin discovering resources through Alutiiq Education. 
         </ContentStyle>
         <br />
 

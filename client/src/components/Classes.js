@@ -105,7 +105,7 @@ class Classes extends Component {
             Family Language Night
           </ColumnHead>
             <ContentStyle>
-              Wednesday Night | 5:00-6:30 pm
+              Wednesday Night | 5:00-6:30 pm | During the schoolyear only
               <br />
               Fishery Industrial Technology center
               <br />
@@ -156,7 +156,21 @@ class Classes extends Component {
             </ContentStyle>
           <br />
           <ColumnHead>
-            Afognak After School Program
+            Dig Afognak Cultural Summer Camp
+          </ColumnHead>
+            <ContentStyle>
+            Native Village of Afognak
+              <br />
+              (907) 486-6357
+              <br />
+              115 Mill Bay Road, Kodiak Alaska
+              <br />
+              <br />
+              Dig Afognak camp is a cultural education program that is geared toward youth. A central focus of camp is Alutiiq culture, values, and language. Dig Afognak is a place where young people bond through cultural activities and engagement. For more information, contact Nancy Nelson or Nina Gronn at Native Village of Afognak. If you would like to register, <BodyLink href={"https://www.afognak.org/dig-afognak/"} target="_blank"> click here </BodyLink>.
+            </ContentStyle>
+          <br />
+          <ColumnHead>
+            Native Village of Afognak <i>Uswillraraat Qipayaat-</i> After School Program
           </ColumnHead>
             <ContentStyle>
               Native Village of Afognak
@@ -166,8 +180,9 @@ class Classes extends Component {
               115 Mill Bay Road, Kodiak Alaska
               <br />
               <br />
-              Dig Afognak camp is a cultural education program that is geared toward youth. A central focus of camp is Alutiiq culture, values, and language. Dig Afognak is a place where young people bond through cultural activities and engagement. For more information, contact Nancy Nelson at Native Village of Afognak. If you would like to register, <BodyLink href={"https://www.afognak.org/dig-afognak/"} target="_blank">click here</BodyLink>.
+              Once a year Native Village of Afognak will host an after-school program. The focus of this program is to teach the younger generation the language, games, and art projects centered around the Alutiiq culture. If you would like to know more about this program, contact Denise Malutin at Native Village of Afognak. You can also visit our <BodyLink href={"https://www.afognak.org/"} target="_blank">website</BodyLink>.
             </ContentStyle>
+          <br />
           <ColumnHead>
             Kodiak High School Language Class
           </ColumnHead>

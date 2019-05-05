@@ -140,7 +140,7 @@ class Curriculum extends Component {
           </Grid.Column>
           <Grid.Column width={11} verticalAlign='middle'>
             <ContentStyle>
-              6 units targeted at Kindergarden through 5th grade
+              6 units targeted at Kindergarten through 5th grade
             </ContentStyle>
           </Grid.Column>
         </Grid.Row>

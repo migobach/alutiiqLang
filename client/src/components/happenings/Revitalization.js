@@ -68,7 +68,7 @@ const Revitalization = () => (
                   <li>Never debate the issues</li>
                   <li>Be very action oriented - just act;</li>
                   <li>Show, don't tell</li>
-                  <li>User your language as your curriculum- botany, geography, political science, philosophy, hisotry are all embedded in the langauge."</li>
+                  <li>User your language as your curriculum- botany, geography, political science, philosophy, history are all embedded in the langauge."</li>
                 </ol>
               {/* </blockquote> */}
               </i>
@@ -100,7 +100,7 @@ const Revitalization = () => (
           <Divider />
         </LinkHead>
         <ContentStyle>
-          Available on the <BodyLink href='http://www.ankn.uaf.edu/publications/language.html'>Alaska Native Knowledge Network</BodyLink> website as a PDF, this important resource provides a series of guidelines for elders, parents, learners, organizations, educators, schools, education agencies, linguists, and media producers. This guidebook along with the <BodyLink href='http://www.alutiiqlanguage.org/files/lessons/Teacher%20Tools/cultural%20standards.pdf'>Alaska Standards for Culturally Responsive Schools</BodyLink> were developed through a network of Alaska Native educators. The Cultural Standards were adopted by the Alaska Department of Education and <BodyLink href='https://www.kibsd.org/'>Kodiak Island Borough School District</BodyLink> (<BodyLink href='https://www.kibsd.org/domain/115'>found under their posting of World Languages curriculum documents</BodyLink>). There are many articles on the development and importance of these cultural standards found on the <BodyLink href='http://www.ankn.uaf.edu/'>Alaska Native Knowledge Network</BodyLink> website, such as this <BodyLink href='http://www.ankn.uaf.edu/sop/sopv3i4.pdf'>article by Dr. Ray Barnhardt.</BodyLink>
+          Available on the <BodyLink href='http://www.ankn.uaf.edu/publications/language.html'>Alaska Native Knowledge Network</BodyLink> website as a PDF, this important resource provides a series of guidelines for elders, parents, learners, organizations, educators, schools, education agencies, linguists, and media producers. This guidebook along with the <BodyLink href='http://www.alutiiqlanguage.org/files/lessons/Teacher%20Tools/cultural%20standards.pdf'>Alaska Standards for Culturally Responsive Schools</BodyLink> were developed through a network of Alaska Native educators. The Cultural Standards were adopted by the Alaska Department of Education and <BodyLink href='https://www.kibsd.org/'>Kodiak Island Borough School District</BodyLink> (<BodyLink href='https://www.kibsd.org//site/default.aspx?PageID=185' target='_blank'>found under their posting of World Languages curriculum documents</BodyLink>). There are many articles on the development and importance of these cultural standards found on the <BodyLink href='http://www.ankn.uaf.edu/'>Alaska Native Knowledge Network</BodyLink> website, such as this <BodyLink href='http://www.ankn.uaf.edu/sop/sopv3i4.pdf'>article by Dr. Ray Barnhardt.</BodyLink>
         </ContentStyle>
         <br />
       </SpecialDiv>

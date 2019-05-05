@@ -40,7 +40,7 @@ const Worldview = () => (
             <Divider />
           </GreenHead>
             <ContentStyle>
-              Our Elders have dedicated many years to teaching, recording, and sharing the language in order to preserve and revitalize the language, making it accessible to anyone who wants to learn. We greatly appreciate them and their dedication despite enduring many hardships associated with their language throughout history. Their efforst have established a strong foundation for language revitalization. 
+              Our Elders have dedicated many years to teaching, recording, and sharing the language in order to preserve and revitalize the language, making it accessible to anyone who wants to learn. We greatly appreciate them and their dedication despite enduring many hardships associated with their language throughout history. Their efforts have established a strong foundation for language revitalization. 
               <br />
               <br />
               Learn about some of the elders who have played critical roles in revitalizing our language. <BodyLink href='https://alutiiqmuseum.mukurtu.net/collection/alutiiq-language-speakers'>Click here to see biographies</BodyLink> on some elders and culture bearers produced by the Alutiiq Museum.

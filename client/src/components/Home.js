@@ -456,7 +456,7 @@ class Home extends Component {
               </WhiteTitle>
             <Divider />
               <ContentStyleWhiteLeft>
-                Where to start? Search the site for songs, books, curriculuar materials, games, articles, or posters. <i>Kita! Iwailuten caqia qainek!</i> 
+                Where to start? Search the site for songs, books, curriculuar materials, games, articles, or posters. <i>Kita! Iwai'luten caqiq qainarmek!</i> 
               </ContentStyleWhiteLeft>
             </Grid.Column>
 

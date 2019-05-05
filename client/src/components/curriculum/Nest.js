@@ -69,7 +69,10 @@ class Nest extends Component {
             </SectionHead>
           </Header>
           <ContentStyle>
-            Curricular themes at the language nest are organized around cultural themes that prepare students for kindergarten. Interacting with elders, community members, and their own peers make in a culturally and linguistically rich environment are what make the langauge nest environment unique.
+            The Language Nest is a child-focused Alutiiq language immersion environment where language is acquired naturally. Children develop kindergarten readiness skills while they problem solve, explore, and play through the language in a supportive multi-generational setting.
+            <br />
+            <br />
+            Our secret mission is to get other adults fluent in the language, to develop the next generation of teachers.
           </ContentStyle>
         </SpecialDiv>
 

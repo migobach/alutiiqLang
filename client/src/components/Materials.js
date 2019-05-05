@@ -172,7 +172,7 @@ class Materials extends Component {
               <Card.Content>
                 <SpecialDiv>
                   <ContentStyle>
-                    Once a learner has heard and practiced new vocabulary, learning to read and do an activity in Alutiiq is a good way to reinforce their language learning. Click on the Naaqisuutet - Books link above to see how to begin expanding your Alutiiq library. 
+                    Once a learner has heard and practiced new vocabulary, learning to read and do an activity in Alutiiq is a good way to reinforce their language learning. Click on the 'Go' button below to begin expanding your Alutiiq library. 
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
@@ -253,7 +253,7 @@ class Materials extends Component {
               <Card.Content>
                 <SpecialDiv>
                   <ContentStyle>
-                    Accessing traditional stories in the Alutiiq language can be difficult. Thanks to archives, a few traditional stories can be accessed here. Click on the link above to access recordings and transcripts of traditional stories. 
+                    Accessing traditional stories in the Alutiiq language can be difficult. Thanks to archives, a few traditional stories can be accessed here. Click on the 'Go' button below to access recordings and transcripts of traditional stories. 
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
@@ -299,7 +299,7 @@ class Materials extends Component {
               </Grid.Column>
               <Grid.Column width={12}>
                 <ContentStyleQuote>
-                  <i>"When I visit the grocery store and hear another language being spoken, I try to exchange a word or phrase of what I have learned from their language so that I can show respect for their efforts to maintain their cultural and linguistic identities in shared public spaces so often dominated by English. Likewise when I see former students, or fellow Alutiiq speakers, I offer greetings in Alutiiq so that we too can practice and help keep Alutiiq a living language. Several Elders who have taught me say how much it means to hear learners speaking in public, when as children our Elders were punished physically for speaking Alutiiq"</i>
+                  <i>"When I visit the grocery store and hear another language being spoken, I try to exchange a word or phrase of what I have learned from their language so that I can show respect for their efforts to maintain their cultural and linguistic identities in shared public spaces so often dominated by English. Likewise when I see former students, or fellow Alutiiq speakers, I offer greetings in Alutiiq so that we too can practice and help keep Alutiiq a living language. Several Elders who have taught me say how much it means to hear learners speaking in public, when as children our Elders were punished physically for speaking Alutiiq."</i>
                 </ContentStyleQuote>
                 <QuotePerson>
                   <br />-Alisha Drabek PhD, Alutiiq Language Speaker, Learner, Teacher, and Scholar
