@@ -536,21 +536,20 @@ class Home extends Component {
             <SpecialDiv>
               <Header textAlign='center'>
                 <SubHeader>
-                  <i>Alutiit'stun Niuwawik</i> Registration is Open!
+                  How's the new website look? 
                 </SubHeader>
                   <Divider />
               </Header>
             </SpecialDiv>
     
               <SubHeaderContent>
-                Are you interested in registering your little one in the Alutiiq Language Nest? The Alutiit'stun Niuwawik is now accepting student registrations for the fall of 2018.
+                With a new site, we are bound to make mistakes, miss things, or have errors. If you find one, tell us about it! Either, send us an email by typing tribe at afognak dot org from your personal email. Or, click the button below!
                 <br />
                 <br />
-                The Language Nest is a child-focused Alutiiq language immersion environment where language is acquired naturally. Children develop kindergarten readiness skills while they problem solve, explore, and play through the language in a supportive multi-generational setting.
               </SubHeaderContent>
             </SpecialDiv>
-              <Button size='big' href='http://sunaq.org/languageprograms/' target='_blank'>
-                Learn more
+              <Button size='big' href={'mailto:tribe@afognak.org'}>
+                Email us!
               </Button>
           </Container>
         </div>
