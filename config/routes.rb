@@ -35,6 +35,7 @@ Rails.application.routes.draw do
       collection { post :import }
       collection { get :export }
     end
+    resources :items 
     
     resources :users, only: :update
   end

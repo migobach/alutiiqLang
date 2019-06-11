@@ -8,6 +8,7 @@ import { getBooks } from '../reducers/books'
 import { getCurriculum } from '../reducers/curriculum'
 import { getMaterials } from '../reducers/materials'
 import { getSongs } from '../reducers/songs'
+import { getItems } from '../reducers/items'
 import {  
   Card,
   Button, 
@@ -29,8 +30,6 @@ import {
   MainHeaderContent,
   MainDiv,
   ContentStyle,
-  SubHeader,
-  SubHeaderContent,
   GreenDiv,
   WhiteTitle,
   ContentStyleWhiteLeft,
@@ -40,12 +39,13 @@ import {
   IconLink,
   CreditWatermark,
 } from './styles/CommonStyles'
+import ItemForm from './ItemForm'
 
 class Home extends Component {
   state = { 
     itemData: {},
     searchData: '',
-    renderSearch: false
+    renderSearch: false,
   }
 
   componentDidMount() {
@@ -57,15 +57,23 @@ class Home extends Component {
     dispatch(getCurriculum())
     dispatch(getMaterials())
     dispatch(getSongs())
+    dispatch(getItems())
   }
-  
+
   handleChange = (e, { name, value }) => {
     this.setState({ [name]: value })
+  }
+
+  handleBoolean = (e, { name, value }) => {
+    this.setState({ [name]: !value })
   }
 
   handleRenderingSearchData = () => {
     this.setState({ renderSearch: true })
   }
+
+  
+
 
   renderSearchArticles = () => {
     const searchData = this.state.searchData
@@ -353,6 +361,7 @@ class Home extends Component {
 
   render() {
     const { searchData, renderSearch } = this.state
+   
 
     return (
       <div>
@@ -529,33 +538,16 @@ class Home extends Component {
           </Grid>
         </GreenDiv>
 
-{/* SPECIAL CONTENT FEATURING SOMETHING IN THE NEAR FUTURE  */}
+{/* SPECIAL CONTENT FEATURING SOMETHING IN THE NEAR FUTURE ---- THIS WILL BE A FORM WHEN ADMIN SIGNS IN */}
 
           <Container textAlign='center' verticalAlign='middle'>
-          <SpecialDiv>
-            <SpecialDiv>
-              <Header textAlign='center'>
-                <SubHeader>
-                  How's the new website look? 
-                </SubHeader>
-                  <Divider />
-              </Header>
-            </SpecialDiv>
-    
-              <SubHeaderContent>
-                With a new site, we are bound to make mistakes, miss things, or have errors. If you find one, tell us about it! Either, send us an email by typing tribe at afognak dot org from your personal email. Or, click the button below!
-                <br />
-                <br />
-              </SubHeaderContent>
-            </SpecialDiv>
-              <Button size='big' href={'mailto:tribe@afognak.org'}>
-                Email us!
-              </Button>
+            <ItemForm user={this.props.user}/>
           </Container>
-        </div>
+      </div>
     )
-  } 
+  }
 }
+
 
 const mapStateToProps = (state) => {
   return {
@@ -565,7 +557,9 @@ const mapStateToProps = (state) => {
     books: state.books,
     curriculum: state.curriculum,
     materials: state.material,
-    songs: state.songs
+    songs: state.songs,
+    items: state.items,
+    user: state.user
   }
  }
 export default connect(mapStateToProps)(Home)
