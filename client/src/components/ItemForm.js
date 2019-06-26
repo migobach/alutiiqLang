@@ -23,8 +23,9 @@ class ItemForm extends Component {
   }
 
   componentDidMount() {
-    if (this.props.item)
-      this.setState({...this.props.item})
+    if (this.props.items)
+    // debugger
+      this.setState({...this.props.items})
   }
 
   handleChange = (e, { name, value }) => {
@@ -40,10 +41,10 @@ class ItemForm extends Component {
   }
 
   handleForm = () => {
-    debugger
-    const { user } = this.props
+    // debugger
+    const { user, item } = this.props
     const { title, body, buttonUrl, buttonName, visible } = this.state
-
+    
     if (user.id) {
       return(
         <SpecialDiv>
@@ -99,6 +100,9 @@ class ItemForm extends Component {
               <Button type='submit'>
                 Save
               </Button>
+              <Button type='submit' onClick={this.props.toggleForm}>
+                Cancel
+              </Button>
             </Form>
 
           </SpecialDiv>
@@ -106,13 +110,15 @@ class ItemForm extends Component {
         </SpecialDiv>
       )
     } else {
+      // debugger
       return(
+        
         <div>
         <SpecialDiv>
           <SpecialDiv>
              <Header textAlign='center'>
                <SubHeader>
-                 How's the new website look? 
+                 {item.title}
                </SubHeader>
                  <Divider />
              </Header>

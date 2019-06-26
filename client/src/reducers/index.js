@@ -9,6 +9,7 @@ import books from './books'
 import articles from './articles'
 import posters from './posters'
 import games from './games'
+import items from './items'
 
 const rootReducer = combineReducers({
   user,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   articles,
   posters,
   games,
+  items,
   flash
 });
 

@@ -15,6 +15,7 @@ export const getSongs = () => {
 
 export default ( state=[], action ) => {
   switch(action.type){
+    
     case SONGS:
       return action.songs
     default:

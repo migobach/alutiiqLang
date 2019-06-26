@@ -21,7 +21,6 @@ import {
 } from 'semantic-ui-react'
 import { Parallax } from 'react-parallax'
 import Banner from '../images/Afognak.jpg'
-
 import { 
   CardHeader,
   ContainerPad,
@@ -38,14 +37,17 @@ import {
   Pointer,
   IconLink,
   CreditWatermark,
+  SubHeaderContent,
+  SubHeader
 } from './styles/CommonStyles'
 import ItemForm from './ItemForm'
 
 class Home extends Component {
   state = { 
-    itemData: {},
+    itemData: [],
     searchData: '',
     renderSearch: false,
+    showForm: false,
   }
 
   componentDidMount() {
@@ -60,6 +62,10 @@ class Home extends Component {
     dispatch(getItems())
   }
 
+  toggleForm = () => {
+    this.setState({ showForm: !this.state.showForm })
+  }
+
   handleChange = (e, { name, value }) => {
     this.setState({ [name]: value })
   }
@@ -71,9 +77,6 @@ class Home extends Component {
   handleRenderingSearchData = () => {
     this.setState({ renderSearch: true })
   }
-
-  
-
 
   renderSearchArticles = () => {
     const searchData = this.state.searchData
@@ -357,12 +360,47 @@ class Home extends Component {
     )
   } 
 
+  renderAnnouncement = () => {
+    let announcments = this.props.items
+
+    return(
+      announcments.map( (item, i, arr) => {
+        if ( arr.length - 1 === i ) { 
+          return(
+            <div>
+              <SpecialDiv>
+              <SpecialDiv>
+                <Header textAlign='center'>
+                  <SubHeader>
+                    {item.title}
+                  </SubHeader>
+                    <Divider />
+                </Header>
+              </SpecialDiv>
+
+                <SubHeaderContent>
+                  {item.body}
+                  <br />
+                  <br />
+                </SubHeaderContent>
+              </SpecialDiv>
+                <Button size='big' href={item.buttonUrl} target='_blank'>
+                  {item.buttonName}
+                </Button>
+            </div>
+          )
+        }
+      }
+      )
+    )
+  }
+
 // COMPONENET RENDER STARTS HERE
 
   render() {
-    const { searchData, renderSearch } = this.state
-   
-
+    const { searchData, renderSearch, showForm } = this.state
+    const { user } = this.props
+    
     return (
       <div>
 {/* HEAD BANNER WITH AFOGNAK BEACH IN THE BACKGROUND */}
@@ -541,8 +579,33 @@ class Home extends Component {
 {/* SPECIAL CONTENT FEATURING SOMETHING IN THE NEAR FUTURE ---- THIS WILL BE A FORM WHEN ADMIN SIGNS IN */}
 
           <Container textAlign='center' verticalAlign='middle'>
-            <ItemForm user={this.props.user}/>
+          {
+            showForm ? 
+            <div>
+              <ItemForm user={this.props.user} item={this.props.items} toggleForm={this.toggleForm}/>
+            </div>
+            :
+            <div>
+              {this.renderAnnouncement()}
+            </div>
+
+          }
           </Container>
+        <Divider hidden />
+          { 
+            (user.id && showForm === false) ?
+
+            <div>
+            <Divider hidden/>
+              <Container textAlign='center' verticalAlign='middle'>
+                  <Button onClick={this.toggleForm} color='red'>
+                    Edit Content
+                  </Button>
+              </Container>
+            </div>
+          :
+            null
+          }
       </div>
     )
   }
@@ -550,6 +613,7 @@ class Home extends Component {
 
 
 const mapStateToProps = (state) => {
+  // debugger
   return {
     posters: state.posters,
     games: state.games, 
