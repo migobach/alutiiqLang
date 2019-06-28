@@ -42,6 +42,8 @@ import {
 } from './styles/CommonStyles'
 import ItemForm from './ItemForm'
 
+let liicugtukutAudio = new Audio('https://alutiiq-language-resources.s3-us-west-2.amazonaws.com/page_audio/liicugtukut.mp3')
+
 class Home extends Component {
   state = { 
     itemData: [],
@@ -60,6 +62,11 @@ class Home extends Component {
     dispatch(getMaterials())
     dispatch(getSongs())
     dispatch(getItems())
+  }
+
+  toggleHomeButton = () => {
+    console.log(liicugtukutAudio)
+    liicugtukutAudio.play()
   }
 
   toggleForm = () => {
@@ -412,12 +419,14 @@ class Home extends Component {
         >
           <div style={{height: 500}}>
             <MainDiv>
-              <MainHeader>
-                <i>Liicugtukut Alutiit'stun</i>
-                <MainHeaderContent>
-                  We want to learn Alutiiq
-                </MainHeaderContent>
-              </MainHeader>
+              <Pointer onClick={this.toggleHomeButton}>
+                <MainHeader>
+                  <i>Liicugtukut Alutiit'stun</i>
+                  <MainHeaderContent>
+                    We want to learn Alutiiq
+                  </MainHeaderContent>
+                </MainHeader>
+              </Pointer>
             </MainDiv>
           </div>
               <CreditWatermark>

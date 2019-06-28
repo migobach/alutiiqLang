@@ -30,8 +30,8 @@ import {
 import SongView from './SongView'
 import Dancers from '../images/Dancers.jpg'
 
-let firstButton = new Audio('https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/dictionary_audio/accordiann.mp3')
-let secondButton = new Audio('https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/dictionary_audio/headsoupn.mp3')
+let firstButton = new Audio('https://alutiiq-language-resources.s3-us-west-2.amazonaws.com/page_audio/Aturlita.mp3')
+let secondButton = new Audio('https://alutiiq-language-resources.s3-us-west-2.amazonaws.com/page_audio/Atuuciqarpenga.mp3')
 
 class Songs extends Component {
   state = {

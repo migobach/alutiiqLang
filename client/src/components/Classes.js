@@ -24,7 +24,7 @@ import {
 import Jenga from '../images/Jenga.jpg'
 import Class from '../images/Class.jpg'
 
-let firstButton = new Audio('')
+let firstButton = new Audio('https://alutiiq-language-resources.s3-us-west-2.amazonaws.com/page_audio/Katurlita.mp3')
 
 class Classes extends Component {
 
