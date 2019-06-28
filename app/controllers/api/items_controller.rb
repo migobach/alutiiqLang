@@ -11,7 +11,6 @@ class Api::ItemsController < ApplicationController
 
   def create
     item = Item.create(item_params)
-    binding.pry
 
     if item.save
       render json: item 
@@ -27,18 +26,7 @@ class Api::ItemsController < ApplicationController
       @item = Item.find(params[:id])
     end
 
-    # def item_params 
-    #   params.permit(item: [
-    #     :title,
-    #     :body,
-    #     :buttonUrl,
-    #     :buttonName,
-    #     :visible
-    #   ])
-    # end
-
     def item_params
-      binding.pry
       params.require(:item).permit(
         :title,
         :body,

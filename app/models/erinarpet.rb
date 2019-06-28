@@ -25,7 +25,7 @@ class Erinarpet < ApplicationRecord
     #belwo is borrowed from the erinarpet rake file
     file[:article].each do |row|
       i = Erinarpet.new
-      # binding.pry
+       
       i.print_date = row['print_date']
       i.topic = row['topic']
       i.author = row['author']

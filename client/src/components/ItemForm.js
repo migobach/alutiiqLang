@@ -36,10 +36,6 @@ class ItemForm extends Component {
     const { dispatch, toggleForm } = this.props
     e.preventDefault()
     let itemData = {...this.state}
-
-    // const { addItem } = this.props
-    // const { itemData } = this.state
-    // THIS NEEDS TO BE COMPLETED
     dispatch(addItem(itemData))
     toggleForm()
   }
@@ -113,30 +109,29 @@ class ItemForm extends Component {
         </SpecialDiv>
       )
     } else {
-      // debugger
       return(
-        
-        <div>
-        <SpecialDiv>
-          <SpecialDiv>
-             <Header textAlign='center'>
-               <SubHeader>
-                 {item.title}
-               </SubHeader>
-                 <Divider />
-             </Header>
-           </SpecialDiv>
+        null
+        // <div>
+        // <SpecialDiv>
+        //   <SpecialDiv>
+        //      <Header textAlign='center'>
+        //        <SubHeader>
+        //          {item.title}
+        //        </SubHeader>
+        //          <Divider />
+        //      </Header>
+        //    </SpecialDiv>
 
-            <SubHeaderContent>
-              With a new site, we are bound to make mistakes, miss things, or have errors. If you find one, tell us about it! Either, send us an email by typing tribe at afognak dot org from your personal email. Or, click the button below!
-              <br />
-              <br />
-            </SubHeaderContent>
-          </SpecialDiv>
-            <Button size='big' href={'mailto:tribe@afognak.org'}>
-              Email us!
-            </Button>
-         </div>
+        //     <SubHeaderContent>
+        //       With a new site, we are bound to make mistakes, miss things, or have errors. If you find one, tell us about it! Either, send us an email by typing tribe at afognak dot org from your personal email. Or, click the button below!
+        //       <br />
+        //       <br />
+        //     </SubHeaderContent>
+        //   </SpecialDiv>
+        //     <Button size='big' href={'mailto:tribe@afognak.org'}>
+        //       Email us!
+        //     </Button>
+        //  </div>
       )
     }
   }
