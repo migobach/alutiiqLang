@@ -11,6 +11,7 @@ import {
   SubHeader,
   SubHeaderContent
 } from './styles/CommonStyles'
+import { addItem } from '../reducers/items'
 
 
 class ItemForm extends Component {
@@ -24,7 +25,6 @@ class ItemForm extends Component {
 
   componentDidMount() {
     if (this.props.items)
-    // debugger
       this.setState({...this.props.items})
   }
 
@@ -33,15 +33,18 @@ class ItemForm extends Component {
   }
 
   handleSubmit = (e) => {
-    // e.preventDefault()
+    const { dispatch, toggleForm } = this.props
+    e.preventDefault()
+    let itemData = {...this.state}
+
     // const { addItem } = this.props
     // const { itemData } = this.state
     // THIS NEEDS TO BE COMPLETED
-    // dispatch(addItem(itemData))
+    dispatch(addItem(itemData))
+    toggleForm()
   }
 
   handleForm = () => {
-    // debugger
     const { user, item } = this.props
     const { title, body, buttonUrl, buttonName, visible } = this.state
     
@@ -148,10 +151,10 @@ class ItemForm extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    items: state.items
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     items: state.items
+//   }
+// }
 
-export default connect(mapStateToProps)(ItemForm)
+export default connect()(ItemForm)
