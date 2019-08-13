@@ -142,7 +142,7 @@ class Classes extends Component {
               215 Mission Road, Suite 213, Kodiak Alaska
               <br />
               <br />
-              The Alutiiq Language Nest is operated by the Sun'aq Tribe of Kodiak and sponsored by a grant from the Administration for Native Americans. The Language nest operates Tuesday, Wednesday and Thursday 8-12 for kids age 3-5, and is also open to younger kids who are acommpanied by a cargiver. Registration is required. Guests are welcome with prior notice to the teachers. <BodyLink href={"http://sunaq.org/tamamta-liitukut/"} target="_blank">Click here</BodyLink> to learn how to register, or for more information, contact Raissa and Jake at 907-512-5995. 
+              The Alutiiq Language Nest is operated by the Sun'aq Tribe of Kodiak and sponsored by a grant from the Administration for Native Americans. The Language Nest operates Tuesday, through Friday 8am-12pm for kids age 3-5, and is also open to younger kids who are accompanied by a caregiver. Registration is required. Guests are welcome with prior notice to the teachers. <BodyLink href={"http://sunaq.org/languageprograms/language-nest/"} target="_blank">Click here</BodyLink> to learn how to register, or for more information, contact the teachers at 907-512-5995.
             </ContentStyle>
           <br />
           <ColumnHead>
