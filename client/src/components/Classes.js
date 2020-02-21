@@ -87,7 +87,7 @@ class Classes extends Component {
           Weekly Gatherings: 
           <Divider />
         </GreenHead>
-          <ColumnHead>
+          {/* <ColumnHead>
             Alutiiq Language Club
           </ColumnHead>
             <ContentStyle>
@@ -100,8 +100,8 @@ class Classes extends Component {
               <br />
               The Alutiiq Language Club has been meeting since 2003. It is an informal group of learners and Elders who meet every week on Wednesday at noon in the Language Nest in downtown Kodiak.  All levels of learners and speakers are welcome to attend.  To find out more, contact the Alutiiq Museum at (844) 425-8844, or email <BodyLink href={`mailto:molly@alutiiqmuseum.org`}>Molly Odell</BodyLink> at the Alutiiq Museum for more information. All are welcome at Language Club.
             </ContentStyle>
-          <br />
-          <ColumnHead>
+          <br /> */}
+          {/* <ColumnHead>
             Family Language Night
           </ColumnHead>
             <ContentStyle>
@@ -114,12 +114,12 @@ class Classes extends Component {
               <br />
               Families gather to make soup and learn Alutiiq language in a fun and interactive envrionment. This gathering is sponsored by a grant from the Administration for Native Americans, and hosted by the <BodyLink href={"http://sunaq.org/"} target="_blank">Sun'aq Tribe of Kodiak</BodyLink>, with support from the University of Alaska Fairbanks.
             </ContentStyle>
-          <br />
+          <br /> */}
           <ColumnHead>
             Elders Session
           </ColumnHead>
             <ContentStyle>
-              Friday | 11:00 am -12:15 pm
+              Monday | 1:00 pm - 2:15 pm
               <br />
               Alutiiq Museum and Archaeological Repository
               <br />
