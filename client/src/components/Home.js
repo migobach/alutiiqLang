@@ -42,6 +42,7 @@ import {
 } from './styles/CommonStyles'
 import ItemForm from './ItemForm'
 
+
 let liicugtukutAudio = new Audio('https://alutiiq-language-resources.s3-us-west-2.amazonaws.com/page_audio/liicugtukut.mp3')
 
 class Home extends Component {
