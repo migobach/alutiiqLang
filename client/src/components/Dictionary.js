@@ -142,6 +142,7 @@ class Dictionary extends Component {
               </SectionHead>
             </Header>
               <ContentStyleCenter>
+                {/* TODO: TEXT EDIT FIELDS */}
                 Search our online dictionary for common words, a specific word you are interested in learning, or review an entire category of words. Click the Alutiiq word to see information about the word. Most words have audio clips, example sentencences and style notes.
                 <br />
                 <br />

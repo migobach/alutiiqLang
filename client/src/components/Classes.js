@@ -21,12 +21,23 @@ import {
   Pointer,
   ContentStyleWhite,
 } from './styles/CommonStyles'
+import ContentEditable from 'react-contenteditable'
 import Jenga from '../images/Jenga.jpg'
 import Class from '../images/Class.jpg'
 
 let firstButton = new Audio('https://alutiiq-language-resources.s3-us-west-2.amazonaws.com/page_audio/Katurlita.mp3')
 
 class Classes extends Component {
+
+  constructor() {
+    super()
+    this.contentEditable = React.createRef();
+    this.state = {html: "Classes and Gatherings"};
+  };
+ 
+  handleChange = evt => {
+    this.setState({html: evt.target.value});
+  };
 
   // state = { editClassForm = false }
 
@@ -48,7 +59,13 @@ class Classes extends Component {
           <SpecialDiv>
             <Header textAlign="center">
               <SectionHead>
-                Classes and Gatherings
+              <ContentEditable
+                innerRef={this.contentEditable}
+                html={this.state.html} // innerHTML of the editable div
+                disabled={false}       // use true to disable editing
+                onChange={this.handleChange} // handle innerHTML change
+                tagName='article' // Use a custom HTML tag (uses a div by default)
+              />
               </SectionHead>
             </Header>
               <ContentStyleWhite>
@@ -115,6 +132,8 @@ class Classes extends Component {
               Families gather to make soup and learn Alutiiq language in a fun and interactive envrionment. This gathering is sponsored by a grant from the Administration for Native Americans, and hosted by the <BodyLink href={"http://sunaq.org/"} target="_blank">Sun'aq Tribe of Kodiak</BodyLink>, with support from the University of Alaska Fairbanks.
             </ContentStyle>
           <br /> */}
+
+          {/* TODO: TEXT EDIT FIELDS */}
           <ColumnHead>
             Elders Session
           </ColumnHead>
@@ -195,6 +214,8 @@ class Classes extends Component {
       </SpecialDiv>
 
        <SpecialDiv>
+
+         {/* TODO: TEXT EDIT FIELDS */}
         <GreenHead>
           Alutiiq Language Meetings: 
           <Divider />
@@ -210,6 +231,8 @@ class Classes extends Component {
       <Divider hidden />
 
       <GreenDiv>
+        {/* TODO: TEXT EDIT FIELDS */}
+        {/* TODO: PHOTO EDIT FIELDS */}
         <Grid stackable columns={2} verticalAlign='middle'>
           <Grid.Column width={10}>
             <Image src={Jenga} size='massive' floated='left' verticalAlign='middle' />
