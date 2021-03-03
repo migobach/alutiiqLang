@@ -28,7 +28,12 @@ const russianR = new RegExp(`[${r}]`,'g');
 
 class Dictionary extends Component {
 
-  state = { searchTerms: '', wordView: false, wordData: {}, loading: true }
+  state = { 
+    searchTerms: '', 
+    wordView: false, 
+    wordData: {}, 
+    loading: true 
+  }
 
   componentDidMount() {
     const { dispatch } = this.props

@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component, useRef } from 'react'
+import { connect } from 'react-redux'
+import { getEditablesData } from '../reducers/editables'
 import { 
   Header, 
   Grid, 
@@ -24,22 +26,41 @@ import {
 import ContentEditable from 'react-contenteditable'
 import Jenga from '../images/Jenga.jpg'
 import Class from '../images/Class.jpg'
+import axios from 'axios';
 
 let firstButton = new Audio('https://alutiiq-language-resources.s3-us-west-2.amazonaws.com/page_audio/Katurlita.mp3')
 
 class Classes extends Component {
 
-  constructor() {
-    super()
-    this.contentEditable = React.createRef();
-    this.state = {html: "Classes and Gatherings"};
+  state = {
+    header: {},
+    admin: false,
+  }
+  
+  componentDidMount() {
+    const { dispatch } = this.props
+    dispatch(getEditablesData())
+  }
+  
+  // todo: post to the database now. Maybe update the value instead of creating a new one? How do I update using axios? 
+  
+  constructor(props) {
+    super(props)
+    this.contentEditable = React.createRef()
   };
- 
+  
   handleChange = evt => {
-    this.setState({html: evt.target.value});
+    const preStructuredData = { ...this.props.editables.find(val => val.name = 'classHeading') }
+    preStructuredData.textShort = evt.target.value
+    this.state.header = preStructuredData
   };
-
-  // state = { editClassForm = false }
+  
+  
+  handleBlur = () => {
+    const updatedHeader = this.state.header
+    console.log('HANDLE BLUR!!!!!!!!!', updatedHeader)
+    axios.put(`/api/editables/${updatedHeader.id}`, updatedHeader )
+  }
 
   toggleFirstIcon = () => {
     console.log(firstButton)
@@ -61,10 +82,11 @@ class Classes extends Component {
               <SectionHead>
               <ContentEditable
                 innerRef={this.contentEditable}
-                html={this.state.html} // innerHTML of the editable div
-                disabled={false}       // use true to disable editing
+                html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name == 'classHeading').textShort : 'Default'} // innerHTML of the editable div - this.state.html
+                disabled={false}       // use true to disable editing maybe use the user in props here to give permissions
                 onChange={this.handleChange} // handle innerHTML change
                 tagName='article' // Use a custom HTML tag (uses a div by default)
+                onBlur={this.handleBlur}
               />
               </SectionHead>
             </Header>
@@ -257,4 +279,10 @@ class Classes extends Component {
   }
 }
 
-export default Classes
+const mapStateToProps = (state) => {
+  return{
+    editables: state.editables
+  }
+}
+
+export default connect(mapStateToProps)(Classes) 

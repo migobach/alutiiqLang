@@ -10,6 +10,7 @@ import articles from './articles'
 import posters from './posters'
 import games from './games'
 import items from './items'
+import editables from './editables'
 
 const rootReducer = combineReducers({
   user,
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   posters,
   games,
   items,
+  editables,
   flash
 });
 
