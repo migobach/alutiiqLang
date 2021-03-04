@@ -31,8 +31,8 @@ import axios from 'axios';
 let firstButton = new Audio('https://alutiiq-language-resources.s3-us-west-2.amazonaws.com/page_audio/Katurlita.mp3')
 
 class Classes extends Component {
-
   state = {
+    body: {},
     header: {},
     admin: false,
   }
@@ -42,24 +42,44 @@ class Classes extends Component {
     dispatch(getEditablesData())
   }
   
-  // todo: post to the database now. Maybe update the value instead of creating a new one? How do I update using axios? 
-  
   constructor(props) {
     super(props)
     this.contentEditable = React.createRef()
   };
+
+  handleChangeBody = evt => {
+    const elementType = evt._dispatchInstances.type
   
-  handleChange = evt => {
-    const preStructuredData = { ...this.props.editables.find(val => val.name = 'classHeading') }
-    preStructuredData.textShort = evt.target.value
-    this.state.header = preStructuredData
+   if (elementType == 'ClassesHeader') {
+      const preStructuredHeader = { ...this.props.editables.find(val => val.name === 'classHeader') }
+      preStructuredHeader.textShort = evt.target.value
+      this.state.header = preStructuredHeader
+    } else {
+      const preStructuredBody = this.props.editables.find(val => val.name === 'classBody')
+        preStructuredBody.textLong = evt.target.value
+        this.state.body = preStructuredBody
+    }
   };
-  
-  
-  handleBlur = () => {
+
+  handleChange = evt => {
+    console.log('event val', evt.target.value)
+  }
+
+  handleBlurBody = () => {
+    const updatedBody = this.state.body
     const updatedHeader = this.state.header
-    console.log('HANDLE BLUR!!!!!!!!!', updatedHeader)
-    axios.put(`/api/editables/${updatedHeader.id}`, updatedHeader )
+    console.log('state:', updatedBody, updatedHeader)
+    
+    if (updatedHeader.id ) {
+      console.log('in header PUT', updatedHeader)
+      axios.put(`api/editables/${updatedHeader.id}`, updatedHeader)
+    }
+
+    if (updatedBody.id) {
+      console.log('in body PUT', updatedBody)
+      axios.put(`/api/editables/${updatedBody.id}`, updatedBody )
+    }
+
   }
 
   toggleFirstIcon = () => {
@@ -77,29 +97,29 @@ class Classes extends Component {
         strength={500}
       >
         <div style={{height: 450}}>
-          <SpecialDiv>
+          <SpecialDiv innerRef={this.contentEditable}>
             <Header textAlign="center">
               <SectionHead>
-              <ContentEditable
-                innerRef={this.contentEditable}
-                html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name == 'classHeading').textShort : 'Default'} // innerHTML of the editable div - this.state.html
-                disabled={false}       // use true to disable editing maybe use the user in props here to give permissions
-                onChange={this.handleChange} // handle innerHTML change
-                tagName='article' // Use a custom HTML tag (uses a div by default)
-                onBlur={this.handleBlur}
-              />
+                <ContentEditable
+                  html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'classHeader').textShort : 'Default'} // innerHTML of the editable div - this.state.html
+                  disabled={false}       // use true to disable editing maybe use the user in props here to give permissions
+                  onChange={this.handleChangeBody} // handle innerHTML change
+                  tagName='ClassesHeader' // Use a custom HTML tag (uses a div by default)
+                  onBlur={this.handleBlurBody}
+                />
               </SectionHead>
             </Header>
               <ContentStyleWhite>
-                Language is about communication, getting together with one another and sharing stories and time. Find a list of our frequent events below, or click on the link to follow our Facebook page to keep up with the latest events and happenings. Each season brings new events and opportunites to learn Alutiiq, and share time with one another.
-                <br />
-                <br />
-                Join other Alutiiq language learners and fluent speakers to practice the Alutiiq language at the weekly gatherings listed on the Calendar chart below, drop-ins welcome. Find out how you can get more involved by participating in these events or other learning opportunities listed after this chart.
-                <br />
-                <br />
-                If you are not in Kodiak, seek out other learners and fluent speakers to start gathering in your community to practice and celebrate the Alutiiq language.
+                <ContentEditable
+                  html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'classBody').textLong : 'Default'} // innerHTML of the editable div - this.state.html
+                  disabled={false}       // use true to disable editing maybe use the user in props here to give permissions
+                  onChange={this.handleChangeBody} // handle innerHTML change
+                  tagName='ClassesBody' // Use a custom HTML tag (uses a div by default)
+                  onBlur={this.handleBlurBody}
+                />
               </ContentStyleWhite>
           </SpecialDiv>
+          
         </div>
       </Parallax>
 
