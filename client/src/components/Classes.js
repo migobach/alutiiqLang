@@ -34,11 +34,13 @@ class Classes extends Component {
   state = {
     body: {},
     header: {},
+    title: {},
+    content: {},
     admin: false,
   }
   
   componentDidMount() {
-    const { dispatch } = this.props
+    const { dispatch, user } = this.props
     dispatch(getEditablesData())
   }
   
@@ -48,18 +50,29 @@ class Classes extends Component {
   };
 
   handleChangeBody = evt => {
+    console.log('evt:', evt)
     const elementType = evt._dispatchInstances.type
   
    if (elementType == 'ClassesHeader') {
       const preStructuredHeader = { ...this.props.editables.find(val => val.name === 'classHeader') }
       preStructuredHeader.textShort = evt.target.value
       this.state.header = preStructuredHeader
-    } else {
+    } else if (elementType == 'ClassesBody') {
       const preStructuredBody = this.props.editables.find(val => val.name === 'classBody')
         preStructuredBody.textLong = evt.target.value
         this.state.body = preStructuredBody
+    } else if (elementType == 'ClassesSubTitle') {
+      const preStructuredSubTitle = this.props.editables.find(val => val.name === 'classSubTitle')
+      preStructuredSubTitle.textShort = evt.target.value
+      this.state.title = preStructuredSubTitle
+    } else if ( elementType == 'ClassesSubContent') {
+      const preStructuredSubContent = this.props.editables.find(val => val.name === 'classSubContent')
+      preStructuredSubContent.textLong = evt.target.value
+      this.state.content = preStructuredSubContent
     }
   };
+
+  // todo: finish up the green section below for text editing. 
 
   handleChange = evt => {
     console.log('event val', evt.target.value)
@@ -68,7 +81,9 @@ class Classes extends Component {
   handleBlurBody = () => {
     const updatedBody = this.state.body
     const updatedHeader = this.state.header
-    console.log('state:', updatedBody, updatedHeader)
+    const updatedSubTitle = this.state.title
+    const updatedSubContent = this.state.content
+    console.log('state:', updatedBody, updatedHeader, updatedSubTitle)
     
     if (updatedHeader.id ) {
       console.log('in header PUT', updatedHeader)
@@ -77,7 +92,17 @@ class Classes extends Component {
 
     if (updatedBody.id) {
       console.log('in body PUT', updatedBody)
-      axios.put(`/api/editables/${updatedBody.id}`, updatedBody )
+      axios.put(`api/editables/${updatedBody.id}`, updatedBody )
+    }
+
+    if (updatedSubTitle.id) {
+      console.log('in subTitle PUT', updatedSubTitle, 'ID!!!!!:', updatedSubTitle.id)
+      axios.put(`api/editables/${updatedSubTitle.id}`, updatedSubTitle)
+    }
+
+    if (updatedSubContent.id) {
+      console.log('in subContent PUT', updatedSubContent)
+      axios.put(`api/editables/${updatedSubContent.id}`, updatedSubContent)
     }
 
   }
@@ -101,8 +126,8 @@ class Classes extends Component {
             <Header textAlign="center">
               <SectionHead>
                 <ContentEditable
-                  html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'classHeader').textShort : 'Default'} // innerHTML of the editable div - this.state.html
-                  disabled={false}       // use true to disable editing maybe use the user in props here to give permissions
+                  html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'classHeader').textShort : 'Classes and Gatherings'} // innerHTML of the editable div - this.state.html
+                  disabled={this.props.user.id  ? false : true} // use true to disable editing maybe use the user in props here to give permissions
                   onChange={this.handleChangeBody} // handle innerHTML change
                   tagName='ClassesHeader' // Use a custom HTML tag (uses a div by default)
                   onBlur={this.handleBlurBody}
@@ -112,7 +137,7 @@ class Classes extends Component {
               <ContentStyleWhite>
                 <ContentEditable
                   html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'classBody').textLong : 'Default'} // innerHTML of the editable div - this.state.html
-                  disabled={false}       // use true to disable editing maybe use the user in props here to give permissions
+                  disabled={this.props.user.id ? false : true}       // use true to disable editing maybe use the user in props here to give permissions
                   onChange={this.handleChangeBody} // handle innerHTML change
                   tagName='ClassesBody' // Use a custom HTML tag (uses a div by default)
                   onBlur={this.handleBlurBody}
@@ -146,34 +171,6 @@ class Classes extends Component {
           Weekly Gatherings: 
           <Divider />
         </GreenHead>
-          {/* <ColumnHead>
-            Alutiiq Language Club
-          </ColumnHead>
-            <ContentStyle>
-              Wednesday | 12:00-1:00 pm
-              <br />
-              <i>Alutiit'stun Niuwawik</i>, Alutiiq Language Nest
-              <br />
-              215 Mission Road, Kodiak Alaska
-              <br />
-              <br />
-              The Alutiiq Language Club has been meeting since 2003. It is an informal group of learners and Elders who meet every week on Wednesday at noon in the Language Nest in downtown Kodiak.  All levels of learners and speakers are welcome to attend.  To find out more, contact the Alutiiq Museum at (844) 425-8844, or email <BodyLink href={`mailto:molly@alutiiqmuseum.org`}>Molly Odell</BodyLink> at the Alutiiq Museum for more information. All are welcome at Language Club.
-            </ContentStyle>
-          <br /> */}
-          {/* <ColumnHead>
-            Family Language Night
-          </ColumnHead>
-            <ContentStyle>
-              Wednesday Night | 5:00-6:30 pm | During the schoolyear only
-              <br />
-              Fishery Industrial Technology center
-              <br />
-              118 Trident Way, Kodiak Alaska
-              <br />
-              <br />
-              Families gather to make soup and learn Alutiiq language in a fun and interactive envrionment. This gathering is sponsored by a grant from the Administration for Native Americans, and hosted by the <BodyLink href={"http://sunaq.org/"} target="_blank">Sun'aq Tribe of Kodiak</BodyLink>, with support from the University of Alaska Fairbanks.
-            </ContentStyle>
-          <br /> */}
 
           {/* TODO: TEXT EDIT FIELDS */}
           <ColumnHead>
@@ -280,15 +277,28 @@ class Classes extends Component {
             <Image src={Jenga} size='massive' floated='left' verticalAlign='middle' />
           </Grid.Column>
           <Grid.Column width={5}>
-            <WhiteTitle>
-              <i>Allrani wamlita allrilugmi.</i>
-            </WhiteTitle>
-            <ContentStyleWhiteLeft>
-              Sometimes we all play games together. That way, we all have fun! Playing games makes learning Alutiiq fun, and engages all of us. 
-              <br />
-              <br />
-              This picture was taken at the Alutiiq Nation Festival. Language learners are playing a game of super-sized Jenga! 
-            </ContentStyleWhiteLeft>
+            <SpecialDiv innerRef={this.contentEditable}>
+              <WhiteTitle>
+                <i>
+                  <ContentEditable
+                      html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'classSubTitle').textShort : 'Allrani wamlita allrilugmi!!!!!!!!.'} // innerHTML of the editable div - this.state.html
+                      disabled={this.props.user.id ? false : true}       // use true to disable editing maybe use the user in props here to give permissions
+                      onChange={this.handleChangeBody} // handle innerHTML change
+                      tagName='ClassesSubTitle' // Use a custom HTML tag (uses a div by default)
+                      onBlur={this.handleBlurBody}
+                  />
+                </i>
+              </WhiteTitle>
+              <ContentStyleWhiteLeft>
+                <ContentEditable
+                      html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'classSubContent').textLong : 'Sometimes we all play games together. That way, we all have fun! Playing games makes learning Alutiiq fun, and engages all of us.'} // innerHTML of the editable div - this.state.html
+                      disabled={this.props.user.id ? false : true}       // use true to disable editing maybe use the user in props here to give permissions
+                      onChange={this.handleChangeBody} // handle innerHTML change
+                      tagName='ClassesSubContent' // Use a custom HTML tag (uses a div by default)
+                      onBlur={this.handleBlurBody}
+                  />
+              </ContentStyleWhiteLeft>
+            </SpecialDiv>
           </Grid.Column>
         </Grid>
       </GreenDiv>
@@ -301,7 +311,8 @@ class Classes extends Component {
 
 const mapStateToProps = (state) => {
   return{
-    editables: state.editables
+    editables: state.editables,
+    user: state.user
   }
 }
 
