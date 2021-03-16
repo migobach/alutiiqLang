@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { getMaterials } from '../reducers/materials'
+import { getEditablesData } from '../reducers/editables'
 import { 
   Header, 
   Image,
@@ -16,7 +17,6 @@ import {
 import {
   SpecialDiv,
   SectionHead,
-  SubSectionHead,
   ContentStyle,
   QuotePerson,
   GreenDiv,
@@ -29,7 +29,9 @@ import {
   ContentStyleWhiteLeft,
 } from './styles/CommonStyles'
 import Alisha from '../images/alisha.jpg'
+import ContentEditable from 'react-contenteditable'
 import MaterialsView from './materials/MaterialsView'
+import axios from 'axios'
 
 class Materials extends Component {
   state = { 
@@ -37,11 +39,14 @@ class Materials extends Component {
     searchView: false,  
     loading: true, 
     materialView: false,
+    materialHeader: {},
+    materialBody: {}
   }
   
   componentDidMount() {
     const { dispatch } = this.props
     dispatch(getMaterials())
+    dispatch(getEditablesData())
   }
 
   componentDidUpdate(prevProps) {
@@ -67,6 +72,38 @@ class Materials extends Component {
 
   handleChange = (e, { name, value}) => {
     this.setState({ [name]: value })
+  }
+
+  handleChangeEditable = evt => {
+    console.log('evt:', evt)
+    const elementType = evt._dispatchInstances.type
+
+    if (elementType == 'MaterialHeader') {
+      const preStructuredHeader = this.props.editables.find(val => val.name === 'materialHeader')
+        preStructuredHeader.textShort = evt.target.value
+        this.state.materialHeader = preStructuredHeader
+    }
+    
+    if (elementType == 'MaterialBody') {
+      const presturcturedBody = this.props.editables.find(val => val.name === 'materialBody')
+        presturcturedBody.textLong = evt.target.value
+        this.state.materialBody = presturcturedBody
+    }
+  }
+
+  handleBlurEditable = () => {
+    const updatedHeader = this.state.materialHeader
+    const updatedBody = this.state.materialBody
+
+    if (updatedHeader.id) {
+      console.log('in header PUT', updatedHeader)
+      axios.put(`api/editables/${updatedHeader.id}`, updatedHeader)
+    }
+
+    if(updatedBody.id) {
+      console.log('in body PUT', updatedBody)
+      axios.put(`api/editables/${updatedBody.id}`, updatedBody)
+    }
   }
   
   setMaterial = (material) => {
@@ -145,17 +182,30 @@ class Materials extends Component {
       <SpecialDiv>
         <Header textAlign='center'>
           <SectionHead>
-            Learning Materials
+            <ContentEditable
+              html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'materialHeader').textShort : 'Learning Materials'} // innerHTML of the editable div - this.state.html
+              disabled={this.props.user.id  ? false : true} // use true to disable editing maybe use the user in props here to give permissions
+              onChange={this.handleChangeEditable} // handle innerHTML change
+              tagName='MaterialHeader' // Use a custom HTML tag (uses a div by default)
+              onBlur={this.handleBlurEditable}
+            />
           </SectionHead>
         </Header>
         <ContentStyle>
-          There are many ways to learn the Alutiiq language: learning from a friend or family member, studying resources, or playing games. Most importantly, there are many ways to integrate Alutiiq into your daily life. Everyone who knows a word or phrase has something to share. 
-          <br />
-          <br />
-          There are many resources housed on this page to help get you going with your learning journey. Check out some of the book designed for learners who are just starting out. Hang some of the posters hosted here around your home or office. Share time with family or friends and play one of the simple games available through the links below. Or, listen to stories in Alutiiq in an effort to increase your fluency by modeling someone more proficient than yourself. 
-          <br />
-          <br />
-          Most importantly, use the language that you have. Even if that is just saying <i>Cama'i</i> to your neighbors. 
+          <ContentEditable
+            html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'materialBody').textLong : 'Default text' } // innerHTML of the editable div - this.state.html
+            disabled={this.props.user.id  ? false : true} // use true to disable editing maybe use the user in props here to give permissions
+            onChange={this.handleChangeEditable} // handle innerHTML change
+            tagName='MaterialBody' // Use a custom HTML tag (uses a div by default)
+            onBlur={this.handleBlurEditable}
+          />
+          {/* ` There are many ways to learn the Alutiiq language: learning from a friend or family member, studying resources, or playing games. Most importantly, there are many ways to integrate Alutiiq into your daily life. Everyone who knows a word or phrase has something to share. 
+            <br />
+            <br />
+            There are many resources housed on this page to help get you going with your learning journey. Check out some of the book designed for learners who are just starting out. Hang some of the posters hosted here around your home or office. Share time with family or friends and play one of the simple games available through the links below. Or, listen to stories in Alutiiq in an effort to increase your fluency by modeling someone more proficient than yourself. 
+            <br />
+            <br />
+            Most importantly, use the language that you have. Even if that is just saying <i>Cama'i</i> to your neighbors. ` */}
         </ContentStyle>
       </SpecialDiv>
 
@@ -387,7 +437,10 @@ class Materials extends Component {
 
  const mapStateToProps = (state) => {
   return { 
-    materials: state.materials
+    materials: state.materials,
+    user: state.user,
+    editables: state.editables
+
   }
 } 
 

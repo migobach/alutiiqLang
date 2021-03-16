@@ -1,4 +1,4 @@
-import React, { Component, useRef } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getEditablesData } from '../reducers/editables'
 import { 
@@ -40,7 +40,7 @@ class Classes extends Component {
   }
   
   componentDidMount() {
-    const { dispatch, user } = this.props
+    const { dispatch } = this.props
     dispatch(getEditablesData())
   }
   
@@ -55,28 +55,26 @@ class Classes extends Component {
   
    if (elementType == 'ClassesHeader') {
       const preStructuredHeader = { ...this.props.editables.find(val => val.name === 'classHeader') }
-      preStructuredHeader.textShort = evt.target.value
-      this.state.header = preStructuredHeader
+        preStructuredHeader.textShort = evt.target.value
+        this.state.header = preStructuredHeader
     } else if (elementType == 'ClassesBody') {
       const preStructuredBody = this.props.editables.find(val => val.name === 'classBody')
         preStructuredBody.textLong = evt.target.value
         this.state.body = preStructuredBody
     } else if (elementType == 'ClassesSubTitle') {
       const preStructuredSubTitle = this.props.editables.find(val => val.name === 'classSubTitle')
-      preStructuredSubTitle.textShort = evt.target.value
-      this.state.title = preStructuredSubTitle
+        preStructuredSubTitle.textShort = evt.target.value
+        this.state.title = preStructuredSubTitle
     } else if ( elementType == 'ClassesSubContent') {
       const preStructuredSubContent = this.props.editables.find(val => val.name === 'classSubContent')
-      preStructuredSubContent.textLong = evt.target.value
-      this.state.content = preStructuredSubContent
+        preStructuredSubContent.textLong = evt.target.value
+        this.state.content = preStructuredSubContent
     }
   };
 
-  // todo: finish up the green section below for text editing. 
-
-  handleChange = evt => {
-    console.log('event val', evt.target.value)
-  }
+  // handleChange = evt => {
+  //   console.log('event val', evt.target.value)
+  // }
 
   handleBlurBody = () => {
     const updatedBody = this.state.body

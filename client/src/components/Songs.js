@@ -29,6 +29,9 @@ import {
 } from './styles/CommonStyles'
 import SongView from './SongView'
 import Dancers from '../images/Dancers.jpg'
+import ContentEditable from 'react-contenteditable'
+import axios from 'axios'
+import { getEditablesData } from '../reducers/editables'
 
 let firstButton = new Audio('https://alutiiq-language-resources.s3-us-west-2.amazonaws.com/page_audio/Aturlita.mp3')
 let secondButton = new Audio('https://alutiiq-language-resources.s3-us-west-2.amazonaws.com/page_audio/Atuuciqarpenga.mp3')
@@ -38,11 +41,14 @@ class Songs extends Component {
     songData: {}, 
     songView: false,
     searchSongs: '',
-    searchView: false
+    searchView: false, 
+    songHeader: {},
+    songBody: {}
   }
 
   componentDidMount() {
     const { dispatch } = this.props
+    dispatch(getEditablesData())
 
     this.props.location.state == null ?
     dispatch(getSongs())
@@ -78,6 +84,36 @@ class Songs extends Component {
 
  handleChange = (e, { name, value }) => {
     this.setState({ [name]: value })
+ }
+
+ handleChangeEditable = evt => {
+   console.log('evt: ', evt)
+   const elementType = evt._dispatchInstances.type
+   
+   if (elementType == 'SongsHeader') {
+     const preStructuredHeader = this.props.editables.find(val => val.name === 'songHeader')
+      preStructuredHeader.textShort = evt.target.value
+      this.state.songHeader = preStructuredHeader
+   } else if (elementType == 'SongsBody') {
+     const presturcturedBody = this.props.editables.find(val => val.name === 'songBody')
+      presturcturedBody.textLong = evt.target.value
+      this.state.songBody = presturcturedBody
+   }
+ }
+
+ handleBlurEditable = () => {
+   const updatedHeader = this.state.songHeader
+   const updatedBody = this.state.songBody
+
+   if (updatedHeader.id) {
+     console.log('in header PUT', updatedHeader)
+     axios.put(`api/editables/${updatedHeader.id}`, updatedHeader)
+   } 
+
+   if (updatedBody.id) {
+     console.log('in body PUT', updatedBody)
+     axios.put(`api/editables/${updatedBody.id}`, updatedBody)
+   }
  }
 
  renderSearchSongs = () => {
@@ -156,12 +192,23 @@ class Songs extends Component {
           <SpecialDiv>
             <Header textAlign="center">
               <SectionHead>
-                Songs
+                <ContentEditable
+                  html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'songHeader').textShort : 'Songs'} // innerHTML of the editable div - this.state.html
+                  disabled={this.props.user.id  ? false : true} // use true to disable editing maybe use the user in props here to give permissions
+                  onChange={this.handleChangeEditable} // handle innerHTML change
+                  tagName='SongsHeader' // Use a custom HTML tag (uses a div by default)
+                  onBlur={this.handleBlurEditable}
+                />
               </SectionHead>
             </Header>
-            {/* TODO: TEXT EDIT FIELDS */}
               <ContentStyleWhite>
-                Songs have been sung for millenia to mark important events and people, tell stories, celebrate and honor. Traditional songs have helped inpire new, modern songs. <i>Quyanaasinaq</i> to all the lyricists and Elders who have contributed over the years to develop this growing collection of Alutiiq Songs.
+                <ContentEditable
+                  html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'songBody').textLong : `Songs have been sung for millenia to mark important events and people, tell stories, celebrate and honor. Traditional songs have helped inpire new, modern songs. <i>Quyanaasinaq</i> to all the lyricists and Elders who have contributed over the years to develop this growing collection of Alutiiq Songs.`} // innerHTML of the editable div - this.state.html
+                  disabled={this.props.user.id  ? false : true} // use true to disable editing maybe use the user in props here to give permissions
+                  onChange={this.handleChangeEditable} // handle innerHTML change
+                  tagName='SongsBody' // Use a custom HTML tag (uses a div by default)
+                  onBlur={this.handleBlurEditable}
+                />
               </ContentStyleWhite>
           </SpecialDiv>
         </div>
@@ -319,7 +366,9 @@ class Songs extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    songs: state.songs
+    songs: state.songs,
+    editables: state.editables,
+    user: state.user
   }
 }
 
