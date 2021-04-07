@@ -18,6 +18,7 @@ import {
   SpecialDiv,
   SectionHead,
   ContentStyle,
+  ContentStyleCenter,
   QuotePerson,
   GreenDiv,
   ContentStyleQuote,
@@ -191,7 +192,7 @@ class Materials extends Component {
             />
           </SectionHead>
         </Header>
-        <ContentStyle>
+        <ContentStyleCenter>
           <ContentEditable
             html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'materialBody').textLong : 'Default text' } // innerHTML of the editable div - this.state.html
             disabled={this.props.user.id  ? false : true} // use true to disable editing maybe use the user in props here to give permissions
@@ -206,7 +207,7 @@ class Materials extends Component {
             <br />
             <br />
             Most importantly, use the language that you have. Even if that is just saying <i>Cama'i</i> to your neighbors. ` */}
-        </ContentStyle>
+        </ContentStyleCenter>
       </SpecialDiv>
 
   {/* CARD SECTION  */}

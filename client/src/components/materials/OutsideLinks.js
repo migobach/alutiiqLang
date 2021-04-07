@@ -38,6 +38,15 @@ const OutsideLinks = () => (
 
     <SpecialDiv>
       <LinkHead>
+        <GreenLink href='https://langfish.herokuapp.com/' target = '_blank'>
+          Go Fish Game Online
+        </GreenLink>
+      </LinkHead>
+        <ContentStyle>
+          Thanks to the help and support of language activist Cedar Edwards, you can now play Go Fish! online with your friends. Click on the link above to start your virtual game and begin using Alutiiq in context, and learning new words. 
+        </ContentStyle>
+
+      <LinkHead>
         <GreenLink href='https://alutiiqmuseum.org/' target='_blank'>
           The Alutiiq Museum and Archaeological Repository 
         </GreenLink>
