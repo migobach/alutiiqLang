@@ -98,6 +98,8 @@ class MaterialsView extends Component {
       }
     }
 
+    //TODO: I THINK THE CONDITION IS WRONG, IT NEED TO EVALUATE AGAINST UNDEFINED OR NULL, NOT EMPTY STRING
+
     handleUrl = () => { 
       if (this.props.material.url !== "" && this.props.material.file_url !== "") {
         return(

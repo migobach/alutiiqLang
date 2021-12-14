@@ -588,7 +588,7 @@ class Home extends Component {
 
 {/* SPECIAL CONTENT FEATURING SOMETHING IN THE NEAR FUTURE ---- THIS WILL BE A FORM WHEN ADMIN SIGNS IN */}
 
-          {/* <Container textAlign='center' verticalAlign='middle'>
+          <Container textAlign='center' verticalAlign='middle'>
           {
             showForm ? 
             <div>
@@ -615,7 +615,7 @@ class Home extends Component {
             </div>
           :
             null
-          } */}
+          }
       </div>
     )
   }

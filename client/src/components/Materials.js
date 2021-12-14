@@ -180,7 +180,8 @@ class Materials extends Component {
 
     return(
     <Fragment>
-      <SpecialDiv>
+      <div>
+      <SpecialDiv innerRef={this.contentEditable}>
         <Header textAlign='center'>
           <SectionHead>
             <ContentEditable
@@ -209,6 +210,7 @@ class Materials extends Component {
             Most importantly, use the language that you have. Even if that is just saying <i>Cama'i</i> to your neighbors. ` */}
         </ContentStyleCenter>
       </SpecialDiv>
+      </div>
 
   {/* CARD SECTION  */}
 
