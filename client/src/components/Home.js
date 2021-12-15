@@ -9,6 +9,7 @@ import { getCurriculum } from '../reducers/curriculum'
 import { getMaterials } from '../reducers/materials'
 import { getSongs } from '../reducers/songs'
 import { getItems } from '../reducers/items'
+import { getEditablesData } from '../reducers/editables'
 import {  
   Card,
   Button, 
@@ -20,6 +21,7 @@ import {
   Form,
 } from 'semantic-ui-react'
 import { Parallax } from 'react-parallax'
+import ContentEditable from 'react-contenteditable'
 import Banner from '../images/Afognak.jpg'
 import { 
   CardHeader,
@@ -41,6 +43,7 @@ import {
   SubHeader
 } from './styles/CommonStyles'
 import ItemForm from './ItemForm'
+import axios from 'axios'
 
 
 let liicugtukutAudio = new Audio('https://alutiiq-language-resources.s3-us-west-2.amazonaws.com/page_audio/liicugtukut.mp3')
@@ -51,6 +54,9 @@ class Home extends Component {
     searchData: '',
     renderSearch: false,
     showForm: false,
+    cardBody1: {},
+    cardHeader1: {},
+    cardURL1: {},
   }
 
   componentDidMount() {
@@ -63,6 +69,7 @@ class Home extends Component {
     dispatch(getMaterials())
     dispatch(getSongs())
     dispatch(getItems())
+    dispatch(getEditablesData())
   }
 
   toggleHomeButton = () => {
@@ -76,6 +83,46 @@ class Home extends Component {
 
   handleChange = (e, { name, value }) => {
     this.setState({ [name]: value })
+  }
+
+  handleBlurEditable = () => {
+    const updatedCardHeader1 = this.state.cardHeader1
+    const updatedCardBody1 = this.state.cardBody1
+    const updatedCardURL1 = this.state.cardURL1
+
+    if (updatedCardHeader1.id) {
+      console.log('in card 1 header PUT', updatedCardHeader1)
+      axios.put(`api/editables/${updatedCardHeader1.id}`, updatedCardHeader1)
+    } 
+
+    if (updatedCardBody1.id) {
+      console.log('in card 1 body PUT', updatedCardBody1)
+      axios.put(`api/editables/${updatedCardBody1.id}`, updatedCardBody1)
+    }
+
+    if (updatedCardURL1.id ) {
+      console.log('in card 1 URL PUT', updatedCardURL1)
+      axios.put(`api/editables/${updatedCardURL1.id}`, updatedCardURL1)
+    }
+  }
+
+  handleChangeEditable = evt => {
+    console.log('evt: ', evt)
+    const elementType = evt._dispatchInstances.type
+
+    if (elementType == 'cardHeader1') {
+      const prestructuredCardHeader1 = this.props.editables.find(val => val.name === 'cardHeader1')
+      prestructuredCardHeader1.textShort = evt.target.value
+      this.state.cardHeader1 = prestructuredCardHeader1
+    } else if (elementType === 'cardBody1') {
+      const prestructedCardBody1 = this.props.editables.find(val => val.name === 'cardBody1')
+      prestructedCardBody1.textLong = evt.target.value
+      this.state.cardBody1 = prestructedCardBody1
+    } else if (elementType === 'cardURL1') {
+      const prestructuredCardURL1 = this.props.editables.find(val => val.name === 'cardURL1')
+      prestructuredCardURL1.textShort = evt.target.value
+      this.state.cardURL1 = prestructuredCardURL1
+    }
   }
 
   handleBoolean = (e, { name, value }) => {
@@ -407,7 +454,7 @@ class Home extends Component {
 
   render() {
     const { searchData, renderSearch, showForm } = this.state
-    const { user } = this.props
+    const { user, editables } = this.props
     
     return (
       <div>
@@ -439,25 +486,79 @@ class Home extends Component {
           
         <ContainerPad>
           <Card.Group itemsPerRow={3} stackable={true}>
+            {this.props.user.id ? 
             <Card>
               <Card.Content header textAlign='center'>
                 <CardHeader>
-                  Happenings
+                  <ContentEditable
+                    html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'cardHeader1').textShort : 'Happenings' }
+                    disabled={this.props.user.id ? false : true}
+                    onChange={this.handleChangeEditable}
+                    tagName='cardHeader1'
+                    onBlur={this.handleBlurEditable}
+                  />
                 </CardHeader>
               </Card.Content>
               <Card.Content>
                 <SpecialDiv>
                   <ContentStyle>
-                    What is happeing, and how do you get involved? Click below to learn more about the history of language revitalization on the Kodiak Archipelago and learn about Alutiiq worldviews.
+                    {/* What is happeing, and how do you get involved? Click below to learn more about the history of language revitalization on the Kodiak Archipelago and learn about Alutiiq worldviews. */}
+                      <ContentEditable
+                        html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'cardBody1').textLong : 'What is happeing, and how do you get involved? Click below to learn more about the history of language revitalization on the Kodiak Archipelago and learn about Alutiiq worldviews.'}
+                        disabled={this.props.user.id ? false : true}
+                        onChange={this.handleChangeEditable}
+                        tagName='cardBody1'
+                        onBlur={this.handleBlurEditable}
+                      />
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-                <Link to={`/happenings`} >
-                  <Button color='yellow' size='small' fluid>
-                    Go 
+                {/* <Link to={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'cardURL1') : `/happenings`} > */}
+                  <Button color='yellow' size='small' disabled>
+                    <ContentEditable
+                      html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'cardURL1').textShort : 'https://www.example.com'}
+                      disabled={this.props.user.id ? false : true}
+                      onChange={this.handleChangeEditable}
+                      tagName='cardURL1'
+                      onBlur={this.handleBlurEditable}
+                    />
                   </Button>
-                </Link>
+                {/* </Link> */}
             </Card>
+            :
+            <Card>
+              <Card.Content header textAlign='center'>
+                <CardHeader>
+                  <ContentEditable
+                    html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'cardHeader1').textShort : 'Happenings' }
+                    disabled={this.props.user.id ? false : true}
+                    onChange={this.handleChangeEditable}
+                    tagName='cardHeader1'
+                    onBlur={this.handleBlurEditable}
+                  />
+                </CardHeader>
+              </Card.Content>
+              <Card.Content>
+                <SpecialDiv>
+                  <ContentStyle>
+                    {/* What is happeing, and how do you get involved? Click below to learn more about the history of language revitalization on the Kodiak Archipelago and learn about Alutiiq worldviews. */}
+                      <ContentEditable
+                        html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'cardBody1').textLong : 'What is happeing, and how do you get involved? Click below to learn more about the history of language revitalization on the Kodiak Archipelago and learn about Alutiiq worldviews.'}
+                        disabled={this.props.user.id ? false : true}
+                        onChange={this.handleChangeEditable}
+                        tagName='cardBody1'
+                        onBlur={this.handleBlurEditable}
+                      />
+                  </ContentStyle>
+                </SpecialDiv>
+              </Card.Content>
+                {/* <Link to={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'cardURL1').textShort : `/happenings`} > */}
+                  <Button as='a' href={this.props.editables.length > 1 ? this.props.editables.find(val => val.name === 'cardURL1').textShort : 'https://www.bing.com'} color='yellow' size='small' fluid>
+                   Go
+                  </Button>
+                {/* </Link> */}
+            </Card>
+          }
     
             <Card>
               <Card.Content header textAlign='center'>
@@ -633,7 +734,8 @@ const mapStateToProps = (state) => {
     materials: state.material,
     songs: state.songs,
     items: state.items,
-    user: state.user
+    user: state.user,
+    editables: state.editables
   }
  }
 export default connect(mapStateToProps)(Home)
