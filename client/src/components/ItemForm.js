@@ -90,11 +90,11 @@ class ItemForm extends Component {
                   onChange={this.handleChange}
                 />
               </Form.Group>
-                <Form.Checkbox 
+                {/* <Form.Checkbox 
                   label='Is this segment going to be visible?'
                   value={visible}
                   onChange={this.handleBoolean}
-                />
+                /> */}
                 <Divider hidden />
               <Button type='submit'>
                 Save

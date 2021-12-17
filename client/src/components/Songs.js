@@ -25,7 +25,7 @@ import {
   SongDiv,
   SongHeight,
   Div, 
-  Pointer
+  Pointer, 
 } from './styles/CommonStyles'
 import SongView from './SongView'
 import Dancers from '../images/Dancers.jpg'
@@ -43,7 +43,10 @@ class Songs extends Component {
     searchSongs: '',
     searchView: false, 
     songHeader: {},
-    songBody: {}
+    songBody: {},
+    songFooterTitle: {},
+    songFooterContent: {},
+    songFooterUrl: {}
   }
 
   componentDidMount() {
@@ -53,7 +56,10 @@ class Songs extends Component {
     this.props.location.state == null ?
     dispatch(getSongs())
     : 
-    this.setState( {songView: this.props.location.state.songView, songData: this.props.location.state.songData} ) // add this.props.location.state.songDataId
+    this.setState( {
+      songView: this.props.location.state.songView, 
+      songData: this.props.location.state.songData
+    } ) // add this.props.location.state.songDataId
   }
 
   setSong = (song) => {
@@ -98,12 +104,27 @@ class Songs extends Component {
      const presturcturedBody = this.props.editables.find(val => val.name === 'songBody')
       presturcturedBody.textLong = evt.target.value
       this.state.songBody = presturcturedBody
+   } else if (elementType == 'SongsFooterTitle') {
+     const prestructuredFooterTitle = this.props.editables.find(val => val.name === 'songFooterTitle')
+     prestructuredFooterTitle.textShort = evt.target.value
+     this.state.songFooterTitle = prestructuredFooterTitle
+   } else if (elementType == 'SongsFooterContent') {
+     const prestructuredFooterContent = this.props.editables.find(val => val.name === 'songFooterContent')
+     prestructuredFooterContent.textLong = evt.target.value
+     this.state.songFooterTitle = prestructuredFooterContent
+   } else if (elementType == 'SongsFooterUrl') {
+     const prestructuredfooterUrl = this.props.editables.find(val => val.name === 'songFooterUrl')
+     prestructuredfooterUrl.imageUrl = evt.target.value
+     this.state.songFooterUrl = prestructuredfooterUrl
    }
  }
 
  handleBlurEditable = () => {
    const updatedHeader = this.state.songHeader
    const updatedBody = this.state.songBody
+   const updatedFooterTitle = this.state.songFooterTitle
+   const updatedFooterContent = this.state.songFooterContent
+   const updatedFooterUrl = this.state.songFooterUrl
 
    if (updatedHeader.id) {
      console.log('in header PUT', updatedHeader)
@@ -113,6 +134,21 @@ class Songs extends Component {
    if (updatedBody.id) {
      console.log('in body PUT', updatedBody)
      axios.put(`api/editables/${updatedBody.id}`, updatedBody)
+   }
+
+   if (updatedFooterTitle.id) {
+    console.log('in footer PUT', updatedFooterTitle)
+    axios.put(`api/editables/${updatedFooterTitle.id}`, updatedFooterTitle)
+   }
+
+   if(updatedFooterContent.id) {
+     console.log('in footer content PUT', updatedFooterContent)
+     axios.put(`api/editables/${updatedFooterContent.id}`, updatedFooterContent)
+   }
+
+   if(updatedFooterUrl.id) {
+     console.log('in footer URL PUT', updatedFooterUrl)
+     axios.put(`api/editables/${updatedFooterUrl.id}`, updatedFooterUrl)
    }
  }
 
@@ -189,7 +225,7 @@ class Songs extends Component {
           strength={500}
         >
         <div style={{height: 350}}>
-          <SpecialDiv>
+          <SpecialDiv innerRef={this.contentEditable}>
             <Header textAlign="center">
               <SectionHead>
                 <ContentEditable
@@ -345,24 +381,65 @@ class Songs extends Component {
       <BlueDiv>
         <Header textAlign='center'>
           <SectionHead>
-            Songbook  
+            <ContentEditable
+              html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'songFooterTitle').textShort : 'SongBook'}
+              disabled={this.props.user.id ? false : true }
+              onChange={this.handleChangeEditable}
+              tagName='SongsFooterTitle'
+              onBlur={this.handleBlurEditable}
+            />
           </SectionHead>
         </Header>
         <ContentStyleWhite>
-          We are proud to announce our Alutiiq Songbook! This book features traditional and contemporary Alutiiq songs including sheet music and lyrics for each song. To use the Songbook, click the icon below. Special thanks to author Peter Squartsoff. <i>Quyanaa</i> to all who contributed to this project. 
+          <ContentEditable
+            html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'songFooterContent').textLong : 'We are proud to announce our Alutiiq Songbook! This book features traditional and contemporary Alutiiq songs including sheet music and lyrics for each song. To use the Songbook, click the icon below. Special thanks to author Peter Squartsoff. <i>Quyanaa</i> to all who contributed to this project.'}
+            disabled={this.props.user.id ? false : true }
+            onChange={this.handleChangeEditable}
+            tagName='SongsFooterContent'
+            onBlur={this.handleBlurEditable}
+          />
         </ContentStyleWhite>
+
           <SpecialDiv>
-            <Container textAlign='center'>
-              <IconLink href='https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/resources/Alutiiq+Songbook+NO+glossary.pdf' target='_blank'>
-                <IconHover name='book'/>
-              </IconLink>
-            </Container>
+            {this.props.user.id ? 
+              <Container textAlign='center'>
+
+                <Icon name='linkify' size='large'/>
+                <br />
+                <br />
+                <ContentStyleWhite>
+                  <i>
+                    Current link: 
+                  </i>
+                </ContentStyleWhite>
+                <ContentStyleWhite>
+                  <ContentEditable
+                    html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'songFooterUrl').imageUrl : 'No URL found'}
+                    disabled={false}
+                    onChange={this.handleChangeEditable}
+                    tagName='SongsFooterUrl'
+                    onBlur={this.handleBlurEditable}
+                  />
+                </ContentStyleWhite>
+              </Container>
+            :
+              <Container textAlign='center'>
+                <IconLink 
+                  href={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'songFooterUrl').imageUrl : 'https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/resources/Alutiiq+Songbook+NO+glossary.pdf' }
+                  target='_blank'
+                >
+                  <IconHover name='linkify'/>
+                </IconLink>
+              </Container>
+            }
           </SpecialDiv>
       </BlueDiv>
     </div>
     )
   }
 }
+
+// 'https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/resources/Alutiiq+Songbook+NO+glossary.pdf'
 
 const mapStateToProps = (state) => {
   return {

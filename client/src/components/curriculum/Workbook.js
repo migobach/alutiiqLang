@@ -116,7 +116,7 @@ class Workbook extends Component {
               Audio files have been prepared for each of the 40 vocabulary groups listed below to accompany the teacher's workbook. You can request a CD of all 40 lessons or listen online to each in both Northern and Southern styles of Kodiak Alutiiq, repeated in that order. <i>Quyanaasinaq</i> to Kathryn Chichenoff (Northern style), Florence Pestrikoff (Southern style), and Susan Malutin (English) who lent their voices to this project.
               <br />
               <br />
-              A full version of of the workbook is available to be pinted and shared widely for educational puposes. 
+              A full version of of the workbook is available to be printed and shared widely for educational puposes. 
             </ContentStyleWhite>
             <SpecialDiv>
               <Container textAlign='center'>

@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { getWords } from '../reducers/dictionary'
+import { getEditablesData } from '../reducers/editables'
 import { Parallax } from 'react-parallax'
 import {  
   Header,
@@ -27,17 +28,17 @@ const r = '\u{0280}'
 const russianR = new RegExp(`[${r}]`,'g');
 
 class Dictionary extends Component {
-
   state = { 
     searchTerms: '', 
     wordView: false, 
     wordData: {}, 
-    loading: true 
+    loading: true,
   }
 
   componentDidMount() {
     const { dispatch } = this.props
     dispatch(getWords())
+    dispatch(getEditablesData());
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -270,7 +271,8 @@ class Dictionary extends Component {
 
 const mapStateToProps = (state) => {
   return{
-    words: state.words
+    words: state.words,
+    editables: state.editables
   }
 }
 

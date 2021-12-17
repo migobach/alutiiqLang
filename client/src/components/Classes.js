@@ -119,8 +119,8 @@ class Classes extends Component {
         bgImageAlt="Illustration from Grouse Girl Book"
         strength={500}
       >
-        <div style={{height: 450}}>
-          <SpecialDiv innerRef={this.contentEditable}>
+        <div style={{height: 350}}>
+          <SpecialDiv>
             <Header textAlign="center">
               <SectionHead>
                 <ContentEditable
@@ -141,8 +141,7 @@ class Classes extends Component {
                   onBlur={this.handleBlurBody}
                 />
               </ContentStyleWhite>
-          </SpecialDiv>
-          
+          </SpecialDiv>   
         </div>
       </Parallax>
 
