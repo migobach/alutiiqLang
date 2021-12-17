@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, setState } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getPosters } from '../reducers/posters'
@@ -57,6 +57,12 @@ class Home extends Component {
     cardBody1: {},
     cardHeader1: {},
     cardURL1: {},
+    cardHeader2: {},
+    cardBody2: {},
+    cardURL2: {},
+    cardHeader3: {},
+    cardBody3: {},
+    cardURL3: {},
   }
 
   componentDidMount() {
@@ -89,20 +95,48 @@ class Home extends Component {
     const updatedCardHeader1 = this.state.cardHeader1
     const updatedCardBody1 = this.state.cardBody1
     const updatedCardURL1 = this.state.cardURL1
+    const updatedCardHeader2 = this.state.cardHeader2
+    const updatedCardBody2 = this.state.cardBody2
+    const updatedCardURL2 = this.state.cardURL2
+    const updatedCardHeader3 = this.state.cardHeader3
+    const updatedCardBody3 = this.state.cardBody3
+    const updatedCardURL3 = this.state.cardURL3
 
     if (updatedCardHeader1.id) {
       console.log('in card 1 header PUT', updatedCardHeader1)
       axios.put(`api/editables/${updatedCardHeader1.id}`, updatedCardHeader1)
     } 
-
     if (updatedCardBody1.id) {
       console.log('in card 1 body PUT', updatedCardBody1)
       axios.put(`api/editables/${updatedCardBody1.id}`, updatedCardBody1)
     }
-
     if (updatedCardURL1.id ) {
       console.log('in card 1 URL PUT', updatedCardURL1)
       axios.put(`api/editables/${updatedCardURL1.id}`, updatedCardURL1)
+    }
+    if (updatedCardHeader2.id ) {
+      console.log('in card 2 header PUT', updatedCardHeader2)
+      axios.put(`api/editables/${updatedCardHeader2.id}`, updatedCardHeader2)
+    }
+    if (updatedCardBody2.id) {
+      console.log('in card 2 body PUT', updatedCardBody2)
+      axios.put(`api/editables/${updatedCardBody2.id}`, updatedCardBody2)
+    }
+    if (updatedCardURL2.id ) {
+      console.log('in card 2 URL PUT', updatedCardURL2)
+      axios.put(`api/editables/${updatedCardURL2.id}`, updatedCardURL2)
+    }
+    if (updatedCardHeader3.id ) {
+      console.log('in card 3 header PUT', updatedCardHeader3)
+      axios.put(`api/editables/${updatedCardHeader3.id}`, updatedCardHeader3)
+    }
+    if (updatedCardBody3.id) {
+      console.log('in card 3 body PUT', updatedCardBody3)
+      axios.put(`api/editables/${updatedCardBody3.id}`, updatedCardBody3)
+    }
+    if (updatedCardURL3.id ) {
+      console.log('in card 3 URL PUT', updatedCardURL3)
+      axios.put(`api/editables/${updatedCardURL3.id}`, updatedCardURL3)
     }
   }
 
@@ -110,18 +144,42 @@ class Home extends Component {
     console.log('evt: ', evt)
     const elementType = evt._dispatchInstances.type
 
-    if (elementType == 'cardHeader1') {
+    if (elementType === 'cardHeader1') {
       const prestructuredCardHeader1 = this.props.editables.find(val => val.name === 'cardHeader1')
       prestructuredCardHeader1.textShort = evt.target.value
-      this.state.cardHeader1 = prestructuredCardHeader1
+      this.setState({ cardHeader1: prestructuredCardHeader1})
     } else if (elementType === 'cardBody1') {
       const prestructedCardBody1 = this.props.editables.find(val => val.name === 'cardBody1')
       prestructedCardBody1.textLong = evt.target.value
-      this.state.cardBody1 = prestructedCardBody1
+      this.setState({ cardBody1: prestructedCardBody1 })
     } else if (elementType === 'cardURL1') {
       const prestructuredCardURL1 = this.props.editables.find(val => val.name === 'cardURL1')
       prestructuredCardURL1.textShort = evt.target.value
-      this.state.cardURL1 = prestructuredCardURL1
+      this.setState({ cardURL1: prestructuredCardURL1 })
+    } else if (elementType === 'cardHeader2') {
+      const prestructuredCardHeader2 = this.props.editables.find(val => val.name === 'cardHeader2')
+      prestructuredCardHeader2.textShort = evt.target.value
+      this.setState({ cardHeader2: prestructuredCardHeader2 })
+    } else if (elementType === 'cardBody2') {
+      const prestructuredCardBody2 = this.props.editables.find(val => val.name === 'cardBody2')
+      prestructuredCardBody2.textLong = evt.target.value
+      this.setState({ cardBody2: prestructuredCardBody2 })
+    } else if (elementType === 'cardURL2') {
+      const prestructuredCardURL2 = this.props.editables.find(val => val.name === 'cardURL2')
+      prestructuredCardURL2.textShort = evt.target.value
+      this.setState({ cardURL2: prestructuredCardURL2 })
+    } else if (elementType === 'cardHeader3') {
+      const prestructuredCardHeader3 = this.props.editables.find(val => val.name === 'cardHeader3')
+      prestructuredCardHeader3.textShort = evt.target.value
+      this.setState({ cardHeader3: prestructuredCardHeader3 })
+    } else if (elementType === 'cardBody3') {
+      const prestructuredCardBody3 = this.props.editables.find(val => val.name === 'cardBody3')
+      prestructuredCardBody3.textLong = evt.target.value
+      this.setState({ cardBody3: prestructuredCardBody3 })
+    } else if (elementType === 'cardURL3') {
+      const prestructuredCardURL3 = this.props.editables.find(val => val.name === 'cardURL3')
+      prestructuredCardURL3.textShort = evt.target.value
+      this.setState({ cardURL3: prestructuredCardURL3 })
     }
   }
 
@@ -454,7 +512,7 @@ class Home extends Component {
 
   render() {
     const { searchData, renderSearch, showForm } = this.state
-    const { user, editables } = this.props
+    const { user } = this.props
     
     return (
       <div>
@@ -482,7 +540,7 @@ class Home extends Component {
               </CreditWatermark>
         </Parallax>
 
-{/* CARD OPTIONS THAT LEAD TO DIFFERENT COMPONENTS */}
+{/* CARD OPTIONS THAT LEAD TO FEATURED CONTENT */}
           
         <ContainerPad>
           <Card.Group itemsPerRow={3} stackable={true}>
@@ -502,7 +560,6 @@ class Home extends Component {
               <Card.Content>
                 <SpecialDiv>
                   <ContentStyle>
-                    {/* What is happeing, and how do you get involved? Click below to learn more about the history of language revitalization on the Kodiak Archipelago and learn about Alutiiq worldviews. */}
                       <ContentEditable
                         html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'cardBody1').textLong : 'What is happeing, and how do you get involved? Click below to learn more about the history of language revitalization on the Kodiak Archipelago and learn about Alutiiq worldviews.'}
                         disabled={this.props.user.id ? false : true}
@@ -513,8 +570,7 @@ class Home extends Component {
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-                {/* <Link to={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'cardURL1') : `/happenings`} > */}
-                  <Button color='yellow' size='small' disabled>
+                  <Button color='grey' size='small' disabled>
                     <ContentEditable
                       html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'cardURL1').textShort : 'https://www.example.com'}
                       disabled={this.props.user.id ? false : true}
@@ -523,83 +579,139 @@ class Home extends Component {
                       onBlur={this.handleBlurEditable}
                     />
                   </Button>
-                {/* </Link> */}
             </Card>
             :
             <Card>
               <Card.Content header textAlign='center'>
                 <CardHeader>
-                  <ContentEditable
-                    html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'cardHeader1').textShort : 'Happenings' }
-                    disabled={this.props.user.id ? false : true}
-                    onChange={this.handleChangeEditable}
-                    tagName='cardHeader1'
-                    onBlur={this.handleBlurEditable}
-                  />
+                  <div dangerouslySetInnerHTML= {{__html: this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'cardHeader1').textShort : 'Happenings' }}/>
                 </CardHeader>
               </Card.Content>
               <Card.Content>
                 <SpecialDiv>
                   <ContentStyle>
-                    {/* What is happeing, and how do you get involved? Click below to learn more about the history of language revitalization on the Kodiak Archipelago and learn about Alutiiq worldviews. */}
-                      <ContentEditable
-                        html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'cardBody1').textLong : 'What is happeing, and how do you get involved? Click below to learn more about the history of language revitalization on the Kodiak Archipelago and learn about Alutiiq worldviews.'}
-                        disabled={this.props.user.id ? false : true}
-                        onChange={this.handleChangeEditable}
-                        tagName='cardBody1'
-                        onBlur={this.handleBlurEditable}
-                      />
+                    <div dangerouslySetInnerHTML= {{__html: this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'cardBody1').textLong : 'What is happeing, and how do you get involved? Click below to learn more about the history of language revitalization on the Kodiak Archipelago and learn about Alutiiq worldviews.'}} />
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-                {/* <Link to={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'cardURL1').textShort : `/happenings`} > */}
-                  <Button as='a' href={this.props.editables.length > 1 ? this.props.editables.find(val => val.name === 'cardURL1').textShort : 'https://www.bing.com'} color='yellow' size='small' fluid>
+                  <Button as='a' href={this.props.editables.length > 1 ? this.props.editables.find(val => val.name === 'cardURL1').textShort : '/happenings'} color='yellow' size='small' fluid>
                    Go
                   </Button>
-                {/* </Link> */}
-            </Card>
-          }
-    
+              </Card>
+            }
+        
+            {this.props.user.id ? 
             <Card>
               <Card.Content header textAlign='center'>
                 <CardHeader>
-                  Dictionary
+                  <ContentEditable 
+                      html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'cardHeader2').textShort : 'Dictionary'}
+                      disabled={this.props.user.id ? false : true}
+                      onChange={this.handleChangeEditable}
+                      tagName='cardHeader2'
+                      onBlur={this.handleBlurEditable}
+                  />                  
                 </CardHeader>
               </Card.Content>
               <Card.Content>
                 <SpecialDiv>
                   <ContentStyle>
-                    Discover new words in the Alutiiq language. Hear words being said by an Alutiiq speaker, and explore how to use words in full sentences.
+                    
+                    <ContentEditable 
+                      html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'cardBody2').textLong : "Discover new words in the Alutiiq language. Hear words being said by an Alutiiq speaker, and explore how to use words in full sentences."}
+                      disabled={this.props.user.id ? false : true}
+                      onChange={this.handleChangeEditable}
+                      tagName='cardBody2'
+                      onBlur={this.handleBlurEditable}
+                    />
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-                <Link to={'/dictionary'}>
-                  <Button color='yellow' size='small' fluid>
-                    Go 
+                  <Button color='grey' size='small' disabled>
+                    <ContentEditable
+                      html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'cardURL2').textShort : 'https://www.example.com'}
+                      disabled={this.props.user.id ? false : true}
+                      onChange={this.handleChangeEditable}
+                      tagName='cardURL2'
+                      onBlur={this.handleBlurEditable}
+                    />
                   </Button>
-                </Link>
             </Card>
-    
+            :
             <Card>
               <Card.Content header textAlign='center'>
                 <CardHeader>
-                  Classes
+                  <div dangerouslySetInnerHTML= {{__html: this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'cardHeader2').textShort : 'Dictionary'}} />               
                 </CardHeader>
               </Card.Content>
               <Card.Content>
                 <SpecialDiv>
                   <ContentStyle>
-                    Are you interested in learning Alutiiq, and meeting other speakers and learners? Check out opportunities to learn in formal and informal settings by clicking the button.
+                    <div dangerouslySetInnerHTML= {{__html: this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'cardBody2').textLong : "Discover new words in the Alutiiq language. Hear words being said by an Alutiiq speaker, and explore how to use words in full sentences."}} />
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-                <Link to={'/classes'}>
-                  <Button color='yellow' size='small' fluid>
-                    Go 
-                  </Button>
-                </Link>
+                <Button as='a' href={this.props.editables.length > 1 ? this.props.editables.find(val => val.name === 'cardURL2').textShort : '/dictionary'} color='yellow' size='small' fluid>
+                   Go
+                </Button>
             </Card>
-    
+            }
+
+            {this.props.user.id ? 
+            <Card>
+              <Card.Content header textAlign='center'>
+                <CardHeader>
+                  <ContentEditable 
+                      html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'cardHeader3').textShort : 'Classes'}
+                      disabled={this.props.user.id ? false : true}
+                      onChange={this.handleChangeEditable}
+                      tagName='cardHeader3'
+                      onBlur={this.handleBlurEditable}
+                  />                  
+                </CardHeader>
+              </Card.Content>
+              <Card.Content>
+                <SpecialDiv>
+                  <ContentStyle>                    
+                    <ContentEditable 
+                      html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'cardBody3').textLong : "Are you interested in learning Alutiiq, and meeting other speakers and learners? Check out opportunities to learn in formal and informal settings by clicking the button."}
+                      disabled={this.props.user.id ? false : true}
+                      onChange={this.handleChangeEditable}
+                      tagName='cardBody3'
+                      onBlur={this.handleBlurEditable}
+                    />
+                  </ContentStyle>
+                </SpecialDiv>
+              </Card.Content>
+                  <Button color='grey' size='small' disabled>
+                    <ContentEditable
+                      html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'cardURL3').textShort : 'https://www.example.com'}
+                      disabled={this.props.user.id ? false : true}
+                      onChange={this.handleChangeEditable}
+                      tagName='cardURL3'
+                      onBlur={this.handleBlurEditable}
+                    />
+                  </Button>
+            </Card>
+            :
+            <Card>
+              <Card.Content header textAlign='center'>
+                <CardHeader>
+                  <div dangerouslySetInnerHTML= {{__html: this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'cardHeader3').textShort : 'Classes'}} />
+                </CardHeader>
+              </Card.Content>
+              <Card.Content>
+                <SpecialDiv>
+                  <ContentStyle>                    
+                    <div dangerouslySetInnerHTML= {{__html: this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'cardBody3').textLong : "Are you interested in learning Alutiiq, and meeting other speakers and learners? Check out opportunities to learn in formal and informal settings by clicking the button."}} />
+                  </ContentStyle>
+                </SpecialDiv>
+              </Card.Content>
+                <Button as='a' href={this.props.editables.length > 1 ? this.props.editables.find(val => val.name === 'cardURL3').textShort : '/classes'} color='yellow' size='small' fluid>
+                   Go
+                </Button>
+            </Card>
+            }
           </Card.Group>
         </ContainerPad>
 
@@ -687,7 +799,7 @@ class Home extends Component {
           </Grid>
         </GreenDiv>
 
-{/* SPECIAL CONTENT FEATURING SOMETHING IN THE NEAR FUTURE ---- THIS WILL BE A FORM WHEN ADMIN SIGNS IN */}
+{/* SPECIAL CONTENT TOGGLING AND EDITING */}
 
           <Container textAlign='center' verticalAlign='middle'>
           {
