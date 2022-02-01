@@ -1,4 +1,4 @@
-import React, { Component, setState } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getPosters } from '../reducers/posters'
@@ -836,7 +836,6 @@ class Home extends Component {
 
 
 const mapStateToProps = (state) => {
-  // debugger
   return {
     posters: state.posters,
     games: state.games, 

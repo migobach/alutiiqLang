@@ -19,13 +19,24 @@ import {
   ContentStyleWhite,
 } from './styles/CommonStyles'
 import Teaching from '../images/teaching.jpg'
+import ContentEditable from 'react-contenteditable'
+import axios from 'axios'
+import { getEditablesData } from '../reducers/editables'
 
 class Curriculum extends Component {
-  state = { workbookComp: false, preschoolComp: false, nestComp: false, thematicComp: false }
+  state = { 
+    workbookComp: false, 
+    preschoolComp: false, 
+    nestComp: false, 
+    thematicComp: false, 
+    curriculumHeader: {}, 
+    curriculumBody: {} 
+  }
 
   componentDidMount() {
     const { dispatch } = this.props
     dispatch(getCurriculum())
+    dispatch(getEditablesData())
   }
 
   toggleWorkbookComp = () => {
@@ -58,6 +69,40 @@ class Curriculum extends Component {
       return null
   }
 
+  handleChange = (e, { name, value }) => {
+    this.setState({ [name]: value })
+ }
+
+ handleChangeEditable = evt => {
+  console.log('evt: ', evt)
+  const elementType = evt._dispatchInstances.type
+  
+  if (elementType == 'curriculumHeader') {
+    const preStructuredHeader = this.props.editables.find(val => val.name === 'curriculumHeader')
+     preStructuredHeader.textShort = evt.target.value
+     this.state.curriculumHeader = preStructuredHeader
+  } else if (elementType == 'curriculumBody') {
+    const presturcturedBody = this.props.editables.find(val => val.name === 'curriculumBody')
+     presturcturedBody.textLong = evt.target.value
+     this.state.curriculumBody = presturcturedBody
+  } 
+}
+
+handleBlurEditable = () => {
+  const updatedHeader = this.state.curriculumHeader
+  const updatedBody = this.state.curriculumBody
+
+  if (updatedHeader.id) {
+    console.log('in header PUT', updatedHeader)
+    axios.put(`api/editables/${updatedHeader.id}`, updatedHeader)
+  }
+
+  if (updatedBody.id) {
+    console.log('in body PUT', updatedBody)
+    axios.put(`api/editables/${updatedBody.id}`, updatedBody)
+  }
+}
+
   render() {
     return( 
     <div>
@@ -73,14 +118,27 @@ class Curriculum extends Component {
           strength={500}
         >
         <div style={{height: 300}}>
-          <SpecialDiv>
+          <SpecialDiv innerRef={this.contentEditable}>
             <Header textAlign="center">
               <SectionHead>
-                Alutiiq Language K-5 Curriculum Resources
+                {/* Alutiiq Language K-5 Curriculum Resources */}
+                <ContentEditable
+                  html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'curriculumHeader').textShort : 'Alutiiq Language K-5 Curriculum Resources'}
+                  disabled={this.props.user.id ? false : true}
+                  onChange={this.handleChangeEditable}
+                  tagName='curriculumHeader'
+                  onBlur={this.handleBlurEditable}
+                />
               </SectionHead>
             </Header>
             <ContentStyleWhite>
-              All published Alutiiq language materials on this webpage are for educational usage. You will find audio links for lesson vocabulary in both the Northern and Southern Kodiak Alutiiq styles to support the diverse ways of speaking Alutiiq across the region. We hope educators will take advantage of this opportunity to share insights and recommendations so we can continue to improve these resources.
+              <ContentEditable
+                html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'curriculumBody').textLong : 'All published Alutiiq language materials on this webpage are for educational usage. You will find audio links for lesson vocabulary in both the Northern and Southern Kodiak Alutiiq styles to support the diverse ways of speaking Alutiiq across the region. We hope educators will take advantage of this opportunity to share insights and recommendations so we can continue to improve these resources.'}
+                disabled={this.props.user.id ? false : true}
+                onChange={this.handleChangeEditable}
+                tagName='curriculumBody'
+                onBlur={this.handleBlurEditable}
+              />
             </ContentStyleWhite>
           </SpecialDiv>
         </div>
@@ -152,4 +210,11 @@ class Curriculum extends Component {
   }
 }
 
-export default connect()(Curriculum)
+const mapStateToProps = (state) => {
+  return {
+    editables: state.editables,
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(Curriculum)
