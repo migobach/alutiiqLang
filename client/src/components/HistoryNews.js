@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { 
   Button, 
   Header, 
@@ -16,20 +17,27 @@ import {
   ContentStyleWhite,
 } from './styles/CommonStyles'
 import { Parallax } from 'react-parallax'
+import { getEditablesData } from '../reducers/editables'
+import ContentEditable from 'react-contenteditable'
+import axios from 'axios'
 import Revitalization from './happenings/Revitalization'
 import Worldview from './happenings/Worldview'
 import News from './happenings/AlutiiqNews'
 import HistoryAfognak from '../images/AfognakHistory.jpg'
 
 class HistoryNews extends Component { 
-  state = { revitalizationComp: false, worldviewComp: false, newsComp: false }
+  state = { 
+    revitalizationComp: false, 
+    worldviewComp: false, 
+    newsComp: false,
+    historyNewsHeader: {},
+    historyNewsBody: {}
+  }
 
-  // componentDidMount = () => {
-  //   (this.props.location.state === null) ?
-  //   null 
-  //   :
-  //   this.setState( {newsComp: this.props.location.state.newsComp} )
-  // }
+  componentDidMount = () => {
+   const { dispatch } = this.props
+   dispatch(getEditablesData())
+  }
 
   toggleRevitalizationComp = () => {
     this.setState({revitalizationComp: !this.state.revitalizationComp, worldviewComp: false, newsComp: false})
@@ -55,6 +63,41 @@ class HistoryNews extends Component {
     return <SpecialDiv />
   }
 
+  handleChange = (e, { name, value }) => {
+    this.setState({ [name]: value })
+  }
+
+  handleBlurEditable = () => {
+    const updatedHeader = this.state.historyNewsHeader
+    const updatedBody = this.state.historyNewsBody
+
+    if (updatedHeader.id) {
+      console.log('in header PUT', updatedHeader)
+      axios.put(`api/editables/${updatedHeader.id}`, updatedHeader)
+    } 
+    if (updatedBody.id) {
+      console.log('in body PUT', updatedBody)
+      axios.put(`api/editables/${updatedBody.id}`, updatedBody)
+    }
+  }
+
+  handleChangeEditable = evt => {
+    console.log('evt: ', evt)
+    const elementType = evt._dispatchInstances.type
+
+    if (elementType === 'historyNewsHeader') {
+      const prestructuredhistoryNewsHeader = this.props.editables.find(val => val.name === 'historyNewsHeader')
+      prestructuredhistoryNewsHeader.textShort = evt.target.value
+      this.setState({ historyNewsHeader: prestructuredhistoryNewsHeader})
+    }
+    if (elementType === 'historyNewsBody') {
+      console.log('in editable', elementType)
+      const prestructuredhistoryNewsBody = this.props.editables.find(val => val.name === 'historyNewsBody')
+      prestructuredhistoryNewsBody.textLong = evt.target.value
+      this.setState({ historyNewsBody: prestructuredhistoryNewsBody})
+    }
+  }
+
   render() {
     return(
       <div>
@@ -68,15 +111,24 @@ class HistoryNews extends Component {
             <SpecialDiv>
               <Header textAlign="center">
                 <SectionHead>
-                  History and News
+                  <ContentEditable
+                    html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'historyNewsHeader').textShort : 'History and News'}
+                    disabled={this.props.user.id ? false : true}
+                    onChange={this.handleChangeEditable}
+                    tagName='historyNewsHeader'
+                    onBlur={this.handleBlurEditable}
+                  />
                 </SectionHead>
                 <Divider hidden />
               </Header>
-                <ContentStyleWhite>
-                  Alutiiq scholars argue that the Alutiiq Renaissance began in 1971. Since then, many projects have focused on various aspects of language revitalization, many people have been, and continue to be involved. Discover ways for you to be involved! 
-                  <br />
-                  <br />
-                  Check out some of our social media channels to finds ways to stay connected with the language movement, or to learn more about how you can become involved. 
+                <ContentStyleWhite>  
+                  <ContentEditable
+                    html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'historyNewsBody').textLong : 'Alutiiq scholars argue that the Alutiiq Renaissance began in 1971. Since then, many projects have focused on various aspects of language revitalization, many people have been, and continue to be involved. Discover ways for you to be involved!'}
+                    disabled={this.props.user.id ? false : true}
+                    onChange={this.handleChangeEditable}
+                    tagName='historyNewsBody'
+                    onBlur={this.handleBlurEditable}
+                  />
                 </ContentStyleWhite>
             </SpecialDiv>
           </div>
@@ -195,4 +247,11 @@ class HistoryNews extends Component {
   }
 }
 
-export default HistoryNews
+const mapStateToProps = (state) => {
+  return {
+    editables: state.editables,
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(HistoryNews)
