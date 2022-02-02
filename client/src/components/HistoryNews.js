@@ -91,7 +91,6 @@ class HistoryNews extends Component {
       this.setState({ historyNewsHeader: prestructuredhistoryNewsHeader})
     }
     if (elementType === 'historyNewsBody') {
-      console.log('in editable', elementType)
       const prestructuredhistoryNewsBody = this.props.editables.find(val => val.name === 'historyNewsBody')
       prestructuredhistoryNewsBody.textLong = evt.target.value
       this.setState({ historyNewsBody: prestructuredhistoryNewsBody})
