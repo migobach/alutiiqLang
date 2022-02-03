@@ -6,6 +6,7 @@ import {
   Image, 
 } from 'semantic-ui-react';
 import { getEditablesData } from '../reducers/editables';
+import ContentEditable from 'react-contenteditable'
 import axios from 'axios'
 import {
   ContentHead,
@@ -72,26 +73,27 @@ class Footer extends Component {
   handleChangeEditable = evt => {
     console.log('evt: ', evt)
     const elementType = evt._dispatchInstances.type
+    console.log('element type: ', elementType)
 
     if (elementType === 'footerLeftHeader') {
       const prestructuredFooterLeft = this.props.editables.find(val => val.name === 'footerLeftHeader')
       prestructuredFooterLeft.textShort = evt.target.value
-      this.setState({ historyNewsHeader: prestructuredFooterLeft})
+      this.setState({ footerLeftHeader: prestructuredFooterLeft})
     }
     if (elementType === 'footerRightHeader') {
       const prestructuredFooterRight = this.props.editables.find(val => val.name === 'footerRightHeader')
       prestructuredFooterRight.textShort = evt.target.value
-      this.setState({ historyNewsBody: prestructuredFooterRight})
+      this.setState({ footerRightHeader: prestructuredFooterRight})
     }
     if (elementType === 'footerRightBody') {
       const prestructuredFooterRightBody = this.props.editables.find(val => val.name === 'footerRightBody')
       prestructuredFooterRightBody.textLong = evt.target.value
-      this.setState({ historyNewsBody: prestructuredFooterRightBody})
+      this.setState({ footerRightBody: prestructuredFooterRightBody})
     }
     if (elementType === 'footerLeftBody') {
       const prestructuredFooterLeftBody = this.props.editables.find(val => val.name === 'footerLeftBody')
       prestructuredFooterLeftBody.textLong = evt.target.value
-      this.setState({ historyNewsBody: prestructuredFooterLeftBody})
+      this.setState({ footerLeftBody: prestructuredFooterLeftBody})
     }
   }
 
@@ -105,18 +107,22 @@ class Footer extends Component {
             <Grid.Column textAlign='center'>
               <SpecialDiv>
                 <ContentHead>
-                  Contact Us:
+                  <ContentEditable
+                    html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'footerLeftHeader').textShort : 'Contact us:'}
+                    disabled={this.props.user.id ? false : true}
+                    onChange={this.handleChangeEditable}
+                    tagName='footerLeftHeader'
+                    onBlur={this.handleBlurEditable}
+                  />
                 </ContentHead>
                 <ContentStyle>
-                  <span>
-                  Native Village of Afognak
-                  <br />
-                  115 Mill Bay Road
-                  <br />
-                  Kodiak, Alaska 99615
-                  <br />
-                  907.486.6357
-                  </span>
+                  <ContentEditable
+                  html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'footerLeftBody').textLong : 'Native Village of Afognak, 907.486.6357'}
+                  disabled={this.props.user.id ? false : true}
+                  onChange={this.handleChangeEditable}
+                  tagName='footerLeftBody'
+                  onBlur={this.handleBlurEditable}
+                  />
                 </ContentStyle>
               </SpecialDiv>
             </Grid.Column>
@@ -124,10 +130,22 @@ class Footer extends Component {
             <Grid.Column textAlign='center'>
               <SpecialDiv>
                 <ContentHead>
-                  Who we are: 
+                  <ContentEditable
+                    html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'footerRightHeader').textShort : 'Who we are:'}
+                    disabled={this.props.user.id ? false : true}
+                    onChange={this.handleChangeEditable}
+                    tagName='footerRightHeader'
+                    onBlur={this.handleBlurEditable}
+                  />
                 </ContentHead>
                 <ContentStyle>
-                  This website is maintained by the <FootLink href="http://www.afognak.org/">Native Village of Afognak</FootLink> in partnership with the Sun'aq Tribe of Kodiak with the aim of providing a single location to access all things Alutiiq. <i>Nunaniqsarkici!</i>
+                  <ContentEditable
+                    html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'footerRightBody').textLong : `This website is maintained by the Native Village of Afognak in partnership with the Sun'aq Tribe of Kodiak with the aim of providing a single location to access all things Alutiiq.`}
+                    disabled={this.props.user.id ? false : true}
+                    onChange={this.handleChangeEditable}
+                    tagName='footerRightBody'
+                    onBlur={this.handleBlurEditable}
+                  />
                 </ContentStyle>
               </SpecialDiv>
             </Grid.Column>
