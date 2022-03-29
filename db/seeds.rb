@@ -15,11 +15,7 @@
 
 require 'rake'
 
-# Rails.application.load_tasks
-
-
-# all rake tasks:
-  
+# all rake tasks:  
   Rake::Task['books:database'].invoke
   Rake::Task['curriculum:database'].invoke
   Rake::Task['dictionary:database'].invoke
