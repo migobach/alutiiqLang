@@ -16,7 +16,6 @@ namespace :poster do
       e.author = row['author']
       e.notes = row['notes']
       e.save
-      puts "#{e.title} saved"
     end
 
     puts "There are now #{Poster.count} rows in the poster table"

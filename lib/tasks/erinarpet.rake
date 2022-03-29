@@ -3,7 +3,6 @@ require 'csv'
 namespace :erinarpet do 
   task database: :environment do 
     csv_text = File.read(Rails.root.join('lib', 'seeds', 'erinarpet.csv'))
-    puts 'reading csv text'
     csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
     
     csv.each do |row|
@@ -22,7 +21,6 @@ namespace :erinarpet do
       i.image = row['image']
       i.notes = row['notes']
       i.save 
-      puts "#{i.topic} article saved"
     end 
 
     puts "There are now #{Erinarpet.count} articles seeded"

@@ -5,7 +5,6 @@ require 'csv'
 namespace :books do
   task database: :environment do
     csv_text = File.read(Rails.root.join('lib', 'seeds', 'books.csv'))
-    # puts csv_text
     csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
     csv.each do |row|
       b = Book.new
@@ -45,7 +44,6 @@ namespace :books do
         b.book_type = row['book_type']
         b.creator = row['creator']
         b.save
-      puts "#{b.book_title_alutiiq} saved"
     end
     puts "There are now #{Book.count} rows in the books table"
   end
