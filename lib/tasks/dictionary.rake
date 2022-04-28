@@ -5,7 +5,6 @@ require 'csv'
 namespace :dictionary do
   task database: :environment do
     csv_text = File.read(Rails.root.join('lib', 'seeds', 'dictionary.csv'))
-    puts csv_text
     csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
     
     csv.each do |row|
@@ -82,7 +81,6 @@ namespace :dictionary do
           row['approved'] = false
         end
       d.save
-      puts "#{d.english} saved"
     end
 
     puts "There are now #{Dictionary.count} rows in the dictionary table"

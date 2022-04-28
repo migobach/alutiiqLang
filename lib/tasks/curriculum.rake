@@ -21,7 +21,6 @@ namespace :curriculum do
       c.group_name = row['group_name']
       c.order = row['order']
       c.save
-      puts "#{c.curricular_name} saved"
     end
 
     puts "There are now #{Curriculum.count} rows in the curriculum table"

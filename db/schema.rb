@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2021_02_11_005052) do
     t.string "image_name"
     t.string "root_word"
     t.string "category"
-    t.string "med_by"
+    t.string "edited_by"
     t.text "notes"
     t.boolean "completed"
     t.boolean "approved"

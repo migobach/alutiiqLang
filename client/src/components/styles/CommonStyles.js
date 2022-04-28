@@ -16,11 +16,11 @@ import {
 // title on homepage
 export const MainHeader = styled.h1`
   color: white;
-  font-size: 3em; 
+  font-size: 3em;
 `
 
 // sub-title on homepage
-export const MainHeaderContent = MainHeader.extend` 
+export const MainHeaderContent = MainHeader.extend`
   font-size: .5em;
 `
 
@@ -50,7 +50,7 @@ export const CardHeader = styled.h3`
 
 export const ColumnHead = styled.h3`
   color: #3B568C;
-  font-size: 1em;  
+  font-size: 1em;
   line-height: 1.5;
 `
 
@@ -61,7 +61,7 @@ export const SectionHead = styled.h3`
   padding: 1em;
 `
 
-// song view conditionally rendered component song title 
+// song view conditionally rendered component song title
 export const SongHead = styled.h3`
   color: #FBBD08;
   font-size: 1.5em;
@@ -92,10 +92,11 @@ export const ContentHead = styled.h3`
   padding: .5em;
 `
 
-// removed padding: .5em in order to make the dictionary view a bit cleaner - not sure how it will impact everything else. 
+// removed padding: .5em in order to make the dictionary view a bit cleaner - not sure how it will impact everything else.
 export const ContentStyle = styled.p`
   font-size: 1em;
   color: #3D3D3D;
+  text-align: center;
 `
 
 export const ContentStyleCenter = ContentStyle.extend`
@@ -259,7 +260,7 @@ export const LinkHead = styled.h3`
 
 export const LinkHeadA = styled.a`
   font-size: 1.5em;
-  padding: .5em;  
+  padding: .5em;
   color: #D91A1A;
   &:hover { text-decoration: none; color: #3D3D3D; }
 `
