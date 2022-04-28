@@ -10,15 +10,15 @@ import {
   Button,
 } from 'semantic-ui-react'
 import {
-  SpecialDiv, 
+  SpecialDiv,
   ContentStyle,
   GreenDiv,
   SubSectionHead,
   ContentStyleWhite,
   IconHover,
-  IconLink, 
-  SongStyle, 
-  Pointer, 
+  IconLink,
+  SongStyle,
+  Pointer,
   ColumnHead,
   Div,
   BodyLink,
@@ -27,43 +27,13 @@ import {
 class Workbook extends Component {
   state = { workbookLessons: [] }
 
-  // componentDidMount() {
-  //   const { dispatch } = this.props
-  //   dispatch(getCurriculum())
-  // }
-
-  // THIS NEEDS TO BE CLEANED UP. REMOVE UN-NEEDED FUNCTIONALITY
-
-  // componentDidUpdate(prevProps) {
-  //   if(prevProps !== this.props)
-  //   this.setState({ workbookLessons: this.props.curriculums})
-  // }
-
-  // lessons = () => {
-  //   const { workbookLessons } = this.state
-  //   return workbookLessons.map( lesson => 
-  //     <Grid.Row>
-  //       <Grid.Column width={6} verticalAlign='middle'>
-  //         <ContentStyle>
-  //           {lesson.curricular_name}
-  //         </ContentStyle>
-  //       </Grid.Column>
-  //     </Grid.Row>
-  //   )
-  // }
-
-
-  // THIS WORKS WHEN THE DEBUGGER IS RIGHT AT THE RENDERLESSONS START
-  // this.props.curriculum.sort(function(a,b){ if(a.lesson_number < b.lesson_number) {return -1; } if(a.lesson_number > b.lesson_number) {return 1; } return 0; })
-
-
   renderLessons = () => {
     let sortedLessons = this.props.curriculum.sort(function(a,b){ if(a.order < b.order) {return -1; } if(a.order > b.order) {return 1; } return 0; })
-    
+
     return sortedLessons.map( unit => {
       if (unit.group_name !== "Elementary Language") {
         return ( null )
-      } else 
+      } else
         return(
             <Grid.Row>
               <Grid.Column computer={6} tablet={6} mobile={10} verticalAlign='middle'>
@@ -102,7 +72,7 @@ class Workbook extends Component {
         )
     })
   }
-  
+
   render() {
     return(
       <div>
@@ -116,7 +86,7 @@ class Workbook extends Component {
               Audio files have been prepared for each of the 40 vocabulary groups listed below to accompany the teacher's workbook. You can request a CD of all 40 lessons or listen online to each in both Northern and Southern styles of Kodiak Alutiiq, repeated in that order. <i>Quyanaasinaq</i> to Kathryn Chichenoff (Northern style), Florence Pestrikoff (Southern style), and Susan Malutin (English) who lent their voices to this project.
               <br />
               <br />
-              A full version of of the workbook is available to be printed and shared widely for educational puposes. 
+              A full version of of the workbook is available to be printed and shared widely for educational puposes.
             </ContentStyleWhite>
             <SpecialDiv>
               <Container textAlign='center'>

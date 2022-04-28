@@ -5,13 +5,14 @@ import Workbook from './curriculum/Workbook'
 import Thematic from './curriculum/Thematic'
 import Preschool from './curriculum/Preschool'
 import Nest from './curriculum/Nest'
-import { 
+import HighSchool from './curriculum/HighSchool'
+import {
   Header,
   Grid,
   Button,
  } from 'semantic-ui-react'
  import { Parallax } from 'react-parallax'
- import { 
+ import {
   ColumnHead,
   SectionHead,
   ContentStyle,
@@ -24,13 +25,14 @@ import axios from 'axios'
 import { getEditablesData } from '../reducers/editables'
 
 class Curriculum extends Component {
-  state = { 
-    workbookComp: false, 
-    preschoolComp: false, 
-    nestComp: false, 
-    thematicComp: false, 
-    curriculumHeader: {}, 
-    curriculumBody: {} 
+  state = {
+    workbookComp: false,
+    highSchoolComp: false,
+    preschoolComp: false,
+    nestComp: false,
+    thematicComp: false,
+    curriculumHeader: {},
+    curriculumBody: {}
   }
 
   componentDidMount() {
@@ -40,23 +42,27 @@ class Curriculum extends Component {
   }
 
   toggleWorkbookComp = () => {
-    this.setState({workbookComp: !this.state.workbookComp, preschoolComp: false, nestComp: false, thematicComp: false})
+    this.setState({workbookComp: !this.state.workbookComp, preschoolComp: false, nestComp: false, thematicComp: false, highSchoolComp: false})
+  }
+
+  toggleHighSchoolComp = () => {
+    this.setState({highSchoolComp: !this.state.highSchoolComp, preschoolComp: false, nestComp: false, thematicComp: false, workbookComp: false})
   }
 
   toggleNestComp = () => {
-    this.setState({nestComp: !this.state.nestComp, workbookComp: false, preschoolComp: false, thematicComp: false})
+    this.setState({nestComp: !this.state.nestComp, workbookComp: false, preschoolComp: false, thematicComp: false, highSchoolComp: false})
   }
 
   togglePreschoolComp = () => {
-    this.setState({preschoolComp: !this.state.preschoolComp, workbookComp: false, nestComp: false, thematicComp: false})
+    this.setState({preschoolComp: !this.state.preschoolComp, workbookComp: false, nestComp: false, thematicComp: false, highSchoolComp: false})
   }
 
   toggleThematicComp = () => {
-    this.setState({thematicComp: !this.state.thematicComp, nestComp: false, preschoolComp: false, workbookComp: false})
+    this.setState({thematicComp: !this.state.thematicComp, nestComp: false, preschoolComp: false, workbookComp: false, highSchoolComp: false})
   }
 
   renderingComponents = () => {
-    const { workbookComp, preschoolComp, nestComp, thematicComp } = this.state
+    const { workbookComp, preschoolComp, nestComp, thematicComp, highSchoolComp } = this.state
     if (workbookComp === true) {
       return <Workbook view={this.toggleWorkbookComp}/>
     } else if (preschoolComp === true) {
@@ -65,7 +71,9 @@ class Curriculum extends Component {
       return <Nest view={this.toggleNestComp}/>
     } else if (thematicComp === true) {
       return <Thematic view={this.toggleThematicComp} />
-    } else 
+    } else if (highSchoolComp === true){
+      return  <HighSchool view={this.toggleHighSchoolComp} />
+    } else
       return null
   }
 
@@ -76,7 +84,7 @@ class Curriculum extends Component {
  handleChangeEditable = evt => {
   console.log('evt: ', evt)
   const elementType = evt._dispatchInstances.type
-  
+
   if (elementType == 'curriculumHeader') {
     const preStructuredHeader = this.props.editables.find(val => val.name === 'curriculumHeader')
      preStructuredHeader.textShort = evt.target.value
@@ -85,7 +93,7 @@ class Curriculum extends Component {
     const presturcturedBody = this.props.editables.find(val => val.name === 'curriculumBody')
      presturcturedBody.textLong = evt.target.value
      this.state.curriculumBody = presturcturedBody
-  } 
+  }
 }
 
 handleBlurEditable = () => {
@@ -104,11 +112,11 @@ handleBlurEditable = () => {
 }
 
   render() {
-    return( 
+    return(
     <div>
 
     {/* CONDITIONALLY RENDERED CURRICULUM COMPONENTS */}
-      
+
     { this.renderingComponents() }
 
     <Parallax
@@ -143,7 +151,7 @@ handleBlurEditable = () => {
           </SpecialDiv>
         </div>
     </Parallax>
-  
+
       <SpecialDiv>
       <Grid stackable>
         <Grid.Row>
@@ -156,7 +164,7 @@ handleBlurEditable = () => {
           </Grid.Column>
           <Grid.Column width={11} verticalAlign='middle'>
             <ContentStyle>
-              Lesson outlines for a complete academic year of language nest lesson and activity plans. 
+              Lesson outlines for a complete academic year of language nest lesson and activity plans.
             </ContentStyle>
           </Grid.Column>
         </Grid.Row>
@@ -178,7 +186,7 @@ handleBlurEditable = () => {
           <Grid.Column width={5} textAlign='center'>
             <ColumnHead>
               <Button size='large' onClick={(e) => this.toggleWorkbookComp(e)} fluid>
-                Kodiak Alutiiq Elementary Language Curriculum Workbook 
+                Kodiak Alutiiq Elementary Language Curriculum Workbook
               </Button>
             </ColumnHead>
           </Grid.Column>
@@ -199,6 +207,20 @@ handleBlurEditable = () => {
           <Grid.Column width={11} verticalAlign='middle'>
             <ContentStyle>
               6 units targeted at Kindergarten through 5th grade
+            </ContentStyle>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column width={5} textAlign='center'>
+            <ColumnHead>
+              <Button size='large' onClick={(e) => this.toggleHighSchoolComp(e)} fluid>
+                High School Alutiiq Language Resources
+              </Button>
+            </ColumnHead>
+          </Grid.Column>
+          <Grid.Column width={11} verticalAlign='middle'>
+            <ContentStyle>
+              Standardized units covering a variety of topics, resources for Alutiiq I and Alutiiq II students
             </ContentStyle>
           </Grid.Column>
         </Grid.Row>
