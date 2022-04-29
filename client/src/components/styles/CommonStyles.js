@@ -96,6 +96,11 @@ export const ContentHead = styled.h3`
 export const ContentStyle = styled.p`
   font-size: 1em;
   color: #3D3D3D;
+`
+
+export const ContentStyleCentered = styled.p`
+  font-size: 1em;
+  color: #3D3D3D;
   text-align: center;
 `
 

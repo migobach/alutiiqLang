@@ -15,21 +15,22 @@ const englishStyle = {
 }
 
 class DictionaryView extends Component {
- 
+
   handleSentence = () => {
-    if (this.props.word.north_sentence === this.props.word.south_sentence &&  this.props.word.north_sentence !== "") {
+    if (this.props.word.north_sentence === this.props.word.south_sentence && this.props.word.north_sentence !== "") {
       return(<ContentStyle>Example sentence: <i>{this.props.word.north_sentence}</i></ContentStyle>)
     } else if (this.props.word.north_sentence !== "") {
       return((<ContentStyle>Northern style example sentence: <i>{this.props.word.north_sentence}</i></ContentStyle>))
     } else if (this.props.word.south_sentence !== "") {
       return((<ContentStyle>Southern style example sentence: <i>{this.props.word.south_sentence}</i></ContentStyle>))
     } else {
-      return ''
+      return null
     }
   }
 
   handleWord = () => {
-    if (this.props.word.alutiiq_north === "") {
+    console.log('here is the word: ', this.props.word)
+    if (this.props.word.alutiiq_north === "" || this.props.word.alutiiq_north === null) {
       return(
       <div>
         <WordStyle>
@@ -37,7 +38,7 @@ class DictionaryView extends Component {
         </WordStyle>
       </div>
       )
-    } else if (this.props.word.alutiiq_south === "") {
+    } else if (this.props.word.alutiiq_south === "" || this.props.alutiiq_south === null) {
       return(
       <div>
         <WordStyle>
@@ -53,7 +54,7 @@ class DictionaryView extends Component {
                 <i>{this.props.word.alutiiq_north}</i>
               </WordStyle>
               <ContentStyle>
-                Northern Style Alutiiq 
+                Northern Style Alutiiq
               </ContentStyle>
             </Grid.Column>
             <Grid.Column>
@@ -61,7 +62,7 @@ class DictionaryView extends Component {
                 <i>{this.props.word.alutiiq_south}</i>
               </WordStyle>
               <ContentStyle>
-                Southern Style Alutiiq 
+                Southern Style Alutiiq
               </ContentStyle>
             </Grid.Column>
           </Grid>
@@ -138,15 +139,15 @@ class DictionaryView extends Component {
                   <i>{this.props.word.alutiiq_north}</i>
                 </WordStyle>
               :
-              this.handleWord() 
+              this.handleWord()
             }
           <Divider />
           <ContentStyle style={englishStyle}>
             {this.props.word.english}
           </ContentStyle>
-        
+
     {/* AUDIO PLAYER TERNARY */}
-    
+
           {
           this.props.word.north_audio === "" && this.props.word.south_audio === "" ?
           null
@@ -158,10 +159,10 @@ class DictionaryView extends Component {
 
     {/* SENTENCE TERNARY */}
 
-          { 
+          {
           this.props.word.north_sentence === "" && this.props.word.south_sentence === "" ?
-          null 
-          : 
+          null
+          :
           this.handleSentence()
           }
 
