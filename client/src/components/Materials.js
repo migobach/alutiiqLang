@@ -78,23 +78,23 @@ class Materials extends Component {
   handleChangeEditable = evt => {
     const elementType = evt._dispatchInstances.type
 
-    if (elementType == 'MaterialHeader') {;
-      if (this.props.editables.find(val => val.name === 'materialHeader') != undefined ) {
+    if (elementType === 'MaterialHeader') {;
+      if (this.props.editables.find(val => val.name === 'materialHeader')!== undefined ) {
         const preStructuredHeader = this.props.editables.find(val => val.name === 'materialHeader')
           preStructuredHeader.textShort = evt.target.value
-          this.state.materialHeader = preStructuredHeader
+          this.setState({ materialHeader: preStructuredHeader })
       } else {
-        this.state.materialHeader = { name: "materialHeader", textShort: evt.target.value }
+        this.setState({ materialHeader: { name: "materialHeader", textShort: evt.target.value }})
       }
     }
 
-    if (elementType == 'MaterialBody') {
-      if(this.props.editables.find(val => val.name === 'materialBody') != undefined ) {
+    if (elementType === 'MaterialBody') {
+      if(this.props.editables.find(val => val.name === 'materialBody')!== undefined ) {
         const presturcturedBody = this.props.editables.find(val => val.name === 'materialBody')
           presturcturedBody.textLong = evt.target.value
-          this.state.materialBody = presturcturedBody
+          this.setState({ materialBody: presturcturedBody })
       } else {
-        this.state.materialBody = { name: "materialBody", textLong: evt.target.value }
+        this.setState({ materialBody: { name: "materialBody", textLong: evt.target.value }})
       }
     }
   }
@@ -142,27 +142,27 @@ class Materials extends Component {
     let filtered_materials = resources.filter( i =>
         i.resource_title.toLowerCase().includes(lowerCaseSearch)
         ||
-        ((i.author != null) ?
+        ((i.author!== null) ?
         i.author.toLowerCase().includes(lowerCaseSearch)
         :
         null)
         ||
-        ((i.keywords != null) ?
+        ((i.keywords!== null) ?
         i.keywords.toLowerCase().includes(lowerCaseSearch)
         :
         null)
         ||
-        ((i.subjects != null) ?
+        ((i.subjects!== null) ?
         i.subjects.toLowerCase().includes(lowerCaseSearch)
         :
         null)
         ||
-        ((i.standards != null) ?
+        ((i.standards!== null) ?
         i.standards.includes(lowerCaseSearch)
         :
         null)
         ||
-        ((i.resource_title != null) ?
+        ((i.resource_title!== null) ?
         i.resource_title.toLowerCase().includes(lowerCaseSearch)
         :
         null)
@@ -202,7 +202,7 @@ class Materials extends Component {
         <Header textAlign='center'>
           <SectionHead>
             <ContentEditable
-              html={(this.props.editables.length && this.props.editables.find(val => val.name === 'materialHeader') != undefined) >= 1 ? this.props.editables.find(val => val.name === 'materialHeader').textShort : 'Learning Materials'}
+              html={(this.props.editables.length && this.props.editables.find(val => val.name === 'materialHeader')!== undefined) >= 1 ? this.props.editables.find(val => val.name === 'materialHeader').textShort : 'Learning Materials'}
               disabled={this.props.user.id  ? false : true} // use true to disable editing maybe use the user in props here to give permissions
               onChange={this.handleChangeEditable} // handle innerHTML change
               tagName='MaterialHeader' // Use a custom HTML tag (uses a div by default)
@@ -212,7 +212,7 @@ class Materials extends Component {
         </Header>
         <ContentStyleCenter>
           <ContentEditable
-            html={(this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'materialBody') != undefined) ? this.props.editables.find(val => val.name === 'materialBody').textLong
+            html={(this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'materialBody')!== undefined) ? this.props.editables.find(val => val.name === 'materialBody').textLong
                 : ` There are many ways to learn the Alutiiq language: learning from a friend or family member, studying resources, or playing games. Most importantly, there are many ways to integrate Alutiiq into your daily life. Everyone who knows a word or phrase has something to share.
                 <br />
                 <br />

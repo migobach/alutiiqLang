@@ -13,7 +13,6 @@ import {
   SpecialDiv,
   ContentStyle,
   ContainerPad,
-  FootLink,
 } from './styles/CommonStyles'
 import AKHF from '../logos/AKHF.jpg'
 import ANA from '../logos/ANAlogo.png'
@@ -89,39 +88,39 @@ class Footer extends Component {
     const elementType = evt._dispatchInstances.type
 
     if (elementType === 'footerLeftHeader') {
-      if (this.props.editables.find(val => val.name === 'footerLeftHeader') != undefined ) {
+      if (this.props.editables.find(val => val.name === 'footerLeftHeader') !== undefined ) {
         const prestructuredFooterLeft = this.props.editables.find(val => val.name === 'footerLeftHeader')
         prestructuredFooterLeft.textShort = evt.target.value
         this.setState({ footerLeftHeader: prestructuredFooterLeft})
       } else {
-        this.state.footerLeftHeader = { name: 'footerLeftHeader', textShort: evt.target.value }
+        this.setState({ footerLeftHeader: { name: 'footerLeftHeader', textShort: evt.target.value }})
       }
     }
     if (elementType === 'footerRightHeader') {
-      if (this.props.editables.find(val => val.name === 'footerRightHeader') != undefined ) {
+      if (this.props.editables.find(val => val.name === 'footerRightHeader') !== undefined ) {
         const prestructuredFooterRight = this.props.editables.find(val => val.name === 'footerRightHeader')
         prestructuredFooterRight.textShort = evt.target.value
         this.setState({ footerRightHeader: prestructuredFooterRight})
       } else {
-        this.state.footerRightHeader = { name: 'footerRightHeader', textShort: evt.target.value }
+        this.setState({ footerRightHeader: { name: 'footerRightHeader', textShort: evt.target.value }})
       }
     }
     if (elementType === 'footerRightBody') {
-      if (this.props.editables.find(val => val.name === 'footerRightBody') != undefined ) {
+      if (this.props.editables.find(val => val.name === 'footerRightBody') !== undefined ) {
         const prestructuredFooterRightBody = this.props.editables.find(val => val.name === 'footerRightBody')
         prestructuredFooterRightBody.textLong = evt.target.value
         this.setState({ footerRightBody: prestructuredFooterRightBody})
       } else {
-        this.state.footerRightBody = { name: 'footerRightBody', textLong: evt.target.value }
+        this.setState({footerRightBody: { name: 'footerRightBody', textLong: evt.target.value }})
       }
     }
     if (elementType === 'footerLeftBody') {
-      if (this.props.editables.find(val => val.name === 'footerLeftBody') != undefined ) {
+      if (this.props.editables.find(val => val.name === 'footerLeftBody') !== undefined ) {
         const prestructuredFooterLeftBody = this.props.editables.find(val => val.name === 'footerLeftBody')
         prestructuredFooterLeftBody.textLong = evt.target.value
         this.setState({ footerLeftBody: prestructuredFooterLeftBody})
       } else {
-        this.state.footerLeftBody = { name: 'footerLeftBody', textLong: evt.target.value }
+        this.setState({footerLeftBody: { name: 'footerLeftBody', textLong: evt.target.value }})
       }
     }
   }
@@ -137,7 +136,7 @@ class Footer extends Component {
               <SpecialDiv>
                 <ContentHead>
                   <ContentEditable
-                    html={(this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'footerLeftHeader') != undefined) ? this.props.editables.find(val => val.name === 'footerLeftHeader').textShort : 'Contact us:'}
+                    html={(this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'footerLeftHeader') !== undefined) ? this.props.editables.find(val => val.name === 'footerLeftHeader').textShort : 'Contact us:'}
                     disabled={this.props.user.id ? false : true}
                     onChange={this.handleChangeEditable}
                     tagName='footerLeftHeader'
@@ -146,7 +145,7 @@ class Footer extends Component {
                 </ContentHead>
                 <ContentStyle>
                   <ContentEditable
-                  html={(this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'footerLeftBody') != undefined) ? this.props.editables.find(val => val.name === 'footerLeftBody').textLong : 'Native Village of Afognak, 907.486.6357'}
+                  html={(this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'footerLeftBody') !== undefined) ? this.props.editables.find(val => val.name === 'footerLeftBody').textLong : 'Native Village of Afognak, 907.486.6357'}
                   disabled={this.props.user.id ? false : true}
                   onChange={this.handleChangeEditable}
                   tagName='footerLeftBody'
@@ -160,7 +159,7 @@ class Footer extends Component {
               <SpecialDiv>
                 <ContentHead>
                   <ContentEditable
-                    html= {(this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'footerRightHeader') != undefined) ? this.props.editables.find(val => val.name === 'footerRightHeader').textShort : 'Who we are:'}
+                    html= {(this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'footerRightHeader') !== undefined) ? this.props.editables.find(val => val.name === 'footerRightHeader').textShort : 'Who we are:'}
                     disabled={this.props.user.id ? false : true}
                     onChange={this.handleChangeEditable}
                     tagName='footerRightHeader'
@@ -169,7 +168,7 @@ class Footer extends Component {
                 </ContentHead>
                 <ContentStyle>
                   <ContentEditable
-                    html={(this.props.editables.length >= 1 &&this.props.editables.find(val => val.name === 'footerRightBody') != undefined) ? this.props.editables.find(val => val.name === 'footerRightBody').textLong : `This website is maintained by the Native Village of Afognak in partnership with the Sun'aq Tribe of Kodiak with the aim of providing a single location to access all things Alutiiq.`}
+                    html={(this.props.editables.length >= 1 &&this.props.editables.find(val => val.name === 'footerRightBody') !== undefined) ? this.props.editables.find(val => val.name === 'footerRightBody').textLong : `This website is maintained by the Native Village of Afognak in partnership with the Sun'aq Tribe of Kodiak with the aim of providing a single location to access all things Alutiiq.`}
                     disabled={this.props.user.id ? false : true}
                     onChange={this.handleChangeEditable}
                     tagName='footerRightBody'

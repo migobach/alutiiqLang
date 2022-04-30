@@ -82,17 +82,26 @@ class Curriculum extends Component {
  }
 
  handleChangeEditable = evt => {
-  console.log('evt: ', evt)
   const elementType = evt._dispatchInstances.type
 
   if (elementType == 'curriculumHeader') {
-    const preStructuredHeader = this.props.editables.find(val => val.name === 'curriculumHeader')
-     preStructuredHeader.textShort = evt.target.value
-     this.state.curriculumHeader = preStructuredHeader
-  } else if (elementType == 'curriculumBody') {
-    const presturcturedBody = this.props.editables.find(val => val.name === 'curriculumBody')
-     presturcturedBody.textLong = evt.target.value
-     this.state.curriculumBody = presturcturedBody
+    if (this.props.editables.find(val => val.name === 'curriculumHeader') != undefined) {
+      const preStructuredHeader = this.props.editables.find(val => val.name === 'curriculumHeader')
+       preStructuredHeader.textShort = evt.target.value
+       this.state.curriculumHeader = preStructuredHeader
+    } else {
+      this.state.curriculumHeader = { name: 'curriculumHeader', textShort: evt.target.value }
+    }
+
+    if (elementType == 'curriculumBody') {
+      if (this.props.editables.find(val => val.name === 'curriculumBody') != undefined) {
+        const presturcturedBody = this.props.editables.find(val => val.name === 'curriculumBody')
+         presturcturedBody.textLong = evt.target.value
+         this.state.curriculumBody = presturcturedBody
+      } else {
+        this.state.curriculumBody = { name: 'curriculumBody', textLong: evt.target.value}
+      }
+    }
   }
 }
 
@@ -101,13 +110,19 @@ handleBlurEditable = () => {
   const updatedBody = this.state.curriculumBody
 
   if (updatedHeader.id) {
-    console.log('in header PUT', updatedHeader)
     axios.put(`api/editables/${updatedHeader.id}`, updatedHeader)
   }
 
+  if (updatedHeader.id === undefined) {
+    axios.post('api/editables', updatedHeader)
+  }
+
   if (updatedBody.id) {
-    console.log('in body PUT', updatedBody)
     axios.put(`api/editables/${updatedBody.id}`, updatedBody)
+  }
+
+  if (updatedBody.id === undefined) {
+    axios.post('api/editables', updatedBody)
   }
 }
 
@@ -131,7 +146,7 @@ handleBlurEditable = () => {
               <SectionHead>
                 {/* Alutiiq Language K-5 Curriculum Resources */}
                 <ContentEditable
-                  html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'curriculumHeader').textShort : 'Alutiiq Language K-5 Curriculum Resources'}
+                  html={(this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'curriculumHeader') != undefined) ? this.props.editables.find(val => val.name === 'curriculumHeader').textShort : 'Alutiiq Language K-5 Curriculum Resources'}
                   disabled={this.props.user.id ? false : true}
                   onChange={this.handleChangeEditable}
                   tagName='curriculumHeader'
@@ -141,7 +156,7 @@ handleBlurEditable = () => {
             </Header>
             <ContentStyleWhite>
               <ContentEditable
-                html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'curriculumBody').textLong : 'All published Alutiiq language materials on this webpage are for educational usage. You will find audio links for lesson vocabulary in both the Northern and Southern Kodiak Alutiiq styles to support the diverse ways of speaking Alutiiq across the region. We hope educators will take advantage of this opportunity to share insights and recommendations so we can continue to improve these resources.'}
+                html={(this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'curriculumBody') != undefined) ? this.props.editables.find(val => val.name === 'curriculumBody').textLong : 'All published Alutiiq language materials on this webpage are for educational usage. You will find audio links for lesson vocabulary in both the Northern and Southern Kodiak Alutiiq styles to support the diverse ways of speaking Alutiiq across the region. We hope educators will take advantage of this opportunity to share insights and recommendations so we can continue to improve these resources.'}
                 disabled={this.props.user.id ? false : true}
                 onChange={this.handleChangeEditable}
                 tagName='curriculumBody'
@@ -230,7 +245,7 @@ handleBlurEditable = () => {
     </div>
     )
   }
-}
+ }
 
 const mapStateToProps = (state) => {
   return {

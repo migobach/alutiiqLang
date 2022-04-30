@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getEditablesData } from '../reducers/editables'
-import { 
-  Header, 
-  Grid, 
+import {
+  Header,
+  Grid,
   Divider,
   Image,
 } from 'semantic-ui-react'
@@ -38,12 +38,12 @@ class Classes extends Component {
     content: {},
     admin: false,
   }
-  
+
   componentDidMount() {
     const { dispatch } = this.props
     dispatch(getEditablesData())
   }
-  
+
   constructor(props) {
     super(props)
     this.contentEditable = React.createRef()
@@ -52,23 +52,23 @@ class Classes extends Component {
   handleChangeBody = evt => {
     console.log('evt:', evt)
     const elementType = evt._dispatchInstances.type
-  
-   if (elementType == 'ClassesHeader') {
+
+   if (elementType === 'ClassesHeader') {
       const preStructuredHeader = { ...this.props.editables.find(val => val.name === 'classHeader') }
         preStructuredHeader.textShort = evt.target.value
-        this.state.header = preStructuredHeader
-    } else if (elementType == 'ClassesBody') {
+        this.setState({ header: preStructuredHeader })
+    } else if (elementType === 'ClassesBody') {
       const preStructuredBody = this.props.editables.find(val => val.name === 'classBody')
         preStructuredBody.textLong = evt.target.value
-        this.state.body = preStructuredBody
-    } else if (elementType == 'ClassesSubTitle') {
+        this.setState({ body: preStructuredBody })
+    } else if (elementType === 'ClassesSubTitle') {
       const preStructuredSubTitle = this.props.editables.find(val => val.name === 'classSubTitle')
         preStructuredSubTitle.textShort = evt.target.value
-        this.state.title = preStructuredSubTitle
-    } else if ( elementType == 'ClassesSubContent') {
+        this.setState({ title: preStructuredSubTitle })
+    } else if ( elementType === 'ClassesSubContent') {
       const preStructuredSubContent = this.props.editables.find(val => val.name === 'classSubContent')
         preStructuredSubContent.textLong = evt.target.value
-        this.state.content = preStructuredSubContent
+        this.setState({ content: preStructuredSubContent })
     }
   };
 
@@ -82,7 +82,7 @@ class Classes extends Component {
     const updatedSubTitle = this.state.title
     const updatedSubContent = this.state.content
     console.log('state:', updatedBody, updatedHeader, updatedSubTitle)
-    
+
     if (updatedHeader.id ) {
       console.log('in header PUT', updatedHeader)
       axios.put(`api/editables/${updatedHeader.id}`, updatedHeader)
@@ -141,7 +141,7 @@ class Classes extends Component {
                   onBlur={this.handleBlurBody}
                 />
               </ContentStyleWhite>
-          </SpecialDiv>   
+          </SpecialDiv>
         </div>
       </Parallax>
 
@@ -165,7 +165,7 @@ class Classes extends Component {
 
       <SpecialDiv>
         <GreenHead>
-          Weekly Gatherings: 
+          Weekly Gatherings:
           <Divider />
         </GreenHead>
 
@@ -187,7 +187,7 @@ class Classes extends Component {
 
       <SpecialDiv>
         <GreenHead>
-          Other Opportunities: 
+          Other Opportunities:
           <Divider />
         </GreenHead>
           <ColumnHead>
@@ -253,7 +253,7 @@ class Classes extends Component {
 
          {/* TODO: TEXT EDIT FIELDS */}
         <GreenHead>
-          Alutiiq Language Meetings: 
+          Alutiiq Language Meetings:
           <Divider />
         </GreenHead>
           <ColumnHead>
@@ -263,7 +263,7 @@ class Classes extends Component {
               The <i>Qik’rtarmiut Alutiit</i> (Alutiiq People of the Island) Regional Language Advisory Committee (known as the “Qik Committee”) started in 2003, and is a grassroots committee made up of representatives from island-wide tribes and organizations, as well as interested Elders and other individuals. The committee meets every few months to guide projects in the language revitalization movement and inform members of project updates and events. To get on the agenda for the next Qik Committee meeting, or to be signed up to the mailing list for meeting announcements, call the Alutiiq Museum at (844) 425-8844 or email <BodyLink href={`mailto:molly@alutiiqmuseum.org`}>Molly Odell</BodyLink>.
             </ContentStyle>
       </SpecialDiv>
-      
+
       <Divider hidden />
 
       <GreenDiv>
@@ -313,4 +313,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Classes) 
+export default connect(mapStateToProps)(Classes)
