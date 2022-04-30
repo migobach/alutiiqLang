@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { 
-  Container, 
-  Grid, 
-  Image, 
+import {
+  Container,
+  Grid,
+  Image,
 } from 'semantic-ui-react';
 import { getEditablesData } from '../reducers/editables';
 import ContentEditable from 'react-contenteditable'
@@ -38,10 +38,10 @@ class Footer extends Component {
   }
 
   componentDidMount = () => {
-    const { dispatch }= this.props 
+    const { dispatch }= this.props
     dispatch(getEditablesData())
   }
-  
+
   handleChange = (e, { name, value }) => {
     this.setState({ [name]: value })
   }
@@ -53,47 +53,76 @@ class Footer extends Component {
     const updatedFooterLeftBody = this.state.footerLeftBody
 
     if (updatedFooterLeftHeader.id) {
-      console.log('in header PUT', updatedFooterLeftHeader)
       axios.put(`api/editables/${updatedFooterLeftHeader.id}`, updatedFooterLeftHeader)
-    } 
+    }
+
+    if (updatedFooterLeftHeader.id === undefined) {
+      axios.post('api/editables', updatedFooterLeftHeader)
+    }
+
     if (updatedFooterRightHeader.id) {
-      console.log('in body PUT', updatedFooterRightHeader)
       axios.put(`api/editables/${updatedFooterRightHeader.id}`, updatedFooterRightHeader)
     }
+
+    if (updatedFooterRightHeader.id === undefined) {
+      axios.post('api/editables', updatedFooterRightHeader)
+    }
+
     if (updatedFooterRightBody.id) {
-      console.log('in body PUT', updatedFooterRightBody)
       axios.put(`api/editables/${updatedFooterRightBody.id}`, updatedFooterRightBody)
     }
+
+    if (updatedFooterRightBody.id === undefined) {
+      axios.post('api/editables', updatedFooterRightBody)
+    }
+
     if (updatedFooterLeftBody.id) {
-      console.log('in body PUT', updatedFooterLeftBody)
       axios.put(`api/editables/${updatedFooterLeftBody.id}`, updatedFooterLeftBody)
+    }
+
+    if (updatedFooterLeftBody.id === undefined) {
+      axios.post('api/editables', updatedFooterLeftBody)
     }
   }
 
   handleChangeEditable = evt => {
-    console.log('evt: ', evt)
     const elementType = evt._dispatchInstances.type
-    console.log('element type: ', elementType)
 
     if (elementType === 'footerLeftHeader') {
-      const prestructuredFooterLeft = this.props.editables.find(val => val.name === 'footerLeftHeader')
-      prestructuredFooterLeft.textShort = evt.target.value
-      this.setState({ footerLeftHeader: prestructuredFooterLeft})
+      if (this.props.editables.find(val => val.name === 'footerLeftHeader') != undefined ) {
+        const prestructuredFooterLeft = this.props.editables.find(val => val.name === 'footerLeftHeader')
+        prestructuredFooterLeft.textShort = evt.target.value
+        this.setState({ footerLeftHeader: prestructuredFooterLeft})
+      } else {
+        this.state.footerLeftHeader = { name: 'footerLeftHeader', textShort: evt.target.value }
+      }
     }
     if (elementType === 'footerRightHeader') {
-      const prestructuredFooterRight = this.props.editables.find(val => val.name === 'footerRightHeader')
-      prestructuredFooterRight.textShort = evt.target.value
-      this.setState({ footerRightHeader: prestructuredFooterRight})
+      if (this.props.editables.find(val => val.name === 'footerRightHeader') != undefined ) {
+        const prestructuredFooterRight = this.props.editables.find(val => val.name === 'footerRightHeader')
+        prestructuredFooterRight.textShort = evt.target.value
+        this.setState({ footerRightHeader: prestructuredFooterRight})
+      } else {
+        this.state.footerRightHeader = { name: 'footerRightHeader', textShort: evt.target.value }
+      }
     }
     if (elementType === 'footerRightBody') {
-      const prestructuredFooterRightBody = this.props.editables.find(val => val.name === 'footerRightBody')
-      prestructuredFooterRightBody.textLong = evt.target.value
-      this.setState({ footerRightBody: prestructuredFooterRightBody})
+      if (this.props.editables.find(val => val.name === 'footerRightBody') != undefined ) {
+        const prestructuredFooterRightBody = this.props.editables.find(val => val.name === 'footerRightBody')
+        prestructuredFooterRightBody.textLong = evt.target.value
+        this.setState({ footerRightBody: prestructuredFooterRightBody})
+      } else {
+        this.state.footerRightBody = { name: 'footerRightBody', textLong: evt.target.value }
+      }
     }
     if (elementType === 'footerLeftBody') {
-      const prestructuredFooterLeftBody = this.props.editables.find(val => val.name === 'footerLeftBody')
-      prestructuredFooterLeftBody.textLong = evt.target.value
-      this.setState({ footerLeftBody: prestructuredFooterLeftBody})
+      if (this.props.editables.find(val => val.name === 'footerLeftBody') != undefined ) {
+        const prestructuredFooterLeftBody = this.props.editables.find(val => val.name === 'footerLeftBody')
+        prestructuredFooterLeftBody.textLong = evt.target.value
+        this.setState({ footerLeftBody: prestructuredFooterLeftBody})
+      } else {
+        this.state.footerLeftBody = { name: 'footerLeftBody', textLong: evt.target.value }
+      }
     }
   }
 
@@ -108,7 +137,7 @@ class Footer extends Component {
               <SpecialDiv>
                 <ContentHead>
                   <ContentEditable
-                    html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'footerLeftHeader').textShort : 'Contact us:'}
+                    html={(this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'footerLeftHeader') != undefined) ? this.props.editables.find(val => val.name === 'footerLeftHeader').textShort : 'Contact us:'}
                     disabled={this.props.user.id ? false : true}
                     onChange={this.handleChangeEditable}
                     tagName='footerLeftHeader'
@@ -117,7 +146,7 @@ class Footer extends Component {
                 </ContentHead>
                 <ContentStyle>
                   <ContentEditable
-                  html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'footerLeftBody').textLong : 'Native Village of Afognak, 907.486.6357'}
+                  html={(this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'footerLeftBody') != undefined) ? this.props.editables.find(val => val.name === 'footerLeftBody').textLong : 'Native Village of Afognak, 907.486.6357'}
                   disabled={this.props.user.id ? false : true}
                   onChange={this.handleChangeEditable}
                   tagName='footerLeftBody'
@@ -126,12 +155,12 @@ class Footer extends Component {
                 </ContentStyle>
               </SpecialDiv>
             </Grid.Column>
-          
+
             <Grid.Column textAlign='center'>
               <SpecialDiv>
                 <ContentHead>
                   <ContentEditable
-                    html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'footerRightHeader').textShort : 'Who we are:'}
+                    html= {(this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'footerRightHeader') != undefined) ? this.props.editables.find(val => val.name === 'footerRightHeader').textShort : 'Who we are:'}
                     disabled={this.props.user.id ? false : true}
                     onChange={this.handleChangeEditable}
                     tagName='footerRightHeader'
@@ -140,7 +169,7 @@ class Footer extends Component {
                 </ContentHead>
                 <ContentStyle>
                   <ContentEditable
-                    html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'footerRightBody').textLong : `This website is maintained by the Native Village of Afognak in partnership with the Sun'aq Tribe of Kodiak with the aim of providing a single location to access all things Alutiiq.`}
+                    html={(this.props.editables.length >= 1 &&this.props.editables.find(val => val.name === 'footerRightBody') != undefined) ? this.props.editables.find(val => val.name === 'footerRightBody').textLong : `This website is maintained by the Native Village of Afognak in partnership with the Sun'aq Tribe of Kodiak with the aim of providing a single location to access all things Alutiiq.`}
                     disabled={this.props.user.id ? false : true}
                     onChange={this.handleChangeEditable}
                     tagName='footerRightBody'
@@ -152,7 +181,7 @@ class Footer extends Component {
           </Grid.Row>
 
           {/* logos of sponsors */}
-        
+
           <Grid.Row columns={13} only='tablet computer'>
             <Grid.Column>
               <a href='http://sunaq.org/languageprograms/language-nest/' target='_blank' rel='noopener noreferrer'>
@@ -228,7 +257,7 @@ class Footer extends Component {
         </Grid>
       </Container>
       </ContainerPad>
-      
+
       </div>
     )
   }
