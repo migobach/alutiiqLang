@@ -97,6 +97,17 @@ export const ContentStyle = styled.p`
   font-size: 1em;
   color: #3D3D3D;
 `
+export const ContentStyleDictionaryView = styled.p`
+  font-size: 1em;
+  color: #3D3D3D;
+  padding-bottom: 3em;
+`
+
+export const ContentStyleThick = styled.p`
+  font-size: 1em;
+  color: #3D3D3D;
+  font-weight: 900;
+`
 
 export const ContentStyleCentered = styled.p`
   font-size: 1em;

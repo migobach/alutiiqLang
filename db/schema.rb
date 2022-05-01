@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_11_005052) do
+ActiveRecord::Schema.define(version: 2022_05_01_045512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,11 @@ ActiveRecord::Schema.define(version: 2021_02_11_005052) do
     t.boolean "approved"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "cultural_significance"
+    t.string "examples_conjugation_irregulars"
+    t.string "negatives"
+    t.string "literal_translation"
+    t.string "additional_meanings"
   end
 
   create_table "editables", force: :cascade do |t|
