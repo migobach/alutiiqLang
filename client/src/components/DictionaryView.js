@@ -47,8 +47,8 @@ class DictionaryView extends Component {
   }
 
   handleWord = () => {
-    if ((this.props.word.alutiiq_south !== null && this.props.word.alutiiq_north === null)) {
-      console.log('handle word 1: ', this.props.word.alutiiq_north, this.props.word.alutiiq_south)
+    if ((this.props.word.alutiiq_south !== null || this.props.word.alutiiq_south !== "") && (this.props.word.alutiiq_north === null || this.props.word.alutiiq_north === "")) {
+      console.log('handle word 1: ', "north", this.props.word.alutiiq_north, "south", this.props.word.alutiiq_south)
       return (
         <div>
           <WordStyle>
@@ -56,8 +56,8 @@ class DictionaryView extends Component {
           </WordStyle>
         </div>
       )
-    } else if ((this.props.word.alutiiq_north !== null && this.props.word.alutiiq_south === null)) {
-      console.log('handle word 2: ', this.props.word.alutiiq_north, this.props.word.alutiiq_south)
+    } else if ((this.props.word.alutiiq_north !== null || this.props.word.alutiiq_north !== "") && (this.props.word.alutiiq_south === null || this.props.word.alutiiq_south === "")) {
+      console.log('handle word 2: ', "north", this.props.word.alutiiq_north, "south", this.props.word.alutiiq_south)
       return (
         <div>
           <WordStyle>
@@ -66,7 +66,7 @@ class DictionaryView extends Component {
         </div>
       )
     } else {
-      console.log('handle word 3: ', this.props.word.alutiiq_north, this.props.word.alutiiq_south)
+      console.log('handle word 3: ', "north", this.props.word.alutiiq_north, "south", this.props.word.alutiiq_south)
       return (
         <Grid columns={2}>
           <Grid.Column>
