@@ -19,21 +19,21 @@ const englishStyle = {
 class DictionaryView extends Component {
 
   handleSentence = () => {
-    if (this.props.word.north_sentence === this.props.word.south_sentence && this.props.word.north_sentence !== null) {
+    if ((this.props.word.north_sentence === this.props.word.south_sentence) && this.props.word.north_sentence !== null) {
       return (
         <div>
           <ContentStyleThick>Example sentence:</ContentStyleThick>
           <ContentStyle><i>{this.props.word.north_sentence}</i></ContentStyle>
         </div>
       )
-    } else if (this.props.word.north_sentence !== "" || this.props.word.north_sentence !== null) {
+    } else if (this.props.word.north_sentence !== null) {
       return (
         <div>
           <ContentStyleThick>Northern style example sentence: </ContentStyleThick>
           <ContentStyle><i>{this.props.word.north_sentence}</i></ContentStyle>
         </div>
       )
-    } else if (this.props.word.south_sentence !== "" || this.props.word.south_sentence !== null) {
+    } else if (this.props.word.south_sentence !== null) {
       return (
         <div>
           <ContentStyleThick>Southern style example sentence:</ContentStyleThick>
@@ -41,13 +41,14 @@ class DictionaryView extends Component {
         </div>
       )
 
-    } else {
+  } else {
       return null
     }
   }
 
   handleWord = () => {
-    if (this.props.word.alutiiq_south !== null && this.props.word.alutiiq_north === null) {
+    if ((this.props.word.alutiiq_south !== null && this.props.word.alutiiq_north === null)) {
+      console.log('handle word 1: ', this.props.word.alutiiq_north, this.props.word.alutiiq_south)
       return (
         <div>
           <WordStyle>
@@ -55,7 +56,8 @@ class DictionaryView extends Component {
           </WordStyle>
         </div>
       )
-    } else if (this.props.word.alutiiq_north !== null && this.props.word.alutiiq_south === null) {
+    } else if ((this.props.word.alutiiq_north !== null && this.props.word.alutiiq_south === null)) {
+      console.log('handle word 2: ', this.props.word.alutiiq_north, this.props.word.alutiiq_south)
       return (
         <div>
           <WordStyle>
@@ -64,6 +66,7 @@ class DictionaryView extends Component {
         </div>
       )
     } else {
+      console.log('handle word 3: ', this.props.word.alutiiq_north, this.props.word.alutiiq_south)
       return (
         <Grid columns={2}>
           <Grid.Column>
