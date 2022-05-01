@@ -48,7 +48,6 @@ class DictionaryView extends Component {
 
   handleWord = () => {
     if ((this.props.word.alutiiq_south !== null || this.props.word.alutiiq_south !== "") && (this.props.word.alutiiq_north === null || this.props.word.alutiiq_north === "")) {
-      console.log('handle word 1: ', "north", this.props.word.alutiiq_north, "south", this.props.word.alutiiq_south)
       return (
         <div>
           <WordStyle>
@@ -57,7 +56,6 @@ class DictionaryView extends Component {
         </div>
       )
     } else if ((this.props.word.alutiiq_north !== null || this.props.word.alutiiq_north !== "") && (this.props.word.alutiiq_south === null || this.props.word.alutiiq_south === "")) {
-      console.log('handle word 2: ', "north", this.props.word.alutiiq_north, "south", this.props.word.alutiiq_south)
       return (
         <div>
           <WordStyle>
@@ -66,7 +64,6 @@ class DictionaryView extends Component {
         </div>
       )
     } else {
-      console.log('handle word 3: ', "north", this.props.word.alutiiq_north, "south", this.props.word.alutiiq_south)
       return (
         <Grid columns={2}>
           <Grid.Column>
@@ -191,7 +188,7 @@ class DictionaryView extends Component {
 
           {/* PART OF SPEECH TERNARY  */}
 
-          {this.props.word.parth_of_speech !== null ?
+          {(this.props.word.parth_of_speech !== null || this.props.word.parth_of_speech !== "") ?
             <div>
               <ContentStyleThick>
                 Part of speech:
@@ -206,7 +203,7 @@ class DictionaryView extends Component {
 
           {/* CATEGORY TERNARY  */}
 
-          {this.props.word.category !== null ?
+          {(this.props.word.category !== null || this.props.word.category !== "")?
             <div>
               < br />
               <ContentStyleThick>
@@ -222,7 +219,7 @@ class DictionaryView extends Component {
 
           {/* EXAMPLES / CONJUGATIONS / IRREGULARS  */}
 
-          {this.props.word.examples_conjugation_irregulars !== null ?
+          {(this.props.word.examples_conjugation_irregulars !== null || this.props.word.examples_conjugation_irregulars !== "") ?
             <div>
               <ContentStyleThick>
                 Examples / Conjugations / Irregulars:
@@ -237,7 +234,7 @@ class DictionaryView extends Component {
 
           {/* CULTURAL SIGNIFICANCE  */}
 
-          {this.props.word.cultural_significance !== null ?
+          {(this.props.word.cultural_significance !== null || this.props.word.cultural_significance !== "") ?
             <div>
               <ContentStyleThick>
                 Cultural notes:
@@ -252,7 +249,7 @@ class DictionaryView extends Component {
 
           {/* NEGATIVE */}
 
-          {this.props.word.negatives !== null ?
+          {(this.props.word.negatives !== null || this.props.word.negatives !== "") ?
             <div>
               <ContentStyleThick>
                 Negative forms:
