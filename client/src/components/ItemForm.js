@@ -1,21 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {  
-  Button, 
-  Header,
+import {
+  Button,
   Divider,
   Form,
 } from 'semantic-ui-react'
-import { 
+import {
   SpecialDiv,
-  SubHeader,
-  SubHeaderContent
 } from './styles/CommonStyles'
 import { addItem } from '../reducers/items'
 
 
 class ItemForm extends Component {
-  state = { 
+  state = {
     title: '',
     body: '',
     buttonUrl: '',
@@ -41,9 +38,9 @@ class ItemForm extends Component {
   }
 
   handleForm = () => {
-    const { user, item } = this.props
-    const { title, body, buttonUrl, buttonName, visible } = this.state
-    
+    const { user } = this.props
+    const { title, body, buttonUrl, buttonName } = this.state
+
     if (user.id) {
       return(
         <SpecialDiv>
@@ -73,7 +70,7 @@ class ItemForm extends Component {
               </Form.Group>
                 <Divider hidden/>
               <Form.Group widths='equal'>
-                <Form.Input 
+                <Form.Input
                   label='What is the link for the button?'
                   name='buttonUrl'
                   value={buttonUrl}
@@ -90,7 +87,7 @@ class ItemForm extends Component {
                   onChange={this.handleChange}
                 />
               </Form.Group>
-                {/* <Form.Checkbox 
+                {/* <Form.Checkbox
                   label='Is this segment going to be visible?'
                   value={visible}
                   onChange={this.handleBoolean}
@@ -136,7 +133,7 @@ class ItemForm extends Component {
     }
   }
 
-    
+
     render() {
       return(
         <div>

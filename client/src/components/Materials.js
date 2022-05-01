@@ -3,15 +3,15 @@ import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { getMaterials } from '../reducers/materials'
 import { getEditablesData } from '../reducers/editables'
-import { 
-  Header, 
+import {
+  Header,
   Image,
   Grid,
   Card,
   Button,
   Icon,
   Form,
-  Dimmer, 
+  Dimmer,
   Loader,
  } from 'semantic-ui-react'
 import {
@@ -35,15 +35,15 @@ import MaterialsView from './materials/MaterialsView'
 import axios from 'axios'
 
 class Materials extends Component {
-  state = { 
-    searchResources: '', 
-    searchView: false,  
-    loading: true, 
+  state = {
+    searchResources: '',
+    searchView: false,
+    loading: true,
     materialView: false,
     materialHeader: {},
     materialBody: {}
   }
-  
+
   componentDidMount() {
     const { dispatch } = this.props
     dispatch(getMaterials())
@@ -56,7 +56,7 @@ class Materials extends Component {
   }
 
   nowLoading = () => {
-    return ( 
+    return (
       <Dimmer active inverted>
          <Loader size="huge" inverted> Utaqaligiu... </Loader>
        </Dimmer>
@@ -76,25 +76,41 @@ class Materials extends Component {
   }
 
   handleChangeEditable = evt => {
-    console.log('evt:', evt)
     const elementType = evt._dispatchInstances.type
 
-    if (elementType == 'MaterialHeader') {
-      const preStructuredHeader = this.props.editables.find(val => val.name === 'materialHeader')
-        preStructuredHeader.textShort = evt.target.value
-        this.state.materialHeader = preStructuredHeader
+    if (elementType === 'MaterialHeader') {;
+      if (this.props.editables.find(val => val.name === 'materialHeader')!== undefined ) {
+        const preStructuredHeader = this.props.editables.find(val => val.name === 'materialHeader')
+          preStructuredHeader.textShort = evt.target.value
+          this.setState({ materialHeader: preStructuredHeader })
+      } else {
+        this.setState({ materialHeader: { name: "materialHeader", textShort: evt.target.value }})
+      }
     }
-    
-    if (elementType == 'MaterialBody') {
-      const presturcturedBody = this.props.editables.find(val => val.name === 'materialBody')
-        presturcturedBody.textLong = evt.target.value
-        this.state.materialBody = presturcturedBody
+
+    if (elementType === 'MaterialBody') {
+      if(this.props.editables.find(val => val.name === 'materialBody')!== undefined ) {
+        const presturcturedBody = this.props.editables.find(val => val.name === 'materialBody')
+          presturcturedBody.textLong = evt.target.value
+          this.setState({ materialBody: presturcturedBody })
+      } else {
+        this.setState({ materialBody: { name: "materialBody", textLong: evt.target.value }})
+      }
     }
   }
 
   handleBlurEditable = () => {
     const updatedHeader = this.state.materialHeader
     const updatedBody = this.state.materialBody
+
+    if (updatedHeader.id === undefined) {
+      console.log('in header CREATE', updatedHeader)
+      axios.post('api/editables', updatedHeader)
+    }
+
+    if (updatedBody.id === undefined) {
+      axios.post('api/editables', updatedBody)
+    }
 
     if (updatedHeader.id) {
       console.log('in header PUT', updatedHeader)
@@ -106,47 +122,47 @@ class Materials extends Component {
       axios.put(`api/editables/${updatedBody.id}`, updatedBody)
     }
   }
-  
+
   setMaterial = (material) => {
     this.setState( { materialData: {...material}, materialView: true})
   }
-  
+
   renderMaterialView = () => {
     if (this.state.materialView === true) {
       return <MaterialsView material={this.state.materialData} view={this.toggleView} />
-    } else 
+    } else
     return
   }
-  
+
   renderSearchMaterials = () => {
     const { searchResources } = this.state
     const resources = this.props.materials
-    const lowerCaseSearch = searchResources.toLowerCase() 
+    const lowerCaseSearch = searchResources.toLowerCase()
 
-    let filtered_materials = resources.filter( i => 
+    let filtered_materials = resources.filter( i =>
         i.resource_title.toLowerCase().includes(lowerCaseSearch)
-        || 
-        ((i.author != null) ?
+        ||
+        ((i.author!== null) ?
         i.author.toLowerCase().includes(lowerCaseSearch)
         :
         null)
         ||
-        ((i.keywords != null) ?
+        ((i.keywords!== null) ?
         i.keywords.toLowerCase().includes(lowerCaseSearch)
         :
         null)
         ||
-        ((i.subjects != null) ?
+        ((i.subjects!== null) ?
         i.subjects.toLowerCase().includes(lowerCaseSearch)
         :
         null)
         ||
-        ((i.standards != null) ?
+        ((i.standards!== null) ?
         i.standards.includes(lowerCaseSearch)
         :
         null)
         ||
-        ((i.resource_title != null) ?
+        ((i.resource_title!== null) ?
         i.resource_title.toLowerCase().includes(lowerCaseSearch)
         :
         null)
@@ -178,6 +194,7 @@ class Materials extends Component {
   render() {
     const { searchResources, loading, materialView } = this.state
 
+
     return(
     <Fragment>
       <div>
@@ -185,7 +202,7 @@ class Materials extends Component {
         <Header textAlign='center'>
           <SectionHead>
             <ContentEditable
-              html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'materialHeader').textShort : 'Learning Materials'} // innerHTML of the editable div - this.state.html
+              html={(this.props.editables.length && this.props.editables.find(val => val.name === 'materialHeader')!== undefined) >= 1 ? this.props.editables.find(val => val.name === 'materialHeader').textShort : 'Learning Materials'}
               disabled={this.props.user.id  ? false : true} // use true to disable editing maybe use the user in props here to give permissions
               onChange={this.handleChangeEditable} // handle innerHTML change
               tagName='MaterialHeader' // Use a custom HTML tag (uses a div by default)
@@ -195,19 +212,28 @@ class Materials extends Component {
         </Header>
         <ContentStyleCenter>
           <ContentEditable
-            html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'materialBody').textLong : 'Default text' } // innerHTML of the editable div - this.state.html
+            html={(this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'materialBody')!== undefined) ? this.props.editables.find(val => val.name === 'materialBody').textLong
+                : ` There are many ways to learn the Alutiiq language: learning from a friend or family member, studying resources, or playing games. Most importantly, there are many ways to integrate Alutiiq into your daily life. Everyone who knows a word or phrase has something to share.
+                <br />
+                <br />
+                There are many resources housed on this page to help get you going with your learning journey. Check out some of the book designed for learners who are just starting out. Hang some of the posters hosted here around your home or office. Share time with family or friends and play one of the simple games available through the links below. Or, listen to stories in Alutiiq in an effort to increase your fluency by modeling someone more proficient than yourself.
+                <br />
+                <br />
+              Most importantly, use the language that you have. Even if that is just saying <i>Cama'i</i> to your neighbors. `
+            } // innerHTML of the editable div - this.state.html
             disabled={this.props.user.id  ? false : true} // use true to disable editing maybe use the user in props here to give permissions
             onChange={this.handleChangeEditable} // handle innerHTML change
             tagName='MaterialBody' // Use a custom HTML tag (uses a div by default)
             onBlur={this.handleBlurEditable}
           />
-          {/* ` There are many ways to learn the Alutiiq language: learning from a friend or family member, studying resources, or playing games. Most importantly, there are many ways to integrate Alutiiq into your daily life. Everyone who knows a word or phrase has something to share. 
+
+          {/* ` There are many ways to learn the Alutiiq language: learning from a friend or family member, studying resources, or playing games. Most importantly, there are many ways to integrate Alutiiq into your daily life. Everyone who knows a word or phrase has something to share.
             <br />
             <br />
-            There are many resources housed on this page to help get you going with your learning journey. Check out some of the book designed for learners who are just starting out. Hang some of the posters hosted here around your home or office. Share time with family or friends and play one of the simple games available through the links below. Or, listen to stories in Alutiiq in an effort to increase your fluency by modeling someone more proficient than yourself. 
+            There are many resources housed on this page to help get you going with your learning journey. Check out some of the book designed for learners who are just starting out. Hang some of the posters hosted here around your home or office. Share time with family or friends and play one of the simple games available through the links below. Or, listen to stories in Alutiiq in an effort to increase your fluency by modeling someone more proficient than yourself.
             <br />
             <br />
-            Most importantly, use the language that you have. Even if that is just saying <i>Cama'i</i> to your neighbors. ` */}
+          Most importantly, use the language that you have. Even if that is just saying <i>Cama'i</i> to your neighbors. ` */}
         </ContentStyleCenter>
       </SpecialDiv>
       </div>
@@ -225,16 +251,16 @@ class Materials extends Component {
               <Card.Content>
                 <SpecialDiv>
                   <ContentStyle>
-                    Once a learner has heard and practiced new vocabulary, learning to read and do an activity in Alutiiq is a good way to reinforce their language learning. Click on the 'Go' button below to begin expanding your Alutiiq library. 
+                    Once a learner has heard and practiced new vocabulary, learning to read and do an activity in Alutiiq is a good way to reinforce their language learning. Click on the 'Go' button below to begin expanding your Alutiiq library.
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
               <Link to={`/books`}>
                 <Button color='yellow' size='small' fluid>
-                  Go 
+                  Go
                 </Button>
               </Link>
-                
+
             </Card>
 
             <Card>
@@ -252,7 +278,7 @@ class Materials extends Component {
               </Card.Content>
               <Link to={`/postersandgames`}>
                 <Button color='yellow' size='small' fluid>
-                  Go 
+                  Go
                 </Button>
               </Link>
             </Card>
@@ -266,13 +292,13 @@ class Materials extends Component {
               <Card.Content>
                 <SpecialDiv>
                   <ContentStyle>
-                    Being able to hear the Alutiiq language, while seeing it contextualized through activity, dance, or other setting helps learners access language in ways otherwise unavailable to them. Subscribe to the channel to stay updated! 
+                    Being able to hear the Alutiiq language, while seeing it contextualized through activity, dance, or other setting helps learners access language in ways otherwise unavailable to them. Subscribe to the channel to stay updated!
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
               <a href='https://www.youtube.com/channel/UCLDNH9GmHDEz2WUk0MtBrLQ/playlists' target='_blank' rel='noopener noreferrer'>
                 <Button color='yellow' size='small' fluid>
-                  Go 
+                  Go
                 </Button>
               </a>
             </Card>
@@ -286,13 +312,13 @@ class Materials extends Component {
               <Card.Content>
                 <SpecialDiv>
                   <ContentStyle>
-                    Other individuals and organizations support language revitalization efforts online. Click on the link to see a list of websites related to Alutiiq language and culture. 
+                    Other individuals and organizations support language revitalization efforts online. Click on the link to see a list of websites related to Alutiiq language and culture.
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
               <Link to={'/links'}>
                 <Button color='yellow' size='small' fluid>
-                  Go 
+                  Go
                 </Button>
               </Link>
             </Card>
@@ -306,13 +332,13 @@ class Materials extends Component {
               <Card.Content>
                 <SpecialDiv>
                   <ContentStyle>
-                    Accessing traditional stories in the Alutiiq language can be difficult. Thanks to archives, a few traditional stories can be accessed here. Click on the 'Go' button below to access recordings and transcripts of traditional stories. 
+                    Accessing traditional stories in the Alutiiq language can be difficult. Thanks to archives, a few traditional stories can be accessed here. Click on the 'Go' button below to access recordings and transcripts of traditional stories.
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
               <Link to={`/stories`}>
                 <Button color='yellow' size='small' fluid>
-                  Go 
+                  Go
                 </Button>
               </Link>
             </Card>
@@ -326,13 +352,13 @@ class Materials extends Component {
               <Card.Content>
                 <SpecialDiv>
                   <ContentStyle>
-                    Download the Quizlet app for your iPhone or Android device, and study vocabulary words whenever you have a chance! Click on the link below to see some of the flashcards used in the Kodiak High School Alutiiq Lanugage class to get started. 
+                    Download the Quizlet app for your iPhone or Android device, and study vocabulary words whenever you have a chance! Click on the link below to see some of the flashcards used in the Kodiak High School Alutiiq Lanugage class to get started.
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
               <a href='https://quizlet.com/class/3047759/' target='_blank' rel='noopener noreferrer'>
                 <Button color='yellow' size='small' fluid>
-                  Go 
+                  Go
                 </Button>
               </a>
             </Card>
@@ -368,13 +394,13 @@ class Materials extends Component {
               </Grid.Column>
               <Grid.Column width={12}>
                 <ContentStyleWhiteLeft>
-                  Search the materials database by keyword to find all sorts of great resources! 
+                  Search the materials database by keyword to find all sorts of great resources!
                 </ContentStyleWhiteLeft>
               </Grid.Column>
             </Grid.Row>
           </Grid>
         </GreenDiv>
-      
+
   {/* MATERIALS SEARCH FIELD AND BUTTONS */}
 
         <SpecialDiv>
@@ -399,12 +425,12 @@ class Materials extends Component {
     {
       materialView === true ?
       this.renderMaterialView()
-      : 
+      :
       null
     }
 
     {/* ALUTIIQ EDUCATION.ORG DATABASE TABLE */}
-      
+
       <SpecialDiv>
         <Div>
           <Grid celled='internally'>
@@ -425,10 +451,10 @@ class Materials extends Component {
                 </ColumnHead>
               </Grid.Column>
             </Grid.Row>
-              { loading ? 
+              { loading ?
               this.nowLoading()
               :
-              this.renderSearchMaterials() 
+              this.renderSearchMaterials()
               }
           </Grid>
         </Div>
@@ -439,13 +465,13 @@ class Materials extends Component {
 }
 
  const mapStateToProps = (state) => {
-  return { 
+  return {
     materials: state.materials,
     user: state.user,
     editables: state.editables
 
   }
-} 
+}
 
 
 export default connect(mapStateToProps)(Materials)

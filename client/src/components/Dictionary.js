@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import { getWords } from '../reducers/dictionary'
 import { getEditablesData } from '../reducers/editables'
 import { Parallax } from 'react-parallax'
-import {  
+import {
   Header,
   Grid,
-  Icon, 
+  Icon,
   Form,
   Loader,
   Dimmer,
@@ -28,10 +28,10 @@ const r = '\u{0280}'
 const russianR = new RegExp(`[${r}]`,'g');
 
 class Dictionary extends Component {
-  state = { 
-    searchTerms: '', 
-    wordView: false, 
-    wordData: {}, 
+  state = {
+    searchTerms: '',
+    wordView: false,
+    wordData: {},
     loading: true,
   }
 
@@ -52,9 +52,9 @@ class Dictionary extends Component {
   setWord = (word) => {
     this.setState( { wordData: {...word}, wordView: true})
   }
-  
+
   renderWordView = () => {
-     if (this.state.wordView === true) {       
+     if (this.state.wordView === true) {
       return <DictionaryView word={this.state.wordData} />
     } else
     return <SpecialDiv />
@@ -77,7 +77,7 @@ class Dictionary extends Component {
   }
 
   nowLoading = () => {
-    return ( 
+    return (
       <Dimmer active inverted>
          <Loader size="huge" inverted> Utaqaligiu... </Loader>
        </Dimmer>
@@ -88,8 +88,8 @@ class Dictionary extends Component {
     const searchTerms = this.state.searchTerms
     const dictionaryWords = this.props.words
     const lowerCaseSearchWord = searchTerms.replace("'", "").toLowerCase()
-    let filtered_words = dictionaryWords.filter( e => 
-      ((e.alutiiq_north != null) ? 
+    let filtered_words = dictionaryWords.filter( e =>
+      ((e.alutiiq_north != null) ?
       e.alutiiq_north.replace("'", "").replace(russianR , "r").toLowerCase().includes(lowerCaseSearchWord)
       :
       null)
@@ -100,8 +100,12 @@ class Dictionary extends Component {
       null)
       ||
       e.english.replace("'", "").toLowerCase().includes(lowerCaseSearchWord)
-      ||
-      e.part_of_speech.toLowerCase().includes(lowerCaseSearchWord)
+
+      // TODO: bring back if we populate the part_of_speech
+      // TODO: SEARCH BY CATEGORY AND
+      // TOOD: ADD ADDITION_MEANING COLUMN, CREATE MIGRATION, HANDLE NEW COLUMNS IN CSV UPLOAD
+      // ||
+      // e.part_of_speech.toLowerCase().includes(lowerCaseSearchWord)
     )
     return(
       filtered_words.map( (word)  =>
@@ -114,7 +118,7 @@ class Dictionary extends Component {
         <Grid.Column width={6} verticalAlign='middle'>
           <i>{this.handleNorthSouth(word)}</i>
         </Grid.Column>
-        
+
         <Grid.Column width={4} textAlign='center' verticalAlign='middle'>
           <Pointer>
             <Icon name='eye' size='large' color='grey' onClick= {() => this.setWord(word)} />
@@ -122,9 +126,9 @@ class Dictionary extends Component {
         </Grid.Column>
       </Grid.Row>
       )
-    ) 
+    )
   }
- 
+
 // RENDERING THE COMPONENET
 
   render() {
@@ -157,7 +161,7 @@ class Dictionary extends Component {
           </SpecialDiv>
         </div>
       </Parallax>
-      
+
 {/* SEARCH FUNCTION */}
       <SpecialDiv>
         <Form>
@@ -171,7 +175,7 @@ class Dictionary extends Component {
             />
         </Form>
       </SpecialDiv>
-       
+
 {/* DICTIONARY FOR COMPUTER AND TABLET ONLY */}
 
       <Grid columns={2}>

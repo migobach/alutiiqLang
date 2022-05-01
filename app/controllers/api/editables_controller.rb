@@ -1,22 +1,22 @@
 class Api::EditablesController < ApplicationController
   before_action :set_editable, only: [:show, :update]
   # before_action :editables_params, only: [:import]
-  
+
   def index
     render json: Editable.all
   end
-  
+
 
   def show
     render json: @editable
   end
 
   def create
-    material = Editable.create(editable_params)
+    editable = Editable.create(editable_params)
 
     if editable.save
       render json: editable
-    else 
+    else
       render json: { errors: editable.errors.full_message.join(',')}
     end
   end
@@ -24,12 +24,12 @@ class Api::EditablesController < ApplicationController
   def update
     if @editable.update(editable_params)
       render json: @editable
-    else 
+    else
       render json: { errors: editable.errors.full_message.join(',')}
-    end 
+    end
   end
 
-    private 
+    private
 
     def set_editable
       @editable = Editable.find(params[:id])
