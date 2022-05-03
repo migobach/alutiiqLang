@@ -1,12 +1,12 @@
 class Api::DictionariesController < ApplicationController
   before_action :set_dictionary, only: [:show]
   before_action :dictionary_params, only: [:import]
-  
+
   def index
     render json: Dictionary.all
   end
 
-  def export 
+  def export
     @wordData = Dictionary.all
 
     respond_to do |format|
@@ -37,11 +37,11 @@ class Api::DictionariesController < ApplicationController
     end
   end
 
-  def import 
+  def import
     Dictionary.import(dictionary_params)
   end
 
-    private 
+    private
 
     def set_page
       @page = params[:page] || 1
@@ -53,21 +53,29 @@ class Api::DictionariesController < ApplicationController
 
     def dictionary_params
       params.permit(dictionary: [
-        :english, 
-        :part_of_speech, 
-        :alutiiq_north, 
-        :north_audio, 
-        :north_sentence, 
-        :alutiiq_south, 
-        :south_audio, 
-        :south_sentence, 
-        :image_name, 
-        :root_word, 
-        :category, 
-        :edited_by, 
-        :notes, 
-        :completed, 
-        :approved
+        :english,
+        :part_of_speech,
+        :alutiiq_north,
+        :north_audio,
+        :north_sentence,
+        :alutiiq_south,
+        :south_audio,
+        :south_sentence,
+        :image_name,
+        :root_word,
+        :category,
+        :edited_by,
+        :notes,
+        :completed,
+        :approved,
+        :synonyms,
+        :literal_translation,
+        :page,
+        :edited_date,
+        :cultural_significance,
+        :examples_conjugation_irregulars,
+        :negatives,
+        :additional_meanings
     ])
     end
 
