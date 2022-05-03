@@ -41,14 +41,13 @@ class DictionaryView extends Component {
         </div>
       )
 
-  } else {
+    } else {
       return null
     }
   }
 
   handleWord = () => {
-    if ((this.props.word.alutiiq_south !== null && this.props.word.alutiiq_north === null)) {
-      console.log('handle word 1: ', this.props.word.alutiiq_north, this.props.word.alutiiq_south)
+    if ((this.props.word.alutiiq_south !== null || this.props.word.alutiiq_south !== "") && (this.props.word.alutiiq_north === null || this.props.word.alutiiq_north === "")) {
       return (
         <div>
           <WordStyle>
@@ -56,8 +55,7 @@ class DictionaryView extends Component {
           </WordStyle>
         </div>
       )
-    } else if ((this.props.word.alutiiq_north !== null && this.props.word.alutiiq_south === null)) {
-      console.log('handle word 2: ', this.props.word.alutiiq_north, this.props.word.alutiiq_south)
+    } else if ((this.props.word.alutiiq_north !== null || this.props.word.alutiiq_north !== "") && (this.props.word.alutiiq_south === null || this.props.word.alutiiq_south === "")) {
       return (
         <div>
           <WordStyle>
@@ -66,7 +64,6 @@ class DictionaryView extends Component {
         </div>
       )
     } else {
-      console.log('handle word 3: ', this.props.word.alutiiq_north, this.props.word.alutiiq_south)
       return (
         <Grid columns={2}>
           <Grid.Column>
@@ -170,7 +167,7 @@ class DictionaryView extends Component {
           {/* AUDIO PLAYER TERNARY */}
 
           {
-            (this.props.word.north_audio === null && this.props.word.south_audio === null) ?
+            (this.props.word.north_audio === "" && this.props.word.south_audio === "") ?
               null
               :
               this.handleAudio()
@@ -181,7 +178,7 @@ class DictionaryView extends Component {
           {/* SENTENCE TERNARY */}
 
           {
-            (this.props.word.north_sentence === null && this.props.word.south_sentence === null) ?
+            (this.props.word.north_sentence === "" && this.props.word.south_sentence === "") ?
               null
               :
               this.handleSentence()
@@ -191,7 +188,7 @@ class DictionaryView extends Component {
 
           {/* PART OF SPEECH TERNARY  */}
 
-          {this.props.word.parth_of_speech !== null ?
+          {(this.props.word.parth_of_speech !== "") ?
             <div>
               <ContentStyleThick>
                 Part of speech:
@@ -206,7 +203,7 @@ class DictionaryView extends Component {
 
           {/* CATEGORY TERNARY  */}
 
-          {this.props.word.category !== null ?
+          {(this.props.word.category !== "") ?
             <div>
               < br />
               <ContentStyleThick>
@@ -222,7 +219,7 @@ class DictionaryView extends Component {
 
           {/* EXAMPLES / CONJUGATIONS / IRREGULARS  */}
 
-          {this.props.word.examples_conjugation_irregulars !== null ?
+          {(this.props.word.examples_conjugation_irregulars !== "") ?
             <div>
               <ContentStyleThick>
                 Examples / Conjugations / Irregulars:
@@ -237,7 +234,7 @@ class DictionaryView extends Component {
 
           {/* CULTURAL SIGNIFICANCE  */}
 
-          {this.props.word.cultural_significance !== null ?
+          {(this.props.word.cultural_significance !== "") ?
             <div>
               <ContentStyleThick>
                 Cultural notes:
@@ -252,13 +249,26 @@ class DictionaryView extends Component {
 
           {/* NEGATIVE */}
 
-          {this.props.word.negatives !== null ?
+          {(this.props.word.negatives !== "") ?
             <div>
               <ContentStyleThick>
                 Negative forms:
               </ContentStyleThick>
               <ContentStyleDictionaryView>
                 {this.props.word.negatives}
+              </ContentStyleDictionaryView>
+            </div>
+            :
+            null
+          }
+
+          {(this.props.word.additional_meanings !== "") ?
+            <div>
+              <ContentStyleThick>
+                Additional meanings:
+              </ContentStyleThick>
+              <ContentStyleDictionaryView>
+                {this.props.word.additional_meanings}
               </ContentStyleDictionaryView>
             </div>
             :
