@@ -42,7 +42,6 @@ class Upload extends Component {
         axios.post('api/books/import', { book: data })
         .then( () => this.resetState(), dispatch(setFlash('Success! Books updated.', 'green')) )
         .catch( res => {
-          debugger
           dispatch(setFlash('Something went wrong!', 'red')) })
       } else if ( updateDatabase === 'Curriculum' && upload === true && dataPresent === true) {
         axios.post('api/curriculums/import', { curriculum: data })
@@ -62,7 +61,6 @@ class Upload extends Component {
         axios.post('api/materials/import', { material: data })
         .then( () => this.resetState(), dispatch(setFlash('Success! Materials updated!', 'green')) )
         .catch( res => {
-          debugger
           dispatch(setFlash('Something went wrong!', 'red')) })
       } else if ( updateDatabase === 'Posters' && upload === true && dataPresent === true) {
         axios.post('api/posters/import', { poster: data })
