@@ -30,20 +30,19 @@ class Upload extends Component {
     dataPresent: false
   }
 
-  
+
 
 // need to make some sort of flash message saying that the upload was successful
-    handleSubmit = () => { 
+    handleSubmit = () => {
       const { data, updateDatabase, upload, dataPresent } = this.state
       const { dispatch } = this.props
       // data.forEach(function(row) { csvData.push(row.book_title_alutiiq, row.book_title_english, row.description, row.image, row.file, row.audio, row.book_type, row.creator).join })
-      debugger
 
       if ( updateDatabase === 'Books' && upload === true && dataPresent === true) {
         axios.post('api/books/import', { book: data })
         .then( () => this.resetState(), dispatch(setFlash('Success! Books updated.', 'green')) )
-        .catch( res => { 
-          debugger 
+        .catch( res => {
+          debugger
           dispatch(setFlash('Something went wrong!', 'red')) })
       } else if ( updateDatabase === 'Curriculum' && upload === true && dataPresent === true) {
         axios.post('api/curriculums/import', { curriculum: data })
@@ -55,15 +54,15 @@ class Upload extends Component {
         .catch( res => { dispatch(setFlash('Something went wrong!', 'red'))})
       } else if ( updateDatabase === 'Games' && upload === true && dataPresent === true) {
         axios.post('api/games/import', { game: data })
-        .then( 
-        () => this.resetState(), 
+        .then(
+        () => this.resetState(),
         dispatch(setFlash('Success! Games uploaded!', 'green')) )
         .catch( res => { dispatch(setFlash('Something went wrong!', 'red')) })
       } else if ( updateDatabase === 'Materials' && upload === true && dataPresent === true) {
         axios.post('api/materials/import', { material: data })
         .then( () => this.resetState(), dispatch(setFlash('Success! Materials updated!', 'green')) )
-        .catch( res => { 
-          debugger 
+        .catch( res => {
+          debugger
           dispatch(setFlash('Something went wrong!', 'red')) })
       } else if ( updateDatabase === 'Posters' && upload === true && dataPresent === true) {
         axios.post('api/posters/import', { poster: data })
@@ -79,23 +78,23 @@ class Upload extends Component {
         .catch(res => {dispatch(setFlash('Something went wrong.', 'red')) })
       }
     }
-    
+
     resetState = () => {
       this.setState({data: [], keys: [], updateDatase: '', upload: false, dataPresent: false})
     }
-  
+
     handleDropdownChange = (e, data) => {
       this.setState({
-        updateDatabase: data.value, 
+        updateDatabase: data.value,
         upload: true
       })
       this.handleKeys(data.value)
     }
-    
+
     handleCancel = () => {
       this.setState({ updateDatabase: 'Database type', upload: false, data: [] })
     }
-        
+
     handleData = (data) => {
       this.setState({data, dataPresent: true})
     }
@@ -103,11 +102,11 @@ class Upload extends Component {
     handleKeys = (database) => {
       if (database === "Books") {
         this.setState({keys:
-          [ "book_title_alutiiq", 
-            "book_title_english", 
-            "description", 
+          [ "book_title_alutiiq",
+            "book_title_english",
+            "description",
             "image",
-            "file", 
+            "file",
             "audio",
             "book_type",
             "creator"
@@ -167,7 +166,7 @@ class Upload extends Component {
         })
       }
       else if (database === "Posters") {
-        this.setState({keys: 
+        this.setState({keys:
         [ "title",
         "poster_link",
         "author",
@@ -205,60 +204,65 @@ class Upload extends Component {
         "edited_by",
         "notes",
         "completed",
-        "approved"
+        "approved",
+        "cultural_significance",
+        "examples_conjugation_irregulars",
+        "negatives",
+        "literal_translation",
+        "additional_meanings"
         ]
         })
       }
     }
-    
+
     render() {
     const csvOptions = [
       {
         text: 'Books',
         value: 'Books'
-      }, 
+      },
       {
-        text: 'Curriculum', 
+        text: 'Curriculum',
         value: 'Curriculum'
       },
       {
-        text: 'Dictionary', 
+        text: 'Dictionary',
         value: 'Dictionary'
       },
       {
-        text: 'Articles', 
+        text: 'Articles',
         value: 'Articles'
       },
       {
-        text: 'Games', 
+        text: 'Games',
         value: 'Games'
       },
       {
-        text: 'Materials', 
+        text: 'Materials',
         value: 'Materials'
       },
       {
-        text: 'Posters', 
+        text: 'Posters',
         value: 'Posters'
       },
       {
-        text: 'Songs', 
+        text: 'Songs',
         value: 'Songs'
       }
     ]
-    const keys = this.state.keys 
+    const keys = this.state.keys
 
     return(
       <div>
-        
+
 {/* RENDERING STARTS HERE */}
       <SpecialDiv>
         <Header>
-          <Icon name='upload' size='large' color='grey'/>  Upload Content 
+          <Icon name='upload' size='large' color='grey'/>  Upload Content
         </Header>
           <Divider />
         <ContentStyle>
-          Select the database you would like to update with a new CSV file. 
+          Select the database you would like to update with a new CSV file.
         </ContentStyle>
       </SpecialDiv>
 
@@ -277,7 +281,7 @@ class Upload extends Component {
                 CSV File Upload
               </CardHeader>
             </Card.Content>
-            
+
             <SpecialDiv>
               {/* CSV PARSE DOES NOT RENDER ANYTHING, JUST FOR PARSING THE FILE */}
               {/* RENDERS SIMPLE ARRAY WITH NO HEADERS */}
@@ -296,7 +300,7 @@ class Upload extends Component {
           <SpecialDiv>
             <ContentStyle>
               <Icon name='warning sign'/>
-               The {this.state.updateDatabase.toLowerCase()} database will be deleted and replaced with the new data. Click upload to continue. 
+               The {this.state.updateDatabase.toLowerCase()} database will be deleted and replaced with the new data. Click upload to continue.
             </ContentStyle>
 
             <Pointer>
@@ -305,10 +309,10 @@ class Upload extends Component {
               </Button>
             </Pointer>
           </SpecialDiv>
-          : 
+          :
           null
           }
-        
+
           <Divider />
           <Button type='button' onClick={this.props.view}>
             Cancel
