@@ -224,7 +224,7 @@ class Materials extends Component {
         <ContentStyleCenter>
           <ContentEditable
             html={(
-              this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'materialBody')!== undefined) ?
+              this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'materialBody') !== undefined) ?
               this.props.editables.find(val => val.name === 'materialBody').textLong
                 : `There are many ways to learn the Alutiiq language: learning from a friend or family member, studying resources, or playing games. Most importantly, there are many ways to integrate Alutiiq into your daily life. Everyone who knows a word or phrase has something to share.
                 <br />
