@@ -50,25 +50,41 @@ class Classes extends Component {
   };
 
   handleChangeBody = evt => {
-    console.log('evt:', evt)
     const elementType = evt._dispatchInstances.type
+    console.log('elementType:', elementType)
 
-   if (elementType === 'ClassesHeader') {
-      const preStructuredHeader = { ...this.props.editables.find(val => val.name === 'classHeader') }
-        preStructuredHeader.textShort = evt.target.value
-        this.setState({ header: preStructuredHeader })
-    } else if (elementType === 'ClassesBody') {
-      const preStructuredBody = this.props.editables.find(val => val.name === 'classBody')
-        preStructuredBody.textLong = evt.target.value
-        this.setState({ body: preStructuredBody })
-    } else if (elementType === 'ClassesSubTitle') {
-      const preStructuredSubTitle = this.props.editables.find(val => val.name === 'classSubTitle')
-        preStructuredSubTitle.textShort = evt.target.value
-        this.setState({ title: preStructuredSubTitle })
-    } else if ( elementType === 'ClassesSubContent') {
-      const preStructuredSubContent = this.props.editables.find(val => val.name === 'classSubContent')
-        preStructuredSubContent.textLong = evt.target.value
-        this.setState({ content: preStructuredSubContent })
+   if (elementType === "classesHeader") {
+     if (this.props.editables.find(val => val.name === 'classesHeader') !== undefined) {
+       const preStructuredHeader = this.props.editables.find(val => val.name === 'classesHeader')
+         preStructuredHeader.textShort = evt.target.value
+         this.setState({ header: preStructuredHeader })
+     } else {
+       this.setState({ header: { name: 'classesHeader', textShort: evt.target.value }})
+     }
+    } else if (elementType === 'classesBody') {
+      if (this.props.editables.find(val => val.name === 'classesBody') !== undefined) {
+        const preStructuredBody = this.props.editables.find(val => val.name === 'classesBody')
+          preStructuredBody.textLong = evt.target.value
+          this.setState({ body: preStructuredBody })
+      } else {
+        this.setState({ body: { name: 'classesBody', textLong: evt.target.value }})
+      }
+    } else if (elementType === 'classesSubTitle') {
+      if (this.props.editables.find(val => val.name === 'classesSubTitle') !== undefined) {
+        const preStructuredSubTitle = this.props.editables.find(val => val.name === 'classesSubTitle')
+          preStructuredSubTitle.textShort = evt.target.value
+          this.setState({ title: preStructuredSubTitle })
+      } else {
+        this.setState({ title: { name: 'classesSubTitle', textShort: evt.target.value }})
+      }
+    } else if ( elementType === 'classesSubContent') {
+      if (this.props.editables.find(val => val.name === 'classesSubContent')) {
+        const preStructuredSubContent = this.props.editables.find(val => val.name === 'classesSubContent')
+          preStructuredSubContent.textLong = evt.target.value
+          this.setState({ content: preStructuredSubContent })
+      } else {
+        this.setState({ content: { name: 'classesSubContent', textLong: evt.target.value }})
+      }
     }
   };
 
@@ -81,26 +97,39 @@ class Classes extends Component {
     const updatedHeader = this.state.header
     const updatedSubTitle = this.state.title
     const updatedSubContent = this.state.content
-    console.log('state:', updatedBody, updatedHeader, updatedSubTitle)
+    console.log('state:', '\n', updatedBody, '\n', updatedHeader, '\n',updatedSubTitle, '\n',updatedSubContent)
 
-    if (updatedHeader.id ) {
-      console.log('in header PUT', updatedHeader)
+    if (updatedHeader.id && updatedHeader.name === "classesHeader") {
       axios.put(`api/editables/${updatedHeader.id}`, updatedHeader)
     }
 
-    if (updatedBody.id) {
-      console.log('in body PUT', updatedBody)
+    if (updatedHeader.id === undefined && updatedHeader.name === 'classesHeader') {
+      axios.post('api/editables', updatedHeader)
+    }
+
+    if (updatedBody.id && updatedBody.name === 'classesBody') {
       axios.put(`api/editables/${updatedBody.id}`, updatedBody )
     }
 
-    if (updatedSubTitle.id) {
-      console.log('in subTitle PUT', updatedSubTitle, 'ID!!!!!:', updatedSubTitle.id)
+    if (updatedBody.id === undefined && updatedBody.name === 'classesBody') {
+      console.log('in body POST', updatedBody)
+      axios.post('api/editables', updatedBody )
+    }
+
+    if (updatedSubTitle.id && updatedSubTitle.name === 'classesSubTitle') {
       axios.put(`api/editables/${updatedSubTitle.id}`, updatedSubTitle)
     }
 
-    if (updatedSubContent.id) {
-      console.log('in subContent PUT', updatedSubContent)
+    if (updatedSubTitle.id === undefined && updatedSubTitle.name === 'classesSubTitle') {
+      axios.post('api/editables', updatedSubTitle)
+    }
+
+    if (updatedSubContent.id && updatedSubContent.name === 'classesSubContent') {
       axios.put(`api/editables/${updatedSubContent.id}`, updatedSubContent)
+    }
+
+    if (updatedSubContent.id === undefined && updatedSubContent.name === 'classesSubContent') {
+      axios.post('api/editables', updatedSubContent)
     }
 
   }
@@ -124,20 +153,28 @@ class Classes extends Component {
             <Header textAlign="center">
               <SectionHead>
                 <ContentEditable
-                  html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'classHeader').textShort : 'Classes and Gatherings'} // innerHTML of the editable div - this.state.html
+                  html={
+                    (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'classesHeader') !== undefined) ?
+                    this.props.editables.find(val => val.name === 'classesHeader').textShort :
+                    'Classes and Gatherings'
+                  } // innerHTML of the editable div - this.state.html
                   disabled={this.props.user.id  ? false : true} // use true to disable editing maybe use the user in props here to give permissions
                   onChange={this.handleChangeBody} // handle innerHTML change
-                  tagName='ClassesHeader' // Use a custom HTML tag (uses a div by default)
+                  tagName='classesHeader' // Use a custom HTML tag (uses a div by default)
                   onBlur={this.handleBlurBody}
                 />
               </SectionHead>
             </Header>
               <ContentStyleWhite>
                 <ContentEditable
-                  html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'classBody').textLong : 'Default'} // innerHTML of the editable div - this.state.html
+                  html={
+                    (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'classesBody') !== undefined) ?
+                    this.props.editables.find(val => val.name === 'classesBody').textLong :
+                    'There are opportunities to learn Alutiiq in the community, through classes, or engaging opportunities. Check out the list of available resources below.'
+                  } // innerHTML of the editable div - this.state.html
                   disabled={this.props.user.id ? false : true}       // use true to disable editing maybe use the user in props here to give permissions
                   onChange={this.handleChangeBody} // handle innerHTML change
-                  tagName='ClassesBody' // Use a custom HTML tag (uses a div by default)
+                  tagName='classesBody' // Use a custom HTML tag (uses a div by default)
                   onBlur={this.handleBlurBody}
                 />
               </ContentStyleWhite>
@@ -278,20 +315,28 @@ class Classes extends Component {
               <WhiteTitle>
                 <i>
                   <ContentEditable
-                      html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'classSubTitle').textShort : 'Allrani wamlita allrilugmi!!!!!!!!.'} // innerHTML of the editable div - this.state.html
+                      html={
+                        (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'classesSubTitle') !== undefined) ?
+                        this.props.editables.find(val => val.name === 'classesSubTitle').textShort :
+                        'Allrani wamlita allrilugmi.'
+                      } // innerHTML of the editable div - this.state.html
                       disabled={this.props.user.id ? false : true}       // use true to disable editing maybe use the user in props here to give permissions
                       onChange={this.handleChangeBody} // handle innerHTML change
-                      tagName='ClassesSubTitle' // Use a custom HTML tag (uses a div by default)
+                      tagName='classesSubTitle' // Use a custom HTML tag (uses a div by default)
                       onBlur={this.handleBlurBody}
                   />
                 </i>
               </WhiteTitle>
               <ContentStyleWhiteLeft>
                 <ContentEditable
-                      html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'classSubContent').textLong : 'Sometimes we all play games together. That way, we all have fun! Playing games makes learning Alutiiq fun, and engages all of us.'} // innerHTML of the editable div - this.state.html
+                      html={
+                        (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'classesSubContent') !== undefined) ?
+                        this.props.editables.find(val => val.name === 'classesSubContent').textLong :
+                        'Sometimes we all play games together. That way, we all have fun! Playing games makes learning Alutiiq fun, and engages all of us.'
+                      } // innerHTML of the editable div - this.state.html
                       disabled={this.props.user.id ? false : true}       // use true to disable editing maybe use the user in props here to give permissions
                       onChange={this.handleChangeBody} // handle innerHTML change
-                      tagName='ClassesSubContent' // Use a custom HTML tag (uses a div by default)
+                      tagName='classesSubContent' // Use a custom HTML tag (uses a div by default)
                       onBlur={this.handleBlurBody}
                   />
               </ContentStyleWhiteLeft>

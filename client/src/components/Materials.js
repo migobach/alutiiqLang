@@ -80,11 +80,14 @@ class Materials extends Component {
 
     if (elementType === 'MaterialHeader') {;
       if (this.props.editables.find(val => val.name === 'materialHeader')!== undefined ) {
+        console.log('in header setState, already exists?')
         const preStructuredHeader = this.props.editables.find(val => val.name === 'materialHeader')
+        console.log('preStructuredHeader:', preStructuredHeader)
           preStructuredHeader.textShort = evt.target.value
-          this.setState({ materialHeader: preStructuredHeader })
+          this.setState({materialHeader: preStructuredHeader })
       } else {
-        this.setState({ materialHeader: { name: "materialHeader", textShort: evt.target.value }})
+        console.log('in the else')
+        this.setState({ materialHeader: { name: 'materialHeader', textShort: evt.target.value }})
       }
     }
 
@@ -94,7 +97,7 @@ class Materials extends Component {
           presturcturedBody.textLong = evt.target.value
           this.setState({ materialBody: presturcturedBody })
       } else {
-        this.setState({ materialBody: { name: "materialBody", textLong: evt.target.value }})
+        this.setState({ materialBody: { name: 'materialBody', textLong: evt.target.value }})
       }
     }
   }
@@ -103,12 +106,16 @@ class Materials extends Component {
     const updatedHeader = this.state.materialHeader
     const updatedBody = this.state.materialBody
 
-    if (updatedHeader.id === undefined) {
+    console.log('in handle blur: ', updatedBody, updatedHeader)
+    console.log('updateHeader has Id?', updatedHeader.id)
+
+    if (updatedHeader.id === undefined && updatedHeader !== {}) {
       console.log('in header CREATE', updatedHeader)
       axios.post('api/editables', updatedHeader)
     }
 
-    if (updatedBody.id === undefined) {
+    if (updatedBody.id === undefined && updatedBody !== {}) {
+      console.log('in header POST', updatedHeader)
       axios.post('api/editables', updatedBody)
     }
 
@@ -202,7 +209,11 @@ class Materials extends Component {
         <Header textAlign='center'>
           <SectionHead>
             <ContentEditable
-              html={(this.props.editables.length && this.props.editables.find(val => val.name === 'materialHeader')!== undefined) >= 1 ? this.props.editables.find(val => val.name === 'materialHeader').textShort : 'Learning Materials'}
+              html={(
+                this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'materialHeader')!== undefined) ?
+                this.props.editables.find(val => val.name === 'materialHeader').textShort :
+                'Learning Materials'
+              }
               disabled={this.props.user.id  ? false : true} // use true to disable editing maybe use the user in props here to give permissions
               onChange={this.handleChangeEditable} // handle innerHTML change
               tagName='MaterialHeader' // Use a custom HTML tag (uses a div by default)
