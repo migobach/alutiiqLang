@@ -105,63 +105,63 @@ class Home extends Component {
     if (updatedCardHeader1.id) {
       axios.put(`api/editables/${updatedCardHeader1.id}`, updatedCardHeader1)
     }
-    if (updatedCardHeader1.id === undefined) {
+    if (updatedCardHeader1.id === undefined && updatedCardHeader1.name === 'cardHeader1') {
       axios.post('api/editables', updatedCardHeader1)
     }
 
     if (updatedCardBody1.id) {
       axios.put(`api/editables/${updatedCardBody1.id}`, updatedCardBody1)
     }
-    if (updatedCardBody1.id === undefined) {
+    if (updatedCardBody1.id === undefined && updatedCardBody1.name === 'cardBody1') {
       axios.post('api/editables', updatedCardBody1)
     }
 
     if (updatedCardURL1.id) {
       axios.put(`api/editables/${updatedCardURL1.id}`, updatedCardURL1)
     }
-    if (updatedCardURL1.id === undefined) {
+    if (updatedCardURL1.id === undefined && updatedCardURL1.name === 'cardURL1') {
       axios.post('api/editables', updatedCardURL1)
     }
 
     if (updatedCardHeader2.id ) {
       axios.put(`api/editables/${updatedCardHeader2.id}`, updatedCardHeader2)
     }
-    if (updatedCardHeader2.id === undefined) {
+    if (updatedCardHeader2.id === undefined && updatedCardHeader2.name === 'cardHeader2') {
       axios.post('api/editables', updatedCardHeader2)
     }
 
     if (updatedCardBody2.id) {
       axios.put(`api/editables/${updatedCardBody2.id}`, updatedCardBody2)
     }
-    if (updatedCardBody2.id === undefined) {
+    if (updatedCardBody2.id === undefined && updatedCardBody2.name === 'cardBody2') {
       axios.post('api/editables', updatedCardBody2)
     }
 
     if (updatedCardURL2.id ) {
       axios.put(`api/editables/${updatedCardURL2.id}`, updatedCardURL2)
     }
-    if (updatedCardURL2.id === undefined) {
+    if (updatedCardURL2.id === undefined && updatedCardURL2.name === 'cardURL2') {
       axios.post('api/editables', updatedCardURL2)
     }
 
     if (updatedCardHeader3.id ) {
       axios.put(`api/editables/${updatedCardHeader3.id}`, updatedCardHeader3)
     }
-    if (updatedCardHeader3.id === undefined) {
+    if (updatedCardHeader3.id === undefined && updatedCardHeader3.name === 'cardHeader3') {
       axios.post('api/editables', updatedCardHeader3)
     }
 
     if (updatedCardBody3.id) {
       axios.put(`api/editables/${updatedCardBody3.id}`, updatedCardBody3)
     }
-    if (updatedCardBody3.id === undefined) {
+    if (updatedCardBody3.id === undefined && updatedCardBody3.name === 'cardBody3') {
       axios.post('api/editables', updatedCardBody3)
     }
 
     if (updatedCardURL3.id ) {
       axios.put(`api/editables/${updatedCardURL3.id}`, updatedCardURL3)
     }
-    if (updatedCardURL3.id === undefined) {
+    if (updatedCardURL3.id === undefined && updatedCardURL3.name === 'cardURL3') {
       axios.post('api/editables', updatedCardURL3)
     }
   }

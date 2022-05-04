@@ -106,15 +106,15 @@ class Materials extends Component {
     const updatedHeader = this.state.materialHeader
     const updatedBody = this.state.materialBody
 
-    console.log('in handle blur: ', updatedBody, updatedHeader)
-    console.log('updateHeader has Id?', updatedHeader.id)
+    console.log('updatedHeader:', updatedHeader)
+    console.log('updatedBody:', updatedBody)
 
-    if (updatedHeader.id === undefined && updatedHeader !== {}) {
+    if (updatedHeader.id === undefined && updatedHeader.name === 'materialHeader') {
       console.log('in header CREATE', updatedHeader)
       axios.post('api/editables', updatedHeader)
     }
 
-    if (updatedBody.id === undefined && updatedBody !== {}) {
+    if (updatedBody.id === undefined && updatedBody.name === 'materialBody') {
       console.log('in header POST', updatedHeader)
       axios.post('api/editables', updatedBody)
     }
@@ -223,8 +223,10 @@ class Materials extends Component {
         </Header>
         <ContentStyleCenter>
           <ContentEditable
-            html={(this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'materialBody')!== undefined) ? this.props.editables.find(val => val.name === 'materialBody').textLong
-                : ` There are many ways to learn the Alutiiq language: learning from a friend or family member, studying resources, or playing games. Most importantly, there are many ways to integrate Alutiiq into your daily life. Everyone who knows a word or phrase has something to share.
+            html={(
+              this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'materialBody')!== undefined) ?
+              this.props.editables.find(val => val.name === 'materialBody').textLong
+                : `There are many ways to learn the Alutiiq language: learning from a friend or family member, studying resources, or playing games. Most importantly, there are many ways to integrate Alutiiq into your daily life. Everyone who knows a word or phrase has something to share.
                 <br />
                 <br />
                 There are many resources housed on this page to help get you going with your learning journey. Check out some of the book designed for learners who are just starting out. Hang some of the posters hosted here around your home or office. Share time with family or friends and play one of the simple games available through the links below. Or, listen to stories in Alutiiq in an effort to increase your fluency by modeling someone more proficient than yourself.
