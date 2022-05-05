@@ -95,43 +95,43 @@ class Songs extends Component {
  handleChangeEditable = evt => {
    const elementType = evt._dispatchInstances.type
 
-   if (elementType == 'SongsHeader') {
+   if (elementType ==='songsHeader') {
      if (this.props.editables.find(val => val.name === 'songHeader') !== undefined) {
        const preStructuredHeader = this.props.editables.find(val => val.name === 'songHeader')
         preStructuredHeader.textShort = evt.target.value
-        this.state.songHeader = preStructuredHeader
+        this.setState({ songHeader: preStructuredHeader })
      } else {
        this.setState({ songHeader: { name: 'songHeader', textShort: evt.target.value }})
      }
-   } else if (elementType == 'SongsBody') {
+   } else if (elementType ==='SongsBody') {
      if (this.props.editables.find(val => val.name === 'songBody') !== undefined) {
        const presturcturedBody = this.props.editables.find(val => val.name === 'songBody')
         presturcturedBody.textLong = evt.target.value
-        this.state.songBody = presturcturedBody
+        this.setState({ songBody: presturcturedBody })
      } else {
        this.setState({ songBody: { name: 'songBody', textLong: evt.target.value }})
      }
-   } else if (elementType == 'SongsFooterTitle') {
+   } else if (elementType ==='SongsFooterTitle') {
      if (this.props.editables.find(val => val.name === 'songFooterTitle') !== undefined) {
        const prestructuredFooterTitle = this.props.editables.find(val => val.name === 'songFooterTitle')
        prestructuredFooterTitle.textShort = evt.target.value
-       this.state.songFooterTitle = prestructuredFooterTitle
+       this.setState({ songFooterTitle: prestructuredFooterTitle })
      } else {
        this.setState({ songFooterTitle: { name: 'songFooterTitle', textShort: evt.target.value}})
      }
-   } else if (elementType == 'SongsFooterContent') {
+   } else if (elementType ==='SongsFooterContent') {
      if (this.props.editables.find(val => val.name === 'songFooterContent') !== undefined) {
        const prestructuredFooterContent = this.props.editables.find(val => val.name === 'songFooterContent')
        prestructuredFooterContent.textLong = evt.target.value
-       this.state.songFooterTitle = prestructuredFooterContent
+       this.setState({ songFooterTitle: prestructuredFooterContent })
      } else {
        this.setState({ songFooterContent: { name: 'songFooterContent', textLong: evt.target.value }})
      }
-   } else if (elementType == 'SongsFooterUrl') {
+   } else if (elementType ==='SongsFooterUrl') {
      if (this.props.editables.find(val => val.name === 'songFooterUrl') !== undefined) {
        const prestructuredfooterUrl = this.props.editables.find(val => val.name === 'songFooterUrl')
        prestructuredfooterUrl.imageUrl = evt.target.value
-       this.state.songFooterUrl = prestructuredfooterUrl
+       this.setState({ songFooterUrl: prestructuredfooterUrl })
      } else {
        this.setState({ songFooterUrl: { name: 'songFooterUrl', imageUrl: evt.target.value }})
      }
@@ -196,7 +196,7 @@ class Songs extends Component {
     ||
     s.title_alutiiq.toLowerCase().includes(lowerCaseSearch)
     ||
-    ((s.credit != null) ?
+    ((s.credit !== null) ?
     s.credit.toLowerCase().includes(lowerCaseSearch)
     :
     null)
@@ -206,17 +206,17 @@ class Songs extends Component {
     :
     null)
     ||
-    ((s.notes != null) ?
+    ((s.notes !== null) ?
     s.notes.toLowerCase().includes(lowerCaseSearch)
     :
     null)
     ||
-    (s.script_english_words != null ?
+    (s.script_english_words !== null ?
     s.script_english_words.toLowerCase().includes(lowerCaseSearch)
     :
     null)
     ||
-    (s.script_alutiiq_words != null ?
+    (s.script_alutiiq_words !== null ?
       s.script_alutiiq_words.toLowerCase().includes(lowerCaseSearch)
       :
       null)
@@ -270,7 +270,7 @@ class Songs extends Component {
                   } // innerHTML of the editable div - this.state.html
                   disabled={this.props.user.id  ? false : true} // use true to disable editing maybe use the user in props here to give permissions
                   onChange={this.handleChangeEditable} // handle innerHTML change
-                  tagName='SongsHeader' // Use a custom HTML tag (uses a div by default)
+                  tagName='songsHeader' // Use a custom HTML tag (uses a div by default)
                   onBlur={this.handleBlurEditable}
                 />
               </SectionHead>
