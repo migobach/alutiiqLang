@@ -24,8 +24,8 @@ import {
   Watermark,
   SongDiv,
   SongHeight,
-  Div, 
-  Pointer, 
+  Div,
+  Pointer,
 } from './styles/CommonStyles'
 import SongView from './SongView'
 import Dancers from '../images/Dancers.jpg'
@@ -38,10 +38,10 @@ let secondButton = new Audio('https://alutiiq-language-resources.s3-us-west-2.am
 
 class Songs extends Component {
   state = {
-    songData: {}, 
+    songData: {},
     songView: false,
     searchSongs: '',
-    searchView: false, 
+    searchView: false,
     songHeader: {},
     songBody: {},
     songFooterTitle: {},
@@ -55,9 +55,9 @@ class Songs extends Component {
 
     this.props.location.state == null ?
     dispatch(getSongs())
-    : 
+    :
     this.setState( {
-      songView: this.props.location.state.songView, 
+      songView: this.props.location.state.songView,
       songData: this.props.location.state.songData
     } ) // add this.props.location.state.songDataId
   }
@@ -67,12 +67,12 @@ class Songs extends Component {
   }
 
   toggleView = () => {
-    this.setState( { songView: !this.state.songView } ) 
+    this.setState( { songView: !this.state.songView } )
   }
 
   toggleFirstIcon = () => {
     console.log(firstButton)
-    firstButton.play() 
+    firstButton.play()
   }
 
   toggleSecondIcon = () => {
@@ -84,7 +84,7 @@ class Songs extends Component {
     const { songView } = this.state
     if (songView === true) {
       return <SongView song={this.state.songData} view={this.toggleView} />
-    } else 
+    } else
       return <SpecialDiv />
   }
 
@@ -93,29 +93,48 @@ class Songs extends Component {
  }
 
  handleChangeEditable = evt => {
-   console.log('evt: ', evt)
    const elementType = evt._dispatchInstances.type
-   
-   if (elementType == 'SongsHeader') {
-     const preStructuredHeader = this.props.editables.find(val => val.name === 'songHeader')
-      preStructuredHeader.textShort = evt.target.value
-      this.state.songHeader = preStructuredHeader
-   } else if (elementType == 'SongsBody') {
-     const presturcturedBody = this.props.editables.find(val => val.name === 'songBody')
-      presturcturedBody.textLong = evt.target.value
-      this.state.songBody = presturcturedBody
-   } else if (elementType == 'SongsFooterTitle') {
-     const prestructuredFooterTitle = this.props.editables.find(val => val.name === 'songFooterTitle')
-     prestructuredFooterTitle.textShort = evt.target.value
-     this.state.songFooterTitle = prestructuredFooterTitle
-   } else if (elementType == 'SongsFooterContent') {
-     const prestructuredFooterContent = this.props.editables.find(val => val.name === 'songFooterContent')
-     prestructuredFooterContent.textLong = evt.target.value
-     this.state.songFooterTitle = prestructuredFooterContent
-   } else if (elementType == 'SongsFooterUrl') {
-     const prestructuredfooterUrl = this.props.editables.find(val => val.name === 'songFooterUrl')
-     prestructuredfooterUrl.imageUrl = evt.target.value
-     this.state.songFooterUrl = prestructuredfooterUrl
+
+   if (elementType ==='songsHeader') {
+     if (this.props.editables.find(val => val.name === 'songHeader') !== undefined) {
+       const preStructuredHeader = this.props.editables.find(val => val.name === 'songHeader')
+        preStructuredHeader.textShort = evt.target.value
+        this.setState({ songHeader: preStructuredHeader })
+     } else {
+       this.setState({ songHeader: { name: 'songHeader', textShort: evt.target.value }})
+     }
+   } else if (elementType ==='SongsBody') {
+     if (this.props.editables.find(val => val.name === 'songBody') !== undefined) {
+       const presturcturedBody = this.props.editables.find(val => val.name === 'songBody')
+        presturcturedBody.textLong = evt.target.value
+        this.setState({ songBody: presturcturedBody })
+     } else {
+       this.setState({ songBody: { name: 'songBody', textLong: evt.target.value }})
+     }
+   } else if (elementType ==='SongsFooterTitle') {
+     if (this.props.editables.find(val => val.name === 'songFooterTitle') !== undefined) {
+       const prestructuredFooterTitle = this.props.editables.find(val => val.name === 'songFooterTitle')
+       prestructuredFooterTitle.textShort = evt.target.value
+       this.setState({ songFooterTitle: prestructuredFooterTitle })
+     } else {
+       this.setState({ songFooterTitle: { name: 'songFooterTitle', textShort: evt.target.value}})
+     }
+   } else if (elementType ==='SongsFooterContent') {
+     if (this.props.editables.find(val => val.name === 'songFooterContent') !== undefined) {
+       const prestructuredFooterContent = this.props.editables.find(val => val.name === 'songFooterContent')
+       prestructuredFooterContent.textLong = evt.target.value
+       this.setState({ songFooterTitle: prestructuredFooterContent })
+     } else {
+       this.setState({ songFooterContent: { name: 'songFooterContent', textLong: evt.target.value }})
+     }
+   } else if (elementType ==='SongsFooterUrl') {
+     if (this.props.editables.find(val => val.name === 'songFooterUrl') !== undefined) {
+       const prestructuredfooterUrl = this.props.editables.find(val => val.name === 'songFooterUrl')
+       prestructuredfooterUrl.imageUrl = evt.target.value
+       this.setState({ songFooterUrl: prestructuredfooterUrl })
+     } else {
+       this.setState({ songFooterUrl: { name: 'songFooterUrl', imageUrl: evt.target.value }})
+     }
    }
  }
 
@@ -127,29 +146,44 @@ class Songs extends Component {
    const updatedFooterUrl = this.state.songFooterUrl
 
    if (updatedHeader.id) {
-     console.log('in header PUT', updatedHeader)
      axios.put(`api/editables/${updatedHeader.id}`, updatedHeader)
-   } 
+   }
+
+   if (updatedHeader.id === undefined && updatedHeader.name === 'songHeader') {
+    axios.post('api/editables', updatedHeader)
+  }
 
    if (updatedBody.id) {
-     console.log('in body PUT', updatedBody)
      axios.put(`api/editables/${updatedBody.id}`, updatedBody)
    }
 
+   if (updatedBody.id === undefined && updatedBody.name === 'songBody') {
+    axios.post('api/editables', updatedBody)
+  }
+
    if (updatedFooterTitle.id) {
-    console.log('in footer PUT', updatedFooterTitle)
     axios.put(`api/editables/${updatedFooterTitle.id}`, updatedFooterTitle)
    }
 
+   if (updatedFooterTitle.id === undefined && updatedFooterTitle.name === 'songFooterTitle') {
+    axios.post('api/editables', updatedFooterTitle)
+  }
+
    if(updatedFooterContent.id) {
-     console.log('in footer content PUT', updatedFooterContent)
      axios.put(`api/editables/${updatedFooterContent.id}`, updatedFooterContent)
    }
 
+   if (updatedFooterContent.id === undefined && updatedFooterContent.name === 'songFooterContent') {
+    axios.post('api/editables', updatedFooterContent)
+  }
+
    if(updatedFooterUrl.id) {
-     console.log('in footer URL PUT', updatedFooterUrl)
      axios.put(`api/editables/${updatedFooterUrl.id}`, updatedFooterUrl)
    }
+
+   if (updatedFooterUrl.id === undefined && updatedFooterUrl.name === 'songFooterUrl') {
+    axios.post('api/editables', updatedFooterUrl)
+  }
  }
 
  renderSearchSongs = () => {
@@ -157,32 +191,32 @@ class Songs extends Component {
    const songs = this.props.songs
    const lowerCaseSearch = searchSongs.toLowerCase()
 
-   let filtered_songs = songs.filter( s => 
+   let filtered_songs = songs.filter( s =>
     s.title_english.toLowerCase().includes(lowerCaseSearch)
     ||
     s.title_alutiiq.toLowerCase().includes(lowerCaseSearch)
     ||
-    ((s.credit != null) ?
+    ((s.credit !== null) ?
     s.credit.toLowerCase().includes(lowerCaseSearch)
     :
     null)
     ||
     ((lowerCaseSearch === 'traditional') ?
-    s.traditional 
+    s.traditional
     :
     null)
     ||
-    ((s.notes != null) ?
+    ((s.notes !== null) ?
     s.notes.toLowerCase().includes(lowerCaseSearch)
-    : 
+    :
     null)
-    || 
-    (s.script_english_words != null ?
+    ||
+    (s.script_english_words !== null ?
     s.script_english_words.toLowerCase().includes(lowerCaseSearch)
     :
     null)
     ||
-    (s.script_alutiiq_words != null ?
+    (s.script_alutiiq_words !== null ?
       s.script_alutiiq_words.toLowerCase().includes(lowerCaseSearch)
       :
       null)
@@ -193,7 +227,7 @@ class Songs extends Component {
       <Grid.Row key={song.id}>
         <Grid.Column computer={6} tablet={10} mobile={10}>
           <SongStyle>
-            <i>{song.title_alutiiq}</i> 
+            <i>{song.title_alutiiq}</i>
           </SongStyle>
         </Grid.Column>
         <Grid.Column width={6} only='computer'>
@@ -216,7 +250,7 @@ class Songs extends Component {
     const { searchSongs, songView } = this.state
 
     return(
-    <div> 
+    <div>
 {/* header and welcome section of songs page  */}
       <Parallax
           bgImage={Dancers}
@@ -229,17 +263,25 @@ class Songs extends Component {
             <Header textAlign="center">
               <SectionHead>
                 <ContentEditable
-                  html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'songHeader').textShort : 'Songs'} // innerHTML of the editable div - this.state.html
+                  html={
+                    (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'songHeader') !== undefined)?
+                    this.props.editables.find(val => val.name === 'songHeader').textShort :
+                    'Songs'
+                  } // innerHTML of the editable div - this.state.html
                   disabled={this.props.user.id  ? false : true} // use true to disable editing maybe use the user in props here to give permissions
                   onChange={this.handleChangeEditable} // handle innerHTML change
-                  tagName='SongsHeader' // Use a custom HTML tag (uses a div by default)
+                  tagName='songsHeader' // Use a custom HTML tag (uses a div by default)
                   onBlur={this.handleBlurEditable}
                 />
               </SectionHead>
             </Header>
               <ContentStyleWhite>
                 <ContentEditable
-                  html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'songBody').textLong : `Songs have been sung for millenia to mark important events and people, tell stories, celebrate and honor. Traditional songs have helped inpire new, modern songs. <i>Quyanaasinaq</i> to all the lyricists and Elders who have contributed over the years to develop this growing collection of Alutiiq Songs.`} // innerHTML of the editable div - this.state.html
+                  html={
+                    (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'songBody') !== undefined) ?
+                    this.props.editables.find(val => val.name === 'songBody').textLong :
+                    `Songs have been sung for millenia to mark important events and people, tell stories, celebrate and honor. Traditional songs have helped inpire new, modern songs. <i>Quyanaasinaq</i> to all the lyricists and Elders who have contributed over the years to develop this growing collection of Alutiiq Songs.`
+                  } // innerHTML of the editable div - this.state.html
                   disabled={this.props.user.id  ? false : true} // use true to disable editing maybe use the user in props here to give permissions
                   onChange={this.handleChangeEditable} // handle innerHTML change
                   tagName='SongsBody' // Use a custom HTML tag (uses a div by default)
@@ -249,7 +291,7 @@ class Songs extends Component {
           </SpecialDiv>
         </div>
     </Parallax>
-        
+
 
 {/* Two columns with key sing phrases and icons */}
     <SpecialDiv>
@@ -258,7 +300,7 @@ class Songs extends Component {
           <Grid.Column textAlign='center'>
             <SpecialDiv>
               <Pointer>
-                <IconHover name='talk' size='large' color='grey' onClick={this.toggleFirstIcon}/>              
+                <IconHover name='talk' size='large' color='grey' onClick={this.toggleFirstIcon}/>
               </Pointer>
               <CardHeader>
                 <i>Aturlita!</i>
@@ -277,7 +319,7 @@ class Songs extends Component {
                 <i>Atuut'ciqar'penga-qaa?</i>
               </CardHeader>
               <ContentStyle>
-                Will you sing to me? 
+                Will you sing to me?
               </ContentStyle>
             </SpecialDiv>
           </Grid.Column>
@@ -306,7 +348,7 @@ class Songs extends Component {
           <Grid.Column>
             <SongHeight>
               <SpecialDiv>
-                <Grid celled='internally' > 
+                <Grid celled='internally' >
                   <Grid.Row>
                     <Grid.Column computer={6} tablet={10} textAlign='center'>
                       <ColumnHead>
@@ -328,7 +370,7 @@ class Songs extends Component {
                 </Grid>
               </SpecialDiv>
             </SongHeight>
-        </Grid.Column>  
+        </Grid.Column>
 
         {/* New conditionally rendered song view - not sticky */}
         <Grid.Column>
@@ -345,17 +387,17 @@ class Songs extends Component {
       </Grid.Row>
 
 {/* start of the song list and conditional component - only renders on phones */}
-      
+
       <Grid.Row only='mobile'>
         { songView === false ?
           null
           :
-          this.renderingSongView() 
+          this.renderingSongView()
         }
       </Grid.Row>
       <Grid.Row only='mobile'>
         <Div>
-        {_.times(1, i => 
+        {_.times(1, i =>
           <Grid celled='internally' key={i}>
             <Grid.Row>
               <Grid.Column width={10} textAlign='center'>
@@ -374,7 +416,7 @@ class Songs extends Component {
         )}
         </Div>
       </Grid.Row>
-      
+
     </Grid>
 
 {/* blue songbook section at the bottom of the page */}
@@ -382,7 +424,11 @@ class Songs extends Component {
         <Header textAlign='center'>
           <SectionHead>
             <ContentEditable
-              html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'songFooterTitle').textShort : 'SongBook'}
+              html={
+                (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'songFooterTitle') !== undefined) ?
+                this.props.editables.find(val => val.name === 'songFooterTitle').textShort :
+                'SongBook'
+              }
               disabled={this.props.user.id ? false : true }
               onChange={this.handleChangeEditable}
               tagName='SongsFooterTitle'
@@ -392,7 +438,11 @@ class Songs extends Component {
         </Header>
         <ContentStyleWhite>
           <ContentEditable
-            html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'songFooterContent').textLong : 'We are proud to announce our Alutiiq Songbook! This book features traditional and contemporary Alutiiq songs including sheet music and lyrics for each song. To use the Songbook, click the icon below. Special thanks to author Peter Squartsoff. <i>Quyanaa</i> to all who contributed to this project.'}
+            html={
+              (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'songFooterContent') !== undefined) ?
+              this.props.editables.find(val => val.name === 'songFooterContent').textLong :
+              'We are proud to announce our Alutiiq Songbook! This book features traditional and contemporary Alutiiq songs including sheet music and lyrics for each song. To use the Songbook, click the icon below. Special thanks to author Peter Squartsoff. <i>Quyanaa</i> to all who contributed to this project.'
+            }
             disabled={this.props.user.id ? false : true }
             onChange={this.handleChangeEditable}
             tagName='SongsFooterContent'
@@ -401,7 +451,7 @@ class Songs extends Component {
         </ContentStyleWhite>
 
           <SpecialDiv>
-            {this.props.user.id ? 
+            {this.props.user.id ?
               <Container textAlign='center'>
 
                 <Icon name='linkify' size='large'/>
@@ -409,12 +459,16 @@ class Songs extends Component {
                 <br />
                 <ContentStyleWhite>
                   <i>
-                    Current link: 
+                    Current link:
                   </i>
                 </ContentStyleWhite>
                 <ContentStyleWhite>
                   <ContentEditable
-                    html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'songFooterUrl').imageUrl : 'No URL found'}
+                    html={
+                      (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'songFooterUrl') !== undefined) ?
+                      this.props.editables.find(val => val.name === 'songFooterUrl').imageUrl :
+                      'No URL found'
+                    }
                     disabled={false}
                     onChange={this.handleChangeEditable}
                     tagName='SongsFooterUrl'
@@ -424,7 +478,7 @@ class Songs extends Component {
               </Container>
             :
               <Container textAlign='center'>
-                <IconLink 
+                <IconLink
                   href={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'songFooterUrl').imageUrl : 'https://s3-us-west-2.amazonaws.com/alutiiq-language-resources/resources/Alutiiq+Songbook+NO+glossary.pdf' }
                   target='_blank'
                 >

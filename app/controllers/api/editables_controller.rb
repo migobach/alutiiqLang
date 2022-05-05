@@ -6,7 +6,6 @@ class Api::EditablesController < ApplicationController
     render json: Editable.all
   end
 
-
   def show
     render json: @editable
   end

@@ -7,6 +7,7 @@ class CreateEditables < ActiveRecord::Migration[5.2]
       t.text :textLong
       t.string :imageUrl
       t.boolean :available
+
       t.timestamps
     end
   end

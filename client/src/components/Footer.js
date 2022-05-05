@@ -55,7 +55,7 @@ class Footer extends Component {
       axios.put(`api/editables/${updatedFooterLeftHeader.id}`, updatedFooterLeftHeader)
     }
 
-    if (updatedFooterLeftHeader.id === undefined) {
+    if (updatedFooterLeftHeader.id === undefined && updatedFooterLeftHeader.name === 'footerLeftHeader') {
       axios.post('api/editables', updatedFooterLeftHeader)
     }
 
@@ -63,7 +63,7 @@ class Footer extends Component {
       axios.put(`api/editables/${updatedFooterRightHeader.id}`, updatedFooterRightHeader)
     }
 
-    if (updatedFooterRightHeader.id === undefined) {
+    if (updatedFooterRightHeader.id === undefined && updatedFooterRightHeader.name === 'footerRightHeader') {
       axios.post('api/editables', updatedFooterRightHeader)
     }
 
@@ -71,7 +71,7 @@ class Footer extends Component {
       axios.put(`api/editables/${updatedFooterRightBody.id}`, updatedFooterRightBody)
     }
 
-    if (updatedFooterRightBody.id === undefined) {
+    if (updatedFooterRightBody.id === undefined && updatedFooterRightBody.name === 'footerRightBody') {
       axios.post('api/editables', updatedFooterRightBody)
     }
 
@@ -79,7 +79,7 @@ class Footer extends Component {
       axios.put(`api/editables/${updatedFooterLeftBody.id}`, updatedFooterLeftBody)
     }
 
-    if (updatedFooterLeftBody.id === undefined) {
+    if (updatedFooterLeftBody.id === undefined && updatedFooterLeftBody.name === 'footerLeftBody') {
       axios.post('api/editables', updatedFooterLeftBody)
     }
   }

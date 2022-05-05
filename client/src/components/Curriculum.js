@@ -84,22 +84,22 @@ class Curriculum extends Component {
  handleChangeEditable = evt => {
   const elementType = evt._dispatchInstances.type
 
-  if (elementType == 'curriculumHeader') {
-    if (this.props.editables.find(val => val.name === 'curriculumHeader') != undefined) {
+  if (elementType === 'curriculumHeader') {
+    if (this.props.editables.find(val => val.name === 'curriculumHeader') !== undefined) {
       const preStructuredHeader = this.props.editables.find(val => val.name === 'curriculumHeader')
        preStructuredHeader.textShort = evt.target.value
-       this.state.curriculumHeader = preStructuredHeader
+       this.setState({ curriculumHeader: preStructuredHeader })
     } else {
-      this.state.curriculumHeader = { name: 'curriculumHeader', textShort: evt.target.value }
+      this.setState({ curriculumHeader: { name: 'curriculumHeader', textShort: evt.target.value }})
     }
 
-    if (elementType == 'curriculumBody') {
-      if (this.props.editables.find(val => val.name === 'curriculumBody') != undefined) {
+    if (elementType === 'curriculumBody') {
+      if (this.props.editables.find(val => val.name === 'curriculumBody') !== undefined) {
         const presturcturedBody = this.props.editables.find(val => val.name === 'curriculumBody')
          presturcturedBody.textLong = evt.target.value
-         this.state.curriculumBody = presturcturedBody
+         this.setState({ curriculumBody: presturcturedBody })
       } else {
-        this.state.curriculumBody = { name: 'curriculumBody', textLong: evt.target.value}
+        this.setState({ curriculumBody: { name: 'curriculumBody', textLong: evt.target.value}})
       }
     }
   }
@@ -146,7 +146,7 @@ handleBlurEditable = () => {
               <SectionHead>
                 {/* Alutiiq Language K-5 Curriculum Resources */}
                 <ContentEditable
-                  html={(this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'curriculumHeader') != undefined) ? this.props.editables.find(val => val.name === 'curriculumHeader').textShort : 'Alutiiq Language K-5 Curriculum Resources'}
+                  html={(this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'curriculumHeader') !== undefined) ? this.props.editables.find(val => val.name === 'curriculumHeader').textShort : 'Alutiiq Language K-5 Curriculum Resources'}
                   disabled={this.props.user.id ? false : true}
                   onChange={this.handleChangeEditable}
                   tagName='curriculumHeader'
@@ -156,7 +156,7 @@ handleBlurEditable = () => {
             </Header>
             <ContentStyleWhite>
               <ContentEditable
-                html={(this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'curriculumBody') != undefined) ? this.props.editables.find(val => val.name === 'curriculumBody').textLong : 'All published Alutiiq language materials on this webpage are for educational usage. You will find audio links for lesson vocabulary in both the Northern and Southern Kodiak Alutiiq styles to support the diverse ways of speaking Alutiiq across the region. We hope educators will take advantage of this opportunity to share insights and recommendations so we can continue to improve these resources.'}
+                html={(this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'curriculumBody') !== undefined) ? this.props.editables.find(val => val.name === 'curriculumBody').textLong : 'All published Alutiiq language materials on this webpage are for educational usage. You will find audio links for lesson vocabulary in both the Northern and Southern Kodiak Alutiiq styles to support the diverse ways of speaking Alutiiq across the region. We hope educators will take advantage of this opportunity to share insights and recommendations so we can continue to improve these resources.'}
                 disabled={this.props.user.id ? false : true}
                 onChange={this.handleChangeEditable}
                 tagName='curriculumBody'

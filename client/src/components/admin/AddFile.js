@@ -1,7 +1,5 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import Dropzone from 'react-dropzone'
-import { DirectUpload } from "activestorage"
-import ActiveStorageProvider from 'react-activestorage-provider'
 import {
   Header,
   Form,
@@ -15,20 +13,17 @@ import {
   SpecialDiv,
   SpecialDivBorder,
 } from './../styles/CommonStyles'
-import { connect } from 'react-redux'
-import { setFlash } from '../../reducers/flash'
-import Flash from '../Flash'
 import axios from 'axios';
 
 const bookOptions  = [
   {
     text: 'Audio file',
     value: 'audio'
-  }, 
+  },
   {
     text: 'Book thumbnail',
     value: 'image'
-  }, 
+  },
   {
     text: 'Book PDF',
     value: 'pdf'
@@ -36,13 +31,13 @@ const bookOptions  = [
 ]
 
 class AddFile extends Component {
-  state = { 
+  state = {
     uploadTo: 'Upload media to..',
     subFolder: '',
-    upload: false, 
+    upload: false,
     file: ''
   }
-  
+
   handleDropdownChange = (e, data) => {
     this.setState({
       uploadTo: data.value,
@@ -55,7 +50,7 @@ class AddFile extends Component {
       subFolder: data.value
     })
   }
-  
+
   handleMultipleFolders = () => {
     if (this.state.uploadTo === 'Books' && this.state.upload === true) {
       return <Dropdown placeholder='Select book subfolder' fluid selection options={bookOptions} onChange={this.handleBookFolder} />
@@ -66,44 +61,44 @@ class AddFile extends Component {
     this.setState({file: e.file.name})
     e.state = null
   }
-  
-  
+
+
   onDrop = async (acceptedFiles) => {
     console.log(acceptedFiles)
     const book = acceptedFiles[0]
 
     // Read file contents, this uses a promise to make it wait for the file contents
     let base64File = await this.readUploadedFileAsBase64(acceptedFiles[0])
-    
+
     // Join the file contents to the book object
     let bookWFile = Object.assign(book, {file: base64File});
 
     axios.post('/api/books', { book: bookWFile }) // somehow the problem has to be how I am passing the object to the controller
-    // can I remove the [0] - the array is needed when I step through. However, how do I get the object correctly in the controller? 
+    // can I remove the [0] - the array is needed when I step through. However, how do I get the object correctly in the controller?
     // axios.post('/api/books', { book: (acceptedFiles) })
 
     // if (this.state.uploadTo === 'Books' && this.state.subFolder === 'pdf' && this.state.upload === true) {
       //   axios.post('/api/books', { file: acceptedFiles })
       // }
-   
+
   }
 
   readUploadedFileAsBase64 = (inputFile) => {
     const temporaryFileReader = new FileReader();
-  
+
     return new Promise((resolve, reject) => {
       temporaryFileReader.onerror = () => {
         temporaryFileReader.abort();
         reject(new DOMException("Problem parsing input file."));
       };
-  
+
       temporaryFileReader.onload = () => {
         resolve(temporaryFileReader.result);
       };
       temporaryFileReader.readAsDataURL(inputFile);
     });
   };
-  
+
 
 
   render() {
@@ -111,33 +106,33 @@ class AddFile extends Component {
       {
         text: 'Books',
         value: 'Books'
-      }, 
+      },
       {
-        text: 'Curriculum', 
+        text: 'Curriculum',
         value: 'Curriculum'
       },
       {
-        text: 'Dictionary', 
+        text: 'Dictionary',
         value: 'Dictionary'
       },
       {
-        text: 'Articles', 
+        text: 'Articles',
         value: 'Articles'
       },
       {
-        text: 'Games', 
+        text: 'Games',
         value: 'Games'
       },
       {
-        text: 'Materials', 
+        text: 'Materials',
         value: 'Materials'
       },
       {
-        text: 'Posters', 
+        text: 'Posters',
         value: 'Posters'
       },
       {
-        text: 'Songs', 
+        text: 'Songs',
         value: 'Songs'
       }
     ]
@@ -164,9 +159,9 @@ class AddFile extends Component {
             { this.handleMultipleFolders() }
             <Divider hidden />
             {/* { this.handleDropzone() } */}
-            
+
             <SpecialDivBorder>
-              <Dropzone 
+              <Dropzone
                 onDrop={this.onDrop}
                 accept="image/png, image/jpg, application/pdf, audio/mpeg, text/csv"
                 multiple>
@@ -176,9 +171,9 @@ class AddFile extends Component {
                     {!isDragActive && 'Click here or drop a file to upload!'}
                     {isDragActive && !isDragReject && "Drop it like it's hot!"}
                     {isDragReject && "File type not accepted, sorry!"}
-                    
-    
-                  {/* this would be nice to add, like on the docs 
+
+
+                  {/* this would be nice to add, like on the docs
                   <aside>
                     <h4>Files</h4>
                     <ul>{files}</ul>
@@ -186,7 +181,7 @@ class AddFile extends Component {
                   </div>
                 )}
               </Dropzone>
-{/* 
+{/*
             <ActiveStorageProvider
                endpoint={{
                 path: `api/books`,
@@ -197,13 +192,13 @@ class AddFile extends Component {
                 // endpoint={{
                 //   path: 'api/books',
                 //   model: book,
-                //   host: localhost:3001, 
+                //   host: localhost:3001,
                 //   attribute: 'file',
                 //   method: 'PUT',
                 // }}
-                
+
                 onSubmit={book => {
-                  debugger; 
+                  debugger;
                   this.setState({ file: book.file })}
                 }
                 render={({ handleUpload, uploads, ready }) => (
@@ -213,7 +208,7 @@ class AddFile extends Component {
                       disabled={!ready}
                       onChange={e => {debugger;handleUpload(e.currentTarget.files)}}
                     />
- 
+
                     {/* {uploads.map(upload => {
                       switch (upload.state) {
                         case 'waiting':
@@ -238,11 +233,11 @@ class AddFile extends Component {
                             </Fragment>
                           )
                       }
-                    })} 
+                    })}
                   </div>
                 )}
               /> */}
-            </SpecialDivBorder> 
+            </SpecialDivBorder>
 
             <Divider hidden />
             <Divider />
@@ -251,7 +246,7 @@ class AddFile extends Component {
             </Button>
           </Form>
 
-          
+
         </SpecialDiv>
       </div>
 
@@ -259,4 +254,4 @@ class AddFile extends Component {
   }
 }
 
-export default AddFile 
+export default AddFile
