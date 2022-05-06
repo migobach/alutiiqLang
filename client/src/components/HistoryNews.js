@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { 
-  Button, 
-  Header, 
-  Card, 
+import {
+  Button,
+  Header,
+  Card,
   Icon,
   Grid,
   Divider,
 } from 'semantic-ui-react'
-import { 
+import {
   SpecialDiv,
-  CardHeader, 
-  SectionHead, 
-  ContentStyle, 
+  CardHeader,
+  SectionHead,
+  ContentStyle,
   ContainerPad,
   ContentStyleWhite,
 } from './styles/CommonStyles'
@@ -25,10 +25,10 @@ import Worldview from './happenings/Worldview'
 import News from './happenings/AlutiiqNews'
 import HistoryAfognak from '../images/AfognakHistory.jpg'
 
-class HistoryNews extends Component { 
-  state = { 
-    revitalizationComp: false, 
-    worldviewComp: false, 
+class HistoryNews extends Component {
+  state = {
+    revitalizationComp: false,
+    worldviewComp: false,
     newsComp: false,
     historyNewsHeader: {},
     historyNewsBody: {}
@@ -72,28 +72,42 @@ class HistoryNews extends Component {
     const updatedBody = this.state.historyNewsBody
 
     if (updatedHeader.id) {
-      console.log('in header PUT', updatedHeader)
       axios.put(`api/editables/${updatedHeader.id}`, updatedHeader)
-    } 
+    }
+
+    if (updatedHeader.id === undefined && updatedHeader.name === 'historyNewsHeader') {
+      axios.post('api/editables', updatedHeader)
+    }
+
     if (updatedBody.id) {
-      console.log('in body PUT', updatedBody)
       axios.put(`api/editables/${updatedBody.id}`, updatedBody)
+    }
+
+    if (updatedBody.id === undefined && updatedBody.name ==='historyNewsBody') {
+      axios.post('api/editables/', updatedBody)
     }
   }
 
   handleChangeEditable = evt => {
-    console.log('evt: ', evt)
     const elementType = evt._dispatchInstances.type
 
     if (elementType === 'historyNewsHeader') {
-      const prestructuredhistoryNewsHeader = this.props.editables.find(val => val.name === 'historyNewsHeader')
-      prestructuredhistoryNewsHeader.textShort = evt.target.value
-      this.setState({ historyNewsHeader: prestructuredhistoryNewsHeader})
+      if (this.props.editables.find(val => val.name === 'historyNewsHeader') !== undefined) {
+        const prestructuredhistoryNewsHeader = this.props.editables.find(val => val.name === 'historyNewsHeader')
+        prestructuredhistoryNewsHeader.textShort = evt.target.value
+        this.setState({ historyNewsHeader: prestructuredhistoryNewsHeader})
+      } else {
+        this.setState({ historyNewsHeader: {name: 'historyNewsHeader', textShort: evt.target.value }})
+      }
     }
     if (elementType === 'historyNewsBody') {
-      const prestructuredhistoryNewsBody = this.props.editables.find(val => val.name === 'historyNewsBody')
-      prestructuredhistoryNewsBody.textLong = evt.target.value
-      this.setState({ historyNewsBody: prestructuredhistoryNewsBody})
+      if (this.props.editables.find(val => val.name === 'historyNewsBody') !== undefined) {
+        const prestructuredhistoryNewsBody = this.props.editables.find(val => val.name === 'historyNewsBody')
+        prestructuredhistoryNewsBody.textLong = evt.target.value
+        this.setState({ historyNewsBody: prestructuredhistoryNewsBody})
+      } else {
+        this.setState({ historyNewsBody: {name: 'historyNewsBody', textLong: evt.target.value }})
+      }
     }
   }
 
@@ -111,7 +125,11 @@ class HistoryNews extends Component {
               <Header textAlign="center">
                 <SectionHead>
                   <ContentEditable
-                    html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'historyNewsHeader').textShort : 'History and News'}
+                    html={
+                      (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'historyNewsHeader') !== undefined) ?
+                      this.props.editables.find(val => val.name === 'historyNewsHeader').textShort :
+                      'History and News'
+                    }
                     disabled={this.props.user.id ? false : true}
                     onChange={this.handleChangeEditable}
                     tagName='historyNewsHeader'
@@ -120,9 +138,13 @@ class HistoryNews extends Component {
                 </SectionHead>
                 <Divider hidden />
               </Header>
-                <ContentStyleWhite>  
+                <ContentStyleWhite>
                   <ContentEditable
-                    html={this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'historyNewsBody').textLong : 'Alutiiq scholars argue that the Alutiiq Renaissance began in 1971. Since then, many projects have focused on various aspects of language revitalization, many people have been, and continue to be involved. Discover ways for you to be involved!'}
+                    html={
+                      (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'historyNewsBody') !== undefined)?
+                      this.props.editables.find(val => val.name === 'historyNewsBody').textLong :
+                      'Alutiiq scholars argue that the Alutiiq Renaissance began in 1971. Since then, many projects have focused on various aspects of language revitalization, many people have been, and continue to be involved. Discover ways for you to be involved!'
+                    }
                     disabled={this.props.user.id ? false : true}
                     onChange={this.handleChangeEditable}
                     tagName='historyNewsBody'
@@ -159,10 +181,10 @@ class HistoryNews extends Component {
                 <Grid.Column width={2}/>
               </Grid.Row>
             </Grid>
-           
+
         </SpecialDiv>
-          
-          
+
+
           <ContainerPad>
             <Card.Group itemsPerRow={3} stackable={true} doubling>
               <Card>
@@ -180,7 +202,7 @@ class HistoryNews extends Component {
                 </Card.Content>
                 {this.state.newsComp === false ?
                   <Button color='yellow' size='medium' fluid onClick={this.toggleNewsComp}>
-                    Go 
+                    Go
                   </Button>
                   :
                   <Button color='grey' size='medium' fluid onClick={this.toggleNewsComp}>
@@ -198,7 +220,7 @@ class HistoryNews extends Component {
                 <Card.Content>
                   <SpecialDiv>
                     <ContentStyle>
-                      Translating from Indigenous languages to English does not make sense. Translations lead to misunderstandings and oversimplification. Click here to learn how to begin exploring an Alutiiq worldview and discover elders who gracefully share their lifeways. 
+                      Translating from Indigenous languages to English does not make sense. Translations lead to misunderstandings and oversimplification. Click here to learn how to begin exploring an Alutiiq worldview and discover elders who gracefully share their lifeways.
                     </ContentStyle>
                   </SpecialDiv>
                 </Card.Content>
@@ -222,7 +244,7 @@ class HistoryNews extends Component {
                 <Card.Content>
                   <SpecialDiv>
                     <ContentStyle>
-                      Scholars have explored methods for successful revitalization across the globe. Diving into some of the themes of language revitalizaiton can lead to hours of exploration. Click here to see some techniques and theories that have been drawn from in the effort to revitalize the Alutiiq language. 
+                      Scholars have explored methods for successful revitalization across the globe. Diving into some of the themes of language revitalizaiton can lead to hours of exploration. Click here to see some techniques and theories that have been drawn from in the effort to revitalize the Alutiiq language.
                     </ContentStyle>
                   </SpecialDiv>
                 </Card.Content>
@@ -240,7 +262,7 @@ class HistoryNews extends Component {
           </ContainerPad>
 
           { this.renderingComponents() }
-          
+
       </div>
     )
   }
