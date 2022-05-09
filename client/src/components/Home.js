@@ -753,17 +753,29 @@ class Home extends Component {
             <Card>
               <Card.Content header textAlign='center'>
                 <CardHeader>
-                  <div dangerouslySetInnerHTML= {{__html: this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'cardHeader2').textShort : 'Dictionary'}} />
+                  <div dangerouslySetInnerHTML= {{__html:
+                    (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardHeader2') !== undefined) ?
+                    this.props.editables.find(val => val.name === 'cardHeader2').textShort :
+                    'Dictionary'
+                    }} />
                 </CardHeader>
               </Card.Content>
               <Card.Content>
                 <SpecialDiv>
                   <ContentStyle>
-                    <div dangerouslySetInnerHTML= {{__html: this.props.editables.length >= 1 ? this.props.editables.find(val => val.name === 'cardBody2').textLong : "Discover new words in the Alutiiq language. Hear words being said by an Alutiiq speaker, and explore how to use words in full sentences."}} />
+                    <div dangerouslySetInnerHTML= {{__html:
+                      (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardBody2') !== undefined) ?
+                      this.props.editables.find(val => val.name === 'cardBody2').textLong :
+                      "Discover new words in the Alutiiq language. Hear words being said by an Alutiiq speaker, and explore how to use words in full sentences."
+                    }} />
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
-                <Button as='a' href={this.props.editables.length > 1 ? this.props.editables.find(val => val.name === 'cardURL2').textShort : '/dictionary'} color='yellow' size='small' fluid>
+                <Button as='a' href={
+                  (this.props.editables.length > 1 && this.props.editables.find(val => val.name === 'cardURL2') !== undefined) ?
+                  this.props.editables.find(val => val.name === 'cardURL2').textShort :
+                  '/dictionary'
+                  } color='yellow' size='small' fluid>
                    Go
                 </Button>
             </Card>

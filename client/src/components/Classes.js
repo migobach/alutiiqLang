@@ -359,3 +359,14 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Classes)
+
+
+// for class content, can I make a new DB for dynamic editables
+// columns: name, location, contact, description
+// I ALREADY HAVE ITEMS DB.
+
+// CURRENT COLUMNS:
+// title, body, buttonUrl, buttonName, visible
+
+// ADD COLUMNS IN MIGRATION
+// location, contact

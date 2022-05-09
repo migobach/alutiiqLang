@@ -80,13 +80,10 @@ class Materials extends Component {
 
     if (elementType === 'MaterialHeader') {;
       if (this.props.editables.find(val => val.name === 'materialHeader')!== undefined ) {
-        console.log('in header setState, already exists?')
         const preStructuredHeader = this.props.editables.find(val => val.name === 'materialHeader')
-        console.log('preStructuredHeader:', preStructuredHeader)
           preStructuredHeader.textShort = evt.target.value
           this.setState({materialHeader: preStructuredHeader })
       } else {
-        console.log('in the else')
         this.setState({ materialHeader: { name: 'materialHeader', textShort: evt.target.value }})
       }
     }
