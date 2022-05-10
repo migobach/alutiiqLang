@@ -40,6 +40,7 @@ import {
   IconLink,
   CreditWatermark,
   SubHeaderContent,
+  ContactLocationContent,
   SubHeader
 } from './styles/CommonStyles'
 import ItemForm from './ItemForm'
@@ -550,39 +551,51 @@ class Home extends Component {
     )
   }
 
+// TODO MAKE IT SO IT UPDATES THE HOME PAGE CONTENT, INSTEAD OF MAKING NEW CONTENT
   renderAnnouncement = () => {
-    let announcments = this.props.items
+    let announcements = this.props.items.filter(val => val.page === 'home') !== undefined ? this.props.items.filter(val => val.page === 'home') : null
 
-    return(
-      announcments.map( (item, i, arr) => {
-        if ( arr.length - 1 === i ) {
-          return(
-            <div>
-              <SpecialDiv>
-              <SpecialDiv>
-                <Header textAlign='center'>
-                  <SubHeader>
-                    {item.title}
-                  </SubHeader>
-                    <Divider />
-                </Header>
-              </SpecialDiv>
+    if (announcements !== [] && announcements.length >= 1) {
+      console.log('announcements:', announcements)
+      const current = announcements[announcements.length - 1]
+      console.log('current:', current)
+      return(
+        <div>
+          <SpecialDiv>
+          <SpecialDiv>
+            <Header textAlign='center'>
+              <SubHeader>
+                {current.title}
+              </SubHeader>
+                <Divider />
+            </Header>
+          </SpecialDiv>
 
-                <SubHeaderContent>
-                  {item.body}
-                  <br />
-                  <br />
-                </SubHeaderContent>
-              </SpecialDiv>
-                <Button size='big' href={item.buttonUrl} target='_blank'>
-                  {item.buttonName}
-                </Button>
-            </div>
-          )
-        }
-      }
+            <SubHeaderContent>
+              {current.body}
+              <br />
+              <br />
+            </SubHeaderContent>
+
+            <Divider />
+            <ContactLocationContent>
+              {current.contact !== '' || current.contact !== null ? current.contact : null}
+              <br />
+              <br />
+              {current.location !== '' || current.location !== null ? current.location : null}
+              <br />
+              <br />
+            </ContactLocationContent>
+          </SpecialDiv>
+            <Button size='big' href={current.buttonUrl} target='_blank'>
+              {current.buttonName}
+            </Button>
+        </div>
       )
-    )
+
+    } else {
+      return null
+    }
   }
 
 // COMPONENET RENDER STARTS HERE
@@ -953,7 +966,7 @@ class Home extends Component {
           {
             showForm ?
             <div>
-              <ItemForm user={this.props.user} item={this.props.items} toggleForm={this.toggleForm}/>
+              <ItemForm user={this.props.user} item={this.props.items} toggleForm={this.toggleForm} originPage='home'/>
             </div>
             :
             <div>

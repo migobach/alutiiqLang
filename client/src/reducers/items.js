@@ -29,7 +29,7 @@ export const addItem = (item) => {
 
 export default ( state=[], action ) => {
   switch(action.type){
-    
+
     case ITEMS:
       return action.items
     case ADD_ITEM:

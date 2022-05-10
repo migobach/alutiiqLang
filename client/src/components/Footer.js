@@ -247,7 +247,7 @@ class Footer extends Component {
             </Grid.Column>
           </Grid.Row>
 
-          <Grid.Row columns={1} textAlign='center'>
+          <Grid.Row columns={1} textAlign='center' only='tablet computer'>
             <ContentStyle>
               <i>Quyanaasinaq</i> to our generous sponsors
             </ContentStyle>

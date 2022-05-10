@@ -17,11 +17,15 @@ class ItemForm extends Component {
     body: '',
     buttonUrl: '',
     buttonName: '',
+    page: '',
+    location: '',
+    contact: '',
     visible: false
   }
 
   componentDidMount() {
     if (this.props.items)
+    console.log('in the form comp', this.props.items)
       this.setState({...this.props.items})
   }
 
@@ -32,16 +36,21 @@ class ItemForm extends Component {
   handleSubmit = (e) => {
     const { dispatch, toggleForm } = this.props
     e.preventDefault()
-    let itemData = {...this.state}
-    dispatch(addItem(itemData))
-    toggleForm()
+      this.setState({ page: this.props.originPage }, () => {
+        console.log('originPage:', this.props.originPage, '\n', {...this.state})
+        let itemData = {...this.state}
+        dispatch(addItem(itemData))
+        toggleForm()
+      }
+    )
   }
 
   handleForm = () => {
     const { user } = this.props
-    const { title, body, buttonUrl, buttonName } = this.state
+    const { title, body, buttonUrl, buttonName, location, contact } = this.state
 
     if (user.id) {
+
       return(
         <SpecialDiv>
           <SpecialDiv>
@@ -60,7 +69,7 @@ class ItemForm extends Component {
                 <Divider hidden/>
               <Form.Group widths='equal'>
                 <Form.TextArea
-                    label='Insert the content here. Keep it brief'
+                    label='Insert the content here. Keep it brief.'
                     name='body'
                     value={body}
                     placeholder='Content...'
@@ -68,6 +77,27 @@ class ItemForm extends Component {
                     onChange={this.handleChange}
                   />
               </Form.Group>
+
+              <Form.Group widths='equal'>
+                <Form.TextArea
+                    label='If there is a location you want to share, put it here.'
+                    name='location'
+                    value={location}
+                    placeholder='Ex: 612 Egan Way, Kodiak, AK 99615'
+                    onChange={this.handleChange}
+                  />
+              </Form.Group>
+
+              <Form.Group widths='equal'>
+                <Form.TextArea
+                    label='Is there a point of contact to share?'
+                    name='contact'
+                    value={contact}
+                    placeholder='Call 907-486-4449 for more information'
+                    onChange={this.handleChange}
+                  />
+              </Form.Group>
+
                 <Divider hidden/>
               <Form.Group widths='equal'>
                 <Form.Input
@@ -108,27 +138,6 @@ class ItemForm extends Component {
     } else {
       return(
         null
-        // <div>
-        // <SpecialDiv>
-        //   <SpecialDiv>
-        //      <Header textAlign='center'>
-        //        <SubHeader>
-        //          {item.title}
-        //        </SubHeader>
-        //          <Divider />
-        //      </Header>
-        //    </SpecialDiv>
-
-        //     <SubHeaderContent>
-        //       With a new site, we are bound to make mistakes, miss things, or have errors. If you find one, tell us about it! Either, send us an email by typing tribe at afognak dot org from your personal email. Or, click the button below!
-        //       <br />
-        //       <br />
-        //     </SubHeaderContent>
-        //   </SpecialDiv>
-        //     <Button size='big' href={'mailto:tribe@afognak.org'}>
-        //       Email us!
-        //     </Button>
-        //  </div>
       )
     }
   }
@@ -142,11 +151,5 @@ class ItemForm extends Component {
       )
     }
 }
-
-// const mapStateToProps = (state) => {
-//   return {
-//     items: state.items
-//   }
-// }
 
 export default connect()(ItemForm)
