@@ -1,5 +1,6 @@
 class Api::ItemsController < ApplicationController
   before_action :item_params, only: [ :create ]
+  before_action :set_item, only: [ :destroy ]
 
   def index
     render json: Item.all
@@ -13,10 +14,14 @@ class Api::ItemsController < ApplicationController
     item = Item.create(item_params)
 
     if item.save
-      render json: item 
+      render json: item
     else
       render json: { errors: item.errors.full_message.join(',')}
     end
+  end
+
+  def destroy
+    @item.destroy
   end
 
 
@@ -32,6 +37,10 @@ class Api::ItemsController < ApplicationController
         :body,
         :buttonUrl,
         :buttonName,
-        :visible)
+        :visible,
+        :page,
+        :location,
+        :contact
+      )
     end
 end

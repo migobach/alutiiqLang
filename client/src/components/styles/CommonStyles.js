@@ -37,6 +37,10 @@ export const SubHeaderContent = SubHeader.extend`
   font-size: 1em;
 `
 
+export const ContactLocationContent = SubHeader.extend`
+  font-size: .75em;
+`
+
 export const MainDiv = styled.div`
   padding: 8em;
   align-content: center;
