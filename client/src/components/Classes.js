@@ -160,6 +160,8 @@ class Classes extends Component {
           <ContentStyle>
             {gathering.location}
             <br />
+            {gathering.contact}
+            <br />
             <br />
             {gathering.body}
             <br />
