@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import {
-  Header, 
-  Form, 
+  Header,
+  Form,
   Button,
   Dropdown,
   Divider,
@@ -151,6 +151,20 @@ class Download extends Component {
         link.click();
         this.resetState();
       })
+    } else if (downloadDatabase === 'Postbases' && download === true) {
+      axios({
+        url: '/api/postbases/export.csv',
+        method: 'GET',
+        responseType: 'blob',
+      }).then((response) => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'postbases.csv');
+        document.body.appendChild(link);
+        link.click();
+        this.resetState();
+      })
     }
   }
 
@@ -159,37 +173,41 @@ class Download extends Component {
       {
         text: 'Books',
         value: 'Books'
-      }, 
+      },
       {
-        text: 'Curriculum', 
+        text: 'Curriculum',
         value: 'Curriculum'
       },
       {
-        text: 'Dictionary', 
+        text: 'Dictionary',
         value: 'Dictionary'
       },
       {
-        text: 'Articles', 
+        text: 'Articles',
         value: 'Articles'
       },
       {
-        text: 'Games', 
+        text: 'Games',
         value: 'Games'
       },
       {
-        text: 'Materials', 
+        text: 'Materials',
         value: 'Materials'
       },
       {
-        text: 'Posters', 
+        text: 'Posters',
         value: 'Posters'
       },
       {
-        text: 'Songs', 
+        text: 'Songs',
         value: 'Songs'
+      },
+      {
+        text: 'Postbases',
+        value: 'Postbases'
       }
     ]
-    
+
     return(
       <div>
         <SpecialDiv>
@@ -232,4 +250,3 @@ class Download extends Component {
 }
 
 export default Download
-

@@ -134,6 +134,10 @@ class AddFile extends Component {
       {
         text: 'Songs',
         value: 'Songs'
+      },
+      {
+        text: 'Postbases',
+        value: 'Postbases'
       }
     ]
 
@@ -171,72 +175,10 @@ class AddFile extends Component {
                     {!isDragActive && 'Click here or drop a file to upload!'}
                     {isDragActive && !isDragReject && "Drop it like it's hot!"}
                     {isDragReject && "File type not accepted, sorry!"}
-
-
-                  {/* this would be nice to add, like on the docs
-                  <aside>
-                    <h4>Files</h4>
-                    <ul>{files}</ul>
-                </aside> */}
                   </div>
                 )}
               </Dropzone>
-{/*
-            <ActiveStorageProvider
-               endpoint={{
-                path: `api/books`,
-                model: 'book',
-                host: `localhost:3000`,
-                method: 'POST'
-                }}
-                // endpoint={{
-                //   path: 'api/books',
-                //   model: book,
-                //   host: localhost:3001,
-                //   attribute: 'file',
-                //   method: 'PUT',
-                // }}
 
-                onSubmit={book => {
-                  debugger;
-                  this.setState({ file: book.file })}
-                }
-                render={({ handleUpload, uploads, ready }) => (
-                  <div>
-                    <input
-                      type="file"
-                      disabled={!ready}
-                      onChange={e => {debugger;handleUpload(e.currentTarget.files)}}
-                    />
-
-                    {/* {uploads.map(upload => {
-                      switch (upload.state) {
-                        case 'waiting':
-                          return <p key={upload.id}>Waiting to upload {upload.file.name}</p>
-                        case 'uploading':
-                          return (
-                            <p key={upload.id}>
-                              Uploading {upload.file.name}: {upload.progress}%
-                            </p>
-                          )
-                        case 'error':
-                          return (
-                            <p key={upload.id}>
-                              Error uploading {upload.file.name}: {upload.error}
-                            </p>
-                          )
-                        case 'finished':
-                          return (
-                            <Fragment>
-                              {this.response(upload)}
-                              <p key={upload.id}>Finished uploading {upload.file.name}</p>
-                            </Fragment>
-                          )
-                      }
-                    })}
-                  </div>
-                )}
-              /> */}
             </SpecialDivBorder>
 
             <Divider hidden />

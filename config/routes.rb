@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-  
+
   mount_devise_token_auth_for 'User', at: 'api/auth'
-  
+
   namespace :api do
-    resources :songs do 
+    resources :songs do
       collection { post :import }
       collection { get :export }
     end
-    resources :dictionaries do 
+    resources :dictionaries do
       collection { post :import }
       collection { get :export }
     end
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       collection { post :import }
       collection { get :export }
     end
-    resources :books do 
+    resources :books do
       collection { post :import }
       collection { get :export }
     end
@@ -27,20 +27,24 @@ Rails.application.routes.draw do
       collection { post :import }
       collection { get :export }
     end
-    resources :posters do 
+    resources :posters do
       collection { post :import }
       collection { get :export }
     end
-    resources :games do 
+    resources :games do
       collection { post :import }
       collection { get :export }
     end
-    resources :items 
+    resources :postbases do
+      collection { post :import }
+      collection { get :export }
+    end
+    resources :items
     resources :editables
-    
+
     resources :users, only: :update
   end
-  
+
   #Do not place any routes below this one
   get '*other', to: 'static#index'
-end 
+end

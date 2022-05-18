@@ -36,6 +36,7 @@ class Upload extends Component {
     handleSubmit = () => {
       const { data, updateDatabase, upload, dataPresent } = this.state
       const { dispatch } = this.props
+
       // data.forEach(function(row) { csvData.push(row.book_title_alutiiq, row.book_title_english, row.description, row.image, row.file, row.audio, row.book_type, row.creator).join })
 
       if ( updateDatabase === 'Books' && upload === true && dataPresent === true) {
@@ -74,6 +75,12 @@ class Upload extends Component {
         axios.post('api/dictionaries/import', { dictionary: data })
         .then( () => this.resetState(), dispatch(setFlash('Success! Words have been uploaded and updated!', 'green')) )
         .catch(res => {dispatch(setFlash('Something went wrong.', 'red')) })
+      } else if ( updateDatabase === 'Postbases' && upload === true && dataPresent === true) {
+        axios.post('api/postbases/import', { postbase: data })
+        .then( () => this.resetState(), dispatch(setFlash('Success! Postbases have been updated!', 'green')) )
+        .catch( res => {
+          dispatch(setFlash('Somethign went wrong uploading postbases', 'red'))
+        })
       }
     }
 
@@ -210,6 +217,40 @@ class Upload extends Component {
         "additional_meanings"
         ]
         })
+      } else if (database === 'Postbases') {
+        this.setState({keys:
+        //   [
+        //   "enclitic",
+        //   "postbase",
+        //   "postbasev1",
+        //   "postbasev2",
+        //   "translation",
+        //   "example1",
+        //   "example1audio",
+        //   "example1translation",
+        //   "example2",
+        //   "example2audio",
+        //   "example2translation",
+        //   "example3",
+        //   "example3audio",
+        //   "example3translation",
+        //   "notes",
+        //   "postbaseclean1",
+        //   "postbaseclean2"
+        // ]
+          [
+            "postbase",
+            "translation",
+            "example_1",
+            "example_1_translation",
+            "example_2",
+            "example_2_translation",
+            "example_3",
+            "example_3_translation",
+            "clean_postbase_1",
+            "clean_postbase_2"
+          ]
+        })
       }
     }
 
@@ -246,6 +287,10 @@ class Upload extends Component {
       {
         text: 'Songs',
         value: 'Songs'
+      },
+      {
+        text: 'Postbases',
+        value: 'Postbases'
       }
     ]
     const keys = this.state.keys
