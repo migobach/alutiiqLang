@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_10_235419) do
+ActiveRecord::Schema.define(version: 2022_05_19_234634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -151,8 +151,6 @@ ActiveRecord::Schema.define(version: 2022_05_10_235419) do
   end
 
   create_table "postbases", force: :cascade do |t|
-    t.string "enclitic"
-    t.string "postbase"
     t.string "postbasev1"
     t.string "postbasev2"
     t.string "translation"
@@ -166,10 +164,14 @@ ActiveRecord::Schema.define(version: 2022_05_10_235419) do
     t.string "example3audio"
     t.string "example3translation"
     t.text "notes"
-    t.string "postbaseclean1"
-    t.string "postbaseclean2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "postbase1"
+    t.string "postbase2"
+    t.string "postbase3"
+    t.string "complexityranking"
+    t.string "cleanpostbase1"
+    t.string "cleanpostbase2"
   end
 
   create_table "posters", force: :cascade do |t|

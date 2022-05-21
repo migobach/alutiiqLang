@@ -41,33 +41,31 @@ class Api::PostbasesController < ApplicationController
 
   def postbase_params
     params.permit( postbase: [
-      # :enclitic,
+     :translation,
+     :postbase_1,
+     :example_1,
+     :example_1_translation,
+     :postbase_2,
+     :example_2,
+     :example_2_translation,
+     :postbase_3,
+     :example_3,
+     :example_3_translation,
+     :complexity_ranking ,
+     :clean_postbase_1,
+     :clean_postbase_2,
+     :notes
+
       # :postbase,
-      # :postbasev1,
-      # :postbasev2,
       # :translation,
-      # :example1,
-      # :example1audio,
-      # :example1translation,
-      # :example2,
-      # :example2audio,
-      # :example2translation,
-      # :example3,
-      # :example3audio,
-      # :example3translation,
-      # :notes,
-      # :postbaseclean1,
-      # :postbaseclean2
-      :postbase,
-      :translation,
-      :example_1,
-      :example_1_translation,
-      :example_2,
-      :example_2_translation,
-      :example_3,
-      :example_3_translation,
-      :clean_postbase_1,
-      :clean_postbase_2
+      # :example_1,
+      # :example_1_translation,
+      # :example_2,
+      # :example_2_translation,
+      # :example_3,
+      # :example_3_translation,
+      # :clean_postbase_1,
+      # :clean_postbase_2
     ])
   end
 end

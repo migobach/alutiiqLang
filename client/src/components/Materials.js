@@ -392,6 +392,26 @@ class Materials extends Component {
                 </Button>
               </a>
             </Card>
+
+            <Card>
+              <Card.Content header textAlign='center'>
+                <CardHeader>
+                  Postbases
+                </CardHeader>
+              </Card.Content>
+              <Card.Content>
+                <SpecialDiv>
+                  <ContentStyle>
+                    Forming sentences, descriptive words, questions, and complex thoughts in Alutiiq necessitates an understanding of how postbases work, and how to add them into words correctly. Explore the postbase database to begin learning, whether you are a beginner or and advanced speaker, there will be something that will pique your interest!
+                  </ContentStyle>
+                </SpecialDiv>
+              </Card.Content>
+              <Link Link to={`/postbases`}>
+                <Button color='yellow' size='small' fluid>
+                  Go
+                </Button>
+              </Link>
+            </Card>
           </Card.Group>
         </ContainerPad>
 
