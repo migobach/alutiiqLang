@@ -6,7 +6,8 @@ import {
   Header,
   Divider,
   Grid,
-  Icon
+  Icon,
+  Form
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
@@ -34,7 +35,7 @@ class Postbases extends Component {
   }
 
   setPostbase = (base) => {
-    this.setState( { postbaseData: {...base}, postbaseView: true } )
+    this.setState({ postbaseData: { ...base }, postbaseView: true })
   }
   toggleView = () => {
     this.setState({ postbaseView: !this.state.postbaseView })
@@ -49,13 +50,38 @@ class Postbases extends Component {
       return <SpecialDiv />
   }
 
-  renderSearchPostbases = () => {
-    const searchPostbases = this.state
-    const postbases = this.props.postbases
+  handleChange = (e, { name, value }) => {
+    this.setState({ [name]: value })
+  }
 
-    console.log('searchPostbases:', searchPostbases)
+  renderSearchPostbases = () => {
+    const keywords = this.state.searchPostbases
+    const postbases = this.props.postbases
+    const lowercasedKeywords = keywords.replace("'", "").toLowerCase()
+
+    let filteredPostbase = postbases.filter(b =>
+      ((b.translation !== null) ?
+        b.translation.replace("'", "").toLowerCase().includes(lowercasedKeywords)
+        : null
+      )
+      ||
+      ((b.example1translation !== null) ?
+        b.example1translation.replace("'", "").toLowerCase().includes(lowercasedKeywords)
+        : null
+      )
+      ||
+      ((b.example2translation !== null) ?
+        b.example2translation.replace("'", "").toLowerCase().includes(lowercasedKeywords)
+        : null
+      )
+      ||
+      ((b.example3translation !== null) ?
+      b.example3translation.replace("'", "").toLowerCase().includes(lowercasedKeywords)
+      : null
+    )
+    )
     return (
-      postbases.map((base) =>
+      filteredPostbase.map((base) =>
         <Grid.Row key={base.id}>
           <Grid.Column computer={6} tablet={6} mobile={10}>
             <SongStyle>
@@ -94,6 +120,21 @@ class Postbases extends Component {
         </SpecialDiv>
         <Divider />
 
+        {/* SEARCH FUNCTIONALITY */}
+
+        <SpecialDiv>
+          <Form>
+            <Form.Input
+              placeholder="Search Keywords..."
+              autoFocus={true}
+              name='searchPostbases'
+              value={searchPostbases}
+              onChange={this.handleChange}
+              fluid
+            />
+          </Form>
+        </SpecialDiv>
+
         {/* START OF POSTBASE LIST */}
 
         <Grid columns={2}>
@@ -114,13 +155,13 @@ class Postbases extends Component {
                         </ColumnHead>
                       </Grid.Column>
                       <Grid.Column computer={4} tablet={4} textAlign='center'>
-                      <ColumnHead>
-                        View
-                      </ColumnHead>
-                    </Grid.Column>
+                        <ColumnHead>
+                          View
+                        </ColumnHead>
+                      </Grid.Column>
 
                     </Grid.Row>
-                    {this.renderSearchPostbases()}x
+                    {this.renderSearchPostbases()}
                   </Grid>
                 </SpecialDiv>
               </SongHeight>
@@ -143,7 +184,7 @@ class Postbases extends Component {
           {/* start of the song list and conditional component - only renders on phones */}
 
           <Grid.Row only='mobile'>
-            { postbaseView === false ?
+            {postbaseView === false ?
               null
               :
               this.renderPostbaseView()
