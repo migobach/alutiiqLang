@@ -132,7 +132,6 @@ class Postbases extends Component {
             </SpecialDiv>
           </div>
         </Parallax>
-        <Divider />
 
         {/* SEARCH FUNCTIONALITY */}
 
