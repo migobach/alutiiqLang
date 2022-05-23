@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getEditablesData } from '../reducers/editables'
-import { getItems } from '../reducers/items'
+import { getItems, deleteItem } from '../reducers/items'
 import {
   Header,
   Grid,
@@ -60,7 +60,6 @@ class Classes extends Component {
 
   handleChangeBody = evt => {
     const elementType = evt._dispatchInstances.type
-    console.log('elementType:', elementType)
 
     if (elementType === "classesHeader") {
       if (this.props.editables.find(val => val.name === 'classesHeader') !== undefined) {
@@ -102,7 +101,6 @@ class Classes extends Component {
     const updatedHeader = this.state.header
     const updatedSubTitle = this.state.title
     const updatedSubContent = this.state.content
-    console.log('state:', '\n', updatedBody, '\n', updatedHeader, '\n', updatedSubTitle, '\n', updatedSubContent)
 
     if (updatedHeader.id && updatedHeader.name === "classesHeader") {
       axios.put(`api/editables/${updatedHeader.id}`, updatedHeader)
@@ -117,7 +115,6 @@ class Classes extends Component {
     }
 
     if (updatedBody.id === undefined && updatedBody.name === 'classesBody') {
-      console.log('in body POST', updatedBody)
       axios.post('api/editables', updatedBody)
     }
 
@@ -140,9 +137,8 @@ class Classes extends Component {
   }
 
   deleteContent = (id) => {
-    console.log('id in delete content:', id)
-    axios.delete(`api/items/${id}`)
-    //DELETE /api/items/:id
+    const { dispatch } = this.props
+    dispatch(deleteItem(id))
   }
 
   handleGatheringsContent = () => {
@@ -184,7 +180,6 @@ class Classes extends Component {
 
 
   toggleFirstIcon = () => {
-    console.log(firstButton)
     firstButton.play()
   }
 
@@ -369,15 +364,12 @@ const mapStateToProps = (state) => {
   }
 }
 
+// const mapDispatchToProps = dispatch => {
+//   return {
+//       deleteItem: id => {
+//            dispatch(deleteItem({ id }));
+//       }
+//   }
+// }
+
 export default connect(mapStateToProps)(Classes)
-
-
-// for class content, can I make a new DB for dynamic editables
-// columns: name, location, contact, description
-// I ALREADY HAVE ITEMS DB.
-
-// CURRENT COLUMNS:
-// title, body, buttonUrl, buttonName, visible
-
-// ADD COLUMNS IN MIGRATION
-// location, contact, page
