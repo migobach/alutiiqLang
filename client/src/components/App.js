@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Switch, Route, Link } from 'react-router-dom'
-import { 
-  Menu, 
+import {
+  Menu,
   Button,
-  Sidebar, 
+  Sidebar,
   Responsive,
   Icon,
 } from 'semantic-ui-react'
@@ -26,7 +26,8 @@ import Books from './materials/Books'
 import PostersGames from './materials/PostersGames'
 import Videos from './materials/Videos'
 import Stories from './materials/Stories'
-import OutsideLinks from './materials/OutsideLinks' 
+import Postbases from './materials/Postbases'
+import OutsideLinks from './materials/OutsideLinks'
 import Upload from './admin/Upload'
 import Add from './admin/AddFile'
 import FetchUser from './FetchUser'
@@ -48,10 +49,10 @@ class App extends Component {
         <Responsive minWidth={767}>
           <NavBar />
         </Responsive>
-        
+
         <Responsive maxWidth={766}>
           <div style={menuPad}>
-            <Menu.Item 
+            <Menu.Item
               as={Button}
               onClick={this.handleButtonClick}
               alt='icon to access the menu'
@@ -122,21 +123,22 @@ class App extends Component {
             <Route exact path="/books" component={Books} />
             <Route exact path="/postersandgames" component={PostersGames} />
             <Route exact path="/stories" component={Stories} />
+            <Route exact path="/postbases" component={Postbases} />
             <Route exact path="/videos" component={Videos} />
             <Route exact path="/links" component={OutsideLinks} />
-            
+
         {/* ROUTES BELOW ARE ONLY ACCESSIBLE TO SITE ADMINS */}
-                  
+
             {/* <ProtectedRoute exact path='/kasainaq' component={AdminLogin} /> */}
             <AuthRoute exact path='/login' component={Login} />
             <ProtectedRoute exact path='/admin' component={AdminMenu} />
-            <ProtectedRoute exact path='/register' component={Register} /> 
+            <ProtectedRoute exact path='/register' component={Register} />
             <ProtectedRoute exact path='/upload' component={Upload} />
             <ProtectedRoute exact path='/add' component={Add} />
             {/* <ProtectedRoute exact path='/media' component={Media} /> */}
 
         {/* ERROR PAGE  */}
-        
+
             <Route component={NoMatch} />
           </Switch>
           <Footer />

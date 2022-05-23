@@ -223,6 +223,11 @@ export const Div = styled.div`
   padding: 1em;
   overflow: auto;
 `
+
+export const DictionaryHeight = Div.extend`
+  height: 50em;
+`
+
 export const SongHeight = Div.extend`
   height: 85em;
 `

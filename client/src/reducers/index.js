@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import user from './user';
-import flash from './flash'; 
+import flash from './flash';
 import songs from './songs'
 import materials from './materials'
 import words from './words'
@@ -11,6 +11,7 @@ import posters from './posters'
 import games from './games'
 import items from './items'
 import editables from './editables'
+import postbases from './postbases';
 
 const rootReducer = combineReducers({
   user,
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   games,
   items,
   editables,
+  postbases,
   flash
 });
 

@@ -14,7 +14,7 @@ import {
 } from './styles/CommonStyles'
 
 
-const paddingStyle = { 
+const paddingStyle = {
   paddingTop: '2em',
 }
 
@@ -23,14 +23,13 @@ const iconPad = {
 }
 
 class SongView extends Component {
-  // using state so that I can use the same form to update the site via admin permissions
   state = {}
 
   linesToParagraph(...lines) {
     return lines
       .map(line => typeof line === 'string' ?
-      line.split(".").map(text => <p>{text}</p>) 
-      : 
+      line.split(".").map(text => <p>{text}</p>)
+      :
       line).reduce((lines, line) => lines.concat(line), [])
   }
 
@@ -46,7 +45,7 @@ class SongView extends Component {
           <ContentStyle>
             {this.props.song.title_english}
           </ContentStyle>
-        
+
         {/* shared by ternary  */}
         {this.props.song.credit ?
           <ContentStyle>
@@ -59,7 +58,7 @@ class SongView extends Component {
         {/* Audio ternary  */}
 
           {this.props.song.audio ?
-            <ReactPlayer 
+            <ReactPlayer
               url={this.props.song.audio}
               // playing='false'
               controls='true'
@@ -72,22 +71,22 @@ class SongView extends Component {
           }
 
           {/* Video ternary */}
-          
+
           <Grid>
             <Grid.Row only='computer tablet'>
               {this.props.song.video ?
                 <div style={paddingStyle}>
-                <ReactPlayer 
+                <ReactPlayer
                   url={this.props.song.video}
                   // playing='false'
                   controls='true'
                   height='17em'
                   width='30em'
-                  
+
                 />
                 </div>
                 :
-                null  
+                null
               }
             </Grid.Row>
             <Grid.Row only='mobile'>
@@ -136,7 +135,7 @@ class SongView extends Component {
           }
 
           {/* Notes ternary */}
-          
+
           {this.props.song.notes ?
           <div>
             <br />
@@ -148,7 +147,7 @@ class SongView extends Component {
             :
             <SpecialDiv />
           }
-           
+
         </SpecialDiv>
 
         <SpecialDiv>
@@ -163,7 +162,7 @@ class SongView extends Component {
 
 
 
-  //https://vimeo.com/108160097 intsead of http://player.vimeo.com/video/108160097 .  
+  //https://vimeo.com/108160097 intsead of http://player.vimeo.com/video/108160097 .
 }
 
 export default SongView

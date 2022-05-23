@@ -17,6 +17,7 @@ import {
   ContentStyle,
   ContentStyleCenter,
   SpecialDiv,
+  DictionaryHeight,
   Div,
   Watermark,
   Pointer,
@@ -266,7 +267,7 @@ class Dictionary extends Component {
       <Grid columns={2}>
         <Grid.Row only='computer tablet'>
           <Grid.Column>
-            <Div>
+            <DictionaryHeight>
               <Grid celled='internally'>
                 <Grid.Row>
                   <Grid.Column width={6} verticalAlign='middle'>
@@ -291,7 +292,7 @@ class Dictionary extends Component {
                   this.renderSearchWords()
                 }
               </Grid>
-            </Div>
+            </DictionaryHeight>
           </Grid.Column>
 
 {/* WORD VIEW */}
