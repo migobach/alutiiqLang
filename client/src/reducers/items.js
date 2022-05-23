@@ -3,6 +3,7 @@ import { setFlash } from './flash'
 
 const ITEMS = 'ITEMS'
 const ADD_ITEM = 'ADD_ITEM'
+const DELETE_ITEM = 'DELETE_ITEM'
 
 export const getItems = () => {
   return (dispatch) => {
@@ -27,6 +28,21 @@ export const addItem = (item) => {
   }
 }
 
+export const deleteItem = (item) => {
+  console.log('item in reducer:', item)
+  return ( dispatch ) => {
+    axios.delete(`/api/items/${item}` )
+    .then(res => {
+        dispatch({ type: DELETE_ITEM })
+        dispatch(setFlash('Item successfully deleted', 'green'))
+      })
+      .catch( e => {
+        dispatch(setFlash(e.errors, 'red'))
+      })
+  }
+}
+
+
 export default ( state=[], action ) => {
   switch(action.type){
 
@@ -34,6 +50,8 @@ export default ( state=[], action ) => {
       return action.items
     case ADD_ITEM:
       return [action.item, ...state]
+    case DELETE_ITEM:
+      return [...state]
     default:
       return state
   }
