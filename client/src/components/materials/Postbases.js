@@ -2,6 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getPostbases } from '../../reducers/postbases'
+import { Parallax } from 'react-parallax'
 import {
   Header,
   Divider,
@@ -14,13 +15,13 @@ import {
   SectionHead,
   SongStyle,
   ContentStyleCenter,
-  SongHeight,
   ColumnHead,
   SongDiv,
   Watermark,
   Div
 } from '../styles/CommonStyles'
 import PostbaseView from './PostbaseView'
+import DictionaryTop from '../../images/Dictionary.jpg'
 
 class Postbases extends Component {
   state = {
@@ -76,19 +77,19 @@ class Postbases extends Component {
       )
       ||
       ((b.example3translation !== null) ?
-      b.example3translation.replace("'", "").toLowerCase().includes(lowercasedKeywords)
-      : null
-    )
+        b.example3translation.replace("'", "").toLowerCase().includes(lowercasedKeywords)
+        : null
+      )
     )
     return (
       filteredPostbase.map((base) =>
         <Grid.Row key={base.id}>
-          <Grid.Column computer={6} tablet={6} mobile={10}>
+          <Grid.Column computer={6} tablet={6} mobile={6}>
             <SongStyle>
               {base.postbase1 ? base.postbase1 : base.postbase2}
             </SongStyle>
           </Grid.Column>
-          <Grid.Column width={6} only='computer'>
+          <Grid.Column width={6} textAlign='center'>
             <SongStyle>
               {base.translation}
             </SongStyle>
@@ -108,16 +109,29 @@ class Postbases extends Component {
 
     return (
       <div>
-        <SpecialDiv>
-          <Header textAlign="center">
-            <SectionHead>
-              Postbases
-            </SectionHead>
-          </Header>
-          <ContentStyleCenter>
-            Here is a draft Postbase Database
-          </ContentStyleCenter>
-        </SpecialDiv>
+        <Parallax
+          bgImage={DictionaryTop}
+          blur={{ min: 5, max: 1 }}
+          bgImageAlt="Page from Dr. Jeff Leer's Dictionary"
+          strength={500}
+        >
+
+          <div style={{ height: 350 }}>
+            <SpecialDiv>
+              <Header textAlign="center">
+                <SectionHead>
+                  Postbases
+                </SectionHead>
+              </Header>
+              <ContentStyleCenter>
+              Search our online postbase collection for common postbases, or to find ways to express ideas using postbases. Click the Alutiiq icon to see information about the word. Most postbases have example sentencences and style notes.
+                <br />
+                    <br />
+                    To start exploring, just begin typing in the search bar below.
+              </ContentStyleCenter>
+            </SpecialDiv>
+          </div>
+        </Parallax>
         <Divider />
 
         {/* SEARCH FUNCTIONALITY */}
@@ -140,16 +154,16 @@ class Postbases extends Component {
         <Grid columns={2}>
           <Grid.Row only='computer tablet'>
             <Grid.Column>
-              <SongHeight>
+              <Div>
                 <SpecialDiv>
                   <Grid celled='internally' >
                     <Grid.Row>
-                      <Grid.Column computer={6} tablet={10} textAlign='center'>
+                      <Grid.Column computer={6} textAlign='center'>
                         <ColumnHead>
                           Postbase
                         </ColumnHead>
                       </Grid.Column>
-                      <Grid.Column width={6} only='computer' textAlign='center'>
+                      <Grid.Column width={6} textAlign='center'>
                         <ColumnHead>
                           English
                         </ColumnHead>
@@ -164,7 +178,7 @@ class Postbases extends Component {
                     {this.renderSearchPostbases()}
                   </Grid>
                 </SpecialDiv>
-              </SongHeight>
+              </Div>
             </Grid.Column>
 
             {/* New conditionally rendered song view - not sticky */}
@@ -195,12 +209,17 @@ class Postbases extends Component {
               {_.times(1, i =>
                 <Grid celled='internally' key={i}>
                   <Grid.Row>
-                    <Grid.Column width={10} textAlign='center'>
+                    <Grid.Column width={6} textAlign='center'>
                       <ColumnHead>
                         Alutiiq Postbase
                       </ColumnHead>
                     </Grid.Column>
                     <Grid.Column width={6} textAlign='center'>
+                      <ColumnHead>
+                        English
+                      </ColumnHead>
+                    </Grid.Column>
+                    <Grid.Column width={4} textAlign='center'>
                       <ColumnHead>
                         View
                       </ColumnHead>

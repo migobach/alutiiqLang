@@ -7,7 +7,6 @@ import {
   WordStyle,
   ContentStyle,
   ContentStyleThick,
-  ContentStyleDictionaryView
 } from '../styles/CommonStyles'
 
 const englishStyle = {
@@ -19,6 +18,7 @@ class PostbaseView extends Component {
     console.log('Props:', this.props)
 
     return (
+      <SpecialDiv>
       <Fragment>
         <SpecialDiv>
           {
@@ -80,6 +80,7 @@ class PostbaseView extends Component {
 
         </SpecialDiv>
       </Fragment>
+      </SpecialDiv>
     )
   }
 }
