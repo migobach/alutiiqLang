@@ -5,7 +5,6 @@ import { getPostbases } from '../../reducers/postbases'
 import { Parallax } from 'react-parallax'
 import {
   Header,
-  Divider,
   Grid,
   Icon,
   Form
