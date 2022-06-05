@@ -112,7 +112,6 @@ class Dictionary < ApplicationRecord
           row['approved'] = false
         end
       d.save
-      puts "#{d.english} saved"
     end
 
     puts "There are now #{Dictionary.count} rows in the dictionary table"

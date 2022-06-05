@@ -68,9 +68,9 @@ class Dictionary extends Component {
   handleNorthSouth = (word) => {
     if(word.alutiiq_north === word.alutiiq_south) {
       return(<ContentStyle>{word.alutiiq_north}</ContentStyle>)
-    } else if (word.alutiiq_north === null) {
+    } else if (word.alutiiq_north ===  null || word.alutiiq_north ===  "") {
       return(<ContentStyle>{word.alutiiq_south}</ContentStyle>)
-    } else if (word.alutiiq_south === null) {
+    } else if (word.alutiiq_south === null || word.alutiiq_south === "") {
       return(<ContentStyle>{word.alutiiq_north}</ContentStyle>)
     } else {
       return(<ContentStyle>{word.alutiiq_north}</ContentStyle>)
