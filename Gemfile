@@ -33,3 +33,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #historics
 # ruby '2.7.1'
+# ruby '2.7.5'
