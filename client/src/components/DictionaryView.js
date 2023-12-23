@@ -147,9 +147,9 @@ class DictionaryView extends Component {
   }
 
   render() {
-
     return (
-      <div>
+
+      < div >
         <SpecialDiv>
           {
             (this.props.word.alutiiq_north === this.props.word.alutiiq_south) ?
@@ -188,7 +188,7 @@ class DictionaryView extends Component {
 
           {/* PART OF SPEECH TERNARY  */}
 
-          {(this.props.word.parth_of_speech !== "" || this.props.word.parth_of_speech !== null) ?
+          {(this.props.word.part_of_speech !== '' && this.props.word.part_of_speech !== null) ?
             <div>
               <ContentStyleThick>
                 Part of speech:
@@ -203,7 +203,7 @@ class DictionaryView extends Component {
 
           {/* CATEGORY TERNARY  */}
 
-          {(this.props.word.category !== "" || this.props.word.category !== null) ?
+          {(this.props.word.category !== "" && this.props.word.category !== null) ?
             <div>
               < br />
               <ContentStyleThick>
@@ -219,7 +219,7 @@ class DictionaryView extends Component {
 
           {/* EXAMPLES / CONJUGATIONS / IRREGULARS  */}
 
-          {(this.props.word.examples_conjugation_irregulars !== "" || this.props.word.examples_conjugation_irregulars !== null) ?
+          {(this.props.word.examples_conjugation_irregulars !== "" && this.props.word.examples_conjugation_irregulars !== null) ?
             <div>
               <ContentStyleThick>
                 Examples / Conjugations / Irregulars:
@@ -234,7 +234,7 @@ class DictionaryView extends Component {
 
           {/* CULTURAL SIGNIFICANCE  */}
 
-          {(this.props.word.cultural_significance !== "" || this.props.word.cultural_significance !== null) ?
+          {(this.props.word.cultural_significance !== "" && this.props.word.cultural_significance !== null) ?
             <div>
               <ContentStyleThick>
                 Cultural notes:
@@ -249,7 +249,7 @@ class DictionaryView extends Component {
 
           {/* NEGATIVE */}
 
-          {(this.props.word.negatives !== "" || this.props.word.negatives !== null) ?
+          {(this.props.word.negatives !== "" && this.props.word.negatives !== null) ?
             <div>
               <ContentStyleThick>
                 Negative forms:
@@ -262,7 +262,7 @@ class DictionaryView extends Component {
             null
           }
 
-          {(this.props.word.additional_meanings !== "" || this.props.word.additional_meanings !== null ) ?
+          {(this.props.word.additional_meanings !== "" && this.props.word.additional_meanings !== null) ?
             <div>
               <ContentStyleThick>
                 Additional meanings:
@@ -277,7 +277,7 @@ class DictionaryView extends Component {
 
 
         </SpecialDiv>
-      </div>
+      </div >
     )
   }
 }

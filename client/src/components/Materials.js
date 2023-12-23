@@ -13,7 +13,7 @@ import {
   Form,
   Dimmer,
   Loader,
- } from 'semantic-ui-react'
+} from 'semantic-ui-react'
 import {
   SpecialDiv,
   SectionHead,
@@ -51,17 +51,17 @@ class Materials extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if(prevProps !== this.props)
+    if (prevProps !== this.props)
       this.setState({ loading: false })
   }
 
   nowLoading = () => {
     return (
       <Dimmer active inverted>
-         <Loader size="huge" inverted> Utaqaligiu... </Loader>
-       </Dimmer>
-     )
-   }
+        <Loader size="huge" inverted> Utaqaligiu... </Loader>
+      </Dimmer>
+    )
+  }
 
   toggleView = () => {
     this.setState({ materialView: !this.state.materialView })
@@ -71,30 +71,31 @@ class Materials extends Component {
     this.setState({ searchView: false, searchResources: '' })
   }
 
-  handleChange = (e, { name, value}) => {
+  handleChange = (e, { name, value }) => {
     this.setState({ [name]: value })
   }
 
   handleChangeEditable = evt => {
     const elementType = evt._dispatchInstances.type
 
-    if (elementType === 'MaterialHeader') {;
-      if (this.props.editables.find(val => val.name === 'materialHeader')!== undefined ) {
+    if (elementType === 'MaterialHeader') {
+      ;
+      if (this.props.editables.find(val => val.name === 'materialHeader') !== undefined) {
         const preStructuredHeader = this.props.editables.find(val => val.name === 'materialHeader')
-          preStructuredHeader.textShort = evt.target.value
-          this.setState({materialHeader: preStructuredHeader })
+        preStructuredHeader.textShort = evt.target.value
+        this.setState({ materialHeader: preStructuredHeader })
       } else {
-        this.setState({ materialHeader: { name: 'materialHeader', textShort: evt.target.value }})
+        this.setState({ materialHeader: { name: 'materialHeader', textShort: evt.target.value } })
       }
     }
 
     if (elementType === 'MaterialBody') {
-      if(this.props.editables.find(val => val.name === 'materialBody')!== undefined ) {
+      if (this.props.editables.find(val => val.name === 'materialBody') !== undefined) {
         const presturcturedBody = this.props.editables.find(val => val.name === 'materialBody')
-          presturcturedBody.textLong = evt.target.value
-          this.setState({ materialBody: presturcturedBody })
+        presturcturedBody.textLong = evt.target.value
+        this.setState({ materialBody: presturcturedBody })
       } else {
-        this.setState({ materialBody: { name: 'materialBody', textLong: evt.target.value }})
+        this.setState({ materialBody: { name: 'materialBody', textLong: evt.target.value } })
       }
     }
   }
@@ -121,21 +122,21 @@ class Materials extends Component {
       axios.put(`api/editables/${updatedHeader.id}`, updatedHeader)
     }
 
-    if(updatedBody.id) {
+    if (updatedBody.id) {
       console.log('in body PUT', updatedBody)
       axios.put(`api/editables/${updatedBody.id}`, updatedBody)
     }
   }
 
   setMaterial = (material) => {
-    this.setState( { materialData: {...material}, materialView: true})
+    this.setState({ materialData: { ...material }, materialView: true })
   }
 
   renderMaterialView = () => {
     if (this.state.materialView === true) {
       return <MaterialsView material={this.state.materialData} view={this.toggleView} />
     } else
-    return
+      return
   }
 
   renderSearchMaterials = () => {
@@ -143,37 +144,37 @@ class Materials extends Component {
     const resources = this.props.materials
     const lowerCaseSearch = searchResources.toLowerCase()
 
-    let filtered_materials = resources.filter( i =>
-        i.resource_title.toLowerCase().includes(lowerCaseSearch)
-        ||
-        ((i.author!== null) ?
+    let filtered_materials = resources.filter(i =>
+      i.resource_title.toLowerCase().includes(lowerCaseSearch)
+      ||
+      ((i.author !== null) ?
         i.author.toLowerCase().includes(lowerCaseSearch)
         :
         null)
-        ||
-        ((i.keywords!== null) ?
+      ||
+      ((i.keywords !== null) ?
         i.keywords.toLowerCase().includes(lowerCaseSearch)
         :
         null)
-        ||
-        ((i.subjects!== null) ?
+      ||
+      ((i.subjects !== null) ?
         i.subjects.toLowerCase().includes(lowerCaseSearch)
         :
         null)
-        ||
-        ((i.standards!== null) ?
+      ||
+      ((i.standards !== null) ?
         i.standards.includes(lowerCaseSearch)
         :
         null)
-        ||
-        ((i.resource_title!== null) ?
+      ||
+      ((i.resource_title !== null) ?
         i.resource_title.toLowerCase().includes(lowerCaseSearch)
         :
         null)
-      )
+    )
 
-    return(
-      filtered_materials.map( (material) =>
+    return (
+      filtered_materials.map((material) =>
         <Grid.Row key={material.id}>
           <Grid.Column computer={6} tablet={6} mobile={10} verticalAlign='middle'>
             <ContentStyle>
@@ -187,7 +188,7 @@ class Materials extends Component {
           </Grid.Column>
           <Grid.Column computer={4} tablet={4} mobile={6} textAlign='center' verticalAlign='middle'>
             <Pointer>
-              <Icon name='info' size='large' color='grey' onClick= {() => this.setMaterial(material)}/>
+              <Icon name='info' size='large' color='grey' onClick={() => this.setMaterial(material)} />
             </Pointer>
           </Grid.Column>
         </Grid.Row>
@@ -199,58 +200,58 @@ class Materials extends Component {
     const { searchResources, loading, materialView } = this.state
 
 
-    return(
-    <Fragment>
-      <div>
-      <SpecialDiv innerRef={this.contentEditable}>
-        <Header textAlign='center'>
-          <SectionHead>
-            <ContentEditable
-              html={(
-                this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'materialHeader')!== undefined) ?
-                this.props.editables.find(val => val.name === 'materialHeader').textShort :
-                'Learning Materials'
-              }
-              disabled={this.props.user.id  ? false : true} // use true to disable editing maybe use the user in props here to give permissions
-              onChange={this.handleChangeEditable} // handle innerHTML change
-              tagName='MaterialHeader' // Use a custom HTML tag (uses a div by default)
-              onBlur={this.handleBlurEditable}
-            />
-          </SectionHead>
-        </Header>
-        <ContentStyleCenter>
-          <ContentEditable
-            html={(
-              this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'materialBody') !== undefined) ?
-              this.props.editables.find(val => val.name === 'materialBody').textLong
-                : `There are many ways to learn the Alutiiq language: learning from a friend or family member, studying resources, or playing games. Most importantly, there are many ways to integrate Alutiiq into your daily life. Everyone who knows a word or phrase has something to share.
+    return (
+      <Fragment>
+        <div>
+          <SpecialDiv innerRef={this.contentEditable}>
+            <Header textAlign='center'>
+              <SectionHead>
+                <ContentEditable
+                  html={(
+                    this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'materialHeader') !== undefined) ?
+                    this.props.editables.find(val => val.name === 'materialHeader').textShort :
+                    'Learning Materials'
+                  }
+                  disabled={this.props.user.id ? false : true} // use true to disable editing maybe use the user in props here to give permissions
+                  onChange={this.handleChangeEditable} // handle innerHTML change
+                  tagName='MaterialHeader' // Use a custom HTML tag (uses a div by default)
+                  onBlur={this.handleBlurEditable}
+                />
+              </SectionHead>
+            </Header>
+            <ContentStyleCenter>
+              <ContentEditable
+                html={(
+                  this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'materialBody') !== undefined) ?
+                  this.props.editables.find(val => val.name === 'materialBody').textLong
+                  : `There are many ways to learn the Alutiiq language: learning from a friend or family member, studying resources, or playing games. Most importantly, there are many ways to integrate Alutiiq into your daily life. Everyone who knows a word or phrase has something to share.
                 <br />
                 <br />
                 There are many resources housed on this page to help get you going with your learning journey. Check out some of the book designed for learners who are just starting out. Hang some of the posters hosted here around your home or office. Share time with family or friends and play one of the simple games available through the links below. Or, listen to stories in Alutiiq in an effort to increase your fluency by modeling someone more proficient than yourself.
                 <br />
                 <br />
               Most importantly, use the language that you have. Even if that is just saying <i>Cama'i</i> to your neighbors. `
-            } // innerHTML of the editable div - this.state.html
-            disabled={this.props.user.id  ? false : true} // use true to disable editing maybe use the user in props here to give permissions
-            onChange={this.handleChangeEditable} // handle innerHTML change
-            tagName='MaterialBody' // Use a custom HTML tag (uses a div by default)
-            onBlur={this.handleBlurEditable}
-          />
+                } // innerHTML of the editable div - this.state.html
+                disabled={this.props.user.id ? false : true} // use true to disable editing maybe use the user in props here to give permissions
+                onChange={this.handleChangeEditable} // handle innerHTML change
+                tagName='MaterialBody' // Use a custom HTML tag (uses a div by default)
+                onBlur={this.handleBlurEditable}
+              />
 
-          {/* ` There are many ways to learn the Alutiiq language: learning from a friend or family member, studying resources, or playing games. Most importantly, there are many ways to integrate Alutiiq into your daily life. Everyone who knows a word or phrase has something to share.
+              {/* ` There are many ways to learn the Alutiiq language: learning from a friend or family member, studying resources, or playing games. Most importantly, there are many ways to integrate Alutiiq into your daily life. Everyone who knows a word or phrase has something to share.
             <br />
             <br />
             There are many resources housed on this page to help get you going with your learning journey. Check out some of the book designed for learners who are just starting out. Hang some of the posters hosted here around your home or office. Share time with family or friends and play one of the simple games available through the links below. Or, listen to stories in Alutiiq in an effort to increase your fluency by modeling someone more proficient than yourself.
             <br />
             <br />
           Most importantly, use the language that you have. Even if that is just saying <i>Cama'i</i> to your neighbors. ` */}
-        </ContentStyleCenter>
-      </SpecialDiv>
-      </div>
+            </ContentStyleCenter>
+          </SpecialDiv>
+        </div>
 
-  {/* CARD SECTION  */}
+        {/* CARD SECTION  */}
 
-      <ContainerPad>
+        <ContainerPad>
           <Card.Group itemsPerRow={3} stackable centered doubling>
             <Card>
               <Card.Content header textAlign='center'>
@@ -313,7 +314,7 @@ class Materials extends Component {
               </a>
             </Card>
 
-              <Card>
+            <Card>
               <Card.Content header textAlign='center'>
                 <CardHeader>
                   Links
@@ -412,15 +413,37 @@ class Materials extends Component {
                 </Button>
               </Link>
             </Card>
+
+            <Card>
+              <Card.Content header textAlign='center'>
+                <CardHeader>
+                  Textbook
+                </CardHeader>
+              </Card.Content>
+              <Card.Content>
+                <SpecialDiv>
+                  <ContentStyle>
+                    Discovering where to start learning and how to structure you language journey can be difficult. Some learners appreciate the structure of textbook to guide that journey. Click below to download the Kodiak Alutiiq Language Textbook. The textbook was developed collaboratively between the Altuiiq Museum and Archaeological Repository and the Sun'aq Tribe of Kodiak.
+                  </ContentStyle>
+                </SpecialDiv>
+              </Card.Content>
+              <a href='https://alutiiq-language-resources.s3.us-west-2.amazonaws.com/resources/KodiakAlutiiqLanguageTextbook.pdf' target='_blank' rel='noopener noreferrer'>
+                <Button color='yellow' size='small' fluid>
+                  Go
+                </Button>
+              </a>
+            </Card>
+
           </Card.Group>
         </ContainerPad>
 
-  {/* FEATURED QUOTE */}
+
+        {/* FEATURED QUOTE */}
 
         <GreenDiv>
           <Grid stackable columns={2} verticalAlign='middle'>
 
-  {/* ONLY VISIBLE ON COMPUTER AND TABLET */}
+            {/* ONLY VISIBLE ON COMPUTER AND TABLET */}
 
             <Grid.Row only='computer tablet'>
               <Grid.Column width={4}>
@@ -436,10 +459,10 @@ class Materials extends Component {
               </Grid.Column>
             </Grid.Row>
 
-  {/* ONLY VISIBLE ON MOBILE */}
+            {/* ONLY VISIBLE ON MOBILE */}
 
             <Grid.Row textAlign='center' only='mobile'>
-              <Grid.Column width = {4}>
+              <Grid.Column width={4}>
                 <Icon name='search' size='big' />
               </Grid.Column>
               <Grid.Column width={12}>
@@ -451,7 +474,7 @@ class Materials extends Component {
           </Grid>
         </GreenDiv>
 
-  {/* MATERIALS SEARCH FIELD AND BUTTONS */}
+        {/* MATERIALS SEARCH FIELD AND BUTTONS */}
 
         <SpecialDiv>
           <SpecialDiv>
@@ -470,51 +493,51 @@ class Materials extends Component {
           </Form>
         </SpecialDiv>
 
-    {/* CONDITIONALLY RENDER THE MATERIALS VIEW COMPONENT HERE */}
+        {/* CONDITIONALLY RENDER THE MATERIALS VIEW COMPONENT HERE */}
 
-    {
-      materialView === true ?
-      this.renderMaterialView()
-      :
-      null
-    }
+        {
+          materialView === true ?
+            this.renderMaterialView()
+            :
+            null
+        }
 
-    {/* ALUTIIQ EDUCATION.ORG DATABASE TABLE */}
+        {/* ALUTIIQ EDUCATION.ORG DATABASE TABLE */}
 
-      <SpecialDiv>
-        <Div>
-          <Grid celled='internally'>
-            <Grid.Row>
-              <Grid.Column computer={6} tablet={6} mobile={10} verticalAlign='middle'>
-                <ColumnHead>
-                  Title
-                </ColumnHead>
-              </Grid.Column>
-              <Grid.Column width={6} verticalAlign='middle' only='computer tablet'>
-                <ColumnHead>
-                  Subject
-                </ColumnHead>
-              </Grid.Column>
-              <Grid.Column computer={4} tablet={4} mobile={6} textAlign='center' verticalAlign='middle'>
-                <ColumnHead>
-                  Information
-                </ColumnHead>
-              </Grid.Column>
-            </Grid.Row>
-              { loading ?
-              this.nowLoading()
-              :
-              this.renderSearchMaterials()
+        <SpecialDiv>
+          <Div>
+            <Grid celled='internally'>
+              <Grid.Row>
+                <Grid.Column computer={6} tablet={6} mobile={10} verticalAlign='middle'>
+                  <ColumnHead>
+                    Title
+                  </ColumnHead>
+                </Grid.Column>
+                <Grid.Column width={6} verticalAlign='middle' only='computer tablet'>
+                  <ColumnHead>
+                    Subject
+                  </ColumnHead>
+                </Grid.Column>
+                <Grid.Column computer={4} tablet={4} mobile={6} textAlign='center' verticalAlign='middle'>
+                  <ColumnHead>
+                    Information
+                  </ColumnHead>
+                </Grid.Column>
+              </Grid.Row>
+              {loading ?
+                this.nowLoading()
+                :
+                this.renderSearchMaterials()
               }
-          </Grid>
-        </Div>
-      </SpecialDiv>
-    </Fragment>
+            </Grid>
+          </Div>
+        </SpecialDiv>
+      </Fragment>
     )
   }
 }
 
- const mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
     materials: state.materials,
     user: state.user,
