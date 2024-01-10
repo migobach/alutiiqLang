@@ -3,6 +3,7 @@ import ReactPlayer from 'react-player'
 import {
   Divider,
   Grid,
+  Button,
 } from 'semantic-ui-react'
 import {
   SpecialDiv,
@@ -149,7 +150,7 @@ class DictionaryView extends Component {
   render() {
     return (
 
-      < div >
+      <div>
         <SpecialDiv>
           {
             (this.props.word.alutiiq_north === this.props.word.alutiiq_south) ?
@@ -273,6 +274,25 @@ class DictionaryView extends Component {
             </div>
             :
             null
+          }
+
+          {(this.props.word.alutiiq_north === this.props.word.alutiiq_south) ?
+            <div>
+              <a href={`https://www.wiinaq.org/ems/search/?q=${this.props.word.alutiiq_north}`} target='_blank' rel='noopener noreferrer'>
+                <Button size='large' fluid>
+                  <i>{this.props.word.alutiiq_north}</i> on Word Wiinaq
+                </Button>
+              </a>
+
+            </div>
+            :
+            <div>
+              <a href={`https://www.wiinaq.org/ems/search/?q=${this.props.word.alutiiq_south}`} target='_blank' rel='noopener noreferrer'>
+                <Button size='large' fluid>
+                  <i>{this.props.word.alutiiq_south}</i> on Word Wiinaq
+                </Button>
+              </a>
+            </div>
           }
 
 

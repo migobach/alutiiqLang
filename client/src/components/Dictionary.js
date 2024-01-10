@@ -263,21 +263,21 @@ class Dictionary extends Component {
                     </a>
                   </ColumnHead>
                   <ContentStyle>
-                    Here is a bunch of test text to see what is happening with these buttons.
+                    Here is a bunch of test text to see what this might look like! I am thinking we should have the PDFs of charts that was shared with me in Google drive. But it seems that I cannot find them!
                   </ContentStyle>
                 </Grid.Column>
 
                 <Grid.Column width={5} textAlign='center'>
                   <ColumnHead>
                     {/* UPDATE THE LINK */}
-                    <a href='https://www.youtube.com/channel/UCLDNH9GmHDEz2WUk0MtBrLQ/playlists' target='_blank' rel='noopener noreferrer'>
+                    <a href='https://www.wiinaq.org/ems/search/' target='_blank' rel='noopener noreferrer'>
                       <Button color='yellow' size='small' fluid>
                         Word Wiinaq
                       </Button>
                     </a>
                   </ColumnHead>
                   <ContentStyle>
-                    Here is a bunch of test text to see what is happening with these buttons.
+                    Word Wiinaq is a tool to help you conjugate words by suggesting how the word will look in the future tense, past tense, intransitive endings, etc. Check out the Word Wiinaq and begin experimenting with conjugating in Alutiiq.
                   </ContentStyle>
                 </Grid.Column>
 
