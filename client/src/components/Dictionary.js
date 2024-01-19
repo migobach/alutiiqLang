@@ -256,14 +256,14 @@ class Dictionary extends Component {
                 <Grid.Column width={5} textAlign='center'>
                   <ColumnHead>
                     {/* UPDATE THE LINK, ADD CHARTS TO THE S3 BUCKET */}
-                    <a href='https://www.youtube.com/channel/UCLDNH9GmHDEz2WUk0MtBrLQ/playlists' target='_blank' rel='noopener noreferrer'>
+                    <a href='https://alutiiq-language-resources.s3.us-west-2.amazonaws.com/resources/EndingCharts.pdf' target='_blank' rel='noopener noreferrer'>
                       <Button color='yellow' size='small' fluid>
                         Charts
                       </Button>
                     </a>
                   </ColumnHead>
                   <ContentStyle>
-                    Here is a bunch of test text to see what this might look like! I am thinking we should have the PDFs of charts that was shared with me in Google drive. But it seems that I cannot find them!
+                    Language learners love charts! Understanding how to change words to represent the first person, second person, or thrid person plural voice is critical to communicating effectively in any langauge. Click the button below for a comprehensive collection of different endings.
                   </ContentStyle>
                 </Grid.Column>
 
@@ -290,7 +290,7 @@ class Dictionary extends Component {
                     </Link>
                   </ColumnHead>
                   <ContentStyle>
-                    Here is a bunch of test text to see what is happening with these buttons.
+                    The postbase database will give you access to pieces of language that help convey meaning within words in Alutiiq. The Alutiiq language uses postbases to create complete sentences by adding them to words. The database will give you translations and examples to get you started.
                   </ContentStyle>
                 </Grid.Column>
               </Grid.Row>

@@ -85,7 +85,7 @@ class Postbases extends Component {
         <Grid.Row key={base.id}>
           <Grid.Column computer={6} tablet={6} mobile={6}>
             <SongStyle>
-              {base.postbase1 ? base.postbase1 : base.postbase2}
+              {base.cleanpostbase1 ? base.cleanpostbase1 : base.cleanpostbase2}
             </SongStyle>
           </Grid.Column>
           <Grid.Column width={6} textAlign='center'>
@@ -123,10 +123,10 @@ class Postbases extends Component {
                 </SectionHead>
               </Header>
               <ContentStyleCenter>
-              Search our online postbase collection for common postbases, or to find ways to express ideas using postbases. Click the Alutiiq icon to see information about the word. Most postbases have example sentencences and style notes.
+                Search our online postbase collection for common postbases, or to find ways to express ideas using postbases. Click the Alutiiq icon to see information about the word. Most postbases have example sentencences and style notes.
                 <br />
-                    <br />
-                    To start exploring, just begin typing in the search bar below.
+                <br />
+                To start exploring, just begin typing in the search bar below.
               </ContentStyleCenter>
             </SpecialDiv>
           </div>

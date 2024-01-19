@@ -423,7 +423,7 @@ class Materials extends Component {
               <Card.Content>
                 <SpecialDiv>
                   <ContentStyle>
-                    Discovering where to start learning and how to structure you language journey can be difficult. Some learners appreciate the structure of textbook to guide that journey. Click below to download the Kodiak Alutiiq Language Textbook. The textbook was developed collaboratively between the Altuiiq Museum and Archaeological Repository and the Sun'aq Tribe of Kodiak.
+                    Discovering where to start learning and how to structure you language journey can be difficult. Some learners appreciate the structure of textbook to guide that journey. Click below to download the Kodiak Alutiiq Language Textbook. The textbook was developed collaboratively between the Alutiiq Museum and Archaeological Repository and the Sun'aq Tribe of Kodiak.
                   </ContentStyle>
                 </SpecialDiv>
               </Card.Content>
