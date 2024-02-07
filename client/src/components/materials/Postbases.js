@@ -85,7 +85,7 @@ class Postbases extends Component {
         <Grid.Row key={base.id}>
           <Grid.Column computer={6} tablet={6} mobile={6}>
             <SongStyle>
-              {base.cleanpostbase1 ? base.cleanpostbase1 : base.cleanpostbase2}
+              {base.postbase1 ? base.postbase1 : base.postbase2}
             </SongStyle>
           </Grid.Column>
           <Grid.Column width={6} textAlign='center'>

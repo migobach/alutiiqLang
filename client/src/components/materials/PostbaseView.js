@@ -22,13 +22,13 @@ class PostbaseView extends Component {
         <Fragment>
           <SpecialDiv>
             {
-              (this.props.base.cleanpostbase1 && this.props.base.cleanpostbase2) ?
+              (this.props.base.postbase1 && this.props.base.postbase2) ?
                 <WordStyle>
-                  {this.props.base.cleanpostbase1}, {this.props.base.cleanpostbase2}
+                  {this.props.base.postbase1}, {this.props.base.postbase2}
                 </WordStyle>
                 :
                 <WordStyle>
-                  {this.props.base.cleanpostbase1}
+                  {this.props.base.postbase1}
                 </WordStyle>
             }
 
@@ -38,16 +38,16 @@ class PostbaseView extends Component {
             </ContentStyle>
 
             {
-              (this.props.base.postbase1 || this.props.base.postbase2 || this.props.base.postbase3) ?
+              (this.props.base.example1 || this.props.base.example2 || this.props.base.example3) ?
                 <div>
                   <ContentStyleThick>Example(s):</ContentStyleThick>
-                  <ContentStyle><i>{this.props.base.postbase1}</i> - {this.props.base.example1translation}</ContentStyle>
-                  {this.props.base.postbase2 ?
-                    <ContentStyle><i>{this.props.base.postbase2}</i> - {this.props.base.example2translation}</ContentStyle>
+                  <ContentStyle><i>{this.props.base.example1}</i> - {this.props.base.example1translation}</ContentStyle>
+                  {this.props.base.example2 ?
+                    <ContentStyle><i>{this.props.base.example2}</i> - {this.props.base.example2translation}</ContentStyle>
                     : null
                   }
-                  {this.props.base.postbase3 ?
-                    <ContentStyle><i>{this.props.base.postbase3}</i> - {this.props.base.example3translation}</ContentStyle>
+                  {this.props.base.example3 ?
+                    <ContentStyle><i>{this.props.base.example3}</i> - {this.props.base.example3translation}</ContentStyle>
                     : null
                   }
                 </div>
