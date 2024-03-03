@@ -123,10 +123,10 @@ class Postbases extends Component {
                 </SectionHead>
               </Header>
               <ContentStyleCenter>
-              Search our online postbase collection for common postbases, or to find ways to express ideas using postbases. Click the Alutiiq icon to see information about the word. Most postbases have example sentencences and style notes.
+                Search our online postbase collection for common postbases, or to find ways to express ideas using postbases. Click the Alutiiq icon to see information about the word. Most postbases have example sentencences and style notes.
                 <br />
-                    <br />
-                    To start exploring, just begin typing in the search bar below.
+                <br />
+                To start exploring, just begin typing in the search bar below.
               </ContentStyleCenter>
             </SpecialDiv>
           </div>

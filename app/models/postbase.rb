@@ -3,23 +3,24 @@ class Postbase < ApplicationRecord
   def self.to_csv
     attributes = %w{
       translation
-      example1
-      example1audio
-      example1translation
-      example2
-      example2audio
-      example2translation
-      example3
-      example3audio
-      example3translation
-      notes
       postbase1
+      example1
+      example1translation
       postbase2
+      example2
+      example2translation
       postbase3
+      example3
+      example3translation
       complexityranking
       cleanpostbase1
       cleanpostbase2
+      notes
     }
+
+    # example1audio
+    # example2audio
+    # example3audio
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
