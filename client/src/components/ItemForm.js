@@ -24,9 +24,11 @@ class ItemForm extends Component {
   }
 
   componentDidMount() {
-    if (this.props.items)
-      console.log('in the form comp', this.props.items)
-    this.setState({ ...this.props.items })
+    if (this.props.item) {
+      const announcements = this.props.item.filter(val => val.page === 'home') !== undefined ? this.props.item.filter(val => val.page === 'home') : null
+      const current = announcements[announcements.length - 1]
+      this.setState({ ...current })
+    }
   }
 
   handleChange = (e, { name, value }) => {
@@ -37,7 +39,6 @@ class ItemForm extends Component {
     const { dispatch, toggleForm } = this.props
     e.preventDefault()
     this.setState({ page: this.props.originPage }, () => {
-      console.log('originPage:', this.props.originPage, '\n', { ...this.state })
       let itemData = { ...this.state }
       dispatch(addItem(itemData))
       toggleForm()
@@ -45,12 +46,12 @@ class ItemForm extends Component {
     )
   }
 
-  handleForm = () => {
+  handleForm = (current) => {
     const { user } = this.props
     const { title, body, buttonUrl, buttonName, location, contact } = this.state
 
     if (user.id) {
-
+      console.log('CURRENT:', current)
       return (
         <SpecialDiv>
           <SpecialDiv>
@@ -60,8 +61,8 @@ class ItemForm extends Component {
                   label='Put the new content title here.'
                   name='title'
                   value={title}
-                  placeholder='Title...'
-                  autoFocus={'true'}
+                  placeholder={current.title ? null : 'Title...'}
+                  autoFocus={true}
                   required
                   onChange={this.handleChange}
                 />
@@ -153,9 +154,11 @@ class ItemForm extends Component {
 
 
   render() {
+    let announcements = this.props.item.filter(val => val.page === 'home') !== undefined ? this.props.item.filter(val => val.page === 'home') : null
+    const current = announcements[announcements.length - 1]
     return (
       <div>
-        {this.handleForm()}
+        {this.handleForm(current)}
       </div>
     )
   }

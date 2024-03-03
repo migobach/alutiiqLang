@@ -124,7 +124,7 @@ class Home extends Component {
       axios.post('api/editables', updatedCardURL1)
     }
 
-    if (updatedCardHeader2.id ) {
+    if (updatedCardHeader2.id) {
       axios.put(`api/editables/${updatedCardHeader2.id}`, updatedCardHeader2)
     }
     if (updatedCardHeader2.id === undefined && updatedCardHeader2.name === 'cardHeader2') {
@@ -138,14 +138,14 @@ class Home extends Component {
       axios.post('api/editables', updatedCardBody2)
     }
 
-    if (updatedCardURL2.id ) {
+    if (updatedCardURL2.id) {
       axios.put(`api/editables/${updatedCardURL2.id}`, updatedCardURL2)
     }
     if (updatedCardURL2.id === undefined && updatedCardURL2.name === 'cardURL2') {
       axios.post('api/editables', updatedCardURL2)
     }
 
-    if (updatedCardHeader3.id ) {
+    if (updatedCardHeader3.id) {
       axios.put(`api/editables/${updatedCardHeader3.id}`, updatedCardHeader3)
     }
     if (updatedCardHeader3.id === undefined && updatedCardHeader3.name === 'cardHeader3') {
@@ -159,7 +159,7 @@ class Home extends Component {
       axios.post('api/editables', updatedCardBody3)
     }
 
-    if (updatedCardURL3.id ) {
+    if (updatedCardURL3.id) {
       axios.put(`api/editables/${updatedCardURL3.id}`, updatedCardURL3)
     }
     if (updatedCardURL3.id === undefined && updatedCardURL3.name === 'cardURL3') {
@@ -174,9 +174,9 @@ class Home extends Component {
       if (this.props.editables.find(val => val.name === 'cardHeader1') !== undefined) {
         const prestructuredCardHeader1 = this.props.editables.find(val => val.name === 'cardHeader1')
         prestructuredCardHeader1.textShort = evt.target.value
-        this.setState({ cardHeader1: prestructuredCardHeader1})
+        this.setState({ cardHeader1: prestructuredCardHeader1 })
       } else {
-        this.setState({ cardHeader1: { name: 'cardHeader1', textShort: evt.target.value }})
+        this.setState({ cardHeader1: { name: 'cardHeader1', textShort: evt.target.value } })
       }
     }
 
@@ -186,7 +186,7 @@ class Home extends Component {
         prestructedCardBody1.textLong = evt.target.value
         this.setState({ cardBody1: prestructedCardBody1 })
       } else {
-        this.setState({ cardBody1: { name: 'cardBody1', textLong: evt.target.value }})
+        this.setState({ cardBody1: { name: 'cardBody1', textLong: evt.target.value } })
       }
     }
 
@@ -196,7 +196,7 @@ class Home extends Component {
         prestructuredCardURL1.textShort = evt.target.value
         this.setState({ cardURL1: prestructuredCardURL1 })
       } else {
-        this.setState({ cardURL1: { name: 'cardURL1', textShort: evt.target.value }})
+        this.setState({ cardURL1: { name: 'cardURL1', textShort: evt.target.value } })
       }
     }
 
@@ -206,7 +206,7 @@ class Home extends Component {
         prestructuredCardHeader2.textShort = evt.target.value
         this.setState({ cardHeader2: prestructuredCardHeader2 })
       } else {
-        this.setState({ cardHeader2: { name: 'cardHeader2', textShort: evt.target.value }})
+        this.setState({ cardHeader2: { name: 'cardHeader2', textShort: evt.target.value } })
       }
     }
 
@@ -216,7 +216,7 @@ class Home extends Component {
         prestructuredCardBody2.textLong = evt.target.value
         this.setState({ cardBody2: prestructuredCardBody2 })
       } else {
-        this.setState({ cardBody2: { name: 'cardBody2', textLong: evt.target.value }})
+        this.setState({ cardBody2: { name: 'cardBody2', textLong: evt.target.value } })
       }
     }
 
@@ -226,7 +226,7 @@ class Home extends Component {
         prestructuredCardURL2.textShort = evt.target.value
         this.setState({ cardURL2: prestructuredCardURL2 })
       } else {
-        this.setState({ cardURL2: { name: 'cardURL2', textShort: evt.target.value }})
+        this.setState({ cardURL2: { name: 'cardURL2', textShort: evt.target.value } })
       }
     }
 
@@ -236,7 +236,7 @@ class Home extends Component {
         prestructuredCardHeader3.textShort = evt.target.value
         this.setState({ cardHeader3: prestructuredCardHeader3 })
       } else {
-        this.setState({ cardHeader3: { name: 'cardHeader3', textShort: evt.target.value }})
+        this.setState({ cardHeader3: { name: 'cardHeader3', textShort: evt.target.value } })
       }
     }
 
@@ -246,7 +246,7 @@ class Home extends Component {
         prestructuredCardBody3.textLong = evt.target.value
         this.setState({ cardBody3: prestructuredCardBody3 })
       } else {
-        this.setState({ cardBody3: { name: 'cardBody3', textLong: evt.target.value }})
+        this.setState({ cardBody3: { name: 'cardBody3', textLong: evt.target.value } })
       }
     }
 
@@ -256,7 +256,7 @@ class Home extends Component {
         prestructuredCardURL3.textShort = evt.target.value
         this.setState({ cardURL3: prestructuredCardURL3 })
       } else {
-        this.setState({ cardURL3: { name: 'cardURL3', textShort: evt.target.value }})
+        this.setState({ cardURL3: { name: 'cardURL3', textShort: evt.target.value } })
       }
     }
   }
@@ -281,7 +281,7 @@ class Home extends Component {
     )
 
     if (filtered_articles <= []) {
-      return(
+      return (
         <Grid.Row>
           <SongStyleWhite>
             <i>No articles with those keywords.</i>
@@ -289,9 +289,9 @@ class Home extends Component {
         </Grid.Row>
       )
     } else
-      return(
-        filtered_articles.map( (article) =>
-        <Grid.Row key={article.id}>
+      return (
+        filtered_articles.map((article) =>
+          <Grid.Row key={article.id}>
             <Grid.Column computer={6} tablet={10} mobile={10}>
               <SongStyleWhite>
                 {article.topic}
@@ -327,8 +327,8 @@ class Home extends Component {
       b.creator.toLowerCase().includes(lowerCaseSearch)
     )
 
-    if (filtered_books <= [] ) {
-      return(
+    if (filtered_books <= []) {
+      return (
         <Grid.Row>
           <SongStyleWhite>
             <i>No books with those keywords.</i>
@@ -336,29 +336,29 @@ class Home extends Component {
         </Grid.Row>
       )
     } else
-    return(
-      filtered_books.map( (book) =>
-      <Grid.Row key={book.id}>
-          <Grid.Column computer={6} tablet={10} mobile={10}>
-            <SongStyleWhite>
-              {book.book_title_english}
-            </SongStyleWhite>
-          </Grid.Column>
-          <Grid.Column width={6} only='computer'>
-            <SongStyleWhite>
-              {book.creator}
-            </SongStyleWhite>
-          </Grid.Column>
-          <Grid.Column computer={4} tablet={4} mobile={4} textAlign='center'>
-            <Pointer>
-              <IconLink href={book.file} target='_blank'>
-                <Icon name='eye' size='large' />
-              </IconLink>
-            </Pointer>
-          </Grid.Column>
-        </Grid.Row>
+      return (
+        filtered_books.map((book) =>
+          <Grid.Row key={book.id}>
+            <Grid.Column computer={6} tablet={10} mobile={10}>
+              <SongStyleWhite>
+                {book.book_title_english}
+              </SongStyleWhite>
+            </Grid.Column>
+            <Grid.Column width={6} only='computer'>
+              <SongStyleWhite>
+                {book.creator}
+              </SongStyleWhite>
+            </Grid.Column>
+            <Grid.Column computer={4} tablet={4} mobile={4} textAlign='center'>
+              <Pointer>
+                <IconLink href={book.file} target='_blank'>
+                  <Icon name='eye' size='large' />
+                </IconLink>
+              </Pointer>
+            </Grid.Column>
+          </Grid.Row>
+        )
       )
-    )
   }
 
   renderSearchCurriculum = () => {
@@ -374,8 +374,8 @@ class Home extends Component {
       c.level.toLowerCase().includes(lowerCaseSearch)
     )
 
-    if (filtered_curriculum <= [] ) {
-      return(
+    if (filtered_curriculum <= []) {
+      return (
         <Grid.Row>
           <SongStyleWhite>
             <i>No curricular items with those keywords.</i>
@@ -383,29 +383,29 @@ class Home extends Component {
         </Grid.Row>
       )
     } else
-    return(
-      filtered_curriculum.map( (curriculum) =>
-      <Grid.Row key={curriculum.id}>
-          <Grid.Column computer={6} tablet={10} mobile={10}>
-            <SongStyleWhite>
-              {curriculum.curricular_name}
-            </SongStyleWhite>
-          </Grid.Column>
-          <Grid.Column width={6} only='computer'>
-            <SongStyleWhite>
-              {curriculum.group_name}
-            </SongStyleWhite>
-          </Grid.Column>
-          <Grid.Column computer={4} tablet={4} mobile={4} textAlign='center'>
-            <Pointer>
-              <IconLink href={curriculum.link_to_item} target='_blank'>
-                <Icon name='eye' size='large' />
-              </IconLink>
-            </Pointer>
-          </Grid.Column>
-        </Grid.Row>
+      return (
+        filtered_curriculum.map((curriculum) =>
+          <Grid.Row key={curriculum.id}>
+            <Grid.Column computer={6} tablet={10} mobile={10}>
+              <SongStyleWhite>
+                {curriculum.curricular_name}
+              </SongStyleWhite>
+            </Grid.Column>
+            <Grid.Column width={6} only='computer'>
+              <SongStyleWhite>
+                {curriculum.group_name}
+              </SongStyleWhite>
+            </Grid.Column>
+            <Grid.Column computer={4} tablet={4} mobile={4} textAlign='center'>
+              <Pointer>
+                <IconLink href={curriculum.link_to_item} target='_blank'>
+                  <Icon name='eye' size='large' />
+                </IconLink>
+              </Pointer>
+            </Grid.Column>
+          </Grid.Row>
+        )
       )
-    )
   }
 
   renderSearchPoster = () => {
@@ -419,8 +419,8 @@ class Home extends Component {
       p.author.toLowerCase().includes(lowerCaseSearch)
     )
 
-    if (filtered_posters <= [] ) {
-      return(
+    if (filtered_posters <= []) {
+      return (
         <Grid.Row>
           <SongStyleWhite>
             <i>No posters with those keywords.</i>
@@ -428,29 +428,29 @@ class Home extends Component {
         </Grid.Row>
       )
     } else
-    return(
-      filtered_posters.map( (poster) =>
-      <Grid.Row key={poster.id}>
-          <Grid.Column computer={6} tablet={10} mobile={10}>
-            <SongStyleWhite>
-              {poster.title}
-            </SongStyleWhite>
-          </Grid.Column>
-          <Grid.Column width={6} only='computer'>
-            <SongStyleWhite>
-              {poster.author}
-            </SongStyleWhite>
-          </Grid.Column>
-          <Grid.Column computer={4} tablet={4} mobile={4} textAlign='center'>
-            <Pointer>
-              <IconLink href={poster.poster_link} target='_blank'>
-                <Icon name='eye' size='large' />
-              </IconLink>
-            </Pointer>
-          </Grid.Column>
-        </Grid.Row>
+      return (
+        filtered_posters.map((poster) =>
+          <Grid.Row key={poster.id}>
+            <Grid.Column computer={6} tablet={10} mobile={10}>
+              <SongStyleWhite>
+                {poster.title}
+              </SongStyleWhite>
+            </Grid.Column>
+            <Grid.Column width={6} only='computer'>
+              <SongStyleWhite>
+                {poster.author}
+              </SongStyleWhite>
+            </Grid.Column>
+            <Grid.Column computer={4} tablet={4} mobile={4} textAlign='center'>
+              <Pointer>
+                <IconLink href={poster.poster_link} target='_blank'>
+                  <Icon name='eye' size='large' />
+                </IconLink>
+              </Pointer>
+            </Grid.Column>
+          </Grid.Row>
+        )
       )
-    )
   }
 
   renderSearchGames = () => {
@@ -466,8 +466,8 @@ class Home extends Component {
       g.game_name_english.toLowerCase().includes(lowerCaseSearch)
     )
 
-    if (filtered_games <= [] ) {
-      return(
+    if (filtered_games <= []) {
+      return (
         <Grid.Row>
           <SongStyleWhite>
             <i>No games with those keywords.</i>
@@ -475,29 +475,29 @@ class Home extends Component {
         </Grid.Row>
       )
     } else
-    return(
-      filtered_games.map( (game) =>
-      <Grid.Row key={game.id}>
-          <Grid.Column computer={6} tablet={10} mobile={10}>
-            <SongStyleWhite>
-              {game.game_name_english}
-            </SongStyleWhite>
-          </Grid.Column>
-          <Grid.Column width={6} only='computer'>
-            <SongStyleWhite>
-              {game.creator}
-            </SongStyleWhite>
-          </Grid.Column>
-          <Grid.Column computer={4} tablet={4} mobile={4} textAlign='center'>
-            <Pointer>
-              <IconLink href={game.link_to_item} target='_blank'>
-                <Icon name='eye' size='large' />
-              </IconLink>
-            </Pointer>
-          </Grid.Column>
-        </Grid.Row>
+      return (
+        filtered_games.map((game) =>
+          <Grid.Row key={game.id}>
+            <Grid.Column computer={6} tablet={10} mobile={10}>
+              <SongStyleWhite>
+                {game.game_name_english}
+              </SongStyleWhite>
+            </Grid.Column>
+            <Grid.Column width={6} only='computer'>
+              <SongStyleWhite>
+                {game.creator}
+              </SongStyleWhite>
+            </Grid.Column>
+            <Grid.Column computer={4} tablet={4} mobile={4} textAlign='center'>
+              <Pointer>
+                <IconLink href={game.link_to_item} target='_blank'>
+                  <Icon name='eye' size='large' />
+                </IconLink>
+              </Pointer>
+            </Grid.Column>
+          </Grid.Row>
+        )
       )
-    )
   }
 
   renderSearchSongs = () => {
@@ -505,7 +505,7 @@ class Home extends Component {
     const song = this.props.songs   // SONGS: credit, title_alutiiq, title_english, NEED TO GO TO THE SONG VIEW (CARRY STATE)
     const lowerCaseSearch = searchData.toLowerCase()
 
-   let filtered_songs = song.filter(s =>
+    let filtered_songs = song.filter(s =>
       ((s.title_english !== null) ? s.title_english.toLowerCase().includes(lowerCaseSearch) : null)
       ||
       ((s.credit !== null) ? s.credit.toLowerCase().includes(lowerCaseSearch) : null)
@@ -515,8 +515,8 @@ class Home extends Component {
       ((s.notes !== null) ? s.notes.toLowerCase().includes(lowerCaseSearch) : null)
     )
 
-    if (filtered_songs <= [] ) {
-      return(
+    if (filtered_songs <= []) {
+      return (
         <Grid.Row>
           <SongStyleWhite>
             <i>No songs with those keywords.</i>
@@ -524,52 +524,50 @@ class Home extends Component {
         </Grid.Row>
       )
     } else
-    return(
-      filtered_songs.map( (song) =>
-      <Grid.Row key={song.id}>
-          <Grid.Column computer={6} tablet={10} mobile={10}>
-            <SongStyleWhite>
-              {song.title_english}
-            </SongStyleWhite>
-          </Grid.Column>
-          <Grid.Column width={6} only='computer'>
-            <SongStyleWhite>
-              {song.credit}
-            </SongStyleWhite>
-          </Grid.Column>
-          <Grid.Column computer={4} tablet={4} mobile={4} textAlign='center'>
-              <Link to={{ pathname: '/songs', state: {songView: true, songData: (song) } }}>
-            <Pointer>
-              <IconLink target='_blank'>
-                <Icon name='eye' size='large' />
-              </IconLink>
-            </Pointer>
+      return (
+        filtered_songs.map((song) =>
+          <Grid.Row key={song.id}>
+            <Grid.Column computer={6} tablet={10} mobile={10}>
+              <SongStyleWhite>
+                {song.title_english}
+              </SongStyleWhite>
+            </Grid.Column>
+            <Grid.Column width={6} only='computer'>
+              <SongStyleWhite>
+                {song.credit}
+              </SongStyleWhite>
+            </Grid.Column>
+            <Grid.Column computer={4} tablet={4} mobile={4} textAlign='center'>
+              <Link to={{ pathname: '/songs', state: { songView: true, songData: (song) } }}>
+                <Pointer>
+                  <IconLink target='_blank'>
+                    <Icon name='eye' size='large' />
+                  </IconLink>
+                </Pointer>
               </Link>
-          </Grid.Column>
-        </Grid.Row>
+            </Grid.Column>
+          </Grid.Row>
+        )
       )
-    )
   }
 
-// TODO MAKE IT SO IT UPDATES THE HOME PAGE CONTENT, INSTEAD OF MAKING NEW CONTENT
+  // TODO MAKE IT SO IT UPDATES THE HOME PAGE CONTENT, INSTEAD OF MAKING NEW CONTENT
   renderAnnouncement = () => {
     let announcements = this.props.items.filter(val => val.page === 'home') !== undefined ? this.props.items.filter(val => val.page === 'home') : null
 
     if (announcements !== [] && announcements.length >= 1) {
-      console.log('announcements:', announcements)
       const current = announcements[announcements.length - 1]
-      console.log('current:', current)
-      return(
+      return (
         <div>
           <SpecialDiv>
-          <SpecialDiv>
-            <Header textAlign='center'>
-              <SubHeader>
-                {current.title}
-              </SubHeader>
+            <SpecialDiv>
+              <Header textAlign='center'>
+                <SubHeader>
+                  {current.title}
+                </SubHeader>
                 <Divider />
-            </Header>
-          </SpecialDiv>
+              </Header>
+            </SpecialDiv>
 
             <SubHeaderContent>
               {current.body}
@@ -587,9 +585,9 @@ class Home extends Component {
               <br />
             </ContactLocationContent>
           </SpecialDiv>
-            <Button size='big' href={current.buttonUrl} target='_blank'>
-              {current.buttonName}
-            </Button>
+          <Button size='big' href={current.buttonUrl} target='_blank'>
+            {current.buttonName}
+          </Button>
         </div>
       )
 
@@ -598,7 +596,7 @@ class Home extends Component {
     }
   }
 
-// COMPONENET RENDER STARTS HERE
+  // COMPONENET RENDER STARTS HERE
 
   render() {
     const { searchData, renderSearch, showForm } = this.state
@@ -606,14 +604,14 @@ class Home extends Component {
 
     return (
       <div>
-{/* HEAD BANNER WITH AFOGNAK BEACH IN THE BACKGROUND */}
+        {/* HEAD BANNER WITH AFOGNAK BEACH IN THE BACKGROUND */}
 
         <Parallax
           bgImage={Banner}
           bgImageAlt="Afognak village beach, Afognak Island, Alaska"
           strength={500}
         >
-          <div style={{height: 500}}>
+          <div style={{ height: 500 }}>
             <MainDiv>
               <Pointer onClick={this.toggleHomeButton}>
                 <MainHeader>
@@ -625,267 +623,273 @@ class Home extends Component {
               </Pointer>
             </MainDiv>
           </div>
-              <CreditWatermark>
-                Photo courtesy of Patrick Saltonstall
-              </CreditWatermark>
+          <CreditWatermark>
+            Photo courtesy of Patrick Saltonstall
+          </CreditWatermark>
         </Parallax>
 
-{/* CARD OPTIONS THAT LEAD TO FEATURED CONTENT */}
+        {/* CARD OPTIONS THAT LEAD TO FEATURED CONTENT */}
 
         <ContainerPad>
           <Card.Group itemsPerRow={3} stackable={true}>
             {this.props.user.id ?
-            <Card>
-              <Card.Content header textAlign='center'>
-                <CardHeader>
-                  <ContentEditable
-                    html={
-                      (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardHeader1') !== undefined) ?
-                      this.props.editables.find(val => val.name === 'cardHeader1').textShort :
-                      'Happenings'
-                    }
-                    disabled={this.props.user.id ? false : true}
-                    onChange={this.handleChangeEditable}
-                    tagName='cardHeader1'
-                    onBlur={this.handleBlurEditable}
-                  />
-                </CardHeader>
-              </Card.Content>
-              <Card.Content>
-                <SpecialDiv>
-                  <ContentStyle>
+              <Card>
+                <Card.Content header textAlign='center'>
+                  <CardHeader>
+                    <ContentEditable
+                      html={
+                        (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardHeader1') !== undefined) ?
+                          this.props.editables.find(val => val.name === 'cardHeader1').textShort :
+                          'Happenings'
+                      }
+                      disabled={this.props.user.id ? false : true}
+                      onChange={this.handleChangeEditable}
+                      tagName='cardHeader1'
+                      onBlur={this.handleBlurEditable}
+                    />
+                  </CardHeader>
+                </Card.Content>
+                <Card.Content>
+                  <SpecialDiv>
+                    <ContentStyle>
                       <ContentEditable
                         html={
                           (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardBody1') !== undefined) ?
-                          this.props.editables.find(val => val.name === 'cardBody1').textLong :
-                          'What is happeing, and how do you get involved? Click below to learn more about the history of language revitalization on the Kodiak Archipelago and learn about Alutiiq worldviews.'
+                            this.props.editables.find(val => val.name === 'cardBody1').textLong :
+                            'What is happeing, and how do you get involved? Click below to learn more about the history of language revitalization on the Kodiak Archipelago and learn about Alutiiq worldviews.'
                         }
                         disabled={this.props.user.id ? false : true}
                         onChange={this.handleChangeEditable}
                         tagName='cardBody1'
                         onBlur={this.handleBlurEditable}
                       />
-                  </ContentStyle>
-                </SpecialDiv>
-              </Card.Content>
-                  <Button color='grey' size='small' disabled>
-                    <ContentEditable
-                      html={
-                        (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardURL1') !== undefined) ?
+                    </ContentStyle>
+                  </SpecialDiv>
+                </Card.Content>
+                <Button color='grey' size='small' disabled>
+                  <ContentEditable
+                    html={
+                      (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardURL1') !== undefined) ?
                         this.props.editables.find(val => val.name === 'cardURL1').textShort :
                         'https://www.example.com'}
-                      disabled={this.props.user.id ? false : true}
-                      onChange={this.handleChangeEditable}
-                      tagName='cardURL1'
-                      onBlur={this.handleBlurEditable}
-                    />
-                  </Button>
-            </Card>
-            :
-            <Card>
-              <Card.Content header textAlign='center'>
-                <CardHeader>
-                  <div dangerouslySetInnerHTML= {{__html:
-                    (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardHeader1') !== undefined) ?
-                    this.props.editables.find(val => val.name === 'cardHeader1').textShort :
-                    'Happenings'
-                  }}/>
-                </CardHeader>
-              </Card.Content>
-              <Card.Content>
-                <SpecialDiv>
-                  <ContentStyle>
-                    <div dangerouslySetInnerHTML= {{__html:
-                      (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardBody1') !== undefined) ?
-                      this.props.editables.find(val => val.name === 'cardBody1').textLong :
-                      'What is happeing, and how do you get involved? Click below to learn more about the history of language revitalization on the Kodiak Archipelago and learn about Alutiiq worldviews.'
+                    disabled={this.props.user.id ? false : true}
+                    onChange={this.handleChangeEditable}
+                    tagName='cardURL1'
+                    onBlur={this.handleBlurEditable}
+                  />
+                </Button>
+              </Card>
+              :
+              <Card>
+                <Card.Content header textAlign='center'>
+                  <CardHeader>
+                    <div dangerouslySetInnerHTML={{
+                      __html:
+                        (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardHeader1') !== undefined) ?
+                          this.props.editables.find(val => val.name === 'cardHeader1').textShort :
+                          'Happenings'
                     }} />
-                  </ContentStyle>
-                </SpecialDiv>
-              </Card.Content>
-                  <Button as='a' href={
-                    (this.props.editables.length > 1 && this.props.editables.find(val => val.name === 'cardURL1') !== undefined) ?
+                  </CardHeader>
+                </Card.Content>
+                <Card.Content>
+                  <SpecialDiv>
+                    <ContentStyle>
+                      <div dangerouslySetInnerHTML={{
+                        __html:
+                          (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardBody1') !== undefined) ?
+                            this.props.editables.find(val => val.name === 'cardBody1').textLong :
+                            'What is happeing, and how do you get involved? Click below to learn more about the history of language revitalization on the Kodiak Archipelago and learn about Alutiiq worldviews.'
+                      }} />
+                    </ContentStyle>
+                  </SpecialDiv>
+                </Card.Content>
+                <Button as='a' href={
+                  (this.props.editables.length > 1 && this.props.editables.find(val => val.name === 'cardURL1') !== undefined) ?
                     this.props.editables.find(val => val.name === 'cardURL1').textShort :
                     '/happenings'
-                  } color='yellow' size='small' fluid>
-                   Go
-                  </Button>
-            </Card>
+                } color='yellow' size='small' fluid>
+                  Go
+                </Button>
+              </Card>
             }
 
             {this.props.user.id ?
-            <Card>
-              <Card.Content header textAlign='center'>
-                <CardHeader>
-                  <ContentEditable
+              <Card>
+                <Card.Content header textAlign='center'>
+                  <CardHeader>
+                    <ContentEditable
                       html={
                         (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardHeader2') !== undefined) ?
-                        this.props.editables.find(val => val.name === 'cardHeader2').textShort :
-                        'Dictionary'
+                          this.props.editables.find(val => val.name === 'cardHeader2').textShort :
+                          'Dictionary'
                       }
                       disabled={this.props.user.id ? false : true}
                       onChange={this.handleChangeEditable}
                       tagName='cardHeader2'
                       onBlur={this.handleBlurEditable}
-                  />
-                </CardHeader>
-              </Card.Content>
-              <Card.Content>
-                <SpecialDiv>
-                  <ContentStyle>
-
-                    <ContentEditable
-                      html={
-                        (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardBody2') !== undefined) ?
-                        this.props.editables.find(val => val.name === 'cardBody2').textLong :
-                        "Discover new words in the Alutiiq language. Hear words being said by an Alutiiq speaker, and explore how to use words in full sentences."
-                      }
-                      disabled={this.props.user.id ? false : true}
-                      onChange={this.handleChangeEditable}
-                      tagName='cardBody2'
-                      onBlur={this.handleBlurEditable}
                     />
-                  </ContentStyle>
-                </SpecialDiv>
-              </Card.Content>
-                  <Button color='grey' size='small' disabled>
-                    <ContentEditable
-                      html={
-                        (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardURL2') !== undefined) ?
+                  </CardHeader>
+                </Card.Content>
+                <Card.Content>
+                  <SpecialDiv>
+                    <ContentStyle>
+
+                      <ContentEditable
+                        html={
+                          (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardBody2') !== undefined) ?
+                            this.props.editables.find(val => val.name === 'cardBody2').textLong :
+                            "Discover new words in the Alutiiq language. Hear words being said by an Alutiiq speaker, and explore how to use words in full sentences."
+                        }
+                        disabled={this.props.user.id ? false : true}
+                        onChange={this.handleChangeEditable}
+                        tagName='cardBody2'
+                        onBlur={this.handleBlurEditable}
+                      />
+                    </ContentStyle>
+                  </SpecialDiv>
+                </Card.Content>
+                <Button color='grey' size='small' disabled>
+                  <ContentEditable
+                    html={
+                      (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardURL2') !== undefined) ?
                         this.props.editables.find(val => val.name === 'cardURL2').textShort :
                         'https://www.example.com'
-                      }
-                      disabled={this.props.user.id ? false : true}
-                      onChange={this.handleChangeEditable}
-                      tagName='cardURL2'
-                      onBlur={this.handleBlurEditable}
-                    />
-                  </Button>
-            </Card>
-            :
-            <Card>
-              <Card.Content header textAlign='center'>
-                <CardHeader>
-                  <div dangerouslySetInnerHTML= {{__html:
-                    (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardHeader2') !== undefined) ?
-                    this.props.editables.find(val => val.name === 'cardHeader2').textShort :
-                    'Dictionary'
+                    }
+                    disabled={this.props.user.id ? false : true}
+                    onChange={this.handleChangeEditable}
+                    tagName='cardURL2'
+                    onBlur={this.handleBlurEditable}
+                  />
+                </Button>
+              </Card>
+              :
+              <Card>
+                <Card.Content header textAlign='center'>
+                  <CardHeader>
+                    <div dangerouslySetInnerHTML={{
+                      __html:
+                        (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardHeader2') !== undefined) ?
+                          this.props.editables.find(val => val.name === 'cardHeader2').textShort :
+                          'Dictionary'
                     }} />
-                </CardHeader>
-              </Card.Content>
-              <Card.Content>
-                <SpecialDiv>
-                  <ContentStyle>
-                    <div dangerouslySetInnerHTML= {{__html:
-                      (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardBody2') !== undefined) ?
-                      this.props.editables.find(val => val.name === 'cardBody2').textLong :
-                      "Discover new words in the Alutiiq language. Hear words being said by an Alutiiq speaker, and explore how to use words in full sentences."
-                    }} />
-                  </ContentStyle>
-                </SpecialDiv>
-              </Card.Content>
+                  </CardHeader>
+                </Card.Content>
+                <Card.Content>
+                  <SpecialDiv>
+                    <ContentStyle>
+                      <div dangerouslySetInnerHTML={{
+                        __html:
+                          (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardBody2') !== undefined) ?
+                            this.props.editables.find(val => val.name === 'cardBody2').textLong :
+                            "Discover new words in the Alutiiq language. Hear words being said by an Alutiiq speaker, and explore how to use words in full sentences."
+                      }} />
+                    </ContentStyle>
+                  </SpecialDiv>
+                </Card.Content>
                 <Button as='a' href={
                   (this.props.editables.length > 1 && this.props.editables.find(val => val.name === 'cardURL2') !== undefined) ?
-                  this.props.editables.find(val => val.name === 'cardURL2').textShort :
-                  '/dictionary'
-                  } color='yellow' size='small' fluid>
-                   Go
+                    this.props.editables.find(val => val.name === 'cardURL2').textShort :
+                    '/dictionary'
+                } color='yellow' size='small' fluid>
+                  Go
                 </Button>
-            </Card>
+              </Card>
             }
 
             {this.props.user.id ?
-            <Card>
-              <Card.Content header textAlign='center'>
-                <CardHeader>
-                  <ContentEditable
+              <Card>
+                <Card.Content header textAlign='center'>
+                  <CardHeader>
+                    <ContentEditable
                       html={
                         (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardHeader3') !== undefined) ?
-                        this.props.editables.find(val => val.name === 'cardHeader3').textShort :
-                        'Classes'
+                          this.props.editables.find(val => val.name === 'cardHeader3').textShort :
+                          'Classes'
                       }
                       disabled={this.props.user.id ? false : true}
                       onChange={this.handleChangeEditable}
                       tagName='cardHeader3'
                       onBlur={this.handleBlurEditable}
-                  />
-                </CardHeader>
-              </Card.Content>
-              <Card.Content>
-                <SpecialDiv>
-                  <ContentStyle>
-                    <ContentEditable
-                      html={
-                        (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardBody3') !== undefined) ?
-                        this.props.editables.find(val => val.name === 'cardBody3').textLong :
-                        "Are you interested in learning Alutiiq, and meeting other speakers and learners? Check out opportunities to learn in formal and informal settings by clicking the button."
-                      }
-                      disabled={this.props.user.id ? false : true}
-                      onChange={this.handleChangeEditable}
-                      tagName='cardBody3'
-                      onBlur={this.handleBlurEditable}
                     />
-                  </ContentStyle>
-                </SpecialDiv>
-              </Card.Content>
-                  <Button color='grey' size='small' disabled>
-                    <ContentEditable
-                      html={
-                        (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardURL3') !== undefined) ?
+                  </CardHeader>
+                </Card.Content>
+                <Card.Content>
+                  <SpecialDiv>
+                    <ContentStyle>
+                      <ContentEditable
+                        html={
+                          (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardBody3') !== undefined) ?
+                            this.props.editables.find(val => val.name === 'cardBody3').textLong :
+                            "Are you interested in learning Alutiiq, and meeting other speakers and learners? Check out opportunities to learn in formal and informal settings by clicking the button."
+                        }
+                        disabled={this.props.user.id ? false : true}
+                        onChange={this.handleChangeEditable}
+                        tagName='cardBody3'
+                        onBlur={this.handleBlurEditable}
+                      />
+                    </ContentStyle>
+                  </SpecialDiv>
+                </Card.Content>
+                <Button color='grey' size='small' disabled>
+                  <ContentEditable
+                    html={
+                      (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardURL3') !== undefined) ?
                         this.props.editables.find(val => val.name === 'cardURL3').textShort :
                         'https://www.example.com'
-                      }
-                      disabled={this.props.user.id ? false : true}
-                      onChange={this.handleChangeEditable}
-                      tagName='cardURL3'
-                      onBlur={this.handleBlurEditable}
-                    />
-                  </Button>
-            </Card>
-            :
-            <Card>
-              <Card.Content header textAlign='center'>
-                <CardHeader>
-                  <div dangerouslySetInnerHTML= {{__html:
-                    (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardHeader3') !== undefined) ?
-                    this.props.editables.find(val => val.name === 'cardHeader3').textShort :
-                    'Classes'
-                  }} />
-                </CardHeader>
-              </Card.Content>
-              <Card.Content>
-                <SpecialDiv>
-                  <ContentStyle>
-                    <div dangerouslySetInnerHTML= {{__html:
-                      (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardBody3') !== undefined) ?
-                      this.props.editables.find(val => val.name === 'cardBody3').textLong :
-                      "Are you interested in learning Alutiiq, and meeting other speakers and learners? Check out opportunities to learn in formal and informal settings by clicking the button."
+                    }
+                    disabled={this.props.user.id ? false : true}
+                    onChange={this.handleChangeEditable}
+                    tagName='cardURL3'
+                    onBlur={this.handleBlurEditable}
+                  />
+                </Button>
+              </Card>
+              :
+              <Card>
+                <Card.Content header textAlign='center'>
+                  <CardHeader>
+                    <div dangerouslySetInnerHTML={{
+                      __html:
+                        (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardHeader3') !== undefined) ?
+                          this.props.editables.find(val => val.name === 'cardHeader3').textShort :
+                          'Classes'
                     }} />
-                  </ContentStyle>
-                </SpecialDiv>
-              </Card.Content>
+                  </CardHeader>
+                </Card.Content>
+                <Card.Content>
+                  <SpecialDiv>
+                    <ContentStyle>
+                      <div dangerouslySetInnerHTML={{
+                        __html:
+                          (this.props.editables.length >= 1 && this.props.editables.find(val => val.name === 'cardBody3') !== undefined) ?
+                            this.props.editables.find(val => val.name === 'cardBody3').textLong :
+                            "Are you interested in learning Alutiiq, and meeting other speakers and learners? Check out opportunities to learn in formal and informal settings by clicking the button."
+                      }} />
+                    </ContentStyle>
+                  </SpecialDiv>
+                </Card.Content>
                 <Button as='a' href={
                   (this.props.editables.length > 1 && this.props.editables.find(val => val.name === 'cardURL3') !== undefined) ?
-                  this.props.editables.find(val => val.name === 'cardURL3').textShort :
-                  '/classes'
-                  } color='yellow' size='small' fluid>
-                   Go
+                    this.props.editables.find(val => val.name === 'cardURL3').textShort :
+                    '/classes'
+                } color='yellow' size='small' fluid>
+                  Go
                 </Button>
-            </Card>
+              </Card>
             }
           </Card.Group>
         </ContainerPad>
 
-{/* GREEN DIV WITH ALL COMPONENET SEARCH FEATURE: MINUS DICTIOANRY */}
+        {/* GREEN DIV WITH ALL COMPONENET SEARCH FEATURE: MINUS DICTIOANRY */}
 
         <GreenDiv>
           <Grid stackable columns={2} verticalAlign='middle'>
             <Grid.Column width={4}>
-            <Icon name='search' size='big' />
+              <Icon name='search' size='big' />
               <WhiteTitle>
                 Search
               </WhiteTitle>
-            <Divider />
+              <Divider />
               <ContentStyleWhiteLeft>
                 Where to start? Search the site for songs, books, curriculuar materials, games, articles, or posters. <i>Kita! Iwai'luten caqiq qainarmek!</i>
               </ContentStyleWhiteLeft>
@@ -901,7 +905,7 @@ class Home extends Component {
                     onChange={this.handleChange}
                     fluid
                   />
-                  <Button onClick={() => this.handleRenderingSearchData() }>
+                  <Button onClick={() => this.handleRenderingSearchData()}>
                     Search
                   </Button>
                 </Form>
@@ -910,22 +914,22 @@ class Home extends Component {
                 renderSearch ?
                   <Div>
                     <Grid>
-                    <Grid.Row>
+                      <Grid.Row>
                         <Link to={'/songs'}>
                           <WhiteTitle>
                             <Icon name='external alternate' size='small' /> Songs:
                           </WhiteTitle>
                         </Link>
                       </Grid.Row>
-                      { searchData ? this.renderSearchSongs() : null }
+                      {searchData ? this.renderSearchSongs() : null}
                       <Grid.Row>
-                        <Link to={{ pathname: "/happenings", state: {newsComp: true} }}>
+                        <Link to={{ pathname: "/happenings", state: { newsComp: true } }}>
                           <WhiteTitle>
                             <Icon name='external alternate' size='small' /> Articles:
                           </WhiteTitle>
                         </Link>
                       </Grid.Row>
-                      { this.renderSearchArticles() }
+                      {this.renderSearchArticles()}
                       <Grid.Row>
                         <Link to={'/books'}>
                           <WhiteTitle>
@@ -933,7 +937,7 @@ class Home extends Component {
                           </WhiteTitle>
                         </Link>
                       </Grid.Row>
-                      { this.renderSearchBooks() }
+                      {this.renderSearchBooks()}
                       <Grid.Row>
                         <Link to={'/curriculum'}>
                           <WhiteTitle>
@@ -941,7 +945,7 @@ class Home extends Component {
                           </WhiteTitle>
                         </Link>
                       </Grid.Row>
-                      { this.renderSearchCurriculum() }
+                      {this.renderSearchCurriculum()}
                       <Grid.Row>
                         <Link to={'/postersandgames'}>
                           <WhiteTitle>
@@ -949,47 +953,47 @@ class Home extends Component {
                           </WhiteTitle>
                         </Link>
                       </Grid.Row>
-                      { this.renderSearchPoster() }
-                      { this.renderSearchGames() }
+                      {this.renderSearchPoster()}
+                      {this.renderSearchGames()}
                     </Grid>
                   </Div>
-                :
-                null
+                  :
+                  null
               }
             </Grid.Column>
           </Grid>
         </GreenDiv>
 
-{/* SPECIAL CONTENT TOGGLING AND EDITING */}
+        {/* SPECIAL CONTENT TOGGLING AND EDITING */}
 
-          <Container textAlign='center' verticalAlign='middle'>
+        <Container textAlign='center' verticalAlign='middle'>
           {
             showForm ?
-            <div>
-              <ItemForm user={this.props.user} item={this.props.items} toggleForm={this.toggleForm} originPage='home'/>
-            </div>
-            :
-            <div>
-              {this.renderAnnouncement()}
-            </div>
+              <div>
+                <ItemForm user={this.props.user} item={this.props.items} toggleForm={this.toggleForm} originPage='home' />
+              </div>
+              :
+              <div>
+                {this.renderAnnouncement()}
+              </div>
 
           }
-          </Container>
+        </Container>
         <Divider hidden />
-          {
-            (user.id && showForm === false) ?
+        {
+          (user.id && showForm === false) ?
 
             <div>
-            <Divider hidden/>
+              <Divider hidden />
               <Container textAlign='center' verticalAlign='middle'>
-                  <Button onClick={this.toggleForm} color='red'>
-                    Edit Content
-                  </Button>
+                <Button onClick={this.toggleForm} color='red'>
+                  Edit Content
+                </Button>
               </Container>
             </div>
-          :
+            :
             null
-          }
+        }
       </div>
     )
   }
@@ -1009,5 +1013,5 @@ const mapStateToProps = (state) => {
     user: state.user,
     editables: state.editables
   }
- }
+}
 export default connect(mapStateToProps)(Home)
